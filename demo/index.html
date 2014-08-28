@@ -178,6 +178,19 @@
 			
 		</section>
 
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"><h1>Events </h1></div>
+			</div>
+		</div>
+		<section class="container demo-container">
+			<div class="row">				
+				<div class="col-md-6"><a href="#" class="show-pop-event-show btn btn-info" data-placement="auto">on show</a></div>
+				<div class="col-md-6"><a href="#" class="show-pop-event-content btn btn-info pull-right" data-placement="auto">on set Content</a></div>				
+			</div>
+			
+		</section>
+
 		<div id="tableContent" style="display:none;">
 			<table class="table">
 		      <thead>
@@ -292,9 +305,26 @@
 					 						closeable:true,
 					 						padding:false,
 					 						iframe:true,
-					 						url:'http://getbootstrap.com'};
-					console.log(iframeSettings);	
+					 						url:'http://getbootstrap.com'};					
 					$('a.show-pop-iframe').webuiPopover('destroy').webuiPopover($.extend({},settings,iframeSettings));
+
+
+					var
+					 	eventShowSettings = {
+					 		onShow:function(pop){
+					 			alert('show!');
+					 		}
+					 	};					
+					$('a.show-pop-event-show').webuiPopover('destroy').webuiPopover($.extend({},settings,eventShowSettings));
+
+					var
+					 	eventContentSettings = {
+					 		onSetContent:function(pop){
+					 			alert('content setted!');
+					 		}
+					 	};					
+					$('a.show-pop-event-content').webuiPopover('destroy').webuiPopover($.extend({},settings,eventContentSettings));
+
 
 				}
 
