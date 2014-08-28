@@ -29,21 +29,21 @@ $('.some-trigger').webuiPopover(options);
 ### default options
 ```javascript
 {
-          placement:'auto',
-					width:'auto',
-					height:'auto',
-					trigger:'click',
-					style:'',
-					delay:300,
-					cache:true,
-					multi:false,
-					arrow:true,
-					title:'',
-					content:'',
-					closeable:false,
-					padding:true,
-					iframe:false,
-					url:''
+        placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left
+	width:'auto',//can be set with Number
+	height:'auto',//can be set with Number
+	trigger:'click',//values:click,hover
+	style:'',//values:'',inverse
+	delay:300,//delay time of the popover, works only when trigger is 'hover'
+	cache:true,//if cache is set to false,popover will destroy and recreate
+	multi:false,//allow other popovers in page at same time
+	arrow:true,//show arrow or not
+	title:'',//the popover title ,if title is set to empty string,title bar will auto hide
+	content:'',//content of the popover,content can be function
+	closeable:false,//display close button or not
+	padding:true,//content padding
+	iframe:false,//iframe or not
+	url:''//if not empty ,plugin will load content by url, 'content' option will be ignored
 }
 ```
 
