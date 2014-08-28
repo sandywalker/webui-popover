@@ -22,10 +22,31 @@ jquery1.7+,jquery2.x
 
 
 ##Getting Started
-===============
 ```javascript
 $('.some-trigger').webuiPopover(options);
 ```
+
+### default options
+```javascript
+{
+          placement:'auto',
+					width:'auto',
+					height:'auto',
+					trigger:'click',
+					style:'',
+					delay:300,
+					cache:true,
+					multi:false,
+					arrow:true,
+					title:'',
+					content:'',
+					closeable:false,
+					padding:true,
+					iframe:false,
+					url:''
+}
+```
+
 
 
 
