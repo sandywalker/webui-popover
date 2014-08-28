@@ -1,4 +1,4 @@
-webui-popover
+WebUI-Popover
 =============
 
 A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
@@ -6,13 +6,12 @@ A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootst
 
 Browser compatibility: ie8+,Chrome,Safari,Firefox,Opera
 
-Requirement
-===========
+## Requirement
 
-jquery1.1x,jquery1.2x
+jquery1.7+,jquery2.x
 
-FEATURES
-========
+##Features
+==========
 * fast speed
 * easy trigged by click or hover
 * support more placements
@@ -23,8 +22,12 @@ FEATURES
 * support url and iframe
 
 
-Getting Started
+##Getting Started
 ===============
+```javascript
+$('.some-trigger').webuiPopover(options);
+```
+
 
 
 
