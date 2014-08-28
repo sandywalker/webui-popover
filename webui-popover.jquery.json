@@ -1,0 +1,29 @@
+{
+	"name": "webui-popover",
+	"title": "WebUI Popover",
+	"description": "An enhancement popover plugin for Bootstrap!",
+	"keywords": [
+		"jquery",
+		"webui-popover",
+		"plugins"
+	],
+	"version":"1.0.0",
+	"author": {
+		"name": "Sandy Walker",
+		"email": "sanddywalker@gmail.com",
+		"url": "https://github.com/sandywalker"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://zenorocha.mit-license.org/"
+		}
+	],
+	"bugs": "https://github.com/sandywalker/webui-popover/issues",
+	"homepage": "https://github.com/sandywalker/webui-popover",
+	"docs": "https://github.com/sandywalker/webui-popover#readme",
+	"download": "https://github.com/sandywalker/webui-popover/archive/master.zip",
+	"dependencies": {
+		"jquery": ">=1.6"
+	}
+}

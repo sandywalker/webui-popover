@@ -1,0 +1,21 @@
+{
+  "name": "webui-popover",
+  "version": "1.0.0",
+  "authors": [
+    "sandywalker <sanddywalker@gmail.com>"
+  ],
+  "description": "webui popover",
+  "keywords": [
+    "jquery",
+    "plugins"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
