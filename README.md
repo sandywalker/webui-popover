@@ -29,9 +29,9 @@ $('.some-trigger').webuiPopover(options);
 ### default options
 ```javascript
 {
-        placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left
-	width:'auto',//can be set with Number
-	height:'auto',//can be set with Number
+	placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left
+	width:'auto',//can be set with  number
+	height:'auto',//can be set with  number
 	trigger:'click',//values:click,hover
 	style:'',//values:'',inverse
 	delay:300,//delay time of the popover, works only when trigger is 'hover'
