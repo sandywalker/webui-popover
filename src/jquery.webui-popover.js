@@ -34,7 +34,7 @@
 		// The actual plugin constructor
 		function WebuiPopover ( element, options ) {
 				this.$element = $(element);
-				this.options = $.extend( {}, defaults, options );				
+				this.options = $.extend( {}, defaults, options );
 				this._defaults = defaults;
 				this._name = pluginName;
 				this.init();
@@ -69,7 +69,7 @@
 					this.$element.trigger(e);
 
 					if (this.$target){this.$target.removeClass('in').hide();}
-					this.$element.trigger('hidden.'+pluginType);					
+					this.$element.trigger('hidden.'+pluginType);
 				},
 				toggle:function(e){
 					if (e) {e.preventDefault();}
@@ -93,7 +93,7 @@
 						targetHeight = $target[0].offsetHeight,
 						//placement
 						placement = 'bottom',
-						e = $.Event('show.' + this.type);
+						e = $.Event('show.' + pluginType);
 
 					if (!this.options.multi){
 						this.hideAll();
@@ -171,9 +171,9 @@
 						$titleEl.remove();
 					}
 				},
-				hasContent = function () {
-    				return this.getContent();
-  				},
+				hasContent:function () {
+					return this.getContent();
+				},
 				getContent:function(){
 					if (this.options.url){
 						//if iframe add iframe dom, else use async 
@@ -218,7 +218,7 @@
 					self._timeout = setTimeout(function(){
 						self.hide();
 					},self.options.delay);
-				},				
+				},
 				//reset and init the target events;
 				initTargetEvents:function(){
 					if (this.options.trigger!=='click'){

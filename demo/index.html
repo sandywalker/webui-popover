@@ -186,8 +186,10 @@
 		</div>
 		<section class="container demo-container">
 			<div class="row">				
-				<div class="col-md-6"><a href="#" class="show-pop-event-show btn btn-info" data-placement="auto">on show</a></div>
-				<div class="col-md-6"><a href="#" class="show-pop-event-content btn btn-info pull-right" data-placement="auto">on set Content</a></div>				
+				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info" data-placement="auto">show</a></div>
+				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info" data-placement="auto">shown</a></div>
+				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info" data-placement="auto">hide</a></div>
+				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info pull-right" data-placement="auto">hidden</a></div>				
 			</div>
 			
 		</section>
@@ -309,22 +311,17 @@
 					$('a.show-pop-iframe').webuiPopover('destroy').webuiPopover($.extend({},settings,iframeSettings));
 
 
-					var
-					 	eventShowSettings = {
-					 		onShow:function(pop){
-					 			alert('show!');
-					 		}
-					 	};					
-					$('a.show-pop-event-show').webuiPopover('destroy').webuiPopover($.extend({},settings,eventShowSettings));
 
-					var
-					 	eventContentSettings = {
-					 		onSetContent:function(pop){
-					 			alert('content setted!');
-					 		}
-					 	};					
-					$('a.show-pop-event-content').webuiPopover('destroy').webuiPopover($.extend({},settings,eventContentSettings));
 
+					$('a.show-pop-event').each(function(i,item){
+							var ename = $(item).text()+'.webui.popover';
+							console.log(ename);
+							$(item).webuiPopover('destroy').webuiPopover(settings)
+							.on(ename,function(e){
+								console.log('event:'+ename+' is trigged!');
+							});
+					});
+					
 
 				}
 

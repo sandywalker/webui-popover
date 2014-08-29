@@ -11,6 +11,7 @@
 		// Create the defaults once
 		var pluginName = 'webuiPopover';
 		var pluginClass = 'webui-popover';
+		var pluginType = 'webui.popover';
 		var	defaults = {
 					placement:'auto',
 					width:'auto',
@@ -42,7 +43,6 @@
 		function WebuiPopover ( element, options ) {
 				this.$element = $(element);
 				this.options = $.extend( {}, defaults, options );
-				console.log(this.options);
 				this._defaults = defaults;
 				this._name = pluginName;
 				this.init();
@@ -72,9 +72,12 @@
 						this.$target.remove();
 					}
 				},
-				hide:function(e){
-					if (e) {e.preventDefault();}
+				hide:function(){
+					var e = $.Event('hide.' + pluginType);
+					this.$element.trigger(e);
+
 					if (this.$target){this.$target.removeClass('in').hide();}
+					this.$element.trigger('hidden.'+pluginType);
 				},
 				toggle:function(e){
 					if (e) {e.preventDefault();}
@@ -82,6 +85,75 @@
 				},
 				hideAll:function(){
 					$('div.webui-popover').removeClass('in').hide();
+				},
+				/*core method ,show popover */
+				show:function(){
+					var
+						//element postion
+						elementPos = this.getElementPosition(),
+						//target postion
+						$target = this.getTarget().removeClass().addClass(pluginClass),
+						//target content
+						$targetContent = this.getContentElement(),
+						//target Width
+					    targetWidth = $target[0].offsetWidth,
+					    //target Height
+						targetHeight = $target[0].offsetHeight,
+						//placement
+						placement = 'bottom',
+						e = $.Event('show.' + pluginType);
+
+					if (!this.options.multi){
+						this.hideAll();
+					}
+					if (this.hasContent()){
+						this.$element.trigger(e);
+					}
+					// use cache by default, if not cache setted  , reInit the contents 
+					if (!this.options.cache||!this._poped){
+						this.setContent(this.getContent());
+						this.setTitle(this.getTitle());
+						if (!this.options.closeable){
+							$target.find('.close').off('click').remove();
+						}
+						$target.show();
+					}
+					if (this.options.width!=='auto') {$target.width(this.options.width);}
+					if (this.options.height!=='auto'){$targetContent.height(this.options.height);}
+
+					//init the popover and insert into the document body
+					if (!this.options.arrow){
+						$target.find('.arrow').remove();
+					}
+					$target.remove().css({ top: -1000, left: -1000, display: 'block' }).appendTo(document.body);
+					targetWidth = $target[0].offsetWidth;
+					targetHeight = $target[0].offsetHeight;
+					placement = this.getPlacement(elementPos,targetHeight);
+					this.initTargetEvents();
+				    var postionInfo = this.getTargetPositin(elementPos,placement,targetWidth,targetHeight);
+					this.$target.css(postionInfo.position).addClass(placement).addClass('in');
+
+					if (this.options.iframe){
+						var $iframe = $target.find('iframe');
+						$iframe.width($target.width()).height($iframe.parent().height());
+					}
+
+					if (this.options.style){
+						this.$target.addClass(pluginClass+'-'+this.options.style);
+					}
+					if (!this.options.padding){
+						//fixed position offset bug
+						$targetContent.css('height',$targetContent.outerHeight());
+						this.$target.addClass('webui-no-padding');
+					}
+					if (!this.options.arrow){
+						this.$target.css({'margin':0});
+					}
+					if (this.options.arrow&&postionInfo.arrowOffset){
+						this.$target.find('.arrow').css(postionInfo.arrowOffset);
+					}
+					this._poped = true;
+					this.$element.trigger('shown.'+pluginType);
 				},
 				/*getter setters */
 				getTarget:function(){
@@ -106,6 +178,9 @@
 					}else{
 						$titleEl.remove();
 					}
+				},
+				hasContent:function () {
+					return this.getContent();
 				},
 				getContent:function(){
 					if (this.options.url){
@@ -137,9 +212,6 @@
 					var $target = this.getTarget();
 					this.getContentElement().html(content);
 					this.$target = $target;
-					if (this.options.onSetContent&&typeof(this.options.onSetContent==='function')){
-						this.options.onSetContent($target[0]);
-					}
 				},
 
 				/* event handlers */
@@ -154,12 +226,6 @@
 					self._timeout = setTimeout(function(){
 						self.hide();
 					},self.options.delay);
-				},
-				triggerShowEvent:function(){
-					if (this.options.onShow&&typeof(this.options.onShow)==='function'){
-						var popContainer = this.$target[0];
-						this.options.onShow(popContainer);
-					}
 				},
 				//reset and init the target events;
 				initTargetEvents:function(){
@@ -187,7 +253,7 @@
 
 					//if placement equals auto，caculate the placement by element information;
 					if (typeof(this.options.placement)==='function'){
-						placement = this.options.placement(this.$element);
+						placement = this.options.placement.call(this, this.getTarget()[0], this.$element[0]);
 					}else{
 						placement = this.$element.data('placement')||this.options.placement;
 					}
@@ -247,71 +313,6 @@
 			            break;
 			        }
 			        return {position:position,arrowOffset:arrowOffset};
-				},
-				/*core method ,show popover */
-				show:function(){
-					var
-						//element postion
-						elementPos = this.getElementPosition(),
-						//target postion
-						$target = this.getTarget().removeClass().addClass(pluginClass),
-						//target content
-						$targetContent = this.getContentElement(),
-						//target Width
-					    targetWidth = $target[0].offsetWidth,
-					    //target Height
-						targetHeight = $target[0].offsetHeight,
-						//placement
-						placement = 'bottom';
-
-					if (!this.options.multi){
-						this.hideAll();
-					}
-					// use cache by default, if not cache setted  , reInit the contents 
-					if (!this.options.cache||!this._poped){
-						this.setContent(this.getContent());
-						this.setTitle(this.getTitle());
-						if (!this.options.closeable){
-							$target.find('.close').off('click').remove();
-						}
-						$target.show();
-					}
-					if (this.options.width!=='auto') {$target.width(this.options.width);}
-					if (this.options.height!=='auto'){$targetContent.height(this.options.height);}
-
-					//init the popover and insert into the document body
-					if (!this.options.arrow){
-						$target.find('.arrow').remove();
-					}
-					$target.remove().css({ top: -1000, left: -1000, display: 'block' }).appendTo(document.body);
-					targetWidth = $target[0].offsetWidth;
-					targetHeight = $target[0].offsetHeight;
-					placement = this.getPlacement(elementPos,targetHeight);
-					this.initTargetEvents();
-				    var postionInfo = this.getTargetPositin(elementPos,placement,targetWidth,targetHeight);
-					this.$target.css(postionInfo.position).addClass(placement).addClass('in');
-
-					if (this.options.iframe){
-						var $iframe = $target.find('iframe');
-						$iframe.width($target.width()).height($iframe.parent().height());
-					}
-
-					if (this.options.style){
-						this.$target.addClass(pluginClass+'-'+this.options.style);
-					}
-					if (!this.options.padding){
-						//fixed position offset bug
-						$targetContent.css('height',$targetContent.outerHeight());
-						this.$target.addClass('webui-no-padding');
-					}
-					if (!this.options.arrow){
-						this.$target.css({'margin':0});
-					}
-					if (this.options.arrow&&postionInfo.arrowOffset){
-						this.$target.find('.arrow').css(postionInfo.arrowOffset);
-					}
-					this._poped = true;
-					this.triggerShowEvent();
 				}
 		};
 		$.fn[ pluginName ] = function ( options ) {
