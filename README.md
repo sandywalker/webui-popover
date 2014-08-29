@@ -12,7 +12,6 @@ jquery1.7+,jquery2.x
 
 ##Features
 * fast,lightweight
-* easy trigged by click or hover
 * support more placements
 * auto caculate placement
 * close button in popover
@@ -42,6 +41,14 @@ $('a').webuiPopover(options);
 Create  Simplest Popover
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content'});
+```
+
+Create  Popover by dom element data-* attribute
+```html
+<a href="#" data-title="Title" data-content="Contents..." data-placement="right"></a>
+```
+```javascript
+$('a').webuiPopover();
 ```
 
 Create  Popover with bottom placement

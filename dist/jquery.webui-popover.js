@@ -42,6 +42,7 @@
 		function WebuiPopover ( element, options ) {
 				this.$element = $(element);
 				this.options = $.extend( {}, defaults, options );
+				console.log(this.options);
 				this._defaults = defaults;
 				this._name = pluginName;
 				this.init();
@@ -96,7 +97,7 @@
 					return this.getTarget().find('.'+pluginClass+'-content');
 				},
 				getTitle:function(){
-					return this.options.title||this.$element.attr('data-title');
+					return this.options.title||this.$element.attr('data-title')||this.$element.attr('title');
 				},
 				setTitle:function(title){
 					var $titleEl = this.getTitleElement();
@@ -317,7 +318,9 @@
 				return this.each(function() {
 						var webuiPopover = $.data( this, 'plugin_' + pluginName );
 						if (!webuiPopover) {
-								if (typeof options ==='string'){
+								if (!options){
+									webuiPopover = new WebuiPopover( this, null);
+								}else if (typeof options ==='string'){
 									if (options!=='destroy'){
 										webuiPopover = new WebuiPopover( this, null );
 										webuiPopover[options]();
@@ -329,6 +332,8 @@
 						}else{
 							if (options==='destroy'){
 								webuiPopover.destroy();
+							}else if (typeof options ==='string'){
+								webuiPopover[options]();
 							}
 						}
 				});
