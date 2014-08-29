@@ -19,6 +19,8 @@ jquery1.7+,jquery2.x
 * different styles
 * support url and iframe
 
+##Demo
+[WebUI Popover Demo](http://sandywalker.github.io/webui-popover/demo/)
 
 ##Getting Started
 
