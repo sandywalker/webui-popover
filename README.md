@@ -32,9 +32,48 @@ jquery1.7+,jquery2.x
 ```
 
 ####Use the plugin as follows:
+
 ```javascript
 $('.some-trigger').webuiPopover(options);
 ```
+
+Create  Simplest Popover
+```javascript
+$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content'});
+```
+
+Create  Popover with bottom placement
+```javascript
+$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content',placement:'bottom'});
+```
+
+Create  Popover trigged by mouse hover
+```javascript
+$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content',trigger:'hover'});
+```
+
+Create  inversed style Popover 
+```javascript
+$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content',style:'inverse'});
+```
+Create  Popover with fixed width and height
+```javascript
+$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content',width:300,height:200});
+```
+
+Create  Popover with close button
+```javascript
+$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content',closable:true});
+```
+
+Create  Popover with iframe
+```javascript
+$('.some-trigger').webuiPopover({title:'Pop title',url:'http://getbootstrap.com',iframe:true});
+```
+
+
+
+
 
 ### default options
 ```javascript
