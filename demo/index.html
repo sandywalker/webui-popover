@@ -149,6 +149,7 @@
 			</div>
 		</section>
 
+		
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12"><h1>Auto detect  placement <small>auto detect the placement, always poped in page</small></h1></div>
@@ -156,8 +157,8 @@
 		</div>
 		<section class="container demo-container">
 			<div class="row">				
-				<div class="col-md-5"><a href="#" class="show-pop btn btn-success" data-placement="auto" >auto detect</a></div>
-				<div class="col-md-2"><a href="#" class="show-pop btn btn-success" data-placement="auto"  title="Pop title " data-content="content from data-content attribute" >pop content by data-attribute</a></div>
+				<div class="col-md-5"><a href="#" class="show-pop btn btn-success">auto detect</a></div>
+				<div class="col-md-2"><a href="#" class="show-pop btn btn-success">auto detect</a></div>
 				<div class="col-md-5"><a href="#" class="show-pop btn btn-success pull-right" data-placement="auto">auto detect</a></div>
 			</div>
 			
@@ -250,7 +251,6 @@
 			(function(){
 				var settings = {
 						trigger:'click',
-						placement:function(el){return el.data('placement')},
 						title:'Pop Title',
 						content:'<p>This is webui popover demo.</p><p>just enjoy it and have fun !</p>',
 						width:300,						

@@ -181,7 +181,7 @@
 					if (typeof(this.options.placement)==='function'){
 						placement = this.options.placement(this.$element);
 					}else{
-						placement = this.options.placement;
+						placement = this.$element.data('placement')||this.options.placement;
 					}
 
 					if (placement==='auto'){

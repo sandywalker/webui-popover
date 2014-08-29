@@ -1,9 +1,9 @@
 /*
- *  WebUI Popover - v1.0.0
- *  An enhancement popover plugin for Bootstrap!
+ *  Lightweight jQuery Popover plugin - v1.0.2
+ *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
  *  https://github.com/sandywalker/webui-popover
  *
- *  Made by Sandy Walker
+ *  Made by Sandy Duan
  *  Under MIT License
  */
 ;(function ( $, window, document, undefined ) {
@@ -189,7 +189,7 @@
 					if (typeof(this.options.placement)==='function'){
 						placement = this.options.placement(this.$element);
 					}else{
-						placement = this.options.placement;
+						placement = this.$element.data('placement')||this.options.placement;
 					}
 
 					if (placement==='auto'){
