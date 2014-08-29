@@ -22,6 +22,16 @@ jquery1.7+,jquery2.x
 
 
 ##Getting Started
+
+####Including it on your page
+```html
+<link rel="stylesheet" href="jquery.webui-popover.css">
+...
+<script src="jquery.js"></script>
+<script src="jquery.webui-popover.js"></script>
+```
+
+####Use the plugin as follows:
 ```javascript
 $('.some-trigger').webuiPopover(options);
 ```
