@@ -11,7 +11,7 @@ Browser compatibility: ie8+,Chrome,Safari,Firefox,Opera
 jquery1.7+,jquery2.x
 
 ##Features
-* fast speed
+* fast,lightweight
 * easy trigged by click or hover
 * support more placements
 * auto caculate placement
