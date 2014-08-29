@@ -34,41 +34,43 @@ jquery1.7+,jquery2.x
 ####Use the plugin as follows:
 
 ```javascript
-$('.some-trigger').webuiPopover(options);
+$('a').webuiPopover(options);
 ```
+
+####Some Examples:
 
 Create  Simplest Popover
 ```javascript
-$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content'});
+$('a').webuiPopover({title:'Title',content:'Content'});
 ```
 
 Create  Popover with bottom placement
 ```javascript
-$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content',placement:'bottom'});
+$('a').webuiPopover({title:'Title',content:'Content',placement:'bottom'});
 ```
 
 Create  Popover trigged by mouse hover
 ```javascript
-$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content',trigger:'hover'});
+$('a').webuiPopover({title:'Title',content:'Content',trigger:'hover'});
 ```
 
 Create  inversed style Popover 
 ```javascript
-$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content',style:'inverse'});
+$('a').webuiPopover({title:'Title',content:'Content',style:'inverse'});
 ```
 Create  Popover with fixed width and height
 ```javascript
-$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content',width:300,height:200});
+$('a').webuiPopover({title:'Title',content:'Content',width:300,height:200});
 ```
 
 Create  Popover with close button
 ```javascript
-$('.some-trigger').webuiPopover({title:'Pop title',content:'Pop content',closable:true});
+$('a').webuiPopover({title:'Title',content:'Content',closable:true});
 ```
 
 Create  Popover with iframe
 ```javascript
-$('.some-trigger').webuiPopover({title:'Pop title',url:'http://getbootstrap.com',iframe:true});
+$('a').webuiPopover({title:'Title',url:'http://getbootstrap.com',iframe:true});
 ```
 
 
