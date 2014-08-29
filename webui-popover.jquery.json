@@ -1,6 +1,6 @@
 {
     "name": "webui-popover",
-    "title": "Lightweight jQuery Popover plugin",
+    "title": "webui popover plugin ",
     "description": "A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!",
     "keywords": [
         "popover",
@@ -8,7 +8,7 @@
         "webui",
         "pop"
     ],
-    "version":"1.0.3",
+    "version":"1.0.4",
     "author": {
         "name": "Sandy Duan",
         "email": "sanddywalker@gmail.com",
