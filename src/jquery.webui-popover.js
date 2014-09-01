@@ -215,7 +215,6 @@
 							}else{
 								that.content = data;
 							}
-							console.log('abc');
 							that.setContent(that.content);
 						}
 					});
