@@ -8,7 +8,7 @@ Browser compatibility: ie8+,Chrome,Safari,Firefox,Opera
 
 ## Requirement
 
-jquery1.7+,jquery2.x
+jquery1.7+
 
 ##Features
 * fast,lightweight
@@ -18,6 +18,7 @@ jquery1.7+,jquery2.x
 * multipule popovers in same page
 * different styles
 * support url and iframe
+* support async mode
 
 ##Demo
 [WebUI Popover Demo](http://sandywalker.github.io/webui-popover/demo/)
@@ -79,7 +80,20 @@ $('a').webuiPopover({title:'Title',content:'Content',closable:true});
 
 Create  Popover with iframe
 ```javascript
-$('a').webuiPopover({title:'Title',url:'http://getbootstrap.com',iframe:true});
+$('a').webuiPopover({title:'Title',url:'http://getbootstrap.com',type:'iframe'});
+```
+
+Create  Popover Async Mode
+```javascript
+$('a').webuiPopover({	title:'Title',
+						url:'https://api.github.com/',
+						type:'async',
+						content:function(data){
+ 							var html = '<ul>';
+ 							for(var key in data){html+='<li>'+data[key]+'</li>';}
+							html+='</ul>';
+							return html;
+ 						});
 ```
 
 
@@ -102,8 +116,8 @@ $('a').webuiPopover({title:'Title',url:'http://getbootstrap.com',iframe:true});
 	content:'',//content of the popover,content can be function
 	closeable:false,//display close button or not
 	padding:true,//content padding
-	iframe:false,//iframe or not
-	url:''//if not empty ,plugin will load content by url, 'content' option will be ignored
+	type:'html',//content type, values:'html','iframe','async'
+	url:''//if not empty ,plugin will load content by url
 }
 ```
 
