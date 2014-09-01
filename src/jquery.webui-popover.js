@@ -175,6 +175,7 @@
 					return this.getContent();
 				},
 				getContent:function(){
+					var that = this;
 					if (this.options.url){
 						//if iframe add iframe dom, else use async 
 						if (this.options.iframe){
@@ -185,7 +186,7 @@
 								type:'GET',
 								async:false,
 								success:function(data){
-									this.content = data;
+									that.content = data;
 								}
 							});
 						}
