@@ -18,14 +18,14 @@
 					content:'',
 					closeable:false,
 					padding:true,
-					iframe:false,
 					url:'',
+					type:'html',
 					template:'<div class="webui-popover">'+
 								'<div class="arrow"></div>'+
 								'<div class="webui-popover-inner">'+
 									'<a href="#" class="close">x</a>'+
 									'<h3 class="webui-popover-title"></h3>'+
-									'<div class="webui-popover-content"><p></p></div>'+
+									'<div class="webui-popover-content"><i class="glyphicon glyphicon-refresh"></i> <p></p></div>'+
 								'</div>'+
 							'</div>'
 		};
@@ -64,7 +64,8 @@
 						this.$target.remove();
 					}
 				},
-				hide:function(){
+				hide:function(event){
+					if (event){event.preventDefault();}
 					var e = $.Event('hide.' + pluginType);
 					this.$element.trigger(e);
 
@@ -98,12 +99,16 @@
 					if (!this.options.multi){
 						this.hideAll();
 					}
-					if (this.hasContent()){
+					//if (this.hasContent()){
 						this.$element.trigger(e);
-					}
+					//}
 					// use cache by default, if not cache setted  , reInit the contents 
 					if (!this.options.cache||!this._poped){
-						this.setContent(this.getContent());
+						if (!this.isAsync()){
+							this.setContent(this.getContent());
+						}else{
+							this.setContentASync(this.options.content);
+						}
 						this.setTitle(this.getTitle());
 						if (!this.options.closeable){
 							$target.find('.close').off('click').remove();
@@ -125,7 +130,7 @@
 				    var postionInfo = this.getTargetPositin(elementPos,placement,targetWidth,targetHeight);
 					this.$target.css(postionInfo.position).addClass(placement).addClass('in');
 
-					if (this.options.iframe){
+					if (this.options.type==='iframe'){
 						var $iframe = $target.find('iframe');
 						$iframe.width($target.width()).height($iframe.parent().height());
 					}
@@ -175,20 +180,9 @@
 					return this.getContent();
 				},
 				getContent:function(){
-					var that = this;
 					if (this.options.url){
-						//if iframe add iframe dom, else use async 
-						if (this.options.iframe){
+						if (this.options.type==='iframe'){
 							this.content = $('<iframe frameborder="0"></iframe>').attr('src',this.options.url);
-						}else{
-							$.ajax({
-								url:this.options.url,
-								type:'GET',
-								async:false,
-								success:function(data){
-									that.content = data;
-								}
-							});
 						}
 					}else if (!this.content){
 						var content='';
@@ -206,7 +200,26 @@
 					this.getContentElement().html(content);
 					this.$target = $target;
 				},
-
+				isAsync:function(){
+					return this.options.type==='async';
+				},
+				setContentASync:function(content){
+					var that = this;
+					$.ajax({
+						url:this.options.url,
+						type:'GET',
+						cache:this.options.cache,
+						success:function(data){
+							if (content&&$.isFunction(content)){
+								that.content = content.apply(that.$element[0],[data]);
+							}else{
+								that.content = data;
+							}
+							console.log('abc');
+							that.setContent(that.content);
+						}
+					});
+				},
 				/* event handlers */
 				mouseenterHandler:function(){
 					var self = this;

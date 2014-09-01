@@ -112,6 +112,46 @@
   overflow: auto;  
 }
 
+.webui-popover i.glyphicon-refresh{
+   display: block;
+   margin-left:-15px;
+   margin-top:-15px;
+   width:20px;
+   height:20px;
+   font-size: 20px;
+   top:50%;
+   left:50%;
+   position: absolute;
+
+   -webkit-animation-name: rotate;
+   -o-animation-name: rotate;
+   animation-name: rotate;
+   -webkit-animation-timing-function: linear;
+   -o-animation-timing-function: linear;
+   animation-timing-function: linear;
+
+   -webkit-animation-iteration-count: infinite;
+   -o-animation-iteration-count: infinite;
+   animation-iteration-count: infinite;
+
+   -webkit-animation-duration: 1s;
+   -o-animation-duration: 1s;
+   animation-duration: 1s;
+}
+
+@-webkit-keyframes rotate { 
+  100% {
+    -webkit-transform: rotate(360deg);
+    -webkit-transform-origin: center center;
+  }
+}
+
+    /* all other browsers */
+/*@keyframes rotate {
+  0% { transform:  rotate(0deg); }
+  100% {transform: rotate(360deg); }
+}*/
+
 
 
 .webui-popover > .arrow,

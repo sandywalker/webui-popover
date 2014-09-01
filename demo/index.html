@@ -171,10 +171,13 @@
 		</div>
 		<section class="container demo-container">
 			<div class="row">				
-				<div class="col-md-3"><a href="#" class="show-pop-table btn btn-info" data-placement="auto">pop with table</a></div>
-				<div class="col-md-3"><a href="#" class="show-pop-list btn btn-info" data-placement="auto">pop with list</a></div>
-				<div class="col-md-3"><a href="#" class="show-pop-large btn btn-info pull-right" data-placement="auto">pop large content</a></div>
-				<div class="col-md-3"><a href="#" class="show-pop-iframe btn btn-info pull-right" data-placement="auto">pop iframe </a></
+				<div class="col-md-2"><a href="#" class="show-pop-table btn btn-info" data-placement="auto">pop with table</a></div>
+				<div class="col-md-2"><a href="#" class="show-pop-list btn btn-info" data-placement="auto">pop with list</a></div>
+				<div class="col-md-2"><a href="#" class="show-pop-large btn btn-info pull-right" data-placement="auto">pop large content</a></div>
+				<div class="col-md-2"></div>
+				<div class="col-md-2"><a href="#" class="show-pop-async btn btn-info" data-placement="auto">pop async</a></div>
+				
+				<div class="col-md-2"><a href="#" class="show-pop-iframe btn btn-info" data-placement="auto">pop iframe </a></div>
 			</div>
 			
 		</section>
@@ -306,11 +309,32 @@
 					 						height:350,
 					 						closeable:true,
 					 						padding:false,
-					 						iframe:true,
+					 						type:'iframe',
 					 						url:'http://getbootstrap.com'};					
 					$('a.show-pop-iframe').webuiPopover('destroy').webuiPopover($.extend({},settings,iframeSettings));
 
 
+					var
+					 	asyncSettings = {	width:260,
+					 						height:350,
+					 						closeable:true,
+					 						padding:false,
+					 						cache:false,
+					 						url:'https://api.github.com/',
+					 						type:'async',
+					 						content:function(data){
+					 							var html = '<ul class="list-group">';
+					 							for(var key in data){
+					 								html+='<li class="list-group-item"><a href="'+ data[key] +'" target="_blank">'
+					 								+ '<i class="glyphicon glyphicon-leaf"></i> '+ key+'</a>'+'</li>';	
+					 							}
+												html+='</ul>';
+												return html;
+					 						}};
+					$('a.show-pop-async').webuiPopover('destroy').webuiPopover($.extend({},settings,asyncSettings));
+
+
+					
 
 
 					$('a.show-pop-event').each(function(i,item){
@@ -326,20 +350,8 @@
 				}
 
 
-				// $.get('http://getbootstrap.com',function(data){
-				// 	console.log(data);
-				// });
-
-
 				initPopover();
 
-				$('a.show-pop-async').webuiPopover({
-					url:'/abc',
-					type:'html|iframe|async'
-					content:function(data){	
-						return data;
-					}
-				});
 				
 			})();
 			
