@@ -332,6 +332,14 @@
 
 
 				initPopover();
+
+				$('a.show-pop-async').webuiPopover({
+					url:'/abc',
+					type:'html|iframe|async'
+					content:function(data){	
+						return data;
+					}
+				});
 				
 			})();
 			
