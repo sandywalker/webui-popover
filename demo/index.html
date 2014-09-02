@@ -194,6 +194,13 @@
 				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info" data-placement="auto">hide</a></div>
 				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info pull-right" data-placement="auto">hidden</a></div>				
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<br>
+					<textarea class="form-control" rows="5" id="eventLogs"></textarea>
+					<a href="#" class="btn btn-default" id="resetLogs">reset logs</a>
+				</div>
+			</div>
 			
 		</section>
 
@@ -254,6 +261,7 @@
 		<script src="../dist/jquery.webui-popover.min.js"></script>	
 		<script>
 			(function(){
+
 				var settings = {
 						trigger:'click',
 						title:'Pop Title',
@@ -339,15 +347,24 @@
 
 					$('a.show-pop-event').each(function(i,item){
 							var ename = $(item).text()+'.webui.popover';
-							console.log(ename);
 							$(item).webuiPopover('destroy').webuiPopover(settings)
 							.on(ename,function(e){
-								console.log('event:'+ename+' is trigged!');
+								var log =  ename+' is trigged!';
+								if (console){
+									console.log(log);
+								}
+								$('#eventLogs').text($('#eventLogs').text()+'\n'+log);
 							});
 					});
 					
 
+
 				}
+
+				$('#resetLogs').on('click',function(e){
+					e.preventDefault();
+					$('#eventLogs').text('');
+				});
 
 
 				initPopover();
