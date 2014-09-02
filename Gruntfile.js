@@ -50,6 +50,25 @@ module.exports = function(grunt) {
 				banner: "<%= meta.banner %>"
 			}
 		},
+		less: {
+		  development: {
+		    options: {
+		      paths: ["src"]
+		    },
+		    files: {
+		      "src/jquery.webui-popover.css": "src/jquery.webui-popover.less"
+		    }
+		  },
+		  production: {
+		    options: {
+		      paths: ["dist"],
+		      cleancss: true
+		    },
+		    files: {
+		      "dist/jquery.webui-popover.min.css": "src/jquery.webui-popover.less"
+		    }
+		  }
+		},
 		cssmin: {
          options: {
              keepSpecialComments: 0
@@ -75,10 +94,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-contrib-concat");
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
+	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks("grunt-contrib-cssmin");
 	// grunt.loadNpmTasks("grunt-contrib-coffee");
 
-	grunt.registerTask("default", ["jshint", "concat", "uglify","cssmin"]);
+	grunt.registerTask("default", ["jshint","less","concat", "uglify"]);
 	grunt.registerTask("travis", ["jshint"]);
 
 };
