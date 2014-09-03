@@ -80,14 +80,14 @@ $('a').webuiPopover({title:'Title',content:'Content',closable:true});
 
 Create  Popover with iframe
 ```javascript
-$('a').webuiPopover({title:'Title',url:'http://getbootstrap.com',type:'iframe'});
+$('a').webuiPopover({type:'iframe',url:'http://getbootstrap.com'});
 ```
 
 Create  Popover Async Mode
 ```javascript
-$('a').webuiPopover({	title:'Title',
-						url:'https://api.github.com/',
+$('a').webuiPopover({	
 						type:'async',
+						url:'https://api.github.com/',
 						content:function(data){
  							var html = '<ul>';
  							for(var key in data){html+='<li>'+data[key]+'</li>';}
