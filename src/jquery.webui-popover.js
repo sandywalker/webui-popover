@@ -146,8 +146,12 @@
 					if (!this.options.arrow){
 						this.$target.css({'margin':0});
 					}
-					if (this.options.arrow&&postionInfo.arrowOffset){
-						this.$target.find('.arrow').css(postionInfo.arrowOffset);
+					if (this.options.arrow){
+						var $arrow = this.$target.find('.arrow');
+						$arrow.removeAttr('style');
+						if (postionInfo.arrowOffset){
+							$arrow.css(postionInfo.arrowOffset);
+						}
 					}
 					this._poped = true;
 					this.$element.trigger('shown.'+pluginType);
@@ -249,7 +253,7 @@
 						de = document.documentElement,
 						db = document.body,
 						clientWidth = de.clientWidth,
-						//clientHeight = de.clientHeight,
+						clientHeight = de.clientHeight,
 						scrollTop = Math.max(db.scrollTop,de.scrollTop),
 						scrollLeft = Math.max(db.scrollLeft,de.scrollLeft),
 						pageX = Math.max(0,pos.left - scrollLeft),
@@ -262,14 +266,35 @@
 					}else{
 						placement = this.$element.data('placement')||this.options.placement;
 					}
+					console.log(pageY,scrollTop,clientHeight);
 
 					if (placement==='auto'){
 						if (pageX<clientWidth/3){
-							placement= pageY>targetHeight+arrowSize?'top-right':'bottom-right';
+							if (pageY<clientHeight/3){
+								placement = 'bottom-right';
+							}else if (pageY<clientHeight*2/3){
+								placement = 'right';
+							}else{
+								placement = 'top-right';
+							}
+							//placement= pageY>targetHeight+arrowSize?'top-right':'bottom-right';
 						}else if (pageX<clientWidth*2/3){
-							placement = pageY>targetHeight+arrowSize?'top':'bottom';
+							if (pageY<clientHeight/3){
+								placement = 'bottom';
+							}else if (pageY<clientHeight*2/3){
+								placement = 'bottom';
+							}else{
+								placement = 'top';
+							}
 						}else{
 							placement = pageY>targetHeight+arrowSize?'top-left':'bottom-left';
+							if (pageY<clientHeight/3){
+								placement = 'bottom-left';
+							}else if (pageY<clientHeight*2/3){
+								placement = 'left';
+							}else{
+								placement = 'top-left';
+							}
 						}
 					}
 					return placement;
@@ -285,7 +310,7 @@
 					var pos = elementPos,
 						elementW = this.$element.outerWidth(),
 						position={},
-						arrowOffset={},
+						arrowOffset=null,
 						arrowSize = this.options.arrow?0:0;
 					switch (placement) {
 			          case 'bottom':
