@@ -31,7 +31,9 @@
 .webui-popover.top-right {
   margin-top: -10px;
 }
-.webui-popover.right {
+.webui-popover.right,
+.webui-popover.right-top,
+.webui-popover.right-bottom {
   margin-left: 10px;
 }
 .webui-popover.bottom,
@@ -39,7 +41,9 @@
 .webui-popover.bottom-right {
   margin-top: 10px;
 }
-.webui-popover.left {
+.webui-popover.left,
+.webui-popover.left-top,
+.webui-popover.left-bottom {
   margin-left: -10px;
 }
 .webui-popover-inner .close {
@@ -131,7 +135,9 @@
   border-top-color: #ffffff;
   border-bottom-width: 0;
 }
-.webui-popover.right > .arrow {
+.webui-popover.right > .arrow,
+.webui-popover.right-top > .arrow,
+.webui-popover.right-bottom > .arrow {
   top: 50%;
   left: -11px;
   margin-top: -11px;
@@ -139,7 +145,9 @@
   border-right-color: #999999;
   border-right-color: rgba(0, 0, 0, 0.25);
 }
-.webui-popover.right > .arrow:after {
+.webui-popover.right > .arrow:after,
+.webui-popover.right-top > .arrow:after,
+.webui-popover.right-bottom > .arrow:after {
   content: " ";
   left: 1px;
   bottom: -10px;
@@ -165,7 +173,9 @@
   border-bottom-color: #ffffff;
   border-top-width: 0;
 }
-.webui-popover.left > .arrow {
+.webui-popover.left > .arrow,
+.webui-popover.left-top > .arrow,
+.webui-popover.left-bottom > .arrow {
   top: 50%;
   right: -11px;
   margin-top: -11px;
@@ -173,7 +183,9 @@
   border-left-color: #999999;
   border-left-color: rgba(0, 0, 0, 0.25);
 }
-.webui-popover.left > .arrow:after {
+.webui-popover.left > .arrow:after,
+.webui-popover.left-top > .arrow:after,
+.webui-popover.left-bottom > .arrow:after {
   content: " ";
   right: 1px;
   border-right-width: 0;
@@ -189,7 +201,11 @@
   border-top-color: #333333;
 }
 .webui-popover-inverse.right > .arrow,
-.webui-popover-inverse.right > .arrow:after {
+.webui-popover-inverse.right-top > .arrow,
+.webui-popover-inverse.right-bottom > .arrow,
+.webui-popover-inverse.right > .arrow:after,
+.webui-popover-inverse.right-top > .arrow:after,
+.webui-popover-inverse.right-bottom > .arrow:after {
   border-right-color: #333333;
 }
 .webui-popover-inverse.bottom > .arrow,
@@ -201,7 +217,11 @@
   border-bottom-color: #333333;
 }
 .webui-popover-inverse.left > .arrow,
-.webui-popover-inverse.left > .arrow:after {
+.webui-popover-inverse.left-top > .arrow,
+.webui-popover-inverse.left-bottom > .arrow,
+.webui-popover-inverse.left > .arrow:after,
+.webui-popover-inverse.left-top > .arrow:after,
+.webui-popover-inverse.left-bottom > .arrow:after {
   border-left-color: #333333;
 }
 .webui-popover i.glyphicon-refresh {

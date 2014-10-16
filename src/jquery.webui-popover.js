@@ -309,6 +309,7 @@
 				getTargetPositin:function(elementPos,placement,targetWidth,targetHeight){
 					var pos = elementPos,
 						elementW = this.$element.outerWidth(),
+						elementH = this.$element.outerHeight(),
 						position={},
 						arrowOffset=null,
 						arrowSize = this.options.arrow?0:0;
@@ -341,6 +342,23 @@
 			            position = {top: pos.top + pos.height, left: pos.left -targetWidth +pos.width};
 			            arrowOffset = {left: targetWidth- elementW /2};
 			            break;
+					  case 'right-top':
+			            position = {top: pos.top -targetHeight + pos.height, left: pos.left + pos.width};
+			            arrowOffset = {top: targetHeight - elementH/2};
+			            break;
+			          case 'right-bottom':
+			            position = {top: pos.top , left: pos.left + pos.width};
+			            arrowOffset = {top: elementH /2 };
+			            break;
+			          case 'left-top':
+			            position = {top: pos.top -targetHeight + pos.height, left: pos.left - targetWidth};
+			            arrowOffset = {top: targetHeight - elementH/2};
+			            break;
+					  case 'left-bottom':
+			            position = {top: pos.top , left: pos.left -targetWidth};
+			            arrowOffset = {top: elementH /2 };
+			            break;
+
 			        }
 			        return {position:position,arrowOffset:arrowOffset};
 				}
