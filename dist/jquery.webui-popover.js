@@ -352,7 +352,7 @@
 			            break;
 					  case 'right-top':
 			            position = {top: pos.top -targetHeight + pos.height, left: pos.left + pos.width};
-			            arrowOffset = {top: elementH /2 };
+			            arrowOffset = {top: targetHeight - elementH/2};
 			            break;
 			          case 'right-bottom':
 			            position = {top: pos.top , left: pos.left + pos.width};
@@ -360,7 +360,7 @@
 			            break;
 			          case 'left-top':
 			            position = {top: pos.top -targetHeight + pos.height, left: pos.left - targetWidth};
-			            arrowOffset = {top: elementH /2 };
+			            arrowOffset = {top: targetHeight - elementH/2};
 			            break;
 					  case 'left-bottom':
 			            position = {top: pos.top , left: pos.left -targetWidth};
