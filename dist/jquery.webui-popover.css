@@ -224,19 +224,15 @@
 .webui-popover-inverse.left-bottom > .arrow:after {
   border-left-color: #333333;
 }
-.webui-popover i.glyphicon-refresh {
+.webui-popover i.icon-refresh {
   display: block;
-  margin-left: -15px;
-  margin-top: -15px;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   font-size: 20px;
   top: 50%;
   left: 50%;
   position: absolute;
-  -webkit-animation: rotate 1s linear 0 infinite;
-  -o-animation: rotate 1s linear 0 infinite;
-  animation: rotate 1s linear 0 infinite;
+  background: url(../img/loading.gif) no-repeat;
 }
 @-webkit-keyframes rotate {
   100% {

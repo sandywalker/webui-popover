@@ -33,7 +33,7 @@
 								'<div class="webui-popover-inner">'+
 									'<a href="#" class="close">x</a>'+
 									'<h3 class="webui-popover-title"></h3>'+
-									'<div class="webui-popover-content"><i class="glyphicon glyphicon-refresh"></i> <p></p></div>'+
+									'<div class="webui-popover-content"><i class="icon-refresh"></i> <p>&nbsp;</p></div>'+
 								'</div>'+
 							'</div>'
 		};
@@ -60,6 +60,7 @@
 										.on('mouseenter',$.proxy(this.mouseenterHandler,this))
 										.on('mouseleave',$.proxy(this.mouseleaveHandler,this));
 					}
+					$('body').off('keyup.webui-popover').on('keyup.webui-popover',$.proxy(this.escapeHandler,this));
 					this._poped = false;
 					this._inited = true;
 				},
@@ -90,6 +91,29 @@
 				/*core method ,show popover */
 				show:function(){
 					var
+						$target = this.getTarget().removeClass().addClass(pluginClass);
+					if (!this.options.multi){
+						this.hideAll();
+					}
+					// use cache by default, if not cache setted  , reInit the contents 
+					if (!this.options.cache||!this._poped){
+						this.setTitle(this.getTitle());
+						if (!this.options.closeable){
+							$target.find('.close').off('click').remove();
+						}
+						if (!this.isAsync()){
+							this.setContent(this.getContent());
+						}else{
+							this.setContentASync(this.options.content);
+							this.displayContent();
+							return;
+						}
+						$target.show();
+					}
+					this.displayContent();
+				},
+				displayContent:function(){
+					var
 						//element postion
 						elementPos = this.getElementPosition(),
 						//target postion
@@ -103,26 +127,9 @@
 						//placement
 						placement = 'bottom',
 						e = $.Event('show.' + pluginType);
-
-					if (!this.options.multi){
-						this.hideAll();
-					}
 					//if (this.hasContent()){
-						this.$element.trigger(e);
+					this.$element.trigger(e);
 					//}
-					// use cache by default, if not cache setted  , reInit the contents 
-					if (!this.options.cache||!this._poped){
-						if (!this.isAsync()){
-							this.setContent(this.getContent());
-						}else{
-							this.setContentASync(this.options.content);
-						}
-						this.setTitle(this.getTitle());
-						if (!this.options.closeable){
-							$target.find('.close').off('click').remove();
-						}
-						$target.show();
-					}
 					if (this.options.width!=='auto') {$target.width(this.options.width);}
 					if (this.options.height!=='auto'){$targetContent.height(this.options.height);}
 
@@ -146,8 +153,8 @@
 					if (this.options.style){
 						this.$target.addClass(pluginClass+'-'+this.options.style);
 					}
+
 					if (!this.options.padding){
-						//fixed position offset bug
 						$targetContent.css('height',$targetContent.outerHeight());
 						this.$target.addClass('webui-no-padding');
 					}
@@ -163,7 +170,13 @@
 					}
 					this._poped = true;
 					this.$element.trigger('shown.'+pluginType);
+
 				},
+
+				isTargetLoaded:function(){
+					return  this.getTarget().find('i.glyphicon-refresh').length===0;
+				},
+
 				/*getter setters */
 				getTarget:function(){
 					if (!this.$target){
@@ -228,6 +241,9 @@
 								that.content = data;
 							}
 							that.setContent(that.content);
+							var $targetContent = that.getContentElement();
+							$targetContent.removeAttr('style');
+							that.displayContent();
 						}
 					});
 				},
@@ -244,6 +260,13 @@
 						self.hide();
 					},self.options.delay);
 				},
+				escapeHandler:function(e){
+					if (e.keyCode===27){
+						this.hide();
+						this.hideAll();
+					}
+				},
+
 				//reset and init the target events;
 				initTargetEvents:function(){
 					if (this.options.trigger!=='click'){
@@ -274,7 +297,6 @@
 					}else{
 						placement = this.$element.data('placement')||this.options.placement;
 					}
-					console.log(pageY,scrollTop,clientHeight);
 
 					if (placement==='auto'){
 						if (pageX<clientWidth/3){
@@ -320,47 +342,49 @@
 						elementH = this.$element.outerHeight(),
 						position={},
 						arrowOffset=null,
-						arrowSize = this.options.arrow?0:0;
+						arrowSize = this.options.arrow?20:0,
+						fixedW = elementW<arrowSize?arrowSize:0;
+						fixedH = elementH<arrowSize?arrowSize:0;
 					switch (placement) {
 			          case 'bottom':
 			            position = {top: pos.top + pos.height, left: pos.left + pos.width / 2 - targetWidth / 2};
 			            break;
 			          case 'top':
-			            position = {top: pos.top - targetHeight-arrowSize, left: pos.left + pos.width / 2 - targetWidth / 2};
+			            position = {top: pos.top - targetHeight, left: pos.left + pos.width / 2 - targetWidth / 2};
 			            break;
 			          case 'left':
-			            position = {top: pos.top + pos.height / 2 - targetHeight / 2, left: pos.left - targetWidth -arrowSize};
+			            position = {top: pos.top + pos.height / 2 - targetHeight / 2, left: pos.left - targetWidth};
 			            break;
 			          case 'right':
 			            position = {top: pos.top + pos.height / 2 - targetHeight / 2, left: pos.left + pos.width};
 			            break;
 			          case 'top-right':
-			            position = {top: pos.top - targetHeight -arrowSize, left: pos.left};
-			            arrowOffset = {left: elementW /2 };
+			            position = {top: pos.top - targetHeight, left: pos.left-fixedW};
+			            arrowOffset = {left: elementW/2 + fixedW};
 			            break;
 			          case 'top-left':
-			            position = {top: pos.top - targetHeight -arrowSize, left: pos.left -targetWidth +pos.width};
-			            arrowOffset = {left: targetWidth - elementW /2 };
+			            position = {top: pos.top - targetHeight, left: pos.left -targetWidth +pos.width + fixedW};
+			            arrowOffset = {left: targetWidth - elementW /2 -fixedW};
 			            break;
 			          case 'bottom-right':
-			            position = {top: pos.top + pos.height, left: pos.left};
-			            arrowOffset = {left: elementW /2};
+			            position = {top: pos.top + pos.height, left: pos.left-fixedW};
+			            arrowOffset = {left: elementW /2+fixedW};
 			            break;
 					  case 'bottom-left':
 			            position = {top: pos.top + pos.height, left: pos.left -targetWidth +pos.width};
 			            arrowOffset = {left: targetWidth- elementW /2};
 			            break;
 					  case 'right-top':
-			            position = {top: pos.top -targetHeight + pos.height, left: pos.left + pos.width};
-			            arrowOffset = {top: targetHeight - elementH/2};
+			            position = {top: pos.top -targetHeight + pos.height + fixedH, left: pos.left + pos.width};
+			            arrowOffset = {top: targetHeight - elementH/2 -fixedH};
 			            break;
 			          case 'right-bottom':
-			            position = {top: pos.top , left: pos.left + pos.width};
-			            arrowOffset = {top: elementH /2 };
+			            position = {top: pos.top - fixedH, left: pos.left + pos.width};
+			            arrowOffset = {top: elementH /2 +fixedH };
 			            break;
 			          case 'left-top':
-			            position = {top: pos.top -targetHeight + pos.height, left: pos.left - targetWidth};
-			            arrowOffset = {top: targetHeight - elementH/2};
+			            position = {top: pos.top -targetHeight + pos.height+fixedH, left: pos.left - targetWidth};
+			            arrowOffset = {top: targetHeight - elementH/2 - fixedH};
 			            break;
 					  case 'left-bottom':
 			            position = {top: pos.top , left: pos.left -targetWidth};
