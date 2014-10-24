@@ -372,8 +372,8 @@
 			            arrowOffset = {left: elementW /2+fixedW};
 			            break;
 					  case 'bottom-left':
-			            position = {top: pos.top + pos.height, left: pos.left -targetWidth +pos.width};
-			            arrowOffset = {left: targetWidth- elementW /2};
+			            position = {top: pos.top + pos.height, left: pos.left -targetWidth +pos.width+fixedW};
+			            arrowOffset = {left: targetWidth- elementW /2 - fixedW};
 			            break;
 					  case 'right-top':
 			            position = {top: pos.top -targetHeight + pos.height + fixedH, left: pos.left + pos.width};
