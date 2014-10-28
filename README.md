@@ -75,7 +75,7 @@ $('a').webuiPopover({title:'Title',content:'Content',width:300,height:200});
 
 Create  Popover with close button
 ```javascript
-$('a').webuiPopover({title:'Title',content:'Content',closable:true});
+$('a').webuiPopover({title:'Title',content:'Content',closeable:true});
 ```
 
 Create  Popover with iframe
