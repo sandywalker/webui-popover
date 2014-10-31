@@ -345,7 +345,9 @@
 						arrowSize = this.options.arrow?28:0,
 						fixedW = elementW<arrowSize+10?arrowSize:0,
 						fixedH = elementH<arrowSize+10?arrowSize:0;
-						console.log(elementW,arrowSize);
+						if (window.console) {
+							console.log(elementW,arrowSize);
+						}
 					switch (placement) {
 			          case 'bottom':
 			            position = {top: pos.top + pos.height, left: pos.left + pos.width / 2 - targetWidth / 2};
