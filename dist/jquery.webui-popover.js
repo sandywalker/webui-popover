@@ -60,7 +60,6 @@
 										.on('mouseenter',$.proxy(this.mouseenterHandler,this))
 										.on('mouseleave',$.proxy(this.mouseleaveHandler,this));
 					}
-					$('body').off('keyup.webui-popover').on('keyup.webui-popover',$.proxy(this.escapeHandler,this));
 					this._poped = false;
 					this._inited = true;
 				},
@@ -74,19 +73,24 @@
 					}
 				},
 				hide:function(event){
-					if (event){event.preventDefault();}
+					if (event){
+						event.preventDefault();
+						event.stopPropagation();
+					}
 					var e = $.Event('hide.' + pluginType);
 					this.$element.trigger(e);
-
 					if (this.$target){this.$target.removeClass('in').hide();}
 					this.$element.trigger('hidden.'+pluginType);
 				},
 				toggle:function(e){
-					if (e) {e.preventDefault();}
+					if (e) {
+						e.preventDefault();
+						e.stopPropagation();
+					}
 					this[this.getTarget().hasClass('in') ? 'hide' : 'show']();
 				},
 				hideAll:function(){
-					$('div.webui-popover').removeClass('in').hide();
+					$('div.webui-popover').not('.webui-popover-fixed').removeClass('in').hide();
 				},
 				/*core method ,show popover */
 				show:function(){
@@ -111,6 +115,7 @@
 						$target.show();
 					}
 					this.displayContent();
+					this.bindBodyEvents();
 				},
 				displayContent:function(){
 					var
@@ -247,6 +252,12 @@
 						}
 					});
 				},
+
+				bindBodyEvents:function(){
+					$('body').off('keyup.webui-popover').on('keyup.webui-popover',$.proxy(this.escapeHandler,this));
+					$('body').off('click.webui-popover').on('click.webui-popover',$.proxy(this.bodyClickHandler,this));
+				},
+
 				/* event handlers */
 				mouseenterHandler:function(){
 					var self = this;
@@ -262,9 +273,15 @@
 				},
 				escapeHandler:function(e){
 					if (e.keyCode===27){
-						this.hide();
 						this.hideAll();
 					}
+				},
+				bodyClickHandler:function(){
+					this.hideAll();
+				},
+
+				targetClickHandler:function(e){
+					e.stopPropagation();
 				},
 
 				//reset and init the target events;
@@ -275,6 +292,7 @@
 									.on('mouseleave',$.proxy(this.mouseleaveHandler,this));
 					}
 					this.$target.find('.close').off('click').on('click', $.proxy(this.hide,this));
+					this.$target.off('click.webui-popover').on('click.webui-popover',$.proxy(this.targetClickHandler,this));
 				},
 				/* utils methods */
 				//caculate placement of the popover
@@ -345,7 +363,6 @@
 						arrowSize = this.options.arrow?28:0,
 						fixedW = elementW<arrowSize+10?arrowSize:0,
 						fixedH = elementH<arrowSize+10?arrowSize:0;
-						console.log(elementW,arrowSize);
 					switch (placement) {
 			          case 'bottom':
 			            position = {top: pos.top + pos.height, left: pos.left + pos.width / 2 - targetWidth / 2};
