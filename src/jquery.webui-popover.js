@@ -190,6 +190,9 @@
 				getTitle:function(){
 					return this.options.title||this.$element.attr('data-title')||this.$element.attr('title');
 				},
+				getUrl:function(){
+					return this.options.url||this.$element.attr('data-url');
+				},
 				setTitle:function(title){
 					var $titleEl = this.getTitleElement();
 					if (title){
@@ -202,9 +205,9 @@
 					return this.getContent();
 				},
 				getContent:function(){
-					if (this.options.url){
+					if (this.getUrl()){
 						if (this.options.type==='iframe'){
-							this.content = $('<iframe frameborder="0"></iframe>').attr('src',this.options.url);
+							this.content = $('<iframe frameborder="0"></iframe>').attr('src',this.getUrl());
 						}
 					}else if (!this.content){
 						var content='';
@@ -228,7 +231,7 @@
 				setContentASync:function(content){
 					var that = this;
 					$.ajax({
-						url:this.options.url,
+						url:this.getUrl(),
 						type:'GET',
 						cache:this.options.cache,
 						success:function(data){
