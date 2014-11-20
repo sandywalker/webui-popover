@@ -224,6 +224,9 @@
 .webui-popover-inverse.left-bottom > .arrow:after {
   border-left-color: #333333;
 }
+.webui-popover i.icon-refresh:before {
+  content: "";
+}
 .webui-popover i.icon-refresh {
   display: block;
   width: 30px;

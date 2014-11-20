@@ -67,6 +67,11 @@
 				destroy:function(){
 					this.hide();
 					this.$element.data('plugin_'+pluginName,null);
+					if (this.options.trigger==='click'){
+						this.$element.off('click');
+					}else{
+						this.$element.off('mouseenter mouseleave');
+					}
 					this.$element.off();
 					if (this.$target){
 						this.$target.remove();
