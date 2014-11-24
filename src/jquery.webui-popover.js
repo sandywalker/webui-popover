@@ -11,6 +11,7 @@
 					trigger:'click',
 					style:'',
 					delay:300,
+                    enterDelay:null,
 					cache:true,
 					multi:false,
 					arrow:true,
@@ -198,6 +199,9 @@
 				getUrl:function(){
 					return this.options.url||this.$element.attr('data-url');
 				},
+                getEnterDelay:function(){
+					return this.options.enterDelay||this.$element.attr('data-enter-delay');
+				},
 				setTitle:function(title){
 					var $titleEl = this.getTitleElement();
 					if (title){
@@ -262,10 +266,13 @@
 				mouseenterHandler:function(){
 					var self = this;
 					if (self._timeout){clearTimeout(self._timeout);}
-					if (!self.getTarget().is(':visible')){self.show();}
+                    self._enterTimeout = setTimeout(function(){
+					    if (!self.getTarget().is(':visible')){self.show();}
+                    },this.getEnterDelay()||0);
 				},
 				mouseleaveHandler:function(){
 					var self = this;
+                    clearTimeout(self._enterTimeout);
 					//key point, set the _timeout  then use clearTimeout when mouse leave
 					self._timeout = setTimeout(function(){
 						self.hide();

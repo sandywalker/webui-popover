@@ -109,6 +109,7 @@ $('a').webuiPopover({
 	trigger:'click',//values:click,hover
 	style:'',//values:'',inverse
 	delay:300,//delay time of the popover, works only when trigger is 'hover'
+	enterDelay:null,//delay time of initiating popover, works only when trigger is 'hover'
 	cache:true,//if cache is set to false,popover will destroy and recreate
 	multi:false,//allow other popovers in page at same time
 	arrow:true,//show arrow or not
