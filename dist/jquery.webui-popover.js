@@ -45,6 +45,7 @@
 				this.options = $.extend( {}, defaults, options );
 				this._defaults = defaults;
 				this._name = pluginName;
+				this._targetclick = false;
 				this.init();
 
 		}
@@ -72,7 +73,6 @@
 					}else{
 						this.$element.off('mouseenter mouseleave');
 					}
-					this.$element.off();
 					if (this.$target){
 						this.$target.remove();
 					}
@@ -282,11 +282,15 @@
 					}
 				},
 				bodyClickHandler:function(){
-					this.hideAll();
+					if (this._targetclick){
+						this._targetclick = false;
+					}else{
+						this.hideAll();
+					}
 				},
 
-				targetClickHandler:function(e){
-					e.stopPropagation();
+				targetClickHandler:function(){
+					this._targetclick = true;
 				},
 
 				//reset and init the target events;
