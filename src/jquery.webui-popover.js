@@ -10,7 +10,14 @@
 					height:'auto',
 					trigger:'click',
 					style:'',
-					delay:300,
+					delay: {
+                        show: null,
+                        hide: 300
+                    },
+                    async: {
+                        before: function(that, xhr){},
+                        success: function(that, data){}
+                    },
 					cache:true,
 					multi:false,
 					arrow:true,
@@ -34,12 +41,14 @@
 		// The actual plugin constructor
 		function WebuiPopover ( element, options ) {
 				this.$element = $(element);
+                if($.type(options.delay) === "string" || $.type(options.delay) === "number") {
+                    options.delay = {show:null,hide:options.delay}; // bc break fix
+                }
 				this.options = $.extend( {}, defaults, options );
 				this._defaults = defaults;
 				this._name = pluginName;
 				this._targetclick = false;
 				this.init();
-
 		}
 
 		WebuiPopover.prototype = {
@@ -198,6 +207,12 @@
 				getUrl:function(){
 					return this.options.url||this.$element.attr('data-url');
 				},
+                getDelayShow:function(){
+					return this.options.delay.show||this.$element.attr('data-delay-show');
+				},
+                getHideDelay:function(){
+					return this.options.delay.hide||this.$element.attr('data-delay-hide');
+				},
 				setTitle:function(title){
 					var $titleEl = this.getTitleElement();
 					if (title){
@@ -239,6 +254,9 @@
 						url:this.getUrl(),
 						type:'GET',
 						cache:this.options.cache,
+                        beforeSend:function(xhr) {
+                            that.options.async.before(that, xhr);
+                        },
 						success:function(data){
 							if (content&&$.isFunction(content)){
 								that.content = content.apply(that.$element[0],[data]);
@@ -249,6 +267,7 @@
 							var $targetContent = that.getContentElement();
 							$targetContent.removeAttr('style');
 							that.displayContent();
+                            that.options.async.success(that, data);
 						}
 					});
 				},
@@ -262,14 +281,17 @@
 				mouseenterHandler:function(){
 					var self = this;
 					if (self._timeout){clearTimeout(self._timeout);}
-					if (!self.getTarget().is(':visible')){self.show();}
+                    self._enterTimeout = setTimeout(function(){
+					    if (!self.getTarget().is(':visible')){self.show();}
+                    },this.getDelayShow()||0);
 				},
 				mouseleaveHandler:function(){
 					var self = this;
+                    clearTimeout(self._enterTimeout);
 					//key point, set the _timeout  then use clearTimeout when mouse leave
 					self._timeout = setTimeout(function(){
 						self.hide();
-					},self.options.delay);
+					},this.getHideDelay()||0);
 				},
 				escapeHandler:function(e){
 					if (e.keyCode===27){
