@@ -15,8 +15,8 @@
                         hide: 300
                     },
                     async: {
-                        before: function(that, xhr){},
-                        success: function(that, data){}
+                        before: null, //function(that, xhr){}
+                        success: null //function(that, xhr){}
                     },
 					cache:true,
 					multi:false,
@@ -41,7 +41,7 @@
 		// The actual plugin constructor
 		function WebuiPopover ( element, options ) {
 				this.$element = $(element);
-                if($.type(options.delay) === "string" || $.type(options.delay) === "number") {
+                if($.type(options.delay) === 'string' || $.type(options.delay) === 'number') {
                     options.delay = {show:null,hide:options.delay}; // bc break fix
                 }
 				this.options = $.extend( {}, defaults, options );
@@ -255,7 +255,9 @@
 						type:'GET',
 						cache:this.options.cache,
                         beforeSend:function(xhr) {
-                            that.options.async.before(that, xhr);
+							if (that.options.async.before){
+								that.options.async.before(that, xhr);
+							}
                         },
 						success:function(data){
 							if (content&&$.isFunction(content)){
@@ -267,7 +269,9 @@
 							var $targetContent = that.getContentElement();
 							$targetContent.removeAttr('style');
 							that.displayContent();
-                            that.options.async.success(that, data);
+							if (that.options.async.before){
+								that.options.async.success(that, data);
+							}
 						}
 					});
 				},
