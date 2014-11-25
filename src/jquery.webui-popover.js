@@ -10,8 +10,14 @@
 					height:'auto',
 					trigger:'click',
 					style:'',
-					delay:300,
-                    enterDelay:null,
+					delay: {
+                        show: null,
+                        hide: 300
+                    },
+                    async: {
+                        before: function(that, xhr){},
+                        success: function(that, data){}
+                    },
 					cache:true,
 					multi:false,
 					arrow:true,
@@ -199,8 +205,11 @@
 				getUrl:function(){
 					return this.options.url||this.$element.attr('data-url');
 				},
-                getEnterDelay:function(){
-					return this.options.enterDelay||this.$element.attr('data-enter-delay');
+                getDelayShow:function(){
+					return this.options.delay.show||this.$element.attr('data-delay-show');
+				},
+                getHideDelay:function(){
+					return this.options.delay.hide||this.$element.attr('data-delay-hide');
 				},
 				setTitle:function(title){
 					var $titleEl = this.getTitleElement();
@@ -243,6 +252,9 @@
 						url:this.getUrl(),
 						type:'GET',
 						cache:this.options.cache,
+                        beforeSend:function(xhr) {
+                            that.options.async.before(that, xhr);
+                        },
 						success:function(data){
 							if (content&&$.isFunction(content)){
 								that.content = content.apply(that.$element[0],[data]);
@@ -253,6 +265,7 @@
 							var $targetContent = that.getContentElement();
 							$targetContent.removeAttr('style');
 							that.displayContent();
+                            that.options.async.success(that, data);
 						}
 					});
 				},
@@ -268,7 +281,7 @@
 					if (self._timeout){clearTimeout(self._timeout);}
                     self._enterTimeout = setTimeout(function(){
 					    if (!self.getTarget().is(':visible')){self.show();}
-                    },this.getEnterDelay()||0);
+                    },this.getDelayShow()||0);
 				},
 				mouseleaveHandler:function(){
 					var self = this;
@@ -276,7 +289,7 @@
 					//key point, set the _timeout  then use clearTimeout when mouse leave
 					self._timeout = setTimeout(function(){
 						self.hide();
-					},self.options.delay);
+					},this.getHideDelay()||0);
 				},
 				escapeHandler:function(e){
 					if (e.keyCode===27){
