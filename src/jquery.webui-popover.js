@@ -12,7 +12,7 @@
 					style:'',
 					delay: {
                         show: null,
-                        hide: 300
+                        hide: null
                     },
                     async: {
                         before: null, //function(that, xhr){}
@@ -27,6 +27,7 @@
 					padding:true,
 					url:'',
 					type:'html',
+					constrains:null,
 					template:'<div class="webui-popover">'+
 								'<div class="arrow"></div>'+
 								'<div class="webui-popover-inner">'+
@@ -151,7 +152,7 @@
 					$target.remove().css({ top: -1000, left: -1000, display: 'block' }).appendTo(document.body);
 					targetWidth = $target[0].offsetWidth;
 					targetHeight = $target[0].offsetHeight;
-					placement = this.getPlacement(elementPos,targetHeight);
+					placement = this.getPlacement(elementPos);
 					this.initTargetEvents();
 				    var postionInfo = this.getTargetPositin(elementPos,placement,targetWidth,targetHeight);
 					this.$target.css(postionInfo.position).addClass(placement).addClass('in');
@@ -208,10 +209,13 @@
 					return this.options.url||this.$element.attr('data-url');
 				},
                 getDelayShow:function(){
-					return this.options.delay.show||this.$element.attr('data-delay-show');
+					return this.options.delay.show||this.$element.attr('data-delay-show')||0;
 				},
                 getHideDelay:function(){
-					return this.options.delay.hide||this.$element.attr('data-delay-hide');
+					return this.options.delay.hide||this.$element.attr('data-delay-hide')||300;
+				},
+				getContrains:function(){
+					return this.options.constrains||this.$element.attr('data-contrains');
 				},
 				setTitle:function(title){
 					var $titleEl = this.getTitleElement();
@@ -287,7 +291,7 @@
 					if (self._timeout){clearTimeout(self._timeout);}
                     self._enterTimeout = setTimeout(function(){
 					    if (!self.getTarget().is(':visible')){self.show();}
-                    },this.getDelayShow()||0);
+                    },this.getDelayShow());
 				},
 				mouseleaveHandler:function(){
 					var self = this;
@@ -295,7 +299,7 @@
 					//key point, set the _timeout  then use clearTimeout when mouse leave
 					self._timeout = setTimeout(function(){
 						self.hide();
-					},this.getHideDelay()||0);
+					},this.getHideDelay());
 				},
 				escapeHandler:function(e){
 					if (e.keyCode===27){
@@ -326,7 +330,7 @@
 				},
 				/* utils methods */
 				//caculate placement of the popover
-				getPlacement:function(pos,targetHeight){
+				getPlacement:function(pos){
 					var
 						placement,
 						de = document.documentElement,
@@ -336,8 +340,8 @@
 						scrollTop = Math.max(db.scrollTop,de.scrollTop),
 						scrollLeft = Math.max(db.scrollLeft,de.scrollLeft),
 						pageX = Math.max(0,pos.left - scrollLeft),
-						pageY = Math.max(0,pos.top - scrollTop),
-						arrowSize = 20;
+						pageY = Math.max(0,pos.top - scrollTop);
+						//arrowSize = 20;
 
 					//if placement equals auto，caculate the placement by element information;
 					if (typeof(this.options.placement)==='function'){
@@ -346,32 +350,55 @@
 						placement = this.$element.data('placement')||this.options.placement;
 					}
 
+
 					if (placement==='auto'){
+						var constrainsH = this.getContrains() === 'horizontal',
+							constrainsV = this.getContrains() === 'vertical';
 						if (pageX<clientWidth/3){
 							if (pageY<clientHeight/3){
-								placement = 'bottom-right';
+								placement = constrainsH?'right-bottom':'bottom-right';
 							}else if (pageY<clientHeight*2/3){
-								placement = 'right';
+								if (constrainsV){
+									placement = pageY<=clientHeight/2?'bottom-right':'top-right';
+								}else{
+									placement = 'right';
+								}
 							}else{
-								placement = 'top-right';
+								placement =constrainsH?'right-top':'top-right';
 							}
 							//placement= pageY>targetHeight+arrowSize?'top-right':'bottom-right';
 						}else if (pageX<clientWidth*2/3){
 							if (pageY<clientHeight/3){
-								placement = 'bottom';
+								if (constrainsH){
+									placement =pageX<=clientWidth/2?'right-bottom':'left-bottom';
+								}else{
+									placement ='bottom';
+								}
 							}else if (pageY<clientHeight*2/3){
-								placement = 'bottom';
+								if (constrainsH){
+									placement = pageX<=clientWidth/2?'right':'left';
+								}else{
+									placement = pageY<=clientHeight/2?'bottom':'top';
+								}
 							}else{
-								placement = 'top';
+								if (constrainsH){
+									placement =pageX<=clientWidth/2?'right-top':'left-top';
+								}else{
+									placement ='top';
+								}
 							}
 						}else{
-							placement = pageY>targetHeight+arrowSize?'top-left':'bottom-left';
+							//placement = pageY>targetHeight+arrowSize?'top-left':'bottom-left';
 							if (pageY<clientHeight/3){
-								placement = 'bottom-left';
+								placement = constrainsH?'left-bottom':'bottom-left';
 							}else if (pageY<clientHeight*2/3){
-								placement = 'left';
+								if (constrainsV){
+									placement = pageY<=clientHeight/2?'bottom-left':'top-left';
+								}else{
+									placement = 'left';
+								}
 							}else{
-								placement = 'top-left';
+								placement = constrainsH?'left-top':'top-left';
 							}
 						}
 					}
@@ -390,7 +417,7 @@
 						elementH = this.$element.outerHeight(),
 						position={},
 						arrowOffset=null,
-						arrowSize = this.options.arrow?28:0,
+						arrowSize = this.options.arrow?20:0,
 						fixedW = elementW<arrowSize+10?arrowSize:0,
 						fixedH = elementH<arrowSize+10?arrowSize:0;
 					switch (placement) {
