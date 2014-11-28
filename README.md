@@ -108,7 +108,8 @@ $('a').webuiPopover({
 	height:'auto',//can be set with  number
 	trigger:'click',//values:click,hover
 	style:'',//values:'',inverse
-	delay: {//show and hide delay time of the popover, works only when trigger is 'hover'
+	constrains:null, // constrains when placement is auto,  values: horizontal,vertical
+	delay: {//show and hide delay time of the popover, works only when trigger is 'hover',the value can be number or object
 	    show: null,
 	    hide: 300
 	},
