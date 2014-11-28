@@ -214,7 +214,7 @@
                 getHideDelay:function(){
 					return this.options.delay.hide||this.$element.attr('data-delay-hide')||300;
 				},
-				getContrains:function(){
+				getConstrains:function(){
 					return this.options.constrains||this.$element.attr('data-contrains');
 				},
 				setTitle:function(title){
@@ -352,8 +352,8 @@
 
 
 					if (placement==='auto'){
-						var constrainsH = this.getContrains() === 'horizontal',
-							constrainsV = this.getContrains() === 'vertical';
+						var constrainsH = this.getConstrains() === 'horizontal',
+							constrainsV = this.getConstrains() === 'vertical';
 						if (pageX<clientWidth/3){
 							if (pageY<clientHeight/3){
 								placement = constrainsH?'right-bottom':'bottom-right';
