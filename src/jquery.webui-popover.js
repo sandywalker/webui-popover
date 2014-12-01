@@ -203,19 +203,31 @@
 					return this.getTarget().find('.'+pluginClass+'-content');
 				},
 				getTitle:function(){
-					return this.options.title||this.$element.attr('data-title')||this.$element.attr('title');
+					return this.$element.attr('data-title')||this.options.title||this.$element.attr('title');
 				},
 				getUrl:function(){
-					return this.options.url||this.$element.attr('data-url');
+					return this.$element.attr('data-url')||this.options.url;
 				},
                 getDelayShow:function(){
-					return this.options.delay.show||this.$element.attr('data-delay-show')||0;
+                    var dataAttr = this.$element.attr('data-delay-show');
+                    if (typeof(dataAttr) !== 'undefined') {
+                        return dataAttr
+                    }
+					return this.options.delay.show||0;
 				},
                 getHideDelay:function(){
-					return this.options.delay.hide||this.$element.attr('data-delay-hide')||300;
+                    var dataAttr = this.$element.attr('data-delay-hide');
+                    if (typeof(dataAttr) !== 'undefined') {
+                        return dataAttr
+                    }
+					return this.options.delay.hide||300;
 				},
 				getConstrains:function(){
-					return this.options.constrains||this.$element.attr('data-contrains');
+                    var dataAttr = this.$element.attr('data-contrains');
+                    if (typeof(dataAttr) !== 'undefined') {
+                        return dataAttr
+                    }
+					return this.options.constrains;
 				},
 				setTitle:function(title){
 					var $titleEl = this.getTitleElement();
