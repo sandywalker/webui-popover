@@ -211,21 +211,21 @@
                 getDelayShow:function(){
                     var dataAttr = this.$element.attr('data-delay-show');
                     if (typeof(dataAttr) !== 'undefined') {
-                        return dataAttr
+                        return dataAttr;
                     }
 					return this.options.delay.show||0;
 				},
                 getHideDelay:function(){
                     var dataAttr = this.$element.attr('data-delay-hide');
                     if (typeof(dataAttr) !== 'undefined') {
-                        return dataAttr
+                        return dataAttr;
                     }
 					return this.options.delay.hide||300;
 				},
 				getConstrains:function(){
                     var dataAttr = this.$element.attr('data-contrains');
                     if (typeof(dataAttr) !== 'undefined') {
-                        return dataAttr
+                        return dataAttr;
                     }
 					return this.options.constrains;
 				},
