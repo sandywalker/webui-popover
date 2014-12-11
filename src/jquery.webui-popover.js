@@ -56,7 +56,7 @@
 				//init webui popover
 				init: function () {
 					//init the event handlers
-					if (this.options.trigger==='click'){
+					if (this.getTrigger()==='click'){
 						this.$element.off('click').on('click',$.proxy(this.toggle,this));
 					}else{
 						this.$element.off('mouseenter mouseleave')
@@ -70,7 +70,7 @@
 				destroy:function(){
 					this.hide();
 					this.$element.data('plugin_'+pluginName,null);
-					if (this.options.trigger==='click'){
+					if (this.options.getTrigger()==='click'){
 						this.$element.off('click');
 					}else{
 						this.$element.off('mouseenter mouseleave');
@@ -208,6 +208,9 @@
 				getUrl:function(){
 					return this.$element.attr('data-url')||this.options.url;
 				},
+                getTrigger:function(){
+                    return this.$element.attr('data-trigger')||this.options.trigger;
+                },
                 getDelayShow:function(){
                     var dataAttr = this.$element.attr('data-delay-show');
                     if (typeof(dataAttr) !== 'undefined') {
@@ -332,7 +335,7 @@
 
 				//reset and init the target events;
 				initTargetEvents:function(){
-					if (this.options.trigger!=='click'){
+					if (this.getTrigger()!=='click'){
 						this.$target.off('mouseenter mouseleave')
 									.on('mouseenter',$.proxy(this.mouseenterHandler,this))
 									.on('mouseleave',$.proxy(this.mouseleaveHandler,this));
