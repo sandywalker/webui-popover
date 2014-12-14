@@ -115,7 +115,7 @@ $('a').webuiPopover({
 	},
 	async: {
 	    before: function(that, xhr) {},//executed before ajax request
-	    success: success(that, data) {}//executed after successful ajax request
+	    success: function(that, data) {}//executed after successful ajax request
 	},
 	cache:true,//if cache is set to false,popover will destroy and recreate
 	multi:false,//allow other popovers in page at same time
