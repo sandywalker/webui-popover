@@ -70,7 +70,7 @@
 				destroy:function(){
 					this.hide();
 					this.$element.data('plugin_'+pluginName,null);
-					if (this.options.getTrigger()==='click'){
+					if (this.getTrigger()==='click'){
 						this.$element.off('click');
 					}else{
 						this.$element.off('mouseenter mouseleave');
