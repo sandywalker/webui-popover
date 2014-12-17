@@ -107,7 +107,7 @@
 						this.hideAll();
 					}
 					// use cache by default, if not cache setted  , reInit the contents 
-					if (!this.getCache()||!this._poped){
+					if (!this.options.cache||!this._poped){
 						this.setTitle(this.getTitle());
 						if (!this.options.closeable){
 							$target.find('.close').off('click').remove();
@@ -208,16 +208,6 @@
 				getUrl:function(){
 					return this.$element.attr('data-url')||this.options.url;
 				},
-                getCache:function(){
-                    var dataAttr = this.$element.attr('data-cache');
-                    if (typeof(dataAttr) !== 'undefined') {
-                        switch(dataAttr.toLowerCase()){
-                            case "true": case "yes": case "1": return true;
-                            case "false": case "no": case "0": return false;
-                        }
-                    }
-					return this.options.cache;
-				},
                 getTrigger:function(){
                     return this.$element.attr('data-trigger')||this.options.trigger;
                 },
@@ -282,7 +272,7 @@
 					$.ajax({
 						url:this.getUrl(),
 						type:'GET',
-						cache:this.getCache(),
+						cache:this.options.cache,
                         beforeSend:function(xhr) {
 							if (that.options.async.before){
 								that.options.async.before(that, xhr);
@@ -481,15 +471,14 @@
 			          case 'right-bottom':
 			            position = {top: pos.top - fixedH, left: pos.left + pos.width};
 			            arrowOffset = {top: elementH /2 +fixedH };
-			            console.log(position.top);
 			            break;
 			          case 'left-top':
 			            position = {top: pos.top -targetHeight + pos.height+fixedH, left: pos.left - targetWidth};
 			            arrowOffset = {top: targetHeight - elementH/2 - fixedH};
 			            break;
 					  case 'left-bottom':
-			            position = {top: pos.top -fixedH , left: pos.left -targetWidth};
-			            arrowOffset = {top: elementH /2 + fixedH };
+			            position = {top: pos.top , left: pos.left -targetWidth};
+			            arrowOffset = {top: elementH /2 };
 			            break;
 
 			        }
