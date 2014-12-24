@@ -285,7 +285,7 @@
 							var $targetContent = that.getContentElement();
 							$targetContent.removeAttr('style');
 							that.displayContent();
-							if (that.options.async.before){
+							if (that.options.async.success){
 								that.options.async.success(that, data);
 							}
 						}

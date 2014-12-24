@@ -1,0 +1,1215 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pos",
+				"position"
+			],
+			[
+				"getCo",
+				"getContrains"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"clie",
+				"clientHeight"
+			],
+			[
+				"cont",
+				"constrainsV"
+			],
+			[
+				"client",
+				"clientWidth"
+			],
+			[
+				"pa",
+				"pageY"
+			],
+			[
+				"contr",
+				"constrainsH"
+			],
+			[
+				"webui",
+				"webuiPopover"
+			],
+			[
+				"cli",
+				"clientX"
+			],
+			[
+				"e",
+				"elementH"
+			],
+			[
+				"pop",
+				"pop-click"
+			],
+			[
+				"web",
+				"webui-popover"
+			],
+			[
+				"fi",
+				"fixedW"
+			],
+			[
+				"hide",
+				"hideAll"
+			],
+			[
+				"key",
+				"keyCode"
+			],
+			[
+				"webui-po",
+				"webui-popover"
+			],
+			[
+				"fix",
+				"fixedW"
+			],
+			[
+				"arr",
+				"arrowSize"
+			],
+			[
+				"arro",
+				"arrowSize"
+			],
+			[
+				"elem",
+				"elementW"
+			],
+			[
+				"remove",
+				"removeAttr"
+			],
+			[
+				"dis",
+				"displayContent"
+			],
+			[
+				"gett",
+				"getTarget"
+			],
+			[
+				"target",
+				"targetWidth"
+			],
+			[
+				"el",
+				"elementW"
+			],
+			[
+				"out",
+				"outerHeight"
+			],
+			[
+				"posi",
+				"postionInfo"
+			],
+			[
+				"cl",
+				"clientHeight"
+			],
+			[
+				"scr",
+				"scrollTop"
+			],
+			[
+				"page",
+				"pageY"
+			],
+			[
+				"on",
+				"on"
+			],
+			[
+				"ani",
+				"animdir-n	animation-direction: normal;"
+			],
+			[
+				"pla",
+				"placement"
+			],
+			[
+				"list-g",
+				"list-group-item"
+			],
+			[
+				"we",
+				"-webkit-transform"
+			],
+			[
+				"animi",
+				"animic	animation-iteration-count: ${1:1};"
+			],
+			[
+				"animde",
+				"animation-delay"
+			],
+			[
+				"an",
+				"anim-	animation: ${1:name} ${2:duration} ${3:timing-function} ${4:delay} ${5:iteration-count} ${6:direction} ${7:fill-mode};"
+			],
+			[
+				"is",
+				"isAsync"
+			],
+			[
+				"plugin",
+				"pluginClass"
+			],
+			[
+				"pug",
+				"pluginType"
+			],
+			[
+				"type",
+				"typeof"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"getC",
+				"getContentElement"
+			],
+			[
+				"s",
+				"src	Attr"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"table",
+				"tableContent"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"set",
+				"settings"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"btn-",
+				"btn-style"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"plug",
+				"pluginClass"
+			],
+			[
+				"plu",
+				"pluginClass"
+			],
+			[
+				"clos",
+				"closeButton"
+			],
+			[
+				"plugi",
+				"pluginName"
+			],
+			[
+				"title",
+				"titleEl"
+			],
+			[
+				"arrow",
+				"arrowOffset"
+			],
+			[
+				"gettarg",
+				"getTargetPositin"
+			],
+			[
+				"getcont",
+				"getContentElement"
+			],
+			[
+				"getTi",
+				"getTitleElement"
+			],
+			[
+				"mous",
+				"mouseleaveHandler"
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"l",
+				"left"
+			],
+			[
+				"text-",
+				"text-align"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"ma",
+				"max-height"
+			],
+			[
+				"rep",
+				"replaceByCommentFlag"
+			],
+			[
+				"String",
+				"StringUtils"
+			],
+			[
+				"remo",
+				"removeByCommentFlag"
+			],
+			[
+				"author",
+				"author-end"
+			],
+			[
+				"data",
+				"data-field"
+			],
+			[
+				"÷",
+				":nowrap"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"over",
+				"overflow-x"
+			],
+			[
+				"si",
+				"sidemenuHeight"
+			],
+			[
+				"repeat",
+				"repeat-x"
+			],
+			[
+				"sc",
+				"Scroll"
+			],
+			[
+				"di",
+				":visible"
+			],
+			[
+				"m",
+				"margin"
+			],
+			[
+				"pro",
+				"proxy"
+			],
+			[
+				"scrol",
+				"scrollLeft"
+			],
+			[
+				"act",
+				"actualHeight"
+			],
+			[
+				"cle",
+				"clientHeight"
+			],
+			[
+				"clien",
+				"clientWidth"
+			],
+			[
+				"scro",
+				"scrollLeft"
+			],
+			[
+				"doc",
+				"documentElement"
+			],
+			[
+				"do",
+				"documentElement"
+			],
+			[
+				"ac",
+				"actualHeight"
+			],
+			[
+				"aut",
+				"actualWidth"
+			],
+			[
+				"top",
+				"top-right"
+			],
+			[
+				"au",
+				"actualHeight"
+			],
+			[
+				"get",
+				"getTarget"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"rala",
+				":relative"
+			],
+			[
+				"checkbox",
+				"checkboxes"
+			],
+			[
+				"check",
+				"checked"
+			],
+			[
+				"display",
+				"display	display: table-types"
+			],
+			[
+				"under",
+				":underline"
+			],
+			[
+				"hidd",
+				":hidden"
+			],
+			[
+				"chartdata",
+				"chartDataMJ"
+			],
+			[
+				"chart",
+				"chartType"
+			],
+			[
+				"chartd",
+				"chartData"
+			],
+			[
+				"chartdat",
+				"chartDataFL"
+			],
+			[
+				"mes",
+				"message-content"
+			],
+			[
+				"rel",
+				"relative"
+			],
+			[
+				"cur",
+				"current"
+			],
+			[
+				"board",
+				"board-item"
+			],
+			[
+				"curr",
+				"currentMenu"
+			],
+			[
+				"dir",
+				"direction"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"vis",
+				"visibility	visibility: type"
+			],
+			[
+				"icon-status",
+				"icon-status-warning-plus"
+			],
+			[
+				"dataTab",
+				"dataTable1"
+			],
+			[
+				"po",
+				"position	position: type"
+			],
+			[
+				"qu",
+				"quickCancel"
+			],
+			[
+				"Flex",
+				"FlexPaperViewer"
+			],
+			[
+				"view",
+				"viewWrapper"
+			],
+			[
+				"line",
+				"line-height"
+			],
+			[
+				"border-r",
+				"border-radius-right"
+			],
+			[
+				"moz-bor",
+				"-moz-border-radius"
+			],
+			[
+				"inline",
+				":inline-block"
+			],
+			[
+				"mouse",
+				"mouseout"
+			],
+			[
+				"dash",
+				":dotted"
+			],
+			[
+				"end",
+				"endColorstr"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/lessc/lessc.sublime-build",
+	"command_palette":
+	{
+		"height": 207.0,
+		"selected_items":
+		[
+			[
+				"htm",
+				"Snippet: html"
+			],
+			[
+				"html",
+				"Snippet: html"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"git pus",
+				"Git: Push"
+			],
+			[
+				"git",
+				"Git: Commit"
+			],
+			[
+				"git st",
+				"Git: Show Tags"
+			],
+			[
+				"git stu",
+				"Git: Status"
+			],
+			[
+				"git bran",
+				"Git: Change Branch"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"git br",
+				"Git: Change Branch"
+			],
+			[
+				"git checkout",
+				"Git: Checkout Current File"
+			],
+			[
+				"git chec",
+				"Git: Checkout Tag"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Preferences: Browse Packages"
+			],
+			[
+				"sy",
+				"Set Syntax: CSS"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"sy css",
+				"Set Syntax: CSS"
+			],
+			[
+				"enab",
+				"Package Control: Enable Package"
+			],
+			[
+				"dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"ena",
+				"Package Control: Enable Package"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"REMOVE",
+				"Package Control: Remove Package"
+			],
+			[
+				"CSS",
+				"Set Syntax: CSS3"
+			],
+			[
+				"CSS3",
+				"CSS3: Insert Reset"
+			],
+			[
+				"JS",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"css3",
+				"CSS3: Insert Reset"
+			],
+			[
+				"less",
+				"Set Syntax: LESS"
+			],
+			[
+				"en",
+				"Package Control: Enable Package"
+			],
+			[
+				"sycs",
+				"Set Syntax: CSS"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"les",
+				"Set Syntax: LESS"
+			],
+			[
+				"sy le",
+				"Set Syntax: LESS"
+			],
+			[
+				"enabl",
+				"Package Control: Enable Package"
+			],
+			[
+				"syle",
+				"Set Syntax: LESS"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"sy les",
+				"Set Syntax: LESS"
+			],
+			[
+				"instl",
+				"Package Control: Install Package"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"sy htm",
+				"Set Syntax: HTML"
+			],
+			[
+				"sni",
+				"Snippet: html"
+			],
+			[
+				"snip",
+				"Snippet: html"
+			],
+			[
+				"snippet",
+				"Snippet: html"
+			],
+			[
+				"",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"s",
+				"Set Syntax: JSON"
+			],
+			[
+				"Snippet: ",
+				"Snippet: html"
+			],
+			[
+				"h",
+				"Set Syntax: HTML"
+			],
+			[
+				"Snippet: ht",
+				"Snippet: html"
+			],
+			[
+				"Snippet: htm",
+				"Snippet: html"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 77.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/sindtom/github/webui/webui-layout"
+	],
+	"file_history":
+	[
+		"/Users/sindtom/github/webui/webui-layout/iframe-page1.html",
+		"/Users/sindtom/github/webui/webui-layout/test.html",
+		"/Volumes/Macintosh HD/Users/msind/windows/download/Goodfellas (1990)/Goodfellas.1990.720p.BrRip.264.YIFY.srt",
+		"/Users/sindtom/github/webui/webui-popover/src/jquery.webui-popover.css",
+		"/Users/sindtom/github/webui/webui-popover/src/jquery.webui-popover.less",
+		"/Users/sindtom/github/webui/webui-popover/README.md",
+		"/Users/sindtom/github/webui/webui-popover/package.json",
+		"/Users/sindtom/github/webui/webui-popover/bower.json",
+		"/Users/sindtom/github/webui/webui-popover/webui-popover.jquery.json",
+		"/Users/sindtom/github/webui/webui-popover/src/jquery.webui-popover.js",
+		"/Users/sindtom/github/webui/webui-popover/demo/index.html",
+		"/Users/sindtom/github/webui/webui-popover/demo/index-dev.html",
+		"/Users/sindtom/github/webui/webui-popover/dist/jquery.webui-popover.js",
+		"/private/etc/hosts",
+		"/Users/sindtom/github/webui/webui-popover/.gitignore",
+		"/Users/sindtom/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Volumes/Macintosh HD/Users/msind/windows/java-project/kc_archive/src/database.properties",
+		"/Users/sindtom/github/webui/webui-popover/node_modules/grunt-contrib-less/node_modules/less/test/less/import/import-test-a.less",
+		"/Users/sindtom/github/webui/webui-popover/node_modules/grunt-cli/lib/info.js",
+		"/Users/sindtom/github/webui/webui-popover/Gruntfile.js",
+		"/Users/sindtom/github/webui/webui-popover/src/jquery.webui-popover-t.css",
+		"/Users/sindtom/github/webui/webui-popover/dist/jquery.webui-popover.css",
+		"/Users/sindtom/github/webui/webui-popover/dist/jquery.webui-popover.min.css",
+		"/Users/sindtom/web/bootstrap/3.2/bootstrap-3.2.0/less/popovers.less",
+		"/Users/sindtom/web/bootstrap/3.2/bootstrap-3.2.0/less/mixins/vendor-prefixes.less",
+		"/Users/sindtom/web/bootstrap/3.2/bootstrap-3.2.0/less/mixins/opacity.less",
+		"/Users/sindtom/web/bootstrap/3.2/bootstrap-3.2.0/less/variables.less",
+		"/Users/sindtom/web/bootstrap/3.2/bootstrap-3.2.0/less/close.less",
+		"/Users/sindtom/github/webui/webui-popover/dist/jquery.webui-popover-t.css",
+		"/Users/sindtom/web/bootstrap/3.2/bootstrap-3.2.0/less/mixins/forms.less",
+		"/Users/sindtom/web/bootstrap/3.2/bootstrap-3.2.0/less/mixins/size.less",
+		"/Users/sindtom/web/bootstrap/3.2/bootstrap-3.2.0/less/mixins/border-radius.less",
+		"/Users/sindtom/github/webui/webui-popover/node_modules/grunt-contrib-jshint/node_modules/jshint/tests/stable/regression/libs/lodash.js",
+		"/Users/sindtom/github/webui/webui-popover/node_modules/grunt/node_modules/underscore.string/test/strings_standalone.js",
+		"/Users/sindtom/github/webui/webui-popover/node_modules/grunt-contrib-less/node_modules/less/test/less/errors/import-no-semi.txt",
+		"/Users/sindtom/github/webui/webui-popover/node_modules/grunt-contrib-less/node_modules/less/test/less/errors/import-no-semi.less",
+		"/Users/sindtom/github/webui/webui-popover/src/jquery.webui-popover-t.less",
+		"/Users/sindtom/github/webui/webui-popover/src/test.css",
+		"/Users/sindtom/github/webui/webui-popover/demo/bootstrap.css",
+		"/Users/sindtom/Desktop/webui",
+		"/Users/sindtom/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/sindtom/github/webui/webui-popover/.jshintrc",
+		"/Users/sindtom/github/webui/webui-popover/HISTORY.md",
+		"/Users/sindtom/github/webui/webui-popover/dist/jquery.boilerplate.js",
+		"/Users/sindtom/github/webui/webui-popover/src/jquery.boilerplate.js",
+		"/Users/sindtom/github/webui/webui-popover/boilerplate.jquery.json",
+		"/Volumes/Macintosh HD/Users/msind/dbback/smart/smartData_2014-05-14.sql",
+		"/Users/sindtom/Desktop/page-transitions/index.html",
+		"/Users/sindtom/Sites/public_html/template/6kzz/header.htm",
+		"/Users/sindtom/Sites/public_html/main.php",
+		"/Users/sindtom/Sites/public_html/header.php",
+		"/Users/sindtom/Sites/public_html/index.php",
+		"/Users/sindtom/Sites/public_html/hr_header.php",
+		"/Users/sindtom/Sites/public_html/hr_info.php",
+		"/Users/sindtom/Sites/public_html/hr_test.html",
+		"/Users/sindtom/.m2/settings.xml",
+		"/Users/sindtom/Sites/public_html/inc/init.php",
+		"/Users/sindtom/Sites/public_html/template/6kzz/footer.htm",
+		"/Users/sindtom/Sites/public_html/header_bak.php",
+		"/Users/sindtom/Sites/public_html/template/6kzz/header2.htm",
+		"/Users/sindtom/Sites/public_html/template/6kzz/member.htm",
+		"/Users/sindtom/java/soft/tomcat/apache-tomcat-6.0.28/conf/server.xml",
+		"/Users/sindtom/Library/Application Support/Sublime Text 3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/Users/sindtom/Sites/public_html/install/data.sql",
+		"/Users/sindtom/Sites/public_html/install/install.lock",
+		"/Users/sindtom/Sites/public_html/search.php",
+		"/Users/sindtom/Sites/public_html/js/signup.js",
+		"/Users/sindtom/Sites/public_html/sitemap/index.php",
+		"/Users/sindtom/Sites/public_html/inc/fun.php",
+		"/Users/sindtom/web/hrcare/hrcare.sublime-project",
+		"/private/etc/apache2/httpd.conf.pre-update",
+		"/private/etc/apache2/httpd.conf~previous",
+		"/Library/WebServer/Documents/info.php",
+		"/Users/ftp/VirtualUsers/user/receive/12010/12010.xml",
+		"/Users/ftp/VirtualUsers/user/receive/fawen/12010/12010.xml",
+		"/Volumes/Macintosh HD/Users/msind/j2ee-project/SmartArchive/war/smart-common-3.01.01.011/WEB-INF/classes/messages.smart.properties",
+		"/Volumes/Macintosh HD/Users/msind/j2ee-project/SmartArchive/war/smart-common-3.01.01.011/WEB-INF/classes/application.properties",
+		"/Users/sindtom/web/angularjs/test/hello.html",
+		"/Users/sindtom/web/node/test/lesson03.js",
+		"/Volumes/Macintosh HD/Users/msind/windows/feiq-data/smart-books/src/main/java/book/service/BookCategoryService.java",
+		"/Volumes/Macintosh HD/Users/msind/windows/feiq-data/smart-books/src/main/java/book/web/controller/BookController.java",
+		"/Volumes/Macintosh HD/Users/msind/windows/feiq-data/smart-books/src/main/java/book/web/controller/bookFormController.java",
+		"/Volumes/Macintosh HD/Users/msind/windows/feiq-data/smart-books/src/main/java/book/web/controller/BookCategoryController.java",
+		"/Volumes/Macintosh HD/Users/msind/course/javascript/Object-Oriented JavaScript/code/Lesson 06/toolbar.js",
+		"/Users/sindtom/j2ee-project-maven/smartFramework/pom.xml",
+		"/Volumes/Macintosh HD/Users/msind/j2ee-project/SmartArchive/backup/box.list.jsp",
+		"/Volumes/Macintosh HD/Users/msind/book/tutsplus/course/javascript/Object-Oriented JavaScript/code/Lesson 05/toolbar.js",
+		"/Users/sindtom/web/test-pages/html-include/html-include.sublime-project",
+		"/Users/sindtom/java/soft/tomcat/apache-tomcat-7.0.4/conf/server.xml",
+		"/Users/sindtom/web/webui-framework/src/2.0/tables.html",
+		"/Users/sindtom/Downloads/pom.xml",
+		"/Users/sindtom/java/soft/pdf swf/swftools-chinese support/xpdf/chinese-simplified/add-to-xpdfrc",
+		"/Users/sindtom/.m2/repository/org/smartFramework/smart-common/1.0.1-RELEASE-sdk/smart-common-1.0.1-RELEASE-sdk/template/page/ListTableBody.vm",
+		"/private/etc/hostconfig",
+		"/Users/sindtom/j2ee-project-maven/smartFramework/smart-common/src/main/webapp/WEB-INF/views/template/fawen/form-normal-body.jsp",
+		"/Users/sindtom/web/webui-framework/src/2.0/js/webui.checktoggle.js",
+		"/Users/sindtom/web/webui-framework/src/2.0/css/webui.css",
+		"/Users/sindtom/web/webui-framework/src/2.0/js/jquery.js",
+		"/Users/sindtom/web/webui-framework/src/2.0/smart-archive/admin-file-view.html",
+		"/Users/sindtom/java/open-source/springside/springside4/examples/showcase/src/main/java/org/springside/examples/showcase/security/ShiroDbRealm.java",
+		"/Users/sindtom/web/webui-framework/src/2.0/smart-archive/sa-admin-index.html",
+		"/Users/sindtom/web/webui-framework/src/2.0/backgrounds.html",
+		"/Users/sindtom/java/open-source/apache/solr-4.2.1/example/solr-webapp/webapp/admin.html",
+		"/Volumes/Macintosh HD/Users/msind/java-web/EPhoto/WebContent/WEB-INF/web.xml",
+		"/Users/sindtom/java/open-source/springside/springside4/modules/core/src/main/java/org/springside/modules/utils/Encodes.java",
+		"/Users/sindtom/Downloads/archive/src/com/app/archive/web/ElectronLendApproveController.java",
+		"/Users/sindtom/web/webui-framework/src/2.0/smart-archive/admin-setup-report.html",
+		"/Users/sindtom/web/webui-framework/src/2.0/smart-archive/sa-stat-all.html",
+		"/Users/sindtom/web/webui-framework/src/2.0/smart-archive/sa-stat-index.html",
+		"/Users/sindtom/Desktop/Samples_asp.AJAX/ASP/AjaxSample/FactoryData.asp",
+		"/Users/sindtom/web/webui-framework/src/2.0/smart-archive/admin-arc-list.html",
+		"/Users/sindtom/web/javascript/bootstrap/bootstrap-notify-master/component.json",
+		"/Users/sindtom/web/webui-framework/src/2.0/example.html",
+		"/Users/sindtom/web/webui-framework/src/2.0/flash/FlexPaperViewer.swf",
+		"/Users/sindtom/web/javascript/scroll/rochal-jQuery-slimScroll-8593e8f/slimScroll.js",
+		"/Users/sindtom/java/open-source/springside/springside-springside4-4fb1044/modules/core/src/main/java/org/springside/modules/utils/DateProvider.java",
+		"/Volumes/Macintosh HD/Users/msind/java-web/EPhoto/src/com/common/utils/CommonStringUtils.java",
+		"/Users/sindtom/web/webui-framework/src/2.0/smart-archive/admin-file-list-3.html",
+		"/Volumes/Macintosh HD/Users/msind/java-web/EPhoto/WebContent/WEB-INF/spring/app-config.xml",
+		"/Volumes/Macintosh HD/Users/msind/java-web/EPhoto/src/com/category/dao/CategoryDao.java",
+		"/Users/sindtom/hlsq/courses/jquery3/02/tooltip.js",
+		"/Users/sindtom/hlsq/homeworks/jquery2/王志强/slide.html",
+		"/Users/sindtom/web/webui-framework/src/2.0/containers.html",
+		"/Users/sindtom/web/webui-framework/src/2.0/test2.html",
+		"/Users/sindtom/web/webui-framework/src/2.0/js/bootstrap.js",
+		"/Users/sindtom/web/webui-framework/src/2.0/js/bootstrap-tab.js",
+		"/Users/sindtom/web/webui-framework/src/2.0/smart-archive/admin-file-view-pdf.html",
+		"/Users/sindtom/web/webui-framework/src/2.0/lists.html"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/sindtom/Sites/public_html",
+			"/Users/sindtom/web/webui-framework/src/2.0/smart-archive",
+			"/Users/sindtom/web/webui-framework/src/2.0/smart-archive,/Users/sindtom/web/webui-framework/src/2.0",
+			"/Users/sindtom/web/webui-framework/src/2.0/smart-archive",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"onShow",
+			"const",
+			"cont",
+			"getPlacement",
+			"console",
+			"<tr>\n								<td><a href=\"#\" class=\"btn show-pop btn-default\" data-contrains=\"horizontal\"> horizontal</a></td>\n								<td>&nbsp;</td>\n								<td>&nbsp;</td>\n								<td>&nbsp;</td>\n								<td>&nbsp;</td>\n								<td><a href=\"#\" class=\"btn show-pop btn-success\" data-contrains=\"horizontal\"> horizontal</a></td>\n								<td>&nbsp;</td>\n								<td>&nbsp;</td>\n								<td>&nbsp;</td>\n								<td><a href=\"#\" class=\"btn show-pop btn-default\" data-contrains=\"horizontal\"> horizontal</a></td>\n							</tr>",
+			"console.log",
+			"btn ",
+			"btn-success\"> horizontal",
+			"vertical",
+			"btn-default\"> vertical",
+			"btn-default\"> horizontal",
+			"href=\"\"",
+			"btn ",
+			" &nbsp;&nbsp;&nbsp;",
+			"auto",
+			"horizontal",
+			"vertical",
+			"btn-default",
+			"horizontal",
+			"button",
+			"show",
+			"auto",
+			"<a href=\"#\"",
+			"success",
+			"number",
+			"getDelayShow",
+			"getPlacement",
+			"getDelayShow:function",
+			"click",
+			"body",
+			"bocy",
+			"off",
+			"getContentElement",
+			"$target",
+			"alert",
+			"off",
+			"$target",
+			"delay",
+			"git",
+			"					\n",
+			"console",
+			"isL",
+			"isC",
+			"is",
+			"remove",
+			"show()",
+			"console.log",
+			"setContentASync",
+			"isAsync",
+			"async",
+			"top-right",
+			"						\n",
+			"css",
+			"getTargetPositin",
+			"left",
+			"top",
+			"right",
+			"top",
+			"font-size-base",
+			".opec",
+			".opac",
+			"shadow",
+			"box-shadow",
+			".box-shadow",
+			"box-shadow",
+			"@border-radius-large",
+			"@border-radius",
+			"border-radius-large",
+			"border-radius",
+			"console",
+			"close",
+			"console",
+			"console.log",
+			"iframe",
+			"</",
+			"right",
+			"arguments",
+			"getContent",
+			"init",
+			"setContent",
+			"console",
+			"triggerShowEvent",
+			"console",
+			"data-title",
+			"title",
+			"some-trigger",
+			"Pop content",
+			"Pop title",
+			"onShow",
+			"console.log",
+			"show()",
+			"height",
+			"largeSettings",
+			"largeContent",
+			"listSettings",
+			"listContent",
+			"class=\"list-group-item\"",
+			"width",
+			"console.log",
+			"success",
+			"console.log",
+			"close-button",
+			"closeButton",
+			"closeable",
+			"closeButton",
+			"navbar-btn",
+			"multi",
+			"bottom",
+			"top",
+			"inverse",
+			"btn",
+			"active",
+			"\"><",
+			"demo-middle",
+			"bottom-right",
+			"popover",
+			".left",
+			"left",
+			"warning",
+			"bottom",
+			"danger",
+			"bottom",
+			"			        \n",
+			"title",
+			"fixedSize",
+			"popClass",
+			"webuiPopover"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"<li class=\"active\"><a href=\"sa-index2.html\">我的空间</a></li>",
+			"../img/demo/ico/sa/caiwu.png",
+			"../img/demo/ico/sa/renshi.png",
+			"../img/demo/ico/sa/wenshu.png",
+			"../img/demo/ico/sa/jijian.png",
+			"<a href=\"sa-admin-index.html\">",
+			"class=\"thumb bg-white\"",
+			"",
+			"../img/",
+			"../img",
+			"plus",
+			"",
+			"serial",
+			"thumb-info ",
+			"thumb-info margin5-t",
+			"thumb-info",
+			"glassbar",
+			"../img/plupload/",
+			"",
+			"col",
+			"",
+			"信息网络部 程国丽   2012-11-12",
+			"../img/",
+			"<div class=\"font-large\"><a href=\"#\">郑州巡防队阻止志愿者下水救人 称要打捞许可证</a></div>\n                                       <div class=\"row-footer\">\n                                           <div class=\"pull-left\">\n                                               程国丽   2012-11-12\n                                           </div>\n                                           <div class=\"row-action invisible pull-right\">\n                                                <a href=\"#\" class=\"link-success\" >查看</a>&nbsp; | &nbsp;\n                                                <a href=\"#\" class=\"link-info\">快速编辑</a>&nbsp; | &nbsp;\n                                                <a href=\"#\" >编辑</a>&nbsp; | &nbsp;\n                                                <a href=\"#\" class=\"red\">删除</a>\n                                           </div>\n                                       </div>",
+			"<span class=\"text-gray\"><i class=\"icon-status\"></i>&nbsp;待审核</span>",
+			"'"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 75.0
+	},
+	"project": "webui-layout.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"re",
+				"README.md"
+			],
+			[
+				"tab",
+				"tables.html"
+			],
+			[
+				"webui.js",
+				"js/webui.checktoggle.js"
+			],
+			[
+				".css",
+				"css/webui.css"
+			],
+			[
+				"jq",
+				"js/jquery.js"
+			],
+			[
+				"bac",
+				"backgrounds.html"
+			],
+			[
+				"back",
+				"backgrounds.html"
+			],
+			[
+				"file",
+				"smart-archive/admin-file-view.html"
+			],
+			[
+				"adm",
+				"admin-file-list.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/sindtom/web/webui-framework/src/webui2.0.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 244.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
