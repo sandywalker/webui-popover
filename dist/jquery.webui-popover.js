@@ -51,7 +51,7 @@
 		function WebuiPopover ( element, options ) {
 				this.$element = $(element);
                 if($.type(options.delay) === 'string' || $.type(options.delay) === 'number') {
-                    options.delay = {show:null,hide:options.delay}; // bc break fix
+                    options.delay = {show:options.delay,hide:options.delay}; // bc break fix
                 }
 				this.options = $.extend( {}, defaults, options );
 				this._defaults = defaults;
@@ -116,6 +116,7 @@
 					}
 					// use cache by default, if not cache setted  , reInit the contents 
 					if (!this.options.cache||!this._poped){
+						this.content = '';
 						this.setTitle(this.getTitle());
 						if (!this.options.closeable){
 							$target.find('.close').off('click').remove();
@@ -221,7 +222,7 @@
                     if (typeof(dataAttr) !== 'undefined') {
                         return dataAttr;
                     }
-					return this.options.delay.show||0;
+					return this.options.delay.show||300;
 				},
                 getHideDelay:function(){
                     var dataAttr = this.$element.attr('data-delay-hide');
