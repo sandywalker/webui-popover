@@ -108,6 +108,7 @@
 					}
 					// use cache by default, if not cache setted  , reInit the contents 
 					if (!this.options.cache||!this._poped){
+						this.content = '';
 						this.setTitle(this.getTitle());
 						if (!this.options.closeable){
 							$target.find('.close').off('click').remove();
