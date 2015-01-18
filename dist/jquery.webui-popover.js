@@ -92,6 +92,11 @@
 						event.preventDefault();
 						event.stopPropagation();
 					}
+					if (this.xhr){
+						this.xhr.abort();
+						this.xhr = null;
+					}
+
 					var e = $.Event('hide.' + pluginType);
 					this.$element.trigger(e);
 					if (this.$target){this.$target.removeClass('in').hide();}
@@ -275,7 +280,7 @@
 				},
 				setContentASync:function(content){
 					var that = this;
-					$.ajax({
+					this.xhr = $.ajax({
 						url:this.getUrl(),
 						type:'GET',
 						cache:this.options.cache,
@@ -297,6 +302,7 @@
 							if (that.options.async.success){
 								that.options.async.success(that, data);
 							}
+							this.xhr = null;
 						}
 					});
 				},
