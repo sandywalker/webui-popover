@@ -78,6 +78,11 @@ Create  Popover with close button
 $('a').webuiPopover({title:'Title',content:'Content',closeable:true});
 ```
 
+Create  and Animate the Popover 
+```javascript
+$('a').webuiPopover({title:'Title',content:'Content',animation:'pop'});
+```
+
 Create  Popover with iframe
 ```javascript
 $('a').webuiPopover({type:'iframe',url:'http://getbootstrap.com'});
