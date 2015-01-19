@@ -57,7 +57,7 @@
 				//init webui popover
 				init: function () {
 					//init the event handlers
-					if (this.options.trigger==='click'){
+					if (this.getTrigger()==='click'){
 						this.$element.off('click').on('click',$.proxy(this.toggle,this));
 					}else{
 						this.$element.off('mouseenter mouseleave')
@@ -71,7 +71,7 @@
 				destroy:function(){
 					this.hide();
 					this.$element.data('plugin_'+pluginName,null);
-					if (this.options.trigger==='click'){
+					if (this.getTrigger()==='click'){
 						this.$element.off('click');
 					}else{
 						this.$element.off('mouseenter mouseleave');
@@ -113,7 +113,7 @@
 						this.hideAll();
 					}
 					// use cache by default, if not cache setted  , reInit the contents 
-					if (!this.options.cache||!this._poped){
+					if (!this.getCache()||!this._poped){
 						this.content = '';
 						this.setTitle(this.getTitle());
 						if (!this.options.closeable){
@@ -219,6 +219,19 @@
 				getUrl:function(){
 					return this.$element.attr('data-url')||this.options.url;
 				},
+                getCache:function(){
+                    var dataAttr = this.$element.attr('data-cache');
+                    if (typeof(dataAttr) !== 'undefined') {
+                        switch(dataAttr.toLowerCase()){
+                            case "true": case "yes": case "1": return true;
+                            case "false": case "no": case "0": return false;
+                        }
+                    }
+					return this.options.cache;
+				},
+                getTrigger:function(){
+                    return this.$element.attr('data-trigger')||this.options.trigger;
+                },
                 getDelayShow:function(){
                     var dataAttr = this.$element.attr('data-delay-show');
                     if (typeof(dataAttr) !== 'undefined') {
@@ -284,7 +297,7 @@
 					this.xhr = $.ajax({
 						url:this.getUrl(),
 						type:'GET',
-						cache:this.options.cache,
+						cache:this.getCache(),
                         beforeSend:function(xhr) {
 							if (that.options.async.before){
 								that.options.async.before(that, xhr);
@@ -349,7 +362,7 @@
 
 				//reset and init the target events;
 				initTargetEvents:function(){
-					if (this.options.trigger!=='click'){
+					if (this.getTrigger()!=='click'){
 						this.$target.off('mouseenter mouseleave')
 									.on('mouseenter',$.proxy(this.mouseenterHandler,this))
 									.on('mouseleave',$.proxy(this.mouseleaveHandler,this));
