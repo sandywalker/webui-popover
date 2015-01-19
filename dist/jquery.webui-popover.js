@@ -299,6 +299,7 @@
 							}
                         },
 						success:function(data){
+							that.bindBodyEvents();
 							if (content&&$.isFunction(content)){
 								that.content = content.apply(that.$element[0],[data]);
 							}else{
