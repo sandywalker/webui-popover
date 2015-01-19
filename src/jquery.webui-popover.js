@@ -223,8 +223,8 @@
                     var dataAttr = this.$element.attr('data-cache');
                     if (typeof(dataAttr) !== 'undefined') {
                         switch(dataAttr.toLowerCase()){
-                            case "true": case "yes": case "1": return true;
-                            case "false": case "no": case "0": return false;
+                            case 'true': case 'yes': case '1': return true;
+                            case 'false': case 'no': case '0': return false;
                         }
                     }
 					return this.options.cache;
