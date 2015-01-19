@@ -46,6 +46,21 @@
 .webui-popover.left-bottom {
   margin-left: -10px;
 }
+.webui-popover.pop {
+  -webkit-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  transform: scale(0.8);
+  transition: transform 0.15s cubic-bezier(0.3, 0, 0, 1.5);
+}
+.webui-popover.fade {
+  transition: opacity .15s linear;
+}
+.webui-popover.in {
+  -webkit-transform: none;
+  -o-transform: none;
+  transform: none;
+  opacity: 1;
+}
 .webui-popover-inner .close {
   font-family: arial;
   margin: 5px 10px 0 0;

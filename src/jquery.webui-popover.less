@@ -61,6 +61,12 @@
           animation: @animation;
 }
 
+.transform(@transform){
+    -webkit-transform: @transform;
+         -o-transform: @transform;
+            transform: @transform;
+}
+
 
 /*  webui popover  */
 .webui-popover {
@@ -85,6 +91,18 @@
   &.right,&.right-top,&.right-bottom   { margin-left: @popover-arrow-width; }
   &.bottom,&.bottom-left,&.bottom-right { margin-top: @popover-arrow-width; }
   &.left,&.left-top,&.left-bottom    { margin-left: -@popover-arrow-width; }
+
+
+  &.pop {
+    .transform(scale(.8));
+    transition: transform .15s cubic-bezier(.3, 0, 0, 1.5);
+  }
+  
+  &.fade{
+    transition: opacity .15s linear;
+  }
+  
+  &.in {.transform(none);opacity:1};
 }
 
 

@@ -109,6 +109,7 @@ $('a').webuiPopover({
 	trigger:'click',//values:click,hover
 	style:'',//values:'',inverse
 	constrains:null, // constrains the direction when placement is  auto,  values: horizontal,vertical
+	animation:null, //pop with animation,values: pop,fade (only take effect in the browser which support css3 transition)
 	delay: {//show and hide delay time of the popover, works only when trigger is 'hover',the value can be number or object
 	    show: null,
 	    hide: 300

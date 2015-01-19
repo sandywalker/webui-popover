@@ -36,6 +36,7 @@
 					url:'',
 					type:'html',
 					constrains:null,
+					animation:null,
 					template:'<div class="webui-popover">'+
 								'<div class="arrow"></div>'+
 								'<div class="webui-popover-inner">'+
@@ -163,7 +164,11 @@
 					if (!this.options.arrow){
 						$target.find('.arrow').remove();
 					}
-					$target.remove().css({ top: -1000, left: -1000, display: 'block' }).appendTo(document.body);
+					$target.remove().css({ top: -1000, left: -1000, display: 'block' });
+					if (this.getAnimation()){
+						$target.addClass(this.getAnimation());
+					}
+					$target.appendTo(document.body);
 					targetWidth = $target[0].offsetWidth;
 					targetHeight = $target[0].offsetHeight;
 					placement = this.getPlacement(elementPos);
@@ -227,14 +232,14 @@
                     if (typeof(dataAttr) !== 'undefined') {
                         return dataAttr;
                     }
-					return this.options.delay.show||300;
+					return this.options.delay.show||100;
 				},
                 getHideDelay:function(){
                     var dataAttr = this.$element.attr('data-delay-hide');
                     if (typeof(dataAttr) !== 'undefined') {
                         return dataAttr;
                     }
-					return this.options.delay.hide||300;
+					return this.options.delay.hide||100;
 				},
 				getConstrains:function(){
                     var dataAttr = this.$element.attr('data-contrains');
@@ -242,6 +247,10 @@
                         return dataAttr;
                     }
 					return this.options.constrains;
+				},
+				getAnimation:function(){
+					var dataAttr = this.$element.attr('data-animation');
+					return dataAttr||this.options.animation;
 				},
 				setTitle:function(title){
 					var $titleEl = this.getTitleElement();
@@ -483,7 +492,6 @@
 			          case 'right-bottom':
 			            position = {top: pos.top - fixedH, left: pos.left + pos.width};
 			            arrowOffset = {top: elementH /2 +fixedH };
-			            console.log(position.top);
 			            break;
 			          case 'left-top':
 			            position = {top: pos.top -targetHeight + pos.height+fixedH, left: pos.left - targetWidth};
