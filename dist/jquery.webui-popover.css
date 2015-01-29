@@ -250,6 +250,8 @@
   top: 50%;
   left: 50%;
   position: absolute;
+  margin-left: -15px;
+  margin-right: -15px;
   background: url(../img/loading.gif) no-repeat;
 }
 @-webkit-keyframes rotate {
