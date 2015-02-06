@@ -1,0 +1,388 @@
+body{
+				background: #eee;
+				font:14px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+			}
+			
+
+			header{				
+				color:#fff;		
+				background-color: #3366aa;	
+				padding-top:30px; 	
+				padding-bottom:30px;
+				font-size: 24px;
+				margin-bottom:20px;
+			}
+			header h1{
+				margin-right: 380px;
+				font-size:36px;
+				line-height: 1;
+
+			}
+			h1 i{
+				font-size: 45px;
+			}
+			header p{
+				font-size: 18px;
+				color:#aaccff;
+			}
+
+			.panel-demo{
+				height:540px;
+				min-height: 540px;
+			}
+
+			.panel-heading {
+				padding: 20px 10px;
+				border-bottom: 1px solid transparent;
+				border-top-left-radius: 3px;
+				border-top-right-radius: 3px;
+			}
+
+			.tab-pane{
+				background: #fff;
+				height:500px;
+				min-height: 500px;
+				padding: 1px;
+				border:1px solid #ddd;
+				border-top:none;
+				border-radius: 5px;
+				border-top-left-radius:0;
+				border-top-right-radius:0;
+			}
+
+			.icon-setup,.icon-setup:visited{
+				color:#333;
+			}
+
+			
+
+			#optionsWrapper{
+				display: none;
+			}
+			
+			.options{
+				
+			}
+
+			.options h3{
+				margin:0;
+				padding-left:15px;
+				line-height: 50px;
+				border-bottom: 1px solid #ccc;
+			}
+
+			.option-section{
+				border-bottom: 1px solid #eee;
+				margin:25px 15px 25px 15px;
+				height:45px;
+				line-height: 45px;
+			}
+
+			.option-box{
+				display: block;
+				height:25px;
+				width:80px;
+				float:right;
+				border:1px solid #ccc;
+				margin:8px 15px 0 0 ;
+				line-height: 25px;
+				text-align: center;
+				border-radius: 20px;
+				cursor: pointer;
+
+			}
+
+			.option-box .flag{
+				float:left;
+				width:23px;
+				height:23px;
+				color:#fff;
+				background: green;
+				border-radius: 25px;
+				display: none;
+			}
+
+			.option-section .title{
+				display: inline-block;
+				width:60px;
+				text-align: right;
+				color:#999;
+			}
+
+			.option-box.active .flag{
+				display: block;
+			}
+
+			.style-inverse{
+				background: #333;
+				color:#fff;
+			}
+
+			.option-checker{
+				width:170px;
+				float:right;
+				margin:10px 15px 0 0;
+				height:25px;
+				line-height: 25px;
+				text-align: center;
+				border-radius: 15px;
+				border:1px solid #ddd;
+				cursor: pointer;
+				position: relative;
+			}
+
+			.option-checker.active{
+				background: green;
+				color:#fff;
+			}
+
+
+			.option-checker .ball{
+				display: block;
+				position: absolute;
+				left:0;
+				width:22px;
+				height:22px;
+				background: #eee;
+				border-radius: 10px;
+			}
+
+			.option-checker.active .ball{
+				left:auto;
+				right:0;
+			}	
+
+			.content{
+				height:540px;
+				position: relative;
+				background: #fff;
+				border:1px solid #ddd;
+				border-radius: 5px;
+				display: none;
+			}
+
+			.content.active{
+				display: block;
+			}
+			.btn-default{
+				color:#999;
+				padding:12px 15px;
+			}
+
+			.glyphicon-cog:hover{
+				color:#666;
+			}
+
+			#specify{
+				
+			}
+
+			#specify .btn {
+				position: absolute;
+				border-radius: 50px;
+				color:#ddd;
+			}
+
+			#specify .bottom-right{
+				top:10px;
+				left:10px;
+			}
+
+			#specify .right-bottom{
+				top:10px;
+				left:25%;
+			}
+
+			#specify .bottom{
+				top:10px;
+				left:50%;
+				margin-left:-17px;
+			}
+
+			#specify .left-bottom{
+				top:10px;
+				right:25%;
+			}
+
+			#specify .bottom-left{
+				top:10px;
+				right:10px;
+			}
+
+			#specify .right{
+				left:10px;
+				top:50%;
+				margin-top:-17px;
+			}
+
+			#specify .left{
+				right:10px;
+				top:50%;
+				margin-top:-17px;
+			}
+
+			#specify .top-right{
+				bottom:10px;
+				left:10px;
+			}
+
+			#specify .right-top{
+				bottom:10px;
+				left:25%;
+			}
+
+			#specify .btn.top{
+				bottom:10px;
+				left:50%;
+				margin-left:-17px;
+			}
+
+			#specify .left-top{
+				bottom: 10px;
+				right:25%;
+			}
+
+			#specify .top-left{
+				bottom:10px;
+				right:10px;
+			}
+
+			#auto .btn{
+				padding:1px;
+				border:1px solid #eee;
+				min-width: 60px;
+				font-size:9px;
+			}
+
+			#auto .btn-default{
+				background: #fff;
+			}
+
+			#auto .btn-auto{
+				width:35px;
+				height:35px;
+				line-height: 35px;
+				min-width: 35px;
+				padding:0;
+				margin:0;
+				border-radius: 25px;
+			}
+			
+			#animation,#delayed,#advanced{
+				padding:0 20px;
+			}
+			
+			#animation .btn,#delayed .btn{
+				width: 120px;
+				height:120px;
+				line-height: 120px;
+				padding:0;
+				margin-top:150px;
+				
+				border-radius: 100px;
+			}
+
+			#advanced .btn{
+				position: absolute;
+			}
+
+			#advanced .show-pop-table {
+				top:20px;
+				left:20px;
+			}
+
+			#advanced .show-pop-list {
+				top:20px;
+				right:20px;
+			}
+
+			#advanced .show-pop-large {
+				bottom:20px;
+				left:20px;
+			}
+
+			#advanced .show-pop-iframe {
+				bottom:20px;
+				right:20px;
+			}
+
+			#advanced .show-pop-async {
+				top:50%;
+				left:50%;
+				padding:0;
+				height:80px;
+				width:80px;
+				
+				line-height: 80px;
+				margin-top: -60px;
+				margin-left:-60px;
+				border-radius: 40px;
+			}
+
+			#events {
+				padding:20px;
+			}
+
+			#events .btn-info.pull-left{
+				width:100px;
+				margin-right:20px;
+			}
+
+			#events .btn-info.pull-right{
+				width:100px;
+				margin-left: 20px;
+			}
+
+			#events .btns{
+				margin-bottom:180px;
+			}
+
+			#eventLogs{
+				height:200px;
+				margin:0 0 20px 0;
+			}
+
+			.demo-code{
+				margin:20px;
+			}
+
+			.demo-container{
+				background: #fff;
+				padding-top: 20px;
+				padding-bottom: 20px;
+				margin-bottom: 40px;
+			}
+
+			.row-middle{
+				margin-top:200px;
+				margin-bottom: 200px;
+			}
+
+			.webui-popover-demo.top{
+				position: absolute;
+				top:50%;
+				left:50%;
+				width:350px;
+				height:150px;
+				margin-left:-175px;
+				margin-top:-75px;
+			}
+
+			.webui-popover-demo h3{
+				font-weight:bold;
+				color:#c9302c;
+			}
+
+			.text-center{
+				text-align: center;
+			}
+
+			.text-right{
+				text-align: right;
+			}
+
+			.table-contrains > tbody > tr > td{
+				border:none;
+				text-align: center;
+			}
+			

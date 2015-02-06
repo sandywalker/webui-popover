@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WebUI Popover Demo</title>		
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../dist/jquery.webui-popover.min.css">
+		<style>
+			body{
+				background: #eee;
+				font:14px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+			}
+			
+
+			header{				
+				color:#fff;		
+				background-color: #3366aa;	
+				padding-top:30px; 	
+				padding-bottom:30px;
+				font-size: 24px;
+				margin-bottom:40px;
+			}
+			header h1{
+				margin-right: 380px;
+				font-size:60px;
+				line-height: 1;
+
+			}
+			h1 i{
+				font-size: 120px;
+			}
+			header p{
+				color:#aaccff;
+			}
+
+			.demo-container{
+				background: #fff;
+				padding-top: 20px;
+				padding-bottom: 20px;
+				margin-bottom: 40px;
+			}
+
+			.row-middle{
+				margin-top:200px;
+				margin-bottom: 200px;
+			}
+
+			.webui-popover-demo.top{
+				width:350px;
+				height:150px;
+				margin-top:-60px;
+				margin-left: 25px;
+			}
+
+			.webui-popover-demo h3{
+				font-weight:bold;
+				color:#09e;
+			}
+
+
+			.text-center{
+				text-align: center;
+			}
+
+			.text-right{
+				text-align: right;
+			}
+
+			.table-contrains > tbody > tr > td{
+				border:none;
+			}
+			
+			
+
+
+		</style>
+	</head>
+	<body>
+		
+		<header>
+			<div class="container">
+        	<h1> <i class="glyphicon glyphicon-comment"></i> WebUI Popover Demo</h1>
+        	<p>A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!</p>    
+        	</div>  
+        	  
+		</header>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"><h1>Settings <small>styles and some options</small></h1>
+				</div>
+			</div>
+		</div>
+		<section class="container demo-container">
+			<div class="row">				
+				<div class="col-md-12">
+					<nav class="navbar navbar-default" role="navigation">
+					  
+					   <p class="navbar-text navbar-left">style:</p>
+					   <div class="btn-group navbar-left" data-toggle="buttons">
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-style active" data-option="style" data-style="">default</a>
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-style" data-option="style" data-style="inverse">inverse</a>					  
+						</div>
+						<p class="navbar-text navbar-left">trigger:</p>
+					   	<div class="btn-group navbar-left" data-toggle="buttons">
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-trigger active" data-option="trigger" data-trigger="click">click</a>
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-trigger" data-option="trigger" data-trigger="hover">hover</a>						  
+						</div>
+						<p class="navbar-text navbar-left">title:</p>
+					   	<div class="btn-group navbar-left" data-toggle="buttons">
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-title active" data-option="title" data-title="Pop Title">yes</a>
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-title " data-option="title" data-title="">no</a>
+						</div>
+
+						<p class="navbar-text navbar-left">closeable:</p>
+					   	<div class="btn-group navbar-left" data-toggle="buttons">
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-closeable " data-option="closeable" data-closeable="true">yes</a>
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-closeable active"  data-option="closeable" data-closeable ="false">no</a>				
+						</div>
+
+						<p class="navbar-text navbar-left">multi:</p>
+					   	<div class="btn-group navbar-left" data-toggle="buttons">
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-multi active" data-option="multi" data-multi="true">yes</a>
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-multi " data-option="multi" data-multi ="false">no</a>				
+						</div>
+
+						<p class="navbar-text navbar-left">arrow:</p>
+					   	<div class="btn-group navbar-left" data-toggle="buttons">
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-arrow active" data-option="arrow" data-arrow="true">yes</a>
+						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-arrow " data-option="arrow" data-arrow ="false">no</a>				
+						</div>
+						<p class="navbar-text navbar-right">&nbsp;</p>
+						<div class="btn-group navbar-right">							
+							<a href="#" class="btn btn-primary navbar-btn btn-reset">reset</a>							
+						</div>
+					</nav>					
+
+				</div>				
+			</div>
+		</section>
+
+		
+
+
+
+		
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"><h1>Specified placement <small>use the specified placement.</small></h1></div>
+			</div>
+		</div>
+		<section class="container demo-container">			
+			<div class="row">				
+				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger" data-placement="bottom-right" >pop bottom-right</a></div>
+				<div class="col-md-3"><a href="#" class="show-pop btn btn-danger btn-lg" data-placement="right-bottom" >pop right-bottom</a></div>
+				<div class="col-md-3"><a href="#" class="show-pop btn btn-danger" data-placement="bottom">pop bottom</a></div>
+				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger btn-lg" data-placement="left-bottom">pop left-bottom</a></div>
+				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger pull-right" data-placement="bottom-left">pop bottom-left</a></div>
+			</div>
+			<div class="row row-middle">
+				<div class="col-md-4"><a href="#" class="show-pop btn btn-danger" data-placement="right">pop right</a></div>
+				<div class="col-md-4">
+					<div class="webui-popover  webui-popover-demo top in webui-popover-fixed" style=" display: block;"><div class="arrow"></div><div class="webui-popover-inner"><h3 class="webui-popover-title">Welcome to WebUI Popover</h3><div class="webui-popover-content"><p>This is webui popover demo.</p><p>just enjoy it and have fun !</p><p>email : sanddywalker@gmail.com</p></div></div></div>
+
+				</div>
+				<div class="col-md-4"><a href="#" class="show-pop btn btn-danger pull-right" data-placement="left">pop left</a></div>
+			</div>
+			<div class="row">				
+				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger" data-placement="top-right">pop top-right</a></div>
+				<div class="col-md-3"><a href="#" class="show-pop btn btn-danger btn-lg" data-placement="right-top">pop right-top</a></div>
+				<div class="col-md-3"><a href="#" class="show-pop btn btn-danger" data-placement="top">pop top</a></div>
+				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger btn-lg" data-placement="left-top">pop left-top</a></div>
+				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger pull-right" data-placement="top-left">pop top-left</a></div>
+			</div>
+		</section>
+
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"><h1>Pop with animation  <small>set animation by data-attribute or code</small></h1></div>
+			</div>
+		</div>
+		<section class="container demo-container">
+			<div class="row">				
+				<div class="col-md-5">
+					<a href="#" class="btn btn-default show-pop" >default (no animation)</a>
+				</div>		
+				<div class="col-md-2"><a href="#" class="btn btn-default  show-pop" data-animation="pop" >animation: pop</a></div>
+				<div class="col-md-5"><a href="#" class="btn btn-default  show-pop pull-right" data-animation="fade">animation: fade</a></div>
+		</section>
+
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"><h1>Auto detect  placement <small>auto detect the placement, always poped in page</small></h1></div>
+			</div>
+		</div>
+		<section class="container demo-container">
+			<div class="row">				
+				<div class="col-md-5"><a href="#" class="show-pop btn btn-success">auto detect</a></div>
+				<div class="col-md-2"><a href="#" class="show-pop btn btn-success">auto detect</a></div>
+				<div class="col-md-5"><a href="#" class="show-pop btn btn-success pull-right" data-placement="auto">auto detect</a></div>
+			</div>
+			
+		</section>
+
+
+
+
+		
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"><h1>Auto detect  with constrains  <small>auto detect the placement, but in contrains</small></h1></div>
+			</div>
+		</div>
+		<section class="container demo-container">
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table table-contrains">
+						
+						<tbody>
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+							
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								
+								<td><a href="#" class="btn show-pop btn-success" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								
+								<td><a href="#" class="btn show-pop btn-success" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td> <a href="#" class="btn show-pop  btn-danger">no contrains</a></td></td>
+								<td>&nbsp;</td>
+								
+								<td><a href="#" class="btn show-pop btn-success" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop  btn-danger"> no contrains</a></td></td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								
+								<td><a href="#" class="btn show-pop btn-success" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								
+								<td><a href="#" class="btn show-pop btn-danger"> no contrains</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td><a href="#" class="btn show-pop  btn-danger"> no contrains</a></td>
+								<td><a href="#" class="btn show-pop  btn-info" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop  btn-info" data-contrains="vertical"> vertical</a></td>
+								
+								
+								<td><a href="#" class="btn show-pop  btn-danger"> no contrains</a></td>
+								
+								<td><a href="#" class="btn show-pop  btn-info" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop  btn-info" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop  btn-danger"> no contrains</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								
+								<td><a href="#" class="btn show-pop  btn-danger"> no contrains</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								
+								<td><a href="#" class="btn show-pop btn-success" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+							
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop  btn-danger"> no contrains</a></td></td>
+								<td>&nbsp;</td>
+								
+								<td><a href="#" class="btn show-pop btn-success" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop  btn-danger"> no contrains</a></td></td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								
+								<td><a href="#" class="btn show-pop btn-success" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								
+								<td><a href="#" class="btn show-pop btn-success" data-contrains="horizontal"> horizontal</a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+
+
+							<tr>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="vertical"> vertical</a></td>
+								<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</section> 
+
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"><h1>Delayed show/hide  <small>control delay show/hide by data-attribute or code</small></h1></div>
+			</div>
+		</div>
+		<section class="container demo-container">
+			<div class="row">				
+				<div class="col-md-3">
+					
+					<a href="#" class="btn btn-default show-pop-delay" data-content="content...<br/> data-delay-show=300<br/> data-delay-hide=1000" data-delay-show="300" data-delay-hide="1000"  data-title="delay pop">delayed show/hide by data-attribute</a>
+					
+
+				</div>		
+				<div class="col-md-3">&nbsp;</div>
+				<div class="col-md-3">&nbsp;</div>
+				<div class="col-md-3"><a href="#" class="btn btn-default  show-pop-code-delay" data-delay-show="100" data-delay-hide="100" data-content="content...<br/> data-delay-show=1000<br/> data-delay-hide=1000" data-title="delay pop" data->delayed show/hide by code</a></div>
+			</div>
+		</section>
+
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"><h1>Advanced examples </h1></div>
+			</div>
+		</div>
+		<section class="container demo-container">
+			<div class="row">				
+				<div class="col-md-2"><a href="#" class="show-pop-table btn btn-info" data-placement="auto">pop with table</a></div>
+				<div class="col-md-2"><a href="#" class="show-pop-list btn btn-info" data-placement="auto">pop with list</a></div>
+				<div class="col-md-2"><a href="#" class="show-pop-large btn btn-info pull-right" data-placement="auto">pop large content</a></div>
+				<div class="col-md-2"></div>
+				<div class="col-md-2"><a href="#" class="show-pop-async btn btn-info" data-placement="auto">pop async</a></div>
+				
+				<div class="col-md-2"><a href="#" class="show-pop-iframe btn btn-info" data-placement="auto">pop iframe </a></div>
+			</div>
+			
+		</section>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"><h1>Events </h1></div>
+			</div>
+		</div>
+		<section class="container demo-container">
+			<div class="row">				
+				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info" data-placement="auto">show</a></div>
+				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info" data-placement="auto">shown</a></div>
+				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info" data-placement="auto">hide</a></div>
+				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info pull-right" data-placement="auto">hidden</a></div>				
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<br>
+					<textarea class="form-control" rows="5" id="eventLogs"></textarea>
+					<a href="#" class="btn btn-default" id="resetLogs">reset logs</a>
+				</div>
+			</div>
+			
+		</section>
+
+		<div id="tableContent" style="display:none;">
+			<table class="table">
+		      <thead>
+		        <tr>
+		          <th>#</th>
+		          <th>First Name</th>
+		          <th>Last Name</th>
+		          <th>Username</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr>
+		          <td>1</td>
+		          <td>Mark</td>
+		          <td>Otto</td>
+		          <td>@mdo</td>
+		        </tr>
+		        <tr>
+		          <td>2</td>
+		          <td>Jacob</td>
+		          <td>Thornton</td>
+		          <td>@fat</td>
+		        </tr>
+		        <tr>
+		          <td>3</td>
+		          <td>Larry</td>
+		          <td>the Bird</td>
+		          <td>@twitter</td>
+		        </tr>
+		      </tbody>
+		    </table>
+
+		</div>
+		
+		<div id="listContent" style="display:none;">
+			<ul class="list-group">
+			  <li class="list-group-item">Cras justo odio</li>
+			  <li class="list-group-item">Dapibus ac facilisis in</li>
+			  <li class="list-group-item">Morbi leo risus</li>
+			  <li class="list-group-item">Porta ac consectetur ac</li>
+			  <li class="list-group-item">Vestibulum at eros</li>
+			</ul>
+		</div>
+
+		<div id="largeContent" style="display:none;">
+			<p><a href="#" class="pop-click">click</a> The jQuery Foundation&#8217;s <a href="http://jquery.org/mission">mission</a> has always been about more than just our namesake projects of jQuery, jQuery UI, and jQuery Mobile. We already host several projects such as Sizzle, QUnit and Globalize that are not dependent on the jQuery library.</p>
+<p>This wider web-oriented mission is evident in our jQuery Conferences, which span a wide range of developer concerns beyond jQuery, including Node, CSS, tooling, testing and much more. Over the years we&#8217;ve had talks on build tools, accessibility, security, performance, design patterns, and frameworks such as Ember and Angular. At our San Diego conference this past February, for example, Lenny Markus gave a great talk on <a title="NodeJS In the Enterprise" href="https://www.youtube.com/watch?v=qJVk6KiOEBA" target="_blank">PayPal&#8217;s continuing adoption of Node</a> as they move away from Java and proprietary solutions, Catherine Farman talked about <a title="Real World Responsive Design Projects and Patterns" href="https://www.youtube.com/watch?v=CkC8F3x8-nc" target="_blank">real world responsive design</a>, and John Dimm gave a talk on the <a title="Fun with Speech" href="https://www.youtube.com/watch?v=n8G1CuR2zZc" target="_blank">HTML5 speech APIs</a>.</p>
+<p>The jQuery Foundation is participating in the continuing evolution of the web platform via our memberships in both the W3C and ECMA TC39 (The group standardizing what we know as JavaScript). We feel that it&#8217;s essential to have strong representation in those standards groups to ensure they meet the needs of developers. The Foundation provides a platform for developers to have a voice in these standards bodies.</p>
+<p>Beyond the technical compatibility between our projects, we also share the open source model and all the benefits it provides. The Foundation adds the benefit of a top-level structure designed to serve the projects, providing the resources they need but letting the contributors decide the best direction for the project based on community input. Any project that joins the Foundation is given the ability to serve their community&#8217;s needs rather than be constrained by the goals of a for-profit company.</p>
+<p>Though this has been our mission for a long time, we felt we needed to make this clearer. We are excited to start bringing this part of our mission into the light and start actively working toward a more open web accessible to everyone. If you are excited as well, please help us. Contribute your time to <a href="https://jquery.org/projects/" target="_blank">Foundation projects</a>. Offer your company&#8217;s services. If you or your company have an established open source project that you believe could benefit everyone and flourish by becoming part of the jQuery Foundation, check out our philosophy around <a href="https://jquery.org/projects/join/">projects joining the Foundation</a> and <a href="mailto:info@jquery.org">let us know you’re interested</a>. If you would rather just support the existing and future projects of the Foundation through financial support, <a href="https://jquery.org/join/">become a member of the Foundation.</a> Open source projects will only thrive if everyone who benefits from them contributes back in whatever way they can.</p>
+		</div>			
+		
+		
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>		
+		<script src="../dist/jquery.webui-popover.min.js"></script>	
+		<script>
+			(function(){
+
+				var settings = {
+						trigger:'click',
+						title:'Pop Title',
+						content:'<p>This is webui popover demo.</p><p>just enjoy it and have fun !</p>',
+						width:300,						
+						multi:true,						
+						closeable:false,
+						style:'',
+						delay:300,
+						padding:true
+				};
+
+				$('.btn-settings').on('click',function(e){
+						e.preventDefault();
+						$(this).addClass('active').siblings().removeClass('active');
+						var option = $(this).data('option');
+						settings[option]= $(this).data(option);					
+						initPopover();
+				});	
+
+				$('.btn-reset').on('click',function(e){
+					e.preventDefault();
+					location.reload();
+				});			
+
+
+				function initPopover(){					
+					$('a.show-pop').webuiPopover('destroy').webuiPopover(settings);				
+					
+					var tableContent = $('#tableContent').html(),
+						tableSettings = {content:tableContent,
+											width:500
+										};
+					$('a.show-pop-table').webuiPopover('destroy').webuiPopover($.extend({},settings,tableSettings));
+
+					var listContent = $('#listContent').html(),
+						listSettings = {content:listContent,
+											title:'',
+											padding:false
+										};
+					$('a.show-pop-list').webuiPopover('destroy').webuiPopover($.extend({},settings,listSettings));
+
+					var largeContent = $('#largeContent').html(),
+						largeSettings = {content:largeContent,
+											width:400,
+											height:350,
+											delay:{show:300,hide:1000},
+											closeable:true
+										};
+					var popLarge = $('a.show-pop-large').webuiPopover('destroy').webuiPopover($.extend({},settings,largeSettings));
+
+
+					$('a.show-pop-delay').webuiPopover('destroy').webuiPopover({trigger:'hover',width:300,height:200});
+					$('a.show-pop-code-delay').webuiPopover('destroy').webuiPopover({
+																						trigger:'hover',
+																						width:300,
+																						height:200,
+																						delay:{
+																							show:1000,
+																							hide:1000
+																						}
+																					});
+
+					 var
+					 	iframeSettings = {	width:500,
+					 						height:350,
+					 						closeable:true,
+					 						padding:false,
+					 						type:'iframe',
+					 						url:'http://getbootstrap.com'};					
+					$('a.show-pop-iframe').webuiPopover('destroy').webuiPopover($.extend({},settings,iframeSettings));
+
+
+					var
+					 	asyncSettings = {	width:'auto',
+					 						height:'200',
+					 						closeable:true,
+					 						padding:false,
+					 						cache:false,
+					 						url:'https://api.github.com/',
+					 						type:'async',
+					 						content:function(data){
+					 							var html = '<ul class="list-group">';
+					 							for(var key in data){
+					 								html+='<li class="list-group-item"><a href="'+ data[key] +'" target="_blank">'
+					 								+ '<i class="glyphicon glyphicon-leaf"></i> '+ key+'</a>'+'</li>';	
+					 							}
+												html+='</ul>';
+												return html;
+					 						}};
+					$('a.show-pop-async').webuiPopover('destroy').webuiPopover($.extend({},settings,asyncSettings));
+
+
+					
+
+
+					$('a.show-pop-event').each(function(i,item){
+							var ename = $(item).text()+'.webui.popover';
+							$(item).webuiPopover('destroy').webuiPopover(settings)
+							.on(ename,function(e){
+								var log =  ename+' is trigged!';
+								if (console){
+									console.log(log);
+								}
+								$('#eventLogs').text($('#eventLogs').text()+'\n'+log);
+							});
+					});
+
+					
+					$('body').on('click','.pop-click',function(e){
+						e.preventDefault();
+						console.log('clicked');
+					});
+
+				}
+
+				$('#resetLogs').on('click',function(e){
+					e.preventDefault();
+					$('#eventLogs').text('');
+				});
+
+
+				initPopover();
+
+				
+				
+					
+			})();
+			
+		</script>
+	</body>
+</html>
