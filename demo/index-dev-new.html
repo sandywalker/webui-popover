@@ -3,8 +3,8 @@
 	<head>
 		<title>WebUI Popover Demo</title>		
 		
-		<link href="bootstrap.css" rel="stylesheet">
-		<!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+		<!-- <link href="bootstrap.css" rel="stylesheet"> -->
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 		<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0" name="viewport" />
 
 		<link rel="stylesheet" href="../src/jquery.webui-popover.css">
@@ -65,10 +65,7 @@
 				color:#333;
 			}
 
-			.btn-default{
-				color:#ddd;
-				padding:12px 15px;
-			}
+			
 
 			#optionsWrapper{
 				display: none;
@@ -178,6 +175,14 @@
 			.content.active{
 				display: block;
 			}
+			.btn-default{
+				color:#999;
+				padding:12px 15px;
+			}
+
+			.glyphicon-cog:hover{
+				color:#666;
+			}
 
 			#specify{
 				
@@ -186,6 +191,7 @@
 			#specify .btn {
 				position: absolute;
 				border-radius: 50px;
+				color:#ddd;
 			}
 
 			#specify .bottom-right{
@@ -253,7 +259,7 @@
 			}
 
 			#auto .btn{
-				padding:2px;
+				padding:1px;
 				border:1px solid #eee;
 				min-width: 60px;
 				font-size:9px;
@@ -261,7 +267,90 @@
 
 			#auto .btn-default{
 				background: #fff;
-				color:#666;
+			}
+
+			#auto .btn-auto{
+				width:35px;
+				height:35px;
+				line-height: 35px;
+				min-width: 35px;
+				padding:0;
+				margin:0;
+				border-radius: 25px;
+			}
+			
+			#animation,#delayed,#advanced{
+				padding:0 20px;
+			}
+			
+			#animation .btn,#delayed .btn{
+				width: 120px;
+				height:120px;
+				line-height: 120px;
+				padding:0;
+				margin-top:150px;
+				
+				border-radius: 100px;
+			}
+
+			#advanced .btn{
+				position: absolute;
+			}
+
+			#advanced .show-pop-table {
+				top:20px;
+				left:20px;
+			}
+
+			#advanced .show-pop-list {
+				top:20px;
+				right:20px;
+			}
+
+			#advanced .show-pop-large {
+				bottom:20px;
+				left:20px;
+			}
+
+			#advanced .show-pop-iframe {
+				bottom:20px;
+				right:20px;
+			}
+
+			#advanced .show-pop-async {
+				top:50%;
+				left:50%;
+				padding:0;
+				height:80px;
+				width:80px;
+				
+				line-height: 80px;
+				margin-top: -60px;
+				margin-left:-60px;
+				border-radius: 40px;
+			}
+
+			#events {
+				padding:20px;
+			}
+
+			#events .btn-info.pull-left{
+				width:100px;
+				margin-right:20px;
+			}
+
+			#events .btn-info.pull-right{
+				width:100px;
+				margin-left: 20px;
+			}
+
+			#events .btns{
+				margin-bottom:180px;
+			}
+
+			#eventLogs{
+				height:200px;
+				margin:0 0 20px 0;
 			}
 
 			.demo-code{
@@ -292,7 +381,7 @@
 
 			.webui-popover-demo h3{
 				font-weight:bold;
-				color:#09e;
+				color:#c9302c;
 			}
 
 			.text-center{
@@ -431,7 +520,7 @@
 									data-content="<p>This is webui popover demo.</p><p><code>placement:'top-left'</code></p>"> <i class="glyphicon glyphicon-cloud"></i></a>
 
 
-									<div class="webui-popover  webui-popover-demo top in webui-popover-fixed" style=" display: block;"><div class="arrow"></div><div class="webui-popover-inner"><h3 class="webui-popover-title">Welcome to WebUI Popover</h3><div class="webui-popover-content"><p>This is webui popover demo.</p><p>Just enjoy it and have fun !</p><p>email : sanddywalker@gmail.com</p></div></div></div>
+									<div class="webui-popover  webui-popover-demo top in webui-popover-fixed" style=" display: block;"><div class="arrow"></div><div class="webui-popover-inner"><h3 class="webui-popover-title"> <i class="glyphicon glyphicon-comment"></i> Welcome to WebUI Popover</h3><div class="webui-popover-content"><p>This is webui popover demo.</p><p>Just enjoy it and have fun !</p><p>email : sanddywalker@gmail.com</p></div></div></div>
 
 						    	</div>
 
@@ -479,12 +568,12 @@
 												<tr>
 													<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
 													<td>&nbsp;</td>
-													<td> <a href="#" class="btn show-pop  btn-danger">auto</a></td></td>
+													<td> <a href="#" class="btn show-pop  btn-danger  btn-auto">auto</a></td></td>
 													<td>&nbsp;</td>
 													
 													<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
 													<td>&nbsp;</td>
-													<td><a href="#" class="btn show-pop  btn-danger"> auto</a></td></td>
+													<td><a href="#" class="btn show-pop  btn-danger btn-auto"> auto</a></td></td>
 													<td>&nbsp;</td>
 													<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
 												</tr>
@@ -519,7 +608,7 @@
 													<td><a href="#" class="btn show-pop  btn-default" data-contrains="vertical"> vertical</a></td>
 													
 													
-													<td><a href="#" class="btn show-pop  btn-danger"> auto</a></td>
+													<td><a href="#" class="btn show-pop  btn-danger  btn-auto"> auto</a></td>
 													
 													<td><a href="#" class="btn show-pop  btn-default" data-contrains="vertical"> vertical</a></td>
 													<td><a href="#" class="btn show-pop  btn-default" data-contrains="vertical"> vertical</a></td>
@@ -554,12 +643,12 @@
 												<tr>
 													<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
 													<td>&nbsp;</td>
-													<td><a href="#" class="btn show-pop  btn-danger"> auto</a></td></td>
+													<td><a href="#" class="btn show-pop  btn-danger  btn-auto"> auto</a></td></td>
 													<td>&nbsp;</td>
 													
 													<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
 													<td>&nbsp;</td>
-													<td><a href="#" class="btn show-pop  btn-danger"> auto</a></td></td>
+													<td><a href="#" class="btn show-pop  btn-danger  btn-auto"> auto</a></td></td>
 													<td>&nbsp;</td>
 													<td><a href="#" class="btn show-pop btn-default" data-contrains="horizontal"> horizontal</a></td>
 												</tr>
@@ -605,10 +694,45 @@
 										</table>
 									</div>
 
-								<div id="animation" class="content">animation</div>
-								<div id="delayed" class="content">delayed</div>
-								<div id="advanced" class="content">advanced</div>
-								<div id="events" class="content">events</div>
+								<div id="animation" class="content">
+										<a href="#" class="btn btn-default show-pop pull-left" data-placement="bottom-right">default (none)</a>
+										
+									<a href="#" class="btn btn-success  show-pop pull-right" data-animation="fade"  data-placement="bottom-left"
+										data-content="<p>WebUI pop with animation</p><p>can set by code: <code>animation:'fade'</code></p><p>or  element attr: <code>data-animation='fade'</code> </p>"
+										>animation (fade)</a>
+										<a href="#" class="btn btn-info  show-pop center-block" data-animation="pop"  data-placement="bottom"
+										data-content="<p>WebUI pop with animation</p><p>can set by code: <code>animation:'pop'</code></p><p>or  element attr: <code>data-animation='pop'</code> </p>"
+										>animation (pop)</a>
+								</div>
+								<div id="delayed" class="content">
+									<a href="#" class="btn btn-info show-pop-delay pull-left" data-content="<p>Only working when trigger is set: <code>'hover'</code></p><p> <code>data-delay-show=300</code></p>  <p><code>data-delay-hide=1000</code></p>" data-delay-show="300" data-delay-hide="1000"  data-title="Delayed WebUI Popover" data-placement="right">by data-attribute</a>
+
+									<a href="#" class="btn btn-success  show-pop-code-delay pull-right" data-content="content...<p> <code>data-delay-show=0</code></p><p><code>data-delay-hide=1000</code></p>" data-title="Delayed WebUI Popover" data-placement="left"> by code</a>
+								</div>
+								<div id="advanced" class="content">
+									<a href="#" class="show-pop-table btn btn-default pull-left" data-placement="auto">pop with table</a>
+									<a href="#" class="show-pop-list btn btn-default pull-left" data-placement="auto">pop with list</a>
+									
+									<a href="#" class="show-pop-iframe btn btn-default pull-right" data-placement="auto">pop iframe </a>
+									<a href="#" class="show-pop-async btn btn-danger pull-right" data-placement="auto">pop async</a>
+									
+									
+									<a href="#" class="show-pop-large btn btn-default center-block" data-placement="auto">pop large content</a>
+								</div>
+								<div id="events" class="content">
+									<div class="btns">
+									<a href="#" class="show-pop-event btn btn-info pull-left" data-placement="auto">show</a>
+									<a href="#" class="show-pop-event btn btn-info pull-left" data-placement="auto">shown</a>
+									<a href="#" class="show-pop-event btn btn-info pull-right" data-placement="auto">hidden</a>
+									<a href="#" class="show-pop-event btn btn-info pull-right" data-placement="auto">hide</a>
+									
+									<div class="clearfix"></div>
+									</div>
+									<p>Event Logs</p>
+									<textarea class="form-control" rows="5" id="eventLogs"></textarea>
+									<a href="#" class="btn btn-default" id="resetLogs">reset logs</a>
+
+								</div>
 
 
 						   
@@ -618,207 +742,8 @@
 			</div>
 		</div>
 
-		
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"><h1>Settings <small>styles and some options</small></h1>
-				</div>
-			</div>
-		</div>
-		<section class="container demo-container">
-			<div class="row">				
-				<div class="col-md-12">
-					<nav class="navbar navbar-default" role="navigation">
-					  
-					   <p class="navbar-text navbar-left">style:</p>
-					   <div class="btn-group navbar-left" data-toggle="buttons">
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-style active" data-option="style" data-style="">default</a>
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-style" data-option="style" data-style="inverse">inverse</a>					  
-						</div>
-						<p class="navbar-text navbar-left">trigger:</p>
-					   	<div class="btn-group navbar-left" data-toggle="buttons">
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-trigger active" data-option="trigger" data-trigger="click">click</a>
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-trigger" data-option="trigger" data-trigger="hover">hover</a>						  
-						</div>
-						<p class="navbar-text navbar-left">title:</p>
-					   	<div class="btn-group navbar-left" data-toggle="buttons">
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-title active" data-option="title" data-title="Pop Title">yes</a>
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-title " data-option="title" data-title="">no</a>
-						</div>
-
-						<p class="navbar-text navbar-left">closeable:</p>
-					   	<div class="btn-group navbar-left" data-toggle="buttons">
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-closeable " data-option="closeable" data-closeable="true">yes</a>
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-closeable active"  data-option="closeable" data-closeable ="false">no</a>				
-						</div>
-
-						<p class="navbar-text navbar-left">multi:</p>
-					   	<div class="btn-group navbar-left" data-toggle="buttons">
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-multi active" data-option="multi" data-multi="true">yes</a>
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-multi " data-option="multi" data-multi ="false">no</a>				
-						</div>
-
-						<p class="navbar-text navbar-left">arrow:</p>
-					   	<div class="btn-group navbar-left" data-toggle="buttons">
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-arrow active" data-option="arrow" data-arrow="true">yes</a>
-						  <a href="#" class="btn btn-default navbar-btn btn-settings btn-arrow " data-option="arrow" data-arrow ="false">no</a>				
-						</div>
-						<p class="navbar-text navbar-right">&nbsp;</p>
-						<div class="btn-group navbar-right">							
-							<a href="#" class="btn btn-primary navbar-btn btn-reset">reset</a>							
-						</div>
-					</nav>					
-
-				</div>				
-			</div>
-		</section>
 
 		
-
-
-
-		
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"><h1>Specified placement <small>use the specified placement.</small></h1></div>
-			</div>
-		</div>
-		<section class="container demo-container">			
-			<div class="row">				
-				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger bottom-right" data-placement="bottom-right" >pop bottom-right</a></div>
-				<div class="col-md-3"><a href="#" class="show-pop btn btn-danger btn-lg" data-placement="right-bottom" >pop right-bottom</a></div>
-				<div class="col-md-3"><a href="#" class="show-pop btn btn-danger" data-placement="bottom">pop bottom</a></div>
-				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger btn-lg" data-placement="left-bottom">pop left-bottom</a></div>
-				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger pull-right" data-placement="bottom-left">pop bottom-left</a></div>
-			</div>
-			<div class="row row-middle">
-				<div class="col-md-4"><a href="#" class="show-pop btn btn-danger" data-placement="right">pop right</a></div>
-				<div class="col-md-4">
-					<div class="webui-popover  webui-popover-demo top in webui-popover-fixed" style=" display: block;"><div class="arrow"></div><div class="webui-popover-inner"><h3 class="webui-popover-title">Welcome to WebUI Popover</h3><div class="webui-popover-content"><p>This is webui popover demo.</p><p>just enjoy it and have fun !</p><p>email : sanddywalker@gmail.com</p></div></div></div>
-
-				</div>
-				<div class="col-md-4"><a href="#" class="show-pop btn btn-danger pull-right" data-placement="left">pop left</a></div>
-			</div>
-			<div class="row">				
-				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger" data-placement="top-right">pop top-right</a></div>
-				<div class="col-md-3"><a href="#" class="show-pop btn btn-danger btn-lg" data-placement="right-top">pop right-top</a></div>
-				<div class="col-md-3"><a href="#" class="show-pop btn btn-danger" data-placement="top">pop top</a></div>
-				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger btn-lg" data-placement="left-top">pop left-top</a></div>
-				<div class="col-md-2"><a href="#" class="show-pop btn btn-danger pull-right" data-placement="top-left">pop top-left</a></div>
-			</div>
-		</section>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"><h1>Pop with animation  <small>set animation by data-attribute or code</small></h1></div>
-			</div>
-		</div>
-		<section class="container demo-container">
-			<div class="row">				
-				<div class="col-md-5">
-					<a href="#" class="btn btn-default show-pop" >default (no animation)</a>
-				</div>		
-				<div class="col-md-2"><a href="#" class="btn btn-default  show-pop" data-animation="pop" >pop animation</a></div>
-				<div class="col-md-5"><a href="#" class="btn btn-default  show-pop pull-right" data-animation="fade">fade animation</a></div>
-		</section>
-
-		
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"><h1>Auto detect  placement <small>auto detect the placement, always poped in page</small></h1></div>
-			</div>
-		</div>
-		<section class="container demo-container">
-			<div class="row">				
-				<div class="col-md-5"><a href="#" class="show-pop btn btn-success">auto detect</a></div>
-				<div class="col-md-2"><a href="#" class="show-pop btn btn-success">auto detect</a></div>
-				<div class="col-md-5"><a href="#" class="show-pop btn btn-success pull-right" data-placement="auto">auto detect</a></div>
-			</div>
-			
-		</section>
-
-
-		
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"><h1>Auto detect  with constrains  <small>auto detect the placement, but in contrains</small></h1></div>
-			</div>
-		</div>
-		<section class="container demo-container">
-			<div class="row">
-				<div class="col-md-12">
-					
-
-				</div>
-			</div>
-		</section> 
-
-
-		
-
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"><h1>Delayed show/hide  <small>control delay show/hide by data-attribute or code</small></h1></div>
-			</div>
-		</div>
-		<section class="container demo-container">
-			<div class="row">				
-				<div class="col-md-3">
-					
-					<a href="#" class="btn btn-default show-pop-delay" data-content="content...<br/> data-delay-show=300<br/> data-delay-hide=1000" data-delay-show="300" data-delay-hide="1000"  data-title="delay pop">delayed show/hide by data-attribute</a>
-					
-
-				</div>		
-				<div class="col-md-3">&nbsp;</div>
-				<div class="col-md-3">&nbsp;</div>
-				<div class="col-md-3"><a href="#" class="btn btn-default  show-pop-code-delay" data-content="content...<br/> data-delay-show=1000<br/> data-delay-hide=1000" data-title="delay pop" data->delayed show/hide by code</a></div>
-			</div>
-		</section>
-
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"><h1 id="aa">Advanced examples </h1></div>
-			</div>
-		</div>
-		<section class="container demo-container">
-			<div class="row">				
-				<div class="col-md-2"><a href="#" class="show-pop-table btn btn-info" data-placement="auto">pop with table</a></div>
-				<div class="col-md-2"><a href="#" class="show-pop-list btn btn-info" data-placement="auto">pop with list</a></div>
-				<div class="col-md-2"><a href="#" class="show-pop-large btn btn-info pull-right" data-placement="auto">pop large content</a></div>
-				<div class="col-md-2"><!-- <a href="#" class="show-pop-uncache btn btn-info pull-right" data-placement="auto">disable cache</a><a href="#" id="change">change</a> --></div>
-				<div class="col-md-2"><a href="#" class="show-pop-async btn btn-info" data-placement="auto">pop async</a></div>
-				
-				<div class="col-md-2"><a href="#" class="show-pop-iframe btn btn-info" data-placement="auto">pop iframe </a></div>
-			</div>
-			
-		</section>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"><h1>Events </h1></div>
-			</div>
-		</div>
-		<section class="container demo-container">
-			<div class="row">				
-				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info" data-placement="auto">show</a></div>
-				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info" data-placement="auto">shown</a></div>
-				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info" data-placement="auto">hide</a></div>
-				<div class="col-md-3"><a href="#" class="show-pop-event btn btn-info pull-right" data-placement="auto">hidden</a></div>				
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<br>
-					<textarea class="form-control" rows="5" id="eventLogs"></textarea>
-					<a href="#" class="btn btn-default" id="resetLogs">reset logs</a>
-				</div>
-			</div>
-			
-		</section>
 
 		<div id="tableContent" style="display:none;">
 			<table class="table">
@@ -872,10 +797,6 @@
 <p>Though this has been our mission for a long time, we felt we needed to make this clearer. We are excited to start bringing this part of our mission into the light and start actively working toward a more open web accessible to everyone. If you are excited as well, please help us. Contribute your time to <a href="https://jquery.org/projects/" target="_blank">Foundation projects</a>. Offer your company&#8217;s services. If you or your company have an established open source project that you believe could benefit everyone and flourish by becoming part of the jQuery Foundation, check out our philosophy around <a href="https://jquery.org/projects/join/">projects joining the Foundation</a> and <a href="mailto:info@jquery.org">let us know you’re interested</a>. If you would rather just support the existing and future projects of the Foundation through financial support, <a href="https://jquery.org/join/">become a member of the Foundation.</a> Open source projects will only thrive if everyone who benefits from them contributes back in whatever way they can.</p>
 		</div>		
 
-		<a href="#" class="pop-click">click</a> 
-
-		<a href="#" class="pclick">click</a>
-
 
 
 		
@@ -889,7 +810,7 @@
 						trigger:'click',
 						title:'WebUI Popover ',
 						content:'<p>This is webui popover demo.</p><p>just enjoy it and have fun !</p>',
-						width:300,						
+						width:320,						
 						multi:true,						
 						closeable:false,
 						style:'',
@@ -993,13 +914,12 @@
 					var popLarge = $('a.show-pop-large').webuiPopover('destroy').webuiPopover($.extend({},settings,largeSettings));
 
 
-					$('a.show-pop-delay').webuiPopover('destroy').webuiPopover({trigger:'hover',width:300,height:200});
+					$('a.show-pop-delay').webuiPopover('destroy').webuiPopover({trigger:'hover',width:300});
 					$('a.show-pop-code-delay').webuiPopover('destroy').webuiPopover({
 																						trigger:'hover',
 																						width:300,
-																						height:200,
 																						delay:{
-																							show:1000,
+																							show:0,
 																							hide:1000
 																						}
 																					});
