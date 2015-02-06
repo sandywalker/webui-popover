@@ -11,12 +11,13 @@
 
 //** Popover border color
 @popover-border-color:                rgba(0,0,0,.2);
+
 //** Popover fallback border color
 @popover-fallback-border-color:       #ccc;
 
 //** Popover title background color
-@popover-title-bg:                    darken(@popover-bg, 3%);
-@popover-inverse-title-bg:            lighten(@popover-inverse-bg, 3%);
+@popover-title-bg:                    @popover-bg;
+@popover-inverse-title-bg:            @popover-inverse-bg;
 
 //** Popover arrow width
 @popover-arrow-width:                 10px;
@@ -146,7 +147,7 @@
 
   .webui-popover-title{
 	  background: @popover-inverse-title-bg;
-	  border-bottom: none;
+	  border-bottom: 1px solid  lighten(@popover-inverse-title-bg, 3%);
 	  color:@popover-inverse-color;
 	}
 }

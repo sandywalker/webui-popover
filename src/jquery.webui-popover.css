@@ -77,8 +77,8 @@
   font-size: 14px;
   font-weight: normal;
   line-height: 18px;
-  background-color: #f7f7f7;
-  border-bottom: 1px solid #ebebeb;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f2f2f2;
   border-radius: 5px 5px 0 0;
 }
 .webui-popover-content {
@@ -90,8 +90,8 @@
   color: #eeeeee;
 }
 .webui-popover-inverse .webui-popover-title {
-  background: #3b3b3b;
-  border-bottom: none;
+  background: #333333;
+  border-bottom: 1px solid #3b3b3b;
   color: #eeeeee;
 }
 .webui-no-padding .webui-popover-content {
