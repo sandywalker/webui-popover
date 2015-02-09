@@ -129,6 +129,10 @@ body{
 				border:1px solid #ddd;
 				cursor: pointer;
 				position: relative;
+				transition: background .2s linear;
+				-moz-transition: background  .2s  linear; /* Firefox 4 */
+				-webkit-transition: background  .2s  linear; /* Safari 和 Chrome */
+				-o-transition: background  .2s linears; /* Opera */
 			}
 
 			.option-checker.active{
@@ -145,11 +149,14 @@ body{
 				height:22px;
 				background: #eee;
 				border-radius: 10px;
+				transition: left  .2s  linear;
+				-moz-transition: left  .2s  linear; /* Firefox 4 */
+				-webkit-transition: left  .2s  linear; /* Safari 和 Chrome */
+				-o-transition: left  .2s linears; /* Opera */
 			}
 
 			.option-checker.active .ball{
-				left:auto;
-				right:0;
+				left:146px;
 			}	
 
 			.content{
