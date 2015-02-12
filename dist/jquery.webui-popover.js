@@ -485,35 +485,35 @@
 			            break;
 			          case 'top-right':
 			            position = {top: pos.top - targetHeight, left: pos.left-fixedW};
-			            arrowOffset = {left: elementW/2 + fixedW};
+			            arrowOffset = {left: Math.min(elementW,targetWidth)/2 + fixedW};
 			            break;
 			          case 'top-left':
 			            position = {top: pos.top - targetHeight, left: pos.left -targetWidth +pos.width + fixedW};
-			            arrowOffset = {left: targetWidth - elementW /2 -fixedW};
+			            arrowOffset = {left: targetWidth - Math.min(elementW,targetWidth) /2 -fixedW};
 			            break;
 			          case 'bottom-right':
 			            position = {top: pos.top + pos.height, left: pos.left-fixedW};
-			            arrowOffset = {left: elementW /2+fixedW};
+			            arrowOffset = {left: Math.min(elementW,targetWidth) /2+fixedW};
 			            break;
 					  case 'bottom-left':
 			            position = {top: pos.top + pos.height, left: pos.left -targetWidth +pos.width+fixedW};
-			            arrowOffset = {left: targetWidth- elementW /2 - fixedW};
+			            arrowOffset = {left: targetWidth- Math.min(elementW,targetWidth) /2 - fixedW};
 			            break;
 					  case 'right-top':
 			            position = {top: pos.top -targetHeight + pos.height + fixedH, left: pos.left + pos.width};
-			            arrowOffset = {top: targetHeight - elementH/2 -fixedH};
+			            arrowOffset = {top: targetHeight - Math.min(elementH,targetHeight)/2 -fixedH};
 			            break;
 			          case 'right-bottom':
 			            position = {top: pos.top - fixedH, left: pos.left + pos.width};
-			            arrowOffset = {top: elementH /2 +fixedH };
+			            arrowOffset = {top: Math.min(elementH,targetHeight) /2 +fixedH };
 			            break;
 			          case 'left-top':
 			            position = {top: pos.top -targetHeight + pos.height+fixedH, left: pos.left - targetWidth};
-			            arrowOffset = {top: targetHeight - elementH/2 - fixedH};
+			            arrowOffset = {top: targetHeight - Math.min(elementH,targetHeight)/2 - fixedH};
 			            break;
 					  case 'left-bottom':
 			            position = {top: pos.top -fixedH , left: pos.left -targetWidth};
-			            arrowOffset = {top: elementH /2 + fixedH };
+			            arrowOffset = {top: Math.min(elementH,targetHeight) /2 + fixedH };
 			            break;
 
 			        }
