@@ -166,6 +166,7 @@
 					placement = this.getPlacement(elementPos);
 					this.initTargetEvents();
 				    var postionInfo = this.getTargetPositin(elementPos,placement,targetWidth,targetHeight);
+					this.moveTargetPositionToWithinViewport(postionInfo.position,$target);
 					this.$target.css(postionInfo.position).addClass(placement).addClass('in');
 
 					if (this.options.type==='iframe'){
@@ -510,6 +511,36 @@
 
 			        }
 			        return {position:position,arrowOffset:arrowOffset};
+				},
+
+				moveTargetPositionToWithinViewport:function(position,target) {
+					// Try to stop the popup from being rendered off the edge
+					// of the display
+					var de = document.documentElement,
+						db = document.body,
+						targetHeight = target.outerHeight(),
+						targetWidth = target.outerWidth(),
+						clientWidth = de.clientWidth,
+						clientHeight = de.clientHeight,
+						topLimit = Math.max( db.scrollTop, de.scrollTop ),
+						leftLimit = Math.max( db.scrollLeft, de.scrollLeft ),
+						bottomLimit = topLimit + clientHeight - targetHeight,
+						rightLimit = leftLimit + clientWidth - targetWidth,
+						positionWasAltered = false;
+					if( position.left < leftLimit ||
+						rightLimit < position.left ||
+						position.top < topLimit ||
+						bottomLimit < position.top ) {
+						alteredPosition = true;
+						// Ordering to favor placing the target in the top left
+						// corner on very small viewports
+						position.top = Math.min( position.top, bottomLimit );
+						position.left = Math.min( position.left, rightLimit );
+						position.top = Math.max( position.top, topLimit );
+						position.left = Math.max( position.left, leftLimit );
+					}
+					// TODO: Fix the arrow when the position changes
+					return positionWasAltered;
 				}
 		};
 		$.fn[ pluginName ] = function ( options ) {
