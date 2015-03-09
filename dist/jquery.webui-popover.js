@@ -1,5 +1,5 @@
 /*
- *  webui popover plugin  - v1.1.2
+ *  webui popover plugin  - v1.1.3
  *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
  *  https://github.com/sandywalker/webui-popover
  *
@@ -47,6 +47,8 @@
 							'</div>'
 		};
 
+		var _globalIdSeed = 0;
+
 
 		// The actual plugin constructor
 		function WebuiPopover ( element, options ) {
@@ -68,12 +70,15 @@
 					if (this.getTrigger()==='click'){
 						this.$element.off('click').on('click',$.proxy(this.toggle,this));
 					}else{
-						this.$element.off('mouseenter mouseleave')
+						this.$element.off('mouseenter mouseleave click')
 										.on('mouseenter',$.proxy(this.mouseenterHandler,this))
-										.on('mouseleave',$.proxy(this.mouseleaveHandler,this));
+										.on('mouseleave',$.proxy(this.mouseleaveHandler,this))
+										.on('click',function(e){e.stopPropagation();});
 					}
 					this._poped = false;
 					this._inited = true;
+					this._idSeed = _globalIdSeed;
+					_globalIdSeed++;
 				},
 				/* api methods and actions */
 				destroy:function(){
@@ -209,9 +214,16 @@
 				},
 
 				/*getter setters */
+				getTriggerElement:function(){
+					return this.$element;
+				},
 				getTarget:function(){
 					if (!this.$target){
-						this.$target = $(this.options.template);
+						var id = pluginName+this._idSeed;
+						this.$target = $(this.options.template)
+							.attr('id',id)
+							.data('trigger-element',this.getTriggerElement());
+						this.getTriggerElement().attr('data-target',id);
 					}
 					return this.$target;
 				},

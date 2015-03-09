@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <head>
   <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+  <script src="jquery.js" ></script>
   <script src="../src/jquery.webui-popover.js" ></script>
   <style type="text/css">
   body{
@@ -11,7 +11,7 @@
     width: 500px;
     height: 400px;
     background: #00ccff;
-    border: 1px solid blue;
+    border: 1px solid gray;
     margin-left:200px;
     margin-top:100px;
   }
@@ -19,13 +19,21 @@
     width: 20px;
     height: 20px;
     background: #00ccff;
-    border: 1px solid blue;
+    border: 1px solid gray;
     margin-left:200px;
+  }
+
+  #inline_test {
+    width: 200px;
+    height: 20px;
+    background: #00ccff;
+    border: 1px solid gray;
+    margin-left:200px; 
   }
   </style>
   <script type="text/javascript">
     $(document).ready(function(){
-        $('#popover_test').webuiPopover({
+         $('#popover_test').webuiPopover({
                 constrains: 'horizontal', 
                 trigger:'click',
                 multi: true,
@@ -33,6 +41,9 @@
                 width:100,
                 content: 'content<br>dddd<br>dddd<br>dsfsdfsdf'
         });
+
+         //console.log($('#popover_test').data('plugin_webuiPopover').getTriggerElement();
+        
 
         $('#popover_test2').webuiPopover({
                 constrains: 'horizontal', 
@@ -42,11 +53,50 @@
                 content: 'content<br>dddd<br>dddd<br>dsfsdfsdf<br>dddd<br>dddd<br>dsfsdfsdf'
         });
 
+         $('#inline_test').webuiPopover({
+                constrains: 'horizontal', 
+                trigger:'click',
+                multi: true,
+                placement:'auto',
+                type:'async',
+                url:'/demo/text.txt',
+                cache:false,
+                content: function(data){
+                  return data;
+                }
+        });
+
+        $('.img-hover').webuiPopover({
+                          type: 'html',
+                          content: function(data) {
+                            var img = $("<img />").attr('src', $(this).attr('data-hover'))
+                                  .load(function() {
+                                      if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+                                          alert('broken image!');
+                                      } else {
+                                          console.log('abc');
+                                          return img;
+                                      }
+                                  });
+                          },
+                          placement: 'auto',
+                          trigger: 'hover',
+                          constrains: 'vertical',
+                          delay: 1,
+                          multi: false,
+                          arrow: true,
+                          closeable: false,
+                          padding: true
+        });
+
     }); 
   </script>
 </head>
 <body>
     <div id="popover_test"></div>
     <div id="popover_test2"></div>
+    <img class="img-hover" data-hover="http://stylonica.com/wp-content/uploads/2014/03/cherry-blossom-spring1.jpg" src="https://avatars1.githubusercontent.com/u/8475219?v=3&s=96">
+
+    <div id="inline_test"></div>
 </body>
 </html>
