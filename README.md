@@ -98,7 +98,8 @@ $('a').webuiPopover({
  							for(var key in data){html+='<li>'+data[key]+'</li>';}
 							html+='</ul>';
 							return html;
- 						});
+						}	
+ 					});
 ```
 
 

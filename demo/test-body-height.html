@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+  <script src="../src/jquery.webui-popover.js" ></script>
+  <style type="text/css">
+  html{
+    background-color: #666666;
+    height:100%;
+    position: absolute;
+  }
+
+  p{
+    line-height: 100px;
+  }
+
+   #popover_test{
+    width: 500px;
+    height: 100%;
+    background: #00ccff;
+    border: 1px solid blue;
+    margin-left:200px;
+    margin-top:100px;
+  }
+
+
+  
+  </style>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#popover_test').webuiPopover({
+                constrains: 'horizontal', 
+                trigger:'click',
+                multi: true,
+                placement:'right-bottom',
+                width:100,
+                content: 'content<br>dddd<br>dddd<br>dsfsdfsdf'
+        });
+
+    }); 
+  </script>
+</head>
+<body>
+    <div id="popover_test">dsfsfsd</div>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+</body>
+</html>
