@@ -169,7 +169,7 @@
 					if (!this.options.arrow){
 						$target.find('.arrow').remove();
 					}
-					$target.remove().css({ top: -1000, left: -1000, display: 'block' });
+					$target.remove().css({ top: -2000, left: -2000, display: 'block' });
 					if (this.getAnimation()){
 						$target.addClass(this.getAnimation());
 					}
@@ -257,14 +257,14 @@
                     if (typeof(dataAttr) !== 'undefined') {
                         return dataAttr;
                     }
-					return this.options.delay.show||100;
+					return this.options.delay.show===0?0:this.options.delay.show||100;
 				},
                 getHideDelay:function(){
                     var dataAttr = this.$element.attr('data-delay-hide');
                     if (typeof(dataAttr) !== 'undefined') {
                         return dataAttr;
                     }
-					return this.options.delay.hide||100;
+					return this.options.delay.hide===0?0:this.options.delay.hide||100;
 				},
 				getConstrains:function(){
                     var dataAttr = this.$element.attr('data-contrains');
