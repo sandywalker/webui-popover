@@ -109,7 +109,7 @@ $('a').webuiPopover({
 ### default options
 ```javascript
 {
-	placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left
+	placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left,auto-top,auto-right,auto-bottom,auto-left
 	width:'auto',//can be set with  number
 	height:'auto',//can be set with  number
 	trigger:'click',//values:click,hover
