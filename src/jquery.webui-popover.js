@@ -462,7 +462,7 @@
 							placement='top';
 						}else{
 							placement='top';
-						}	
+						}
 					}else if (placement==='auto-bottom'){
 						if (pageX<clientWidth/3){
 							placement='bottom-right';
@@ -470,7 +470,7 @@
 							placement='bottom';
 						}else{
 							placement='bottom';
-						}	
+						}
 					}else if (placement==='auto-left'){
 						if (pageY<clientHeight/3){
 							placement='left-top';
@@ -478,7 +478,7 @@
 							placement='left';
 						}else{
 							placement='left-bottom';
-						}	
+						}
 					}else if (placement==='auto-right'){
 						if (pageY<clientHeight/3){
 							placement='right-top';
