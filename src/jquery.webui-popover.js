@@ -40,6 +40,7 @@
   };
 
   var _globalIdSeed = 0;
+  var $document = $(document);
 
 
   // The actual plugin constructor
@@ -116,6 +117,7 @@
     },
     hideAll: function() {
       $('div.webui-popover').not('.webui-popover-fixed').removeClass('in').hide();
+      $document.trigger('hiddenAll.' + pluginType);
     },
     /*core method ,show popover */
     show: function() {
