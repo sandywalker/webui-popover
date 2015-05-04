@@ -455,6 +455,38 @@
 								placement = constrainsH?'left-top':'top-left';
 							}
 						}
+					}else if (placement==='auto-top'){
+						if (pageX<clientWidth/3){
+							placement='top-right';
+						}else if (pageX<clientHeight*2/3){
+							placement='top';
+						}else{
+							placement='top';
+						}	
+					}else if (placement==='auto-bottom'){
+						if (pageX<clientWidth/3){
+							placement='bottom-right';
+						}else if (pageX<clientHeight*2/3){
+							placement='bottom';
+						}else{
+							placement='bottom';
+						}	
+					}else if (placement==='auto-left'){
+						if (pageY<clientHeight/3){
+							placement='left-top';
+						}else if (pageY<clientHeight*2/3){
+							placement='left';
+						}else{
+							placement='left-bottom';
+						}	
+					}else if (placement==='auto-right'){
+						if (pageY<clientHeight/3){
+							placement='right-top';
+						}else if (pageY<clientHeight*2/3){
+							placement='right';
+						}else{
+							placement='right-bottom';
+						}
 					}
 					return placement;
 				},
