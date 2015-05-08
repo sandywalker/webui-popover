@@ -286,7 +286,7 @@
 							title = this.options.title;
 						}
 
-            $titleEl.html(title);
+						$titleEl.html(title);
 					}else{
 						$titleEl.remove();
 					}
