@@ -1,4 +1,7 @@
-;(function ( $, window, document, undefined ) {
+(function ( $, window, document, undefined ) {
+
+"use strict";
+
 // Create the defaults once
 var pluginName = 'webuiPopover';
 var pluginClass = 'webui-popover';
@@ -62,10 +65,12 @@ WebuiPopover.prototype = {
 		if (this.getTrigger()==='click'){
 			this.$element.off('click').on('click',$.proxy(this.toggle,this));
 		}else{
-			this.$element.off('mouseenter mouseleave click')
-							.on('mouseenter',$.proxy(this.mouseenterHandler,this))
-							.on('mouseleave',$.proxy(this.mouseleaveHandler,this))
-							.on('click',function(e){e.stopPropagation();});
+			this.$element
+				.off('mouseenter mouseleave click')
+				.on('mouseenter',$.proxy(this.mouseenterHandler,this))
+				.on('mouseleave',$.proxy(this.mouseleaveHandler,this))
+				.on('click',function(e){e.stopPropagation();})
+				;
 		}
 		this._poped = false;
 		this._inited = true;
@@ -161,7 +166,7 @@ WebuiPopover.prototype = {
 		if (!this.options.arrow){
 			$target.find('.arrow').remove();
 		}
-		$target.remove().css({ top: -2000, left: -2000, display: 'block' });
+		$target.detach().css({ top: -2000, left: -2000, display: 'block' });
 		if (this.getAnimation()){
 			$target.addClass(this.getAnimation());
 		}
@@ -171,7 +176,12 @@ WebuiPopover.prototype = {
 		placement = this.getPlacement(elementPos);
 		this.initTargetEvents();
 		var postionInfo = this.getTargetPositin(elementPos,placement,targetWidth,targetHeight);
-		this.$target.css(postionInfo.position).addClass(placement).addClass('in');
+		this.$target
+			.css(postionInfo.position)
+			.addClass(placement)
+			.addClass('in')
+			.addClass(this.options.extraClass)
+			;
 
 		if (this.options.type==='iframe'){
 			var $iframe = $target.find('iframe');
@@ -375,9 +385,11 @@ WebuiPopover.prototype = {
 	//reset and init the target events;
 	initTargetEvents:function(){
 		if (this.getTrigger()!=='click'){
-			this.$target.off('mouseenter mouseleave')
-						.on('mouseenter',$.proxy(this.mouseenterHandler,this))
-						.on('mouseleave',$.proxy(this.mouseleaveHandler,this));
+			this.$target
+				.off('mouseenter mouseleave')
+				.on('mouseenter',$.proxy(this.mouseenterHandler,this))
+				.on('mouseleave',$.proxy(this.mouseleaveHandler,this))
+				;
 		}
 		this.$target.find('.close').off('click').on('click', $.proxy(this.hide,this));
 		this.$target.off('click.webui-popover').on('click.webui-popover',$.proxy(this.targetClickHandler,this));
@@ -558,7 +570,9 @@ WebuiPopover.prototype = {
 };
 
 $.fn[ pluginName ] = function ( options ) {
-	return this.each(function() {
+	var results = [];
+
+	var $result = this.each(function() {
 		var webuiPopover = $.data( this, 'plugin_' + pluginName );
 		if (!webuiPopover) {
 			if (!options){
@@ -566,7 +580,7 @@ $.fn[ pluginName ] = function ( options ) {
 			}else if (typeof options ==='string'){
 				if (options!=='destroy'){
 					webuiPopover = new WebuiPopover( this, null );
-					webuiPopover[options]();
+					results.push(webuiPopover[options]());
 				}
 			}else if (typeof options ==='object'){
 				webuiPopover = new WebuiPopover( this, options );
@@ -576,12 +590,12 @@ $.fn[ pluginName ] = function ( options ) {
 			if (options==='destroy'){
 				webuiPopover.destroy();
 			}else if (typeof options ==='string'){
-				webuiPopover[options]();
+				results.push(webuiPopover[options]());
 			}
 		}
 	});
+
+	return (results.length) ? results : $result;
 };
 
 })( jQuery, window, document );
-
-
