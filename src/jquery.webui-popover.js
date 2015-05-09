@@ -42,8 +42,10 @@ var defaults = {
 		'</div>'
 };
 
-var _globalIdSeed = 0;
+var popovers = [];
+var backdrop = $('<div class="webui-popover-backdrop"></div>');
 
+var _globalIdSeed = 0;
 
 // The actual plugin constructor
 function WebuiPopover ( element, options ) {
@@ -56,6 +58,8 @@ function WebuiPopover ( element, options ) {
 	this._name = pluginName;
 	this._targetclick = false;
 	this.init();
+
+	popovers.push(this.$element);
 }
 
 WebuiPopover.prototype = {
@@ -74,11 +78,28 @@ WebuiPopover.prototype = {
 		}
 		this._poped = false;
 		this._inited = true;
+		this._opened = false;
 		this._idSeed = _globalIdSeed;
+
+		if (this.options.backdrop) {
+			backdrop.appendTo(document.body).hide();
+		}
+
 		_globalIdSeed++;
 	},
 	/* api methods and actions */
 	destroy:function(){
+		var index = -1;
+
+		for (var i = 0; i < popovers.length; i++) {
+			if (popovers[i] == this.$element) {
+				index = i;
+				break;
+			}
+		}
+
+		popovers.splice(index, 1);
+
 		this.hide();
 		this.$element.data('plugin_'+pluginName,null);
 		if (this.getTrigger()==='click'){
@@ -91,6 +112,8 @@ WebuiPopover.prototype = {
 		}
 	},
 	hide:function(event){
+		if (!this._opened) return;
+
 		if (event){
 			event.preventDefault();
 			event.stopPropagation();
@@ -103,6 +126,10 @@ WebuiPopover.prototype = {
 		var e = $.Event('hide.' + pluginType);
 		this.$element.trigger(e);
 		if (this.$target){this.$target.removeClass('in').hide();}
+		if (this.options.backdrop) {
+			backdrop.hide();
+		}
+		this._opened = false;
 		this.$element.trigger('hidden.'+pluginType);
 	},
 	toggle:function(e){
@@ -113,7 +140,9 @@ WebuiPopover.prototype = {
 		this[this.getTarget().hasClass('in') ? 'hide' : 'show']();
 	},
 	hideAll:function(){
-		$('div.webui-popover').not('.webui-popover-fixed').removeClass('in').hide();
+		angular.forEach(popovers, function (popover) {
+			popover.webuiPopover('hide');
+		});
 	},
 	/*core method ,show popover */
 	show:function(){
@@ -122,6 +151,11 @@ WebuiPopover.prototype = {
 		if (!this.options.multi){
 			this.hideAll();
 		}
+
+		if (this._opened) {
+			return;
+		}
+
 		// use cache by default, if not cache setted  , reInit the contents 
 		if (!this.getCache()||!this._poped){
 			this.content = '';
@@ -140,6 +174,12 @@ WebuiPopover.prototype = {
 		}
 		this.displayContent();
 		this.bindBodyEvents();
+
+		if (this.options.backdrop) {
+			backdrop.show();
+		}
+
+		this._opened = true;
 	},
 	displayContent:function(){
 		var
@@ -207,8 +247,8 @@ WebuiPopover.prototype = {
 			}
 		}
 		this._poped = true;
-		this.$element.trigger('shown.'+pluginType);
 
+		this.$element.trigger('shown.'+pluginType);
 	},
 
 	isTargetLoaded:function(){
@@ -569,7 +609,7 @@ WebuiPopover.prototype = {
 	}
 };
 
-$.fn[ pluginName ] = function ( options ) {
+$.fn[ pluginName ] = function ( options, noInit ) {
 	var results = [];
 
 	var $result = this.each(function() {
@@ -579,8 +619,10 @@ $.fn[ pluginName ] = function ( options ) {
 				webuiPopover = new WebuiPopover( this, null);
 			}else if (typeof options ==='string'){
 				if (options!=='destroy'){
-					webuiPopover = new WebuiPopover( this, null );
-					results.push(webuiPopover[options]());
+					if (!noInit){
+						webuiPopover = new WebuiPopover( this, null );
+						results.push(webuiPopover[options]());
+					}
 				}
 			}else if (typeof options ==='object'){
 				webuiPopover = new WebuiPopover( this, options );
