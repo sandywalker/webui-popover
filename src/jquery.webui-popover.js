@@ -45,8 +45,10 @@
 		// The actual plugin constructor
 		function WebuiPopover ( element, options ) {
 				this.$element = $(element);
-                if($.type(options.delay) === 'string' || $.type(options.delay) === 'number') {
-                    options.delay = {show:options.delay,hide:options.delay}; // bc break fix
+                if (options){
+	                if($.type(options.delay) === 'string' || $.type(options.delay) === 'number') {
+	                    options.delay = {show:options.delay,hide:options.delay}; // bc break fix
+	                }
                 }
 				this.options = $.extend( {}, defaults, options );
 				this._defaults = defaults;
@@ -61,7 +63,7 @@
 					//init the event handlers
 					if (this.getTrigger()==='click'){
 						this.$element.off('click').on('click',$.proxy(this.toggle,this));
-					}else{
+					}else if (this.getTrigger()==='hover'){
 						this.$element.off('mouseenter mouseleave click')
 										.on('mouseenter',$.proxy(this.mouseenterHandler,this))
 										.on('mouseleave',$.proxy(this.mouseleaveHandler,this))
@@ -78,7 +80,7 @@
 					this.$element.data('plugin_'+pluginName,null);
 					if (this.getTrigger()==='click'){
 						this.$element.off('click');
-					}else{
+					}else if (this.getTrigger()==='hover'){
 						this.$element.off('mouseenter mouseleave');
 					}
 					if (this.$target){
@@ -99,6 +101,7 @@
 					this.$element.trigger(e);
 					if (this.$target){this.$target.removeClass('in').hide();}
 					this.$element.trigger('hidden.'+pluginType);
+
 				},
 				toggle:function(e){
 					if (e) {
@@ -112,6 +115,7 @@
 				},
 				/*core method ,show popover */
 				show:function(){
+
 					var
 						$target = this.getTarget().removeClass().addClass(pluginClass);
 					if (!this.options.multi){
@@ -198,6 +202,7 @@
 					}
 					this._poped = true;
 					this.$element.trigger('shown.'+pluginType);
+
 
 				},
 
@@ -361,10 +366,12 @@
 					}
 				},
 				bodyClickHandler:function(){
-					if (this._targetclick){
-						this._targetclick = false;
-					}else{
-						this.hideAll();
+					if (this.getTrigger()==='click'){
+						if (this._targetclick){
+							this._targetclick = false;
+						}else{
+							this.hideAll();
+						}
 					}
 				},
 
@@ -374,7 +381,7 @@
 
 				//reset and init the target events;
 				initTargetEvents:function(){
-					if (this.getTrigger()!=='click'){
+					if (this.getTrigger()==='hover'){
 						this.$target.off('mouseenter mouseleave')
 									.on('mouseenter',$.proxy(this.mouseenterHandler,this))
 									.on('mouseleave',$.proxy(this.mouseleaveHandler,this));

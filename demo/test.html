@@ -31,7 +31,22 @@
     margin-left:200px; 
   }
   </style>
-  <script type="text/javascript">
+  
+</head>
+<body>
+    <div id="popover_test"></div>
+    <div id="popover_test2"></div>
+    <!-- <img class="img-hover" data-hover="http://stylonica.com/wp-content/uploads/2014/03/cherry-blossom-spring1.jpg" src="https://avatars1.githubusercontent.com/u/8475219?v=3&s=96"> -->
+
+    <div id="inline_test"></div>
+
+    <form action="">
+      <input type="text" id="input" class="editor" data-content="input message1" data-placement="right"  data-trigger="manual"/>
+      <p>&nbsp;</p>
+      <input type="text" id="input2" class="editor" data-content="input message2" data-placement="right" data-trigger="manual"/>
+    </form>
+
+    <script type="text/javascript">
     $(document).ready(function(){
          $('#popover_test').webuiPopover({
                 constrains: 'horizontal', 
@@ -89,17 +104,14 @@
                           padding: true
         });
 
+        $('.editor').webuiPopover({multi:false});
+        $('.editor').on('click',function(){
+            $(this).webuiPopover('show');
+        });
 
       
     }); 
   </script>
-</head>
-<body>
-    <div id="popover_test"></div>
-    <div id="popover_test2"></div>
-    <img class="img-hover" data-hover="http://stylonica.com/wp-content/uploads/2014/03/cherry-blossom-spring1.jpg" src="https://avatars1.githubusercontent.com/u/8475219?v=3&s=96">
-
-    <div id="inline_test"></div>
 
     
 </body>

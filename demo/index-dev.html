@@ -86,6 +86,7 @@
 							    <h4 class="list-group-item-heading">Advanced examples</h4>
 							    <p class="list-group-item-text">table in popover, larget content, async mode, iframe mode</p>
 							</a>
+
 							<a href="#events" class="list-group-item ">
 							    <h4 class="list-group-item-heading">Events</h4>
 							    <p class="list-group-item-text">show,shown,hide,hidden</p>
@@ -316,14 +317,32 @@
 									<a href="#" class="btn btn-success  show-pop-code-delay pull-right" data-content="content...<p> <code>data-delay-show=0</code></p><p><code>data-delay-hide=1000</code></p>" data-title="Delayed WebUI Popover" data-placement="left"> by code</a>
 								</div>
 								<div id="advanced" class="content">
-									<a href="#" class="show-pop-table btn btn-default pull-left" data-placement="auto">pop with table</a>
-									<a href="#" class="show-pop-list btn btn-default pull-left" data-placement="auto">pop with list</a>
+									<a href="#" class="show-pop-table btn btn-default " data-placement="auto">pop with table</a>
+									<a href="#" class="show-pop-list btn btn-default " data-placement="auto">pop with list</a>
 									
-									<a href="#" class="show-pop-iframe btn btn-default pull-right" data-placement="auto">pop iframe </a>
-									<a href="#" class="show-pop-async btn btn-danger pull-right" data-placement="auto">pop async</a>
+									<a href="#" class="show-pop-iframe btn btn-default " data-placement="auto">pop iframe </a>
+									<a href="#" class="show-pop-async btn btn-default" data-placement="auto">pop async</a>
 									
 									
 									<a href="#" class="show-pop-large btn btn-default center-block" data-placement="auto">pop large content</a>
+
+									<form>
+									  <h2 >Input hints</h2>
+									  <br>
+									  <div class="form-group">
+									    <label for="">Email address</label>
+									    <input type="email" class="form-control form-input"
+									    	 data-content="Please  enter valid email!" data-placement="right" data-multi="false" data-trigger="manual">
+									  </div>
+									  <div class="form-group">
+									    <label for="">Password</label>
+									    <input type="password" class="form-control form-input" 
+									    data-content="Place enter password !" data-placement="right" data-multi="false" data-trigger="manual" >
+									  </div>
+									  
+									  <button type="submit" class="btn btn-default">Submit</button>
+									  <div class="clearfix"></div>
+									</form>
 								</div>
 								<div id="events" class="content">
 									<div class="btns">
@@ -465,6 +484,7 @@
 					$(this).addClass('active').siblings().removeClass('active');
 					var $content = $($(this).attr('href'));
 					$content.addClass('active').siblings().removeClass('active');
+					$('.webui-popover').hide();
 				});
 
 				
@@ -595,6 +615,21 @@
 						if (console){
 							console.log('clicked');
 						}
+					});
+
+
+					var inputSettints = {
+						placement:'right',
+						title:'',
+						multi:false,
+						width:220
+					};
+					
+
+					$('.form-input').webuiPopover('destroy').webuiPopover($.extend({},settings,inputSettints));
+
+					$('.form-input').on('focus',function(){
+						$(this).webuiPopover('show');
 					});
 
 				}
