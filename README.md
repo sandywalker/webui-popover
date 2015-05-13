@@ -112,7 +112,7 @@ $('a').webuiPopover({
 	placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left,auto-top,auto-right,auto-bottom,auto-left
 	width:'auto',//can be set with  number
 	height:'auto',//can be set with  number
-	trigger:'click',//values:click,hover
+	trigger:'click',//values:  click,hover,manual
 	style:'',//values:'',inverse
 	constrains:null, // constrains the direction when placement is  auto,  values: horizontal,vertical
 	animation:null, //pop with animation,values: pop,fade (only take effect in the browser which support css3 transition)
