@@ -102,7 +102,15 @@ $('a').webuiPopover({
  					});
 ```
 
+Create  Popover and trigged by manual
+```javascript
+ $('a').webuiPopover({trigger:'manual'});
 
+...
+ 
+ $('a').webuiPopover('show');
+
+```
 
 
 
