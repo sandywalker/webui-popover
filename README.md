@@ -104,10 +104,12 @@ $('a').webuiPopover({
 
 Create  Popover and trigged by manual
 ```javascript
+ //Initailize 
  $('a').webuiPopover({trigger:'manual'});
 
 ...
  
+ //Show it
  $('a').webuiPopover('show');
 
 ```
