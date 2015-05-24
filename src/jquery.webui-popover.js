@@ -122,7 +122,7 @@
 						this.hideAll();
 					}
 					// use cache by default, if not cache setted  , reInit the contents 
-					if (!this.getCache()||!this._poped){
+					if (!this.getCache()||!this._poped||this.content===''){
 						this.content = '';
 						this.setTitle(this.getTitle());
 						if (!this.options.closeable){
