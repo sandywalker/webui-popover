@@ -361,7 +361,7 @@
 				},
 				mouseleaveHandler:function(){
 					this.isMouseIn = false;
-					if (this.isFocusIn == true) return;
+					if (this.isFocusIn) return;
 					var self = this;
                     clearTimeout(self._enterTimeout);
 					//key point, set the _timeout  then use clearTimeout when mouse leave
@@ -385,15 +385,13 @@
 				},
 				focusinHandler:function(){
 					this.isFocusIn = true;
-					if (this.isMouseIn == false) {
-						this.mouseenterHandler();
-					}
+					if (this.isMouseIn) return;
+					this.mouseenterHandler();
 				},
 				focusoutHandler:function(){
 					this.isFocusIn = false;
-					if (this.isMouseIn == false) {
-						this.mouseleaveHandler();
-					}
+					if (this.isMouseIn) return;
+					this.mouseleaveHandler();
 				},
 
 				targetClickHandler:function(){
@@ -532,6 +530,9 @@
 					var pos = elementPos,
 						elementW = this.$element.outerWidth(),
 						elementH = this.$element.outerHeight(),
+						de = document.documentElement,
+						clientWidth = de.clientWidth,
+						clientHeight = de.clientHeight,
 						position={},
 						arrowOffset=null,
 						arrowSize = this.options.arrow?20:0,
@@ -539,7 +540,11 @@
 						fixedH = elementH<arrowSize+10?arrowSize:0;
 					switch (placement) {
 			          case 'bottom':
-			            position = {top: pos.top + pos.height, left: pos.left + pos.width / 2 - targetWidth / 2};
+						  var tmp = pos.left + pos.width/2 - targetWidth/2;
+						  if (tmp < 0) tmp = 0;
+						  else if ((tmp + targetWidth) > clientWidth)
+							  tmp = clientWidth - targetWidth;
+						  position = {top: pos.top + pos.height, left: tmp};
 			            break;
 			          case 'top':
 			            position = {top: pos.top - targetHeight, left: pos.left + pos.width / 2 - targetWidth / 2};
