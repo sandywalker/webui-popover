@@ -40,6 +40,8 @@
 		};
 
 		var _globalIdSeed = 0;
+		var isFocusIn = false;
+		var isMouseIn = false;
 
 
 		// The actual plugin constructor
@@ -68,6 +70,9 @@
 										.on('mouseenter',$.proxy(this.mouseenterHandler,this))
 										.on('mouseleave',$.proxy(this.mouseleaveHandler,this))
 										.on('click',function(e){e.stopPropagation();});
+						this.$element.off('focusin focusout')
+							.on('focusin',$.proxy(this.focusinHandler,this))
+							.on('focusout',$.proxy(this.focusoutHandler,this));
 					}
 					this._poped = false;
 					this._inited = true;
@@ -82,6 +87,7 @@
 						this.$element.off('click');
 					}else if (this.getTrigger()==='hover'){
 						this.$element.off('mouseenter mouseleave');
+						this.$element.off('focusin focusout');
 					}
 					if (this.$target){
 						this.$target.remove();
@@ -346,6 +352,7 @@
 
 				/* event handlers */
 				mouseenterHandler:function(){
+					this.isMouseIn = true;
 					var self = this;
 					if (self._timeout){clearTimeout(self._timeout);}
                     self._enterTimeout = setTimeout(function(){
@@ -353,6 +360,8 @@
                     },this.getDelayShow());
 				},
 				mouseleaveHandler:function(){
+					this.isMouseIn = false;
+					if (this.isFocusIn == true) return;
 					var self = this;
                     clearTimeout(self._enterTimeout);
 					//key point, set the _timeout  then use clearTimeout when mouse leave
@@ -374,6 +383,18 @@
 						}
 					}
 				},
+				focusinHandler:function(){
+					this.isFocusIn = true;
+					if (this.isMouseIn == false) {
+						this.mouseenterHandler();
+					}
+				},
+				focusoutHandler:function(){
+					this.isFocusIn = false;
+					if (this.isMouseIn == false) {
+						this.mouseleaveHandler();
+					}
+				},
 
 				targetClickHandler:function(){
 					this._targetclick = true;
@@ -385,6 +406,9 @@
 						this.$target.off('mouseenter mouseleave')
 									.on('mouseenter',$.proxy(this.mouseenterHandler,this))
 									.on('mouseleave',$.proxy(this.mouseleaveHandler,this));
+						this.$target.off('focusin focusout')
+							.on('focusin',$.proxy(this.focusinHandler,this))
+							.on('focusout',$.proxy(this.focusoutHandler,this));
 					}
 					this.$target.find('.close').off('click').on('click', $.proxy(this.hide,this));
 					this.$target.off('click.webui-popover').on('click.webui-popover',$.proxy(this.targetClickHandler,this));
