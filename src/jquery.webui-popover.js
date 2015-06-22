@@ -42,6 +42,8 @@
 		};
 
 		var _globalIdSeed = 0;
+		var isFocusIn = false;
+		var isMouseIn = false;
 
 
 		// The actual plugin constructor
@@ -70,6 +72,9 @@
 										.on('mouseenter',$.proxy(this.mouseenterHandler,this))
 										.on('mouseleave',$.proxy(this.mouseleaveHandler,this))
 										.on('click',function(e){e.stopPropagation();});
+						this.$element.off('focusin focusout')
+							.on('focusin',$.proxy(this.focusinHandler,this))
+							.on('focusout',$.proxy(this.focusoutHandler,this));
 					}
 					this._poped = false;
 					this._inited = true;
@@ -84,6 +89,7 @@
 						this.$element.off('click');
 					}else if (this.getTrigger()==='hover'){
 						this.$element.off('mouseenter mouseleave');
+						this.$element.off('focusin focusout');
 					}
 					if (this.$target){
 						this.$target.remove();
@@ -358,6 +364,7 @@
 
 				/* event handlers */
 				mouseenterHandler:function(){
+					this.isMouseIn = true;
 					var self = this;
 					if (self._timeout){clearTimeout(self._timeout);}
                     self._enterTimeout = setTimeout(function(){
@@ -365,6 +372,8 @@
                     },this.getDelayShow());
 				},
 				mouseleaveHandler:function(){
+					this.isMouseIn = false;
+					if (this.isFocusIn) return;
 					var self = this;
                     clearTimeout(self._enterTimeout);
 					//key point, set the _timeout  then use clearTimeout when mouse leave
@@ -386,6 +395,16 @@
 						}
 					}
 				},
+				focusinHandler:function(){
+					this.isFocusIn = true;
+					if (this.isMouseIn) return;
+					this.mouseenterHandler();
+				},
+				focusoutHandler:function(){
+					this.isFocusIn = false;
+					if (this.isMouseIn) return;
+					this.mouseleaveHandler();
+				},
 
 				targetClickHandler:function(){
 					this._targetclick = true;
@@ -397,6 +416,9 @@
 						this.$target.off('mouseenter mouseleave')
 									.on('mouseenter',$.proxy(this.mouseenterHandler,this))
 									.on('mouseleave',$.proxy(this.mouseleaveHandler,this));
+						this.$target.off('focusin focusout')
+							.on('focusin',$.proxy(this.focusinHandler,this))
+							.on('focusout',$.proxy(this.focusoutHandler,this));
 					}
 					this.$target.find('.close').off('click').on('click', $.proxy(this.hide,this));
 					this.$target.off('click.webui-popover').on('click.webui-popover',$.proxy(this.targetClickHandler,this));
@@ -520,6 +542,9 @@
 					var pos = elementPos,
 						elementW = this.$element.outerWidth(),
 						elementH = this.$element.outerHeight(),
+						de = document.documentElement,
+						clientWidth = de.clientWidth,
+						clientHeight = de.clientHeight,
 						position={},
 						arrowOffset=null,
 						arrowSize = this.options.arrow?20:0,
@@ -527,7 +552,11 @@
 						fixedH = elementH<arrowSize+10?arrowSize:0;
 					switch (placement) {
 			          case 'bottom':
-			            position = {top: pos.top + pos.height, left: pos.left + pos.width / 2 - targetWidth / 2};
+						  var tmp = pos.left + pos.width/2 - targetWidth/2;
+						  if (tmp < 0) tmp = 0;
+						  else if ((tmp + targetWidth) > clientWidth)
+							  tmp = clientWidth - targetWidth;
+						  position = {top: pos.top + pos.height, left: tmp};
 			            break;
 			          case 'top':
 			            position = {top: pos.top - targetHeight, left: pos.left + pos.width / 2 - targetWidth / 2};
