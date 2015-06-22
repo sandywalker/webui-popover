@@ -31,6 +31,9 @@ module.exports = function(grunt) {
 				banner: "<%= meta.banner %>"
 			}
 		},
+		jsbeautifier : {
+    		files : ["src/**/*.js"]
+		},
 
 		// Lint definitions
 		jshint: {
@@ -91,6 +94,7 @@ module.exports = function(grunt) {
 
 	});
 
+	grunt.loadNpmTasks("grunt-jsbeautifier");
 	grunt.loadNpmTasks("grunt-contrib-concat");
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
@@ -98,7 +102,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-contrib-cssmin");
 	// grunt.loadNpmTasks("grunt-contrib-coffee");
 
-	grunt.registerTask("default", ["jshint","less","concat", "uglify"]);
+	grunt.registerTask("default", ["jsbeautifier","jshint","less","concat", "uglify"]);
 	grunt.registerTask("travis", ["jshint"]);
 
 };
