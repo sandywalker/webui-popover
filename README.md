@@ -142,8 +142,9 @@ Create  Popover and trigged by manual
 	closeable:false,//display close button or not
 	padding:true,//content padding
 	type:'html',//content type, values:'html','iframe','async'
-	url:''//if not empty ,plugin will load content by url,
+	url:'',//if not empty ,plugin will load content by url
 	backdrop:false,//if backdrop is set to true, popover will use backdrop on open
+	dismissible:true // if popover can be dismissed by  outside click or escape key
 }
 ```
 
