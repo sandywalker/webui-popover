@@ -23,7 +23,7 @@
     "dist/jquery.webui-popover.js"
   ],
   "dependencies": {
-      "jquery": "^1.7.0"
+      "jquery": ">=1.7.0"
   },
   "homepage":"https://github.com/sandywalker/webui-popover"
 }
