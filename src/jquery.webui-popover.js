@@ -36,7 +36,9 @@
 									'<h3 class="webui-popover-title"></h3>'+
 									'<div class="webui-popover-content"><i class="icon-refresh"></i> <p>&nbsp;</p></div>'+
 								'</div>'+
-							'</div>'
+							'</div>',
+					onShow: false,
+					onHide: false
 		};
 
 		var _globalIdSeed = 0;
@@ -102,6 +104,10 @@
 					if (this.$target){this.$target.removeClass('in').hide();}
 					this.$element.trigger('hidden.'+pluginType);
 
+					if (this.options.onShow) {
+						this.options.onShow(this.$target);
+					}
+
 				},
 				toggle:function(e){
 					if (e) {
@@ -138,6 +144,11 @@
 						$target.show();
 					}
 					this.displayContent();
+
+					if (this.options.onShow) {
+						this.options.onShow($target);
+					}
+
 					this.bindBodyEvents();
 				},
 				displayContent:function(){
