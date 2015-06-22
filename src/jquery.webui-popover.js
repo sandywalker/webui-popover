@@ -44,8 +44,12 @@
         onHide: false
     };
 
+
+    var popovers = [];
+    var backdrop = $('<div class="webui-popover-backdrop"></div>');
     var _globalIdSeed = 0;
     var $document = $(document);
+
 
 
     // The actual plugin constructor
@@ -64,6 +68,7 @@
         this._name = pluginName;
         this._targetclick = false;
         this.init();
+        popovers.push(this.$element);
     }
 
     WebuiPopover.prototype = {
@@ -83,11 +88,27 @@
             }
             this._poped = false;
             this._inited = true;
+            this._opened = false;
             this._idSeed = _globalIdSeed;
+            if (this.options.backdrop) {
+                backdrop.appendTo(document.body).hide();
+            }
             _globalIdSeed++;
         },
         /* api methods and actions */
         destroy: function() {
+            var index = -1;
+
+            for (var i = 0; i < popovers.length; i++) {
+                if (popovers[i] === this.$element) {
+                    index = i;
+                    break;
+                }
+            }
+
+            popovers.splice(index, 1);
+
+
             this.hide();
             this.$element.data('plugin_' + pluginName, null);
             if (this.getTrigger() === 'click') {
@@ -100,6 +121,9 @@
             }
         },
         hide: function(event) {
+            if (!this._opened) {
+                return;
+            }
             if (event) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -114,6 +138,10 @@
             if (this.$target) {
                 this.$target.removeClass('in').hide();
             }
+            if (this.options.backdrop) {
+                backdrop.hide();
+            }
+            this._opened = false;
             this.$element.trigger('hidden.' + pluginType);
 
             if (this.options.onShow) {
@@ -129,7 +157,10 @@
             this[this.getTarget().hasClass('in') ? 'hide' : 'show']();
         },
         hideAll: function() {
-            $('div.webui-popover').not('.webui-popover-fixed').removeClass('in').hide();
+            for (var i = 0; i < popovers.length; i++) {
+                popovers[i].webuiPopover('hide');
+            }
+
             $document.trigger('hiddenAll.' + pluginType);
         },
         /*core method ,show popover */
@@ -139,6 +170,9 @@
                 $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
             if (!this.options.multi) {
                 this.hideAll();
+            }
+            if (this._opened) {
+                return;
             }
             // use cache by default, if not cache setted  , reInit the contents 
             if (!this.getCache() || !this._poped || this.content === '') {
@@ -163,6 +197,10 @@
             }
 
             this.bindBodyEvents();
+            if (this.options.backdrop) {
+                backdrop.show();
+            }
+            this._opened = true;
         },
         displayContent: function() {
             var
@@ -236,8 +274,6 @@
             }
             this._poped = true;
             this.$element.trigger('shown.' + pluginType);
-
-
         },
 
         isTargetLoaded: function() {
@@ -664,16 +700,20 @@
             };
         }
     };
-    $.fn[pluginName] = function(options) {
-        return this.each(function() {
+    $.fn[pluginName] = function(options, noInit) {
+        var results = [];
+        var $result = this.each(function() {
+
             var webuiPopover = $.data(this, 'plugin_' + pluginName);
             if (!webuiPopover) {
                 if (!options) {
                     webuiPopover = new WebuiPopover(this, null);
                 } else if (typeof options === 'string') {
                     if (options !== 'destroy') {
-                        webuiPopover = new WebuiPopover(this, null);
-                        webuiPopover[options]();
+                        if (!noInit) {
+                            webuiPopover = new WebuiPopover(this, null);
+                            results.push(webuiPopover[options]());
+                        }
                     }
                 } else if (typeof options === 'object') {
                     webuiPopover = new WebuiPopover(this, options);
@@ -683,10 +723,12 @@
                 if (options === 'destroy') {
                     webuiPopover.destroy();
                 } else if (typeof options === 'string') {
-                    webuiPopover[options]();
+                    results.push(webuiPopover[options]());
                 }
             }
         });
+
+        return (results.length) ? results : $result;
     };
 
 })(jQuery, window, document);

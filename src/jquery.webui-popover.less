@@ -43,6 +43,8 @@
 @close-size:                20px;
 @close-color:               #000;
 
+@popover-z-index: 9999;
+@popover-backdrop-z-index: (@popover-z-index - 1);
 
 .box-shadow(@shadow) {
   -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
@@ -74,7 +76,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: @popover-z-index;
   display: none;
   width: @popover-width;
   min-height:@popover-min-height;
@@ -318,5 +320,14 @@
   100% {transform: rotate(360deg);}
 }
 
+.webui-popover-backdrop {
+  background-color: rgba(0, 0, 0, 0.65);
+  width:100%;
+  height:100%;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: @popover-backdrop-z-index;
+}
 
 
