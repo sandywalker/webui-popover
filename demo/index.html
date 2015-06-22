@@ -345,6 +345,7 @@
 									  <button type="submit" class="btn btn-default">Submit</button>
 									  <div class="clearfix"></div>
 									</form>
+									<a href="#" class="show-pop-backdrop btn btn-default " data-placement="auto">pop with backdrop</a>
 								</div>
 								<div id="events" class="content">
 									<div class="btns">
@@ -582,6 +583,8 @@
 					 						}};
 					$('a.show-pop-async').webuiPopover('destroy').webuiPopover($.extend({},settings,asyncSettings));
 
+					$('a.show-pop-backdrop').webuiPopover('destroy').webuiPopover({content:'popover with backdrop!', backdrop:true});
+
 
 					// var nocacheSettings = {
 					// 		cache:true,
@@ -610,6 +613,8 @@
 								$('#eventLogs').text($('#eventLogs').text()+'\n'+log);
 							});
 					});
+
+
 
 					
 					$('body').on('click','.pop-click',function(e){

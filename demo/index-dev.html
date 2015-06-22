@@ -342,7 +342,9 @@
 									  
 									  <button type="submit" class="btn btn-default">Submit</button>
 									  <div class="clearfix"></div>
+
 									</form>
+									 <a href="#" class="show-pop-backdrop btn btn-default " data-placement="auto">pop with backdrop</a>
 								</div>
 								<div id="events" class="content">
 									<div class="btns">
@@ -551,6 +553,8 @@
 																							hide:1000
 																						}
 																					});
+
+					$('a.show-pop-backdrop').webuiPopover('destroy').webuiPopover({content:'popover with backdrop!', backdrop:true});
 
 					 var
 					 	iframeSettings = {	width:500,
