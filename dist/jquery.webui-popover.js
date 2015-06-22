@@ -44,7 +44,9 @@
 									'<h3 class="webui-popover-title"></h3>'+
 									'<div class="webui-popover-content"><i class="icon-refresh"></i> <p>&nbsp;</p></div>'+
 								'</div>'+
-							'</div>'
+							'</div>',
+					onShow: false,
+					onHide: false
 		};
 
 		var _globalIdSeed = 0;
@@ -110,6 +112,10 @@
 					if (this.$target){this.$target.removeClass('in').hide();}
 					this.$element.trigger('hidden.'+pluginType);
 
+					if (this.options.onShow) {
+						this.options.onShow(this.$target);
+					}
+
 				},
 				toggle:function(e){
 					if (e) {
@@ -125,7 +131,7 @@
 				show:function(){
 
 					var
-						$target = this.getTarget().removeClass().addClass(pluginClass);
+						$target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
 					if (!this.options.multi){
 						this.hideAll();
 					}
@@ -146,6 +152,11 @@
 						$target.show();
 					}
 					this.displayContent();
+
+					if (this.options.onShow) {
+						this.options.onShow($target);
+					}
+
 					this.bindBodyEvents();
 				},
 				displayContent:function(){
@@ -153,7 +164,7 @@
 						//element postion
 						elementPos = this.getElementPosition(),
 						//target postion
-						$target = this.getTarget().removeClass().addClass(pluginClass),
+						$target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass),
 						//target content
 						$targetContent = this.getContentElement(),
 						//target Width
@@ -228,6 +239,7 @@
 						this.$target = $(this.options.template)
 							.attr('id',id)
 							.data('trigger-element',this.getTriggerElement());
+						this._customTargetClass = this.$target.attr('class')!== pluginClass? this.$target.attr('class'):null;
 						this.getTriggerElement().attr('data-target',id);
 					}
 					return this.$target;
@@ -285,12 +297,6 @@
 				setTitle:function(title){
 					var $titleEl = this.getTitleElement();
 					if (title){
-						if ($.isFunction(this.options.title)){
-							title = this.options.title.apply(this.$element[0],arguments);
-						}else{
-							title = this.options.title;
-						}
-
 						$titleEl.html(title);
 					}else{
 						$titleEl.remove();
