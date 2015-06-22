@@ -117,7 +117,7 @@
 				show:function(){
 
 					var
-						$target = this.getTarget().removeClass().addClass(pluginClass);
+						$target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
 					if (!this.options.multi){
 						this.hideAll();
 					}
@@ -145,7 +145,7 @@
 						//element postion
 						elementPos = this.getElementPosition(),
 						//target postion
-						$target = this.getTarget().removeClass().addClass(pluginClass),
+						$target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass),
 						//target content
 						$targetContent = this.getContentElement(),
 						//target Width
@@ -220,6 +220,7 @@
 						this.$target = $(this.options.template)
 							.attr('id',id)
 							.data('trigger-element',this.getTriggerElement());
+						this._customTargetClass = this.$target.attr('class')!== pluginClass? this.$target.attr('class'):null;
 						this.getTriggerElement().attr('data-target',id);
 					}
 					return this.$target;
