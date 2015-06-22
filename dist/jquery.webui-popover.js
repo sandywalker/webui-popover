@@ -285,6 +285,12 @@
 				setTitle:function(title){
 					var $titleEl = this.getTitleElement();
 					if (title){
+						if ($.isFunction(this.options.title)){
+							title = this.options.title.apply(this.$element[0],arguments);
+						}else{
+							title = this.options.title;
+						}
+
 						$titleEl.html(title);
 					}else{
 						$titleEl.remove();
