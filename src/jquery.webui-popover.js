@@ -451,7 +451,7 @@
             }
         },
         bodyClickHandler: function() {
-            if (this.getTrigger() === 'click') {
+            if (this.getTrigger() === 'click' || (this.getTrigger() === 'manual' && this.options.dismissible)) {
                 if (this._targetclick) {
                     this._targetclick = false;
                 } else {
