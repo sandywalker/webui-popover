@@ -2,7 +2,10 @@
 <head>
   <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
   <script src="jquery.js" ></script>
-  <script src="../src/jquery.webui-popover.js" ></script>
+  <!--<script src="../src/jquery.webui-popover.js" ></script>-->
+   <!--<script src="../dist/jquery.webui-popover.min.js" ></script>-->
+   <script src="http://sandywalker.github.io/webui-popover/dist/jquery.webui-popover.min.js" ></script>
+  
   <style type="text/css">
   body{
     background-color: #666666;
@@ -75,17 +78,15 @@
             alert(1);
         });
 
-        $(document.body).on('click','#aLink',function(e){
+        $(document.body).on('click','.captcha-reload',function(e){
             e.preventDefault();
             alert(2);
         });
 
-        $('#aLink').webuiPopover({
-                constrains: 'horizontal', 
-                trigger:'hover',
-                multi: false,
-                placement:'right-bottom',
-                content: 'content<br>dddd<br>dddd<br>dsfsdfsdf<br>dddd<br>dddd<br>dsfsdfsdf'
+        $('.help-popover').webuiPopover({
+              placement: 'auto-right',
+              multi: true,
+              dismissible: false
         });
 
       
