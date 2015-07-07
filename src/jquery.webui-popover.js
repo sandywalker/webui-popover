@@ -366,9 +366,21 @@
         },
         getContent: function() {
             if (this.getUrl()) {
-                if (this.options.type === 'iframe') {
-                    this.content = $('<iframe frameborder="0"></iframe>').attr('src', this.getUrl());
-                }
+                switch (this.options.type) {
+					case 'iframe':
+						this.content = $('<iframe frameborder="0"></iframe>').attr('src', this.getUrl());
+						break;
+					case 'html':
+						try {
+							this.content = $(this.getUrl());
+							if(!this.content.is(":visible")){
+								this.content.show();
+							}
+						} catch(error) {
+							throw new Error("Unable to get popover content. Invalid selector specified.")
+						}
+					break;
+                } 
             } else if (!this.content) {
                 var content = '';
                 if ($.isFunction(this.options.content)) {
