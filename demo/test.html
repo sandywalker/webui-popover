@@ -46,6 +46,8 @@
       <input type="text" id="input2" class="editor" data-content="input message2" data-placement="right" data-trigger="manual"/>
     </form>
 
+    <a href="#!" id="aLink" data-content="my content" data-title="mytitle" data-placement="auto-bottom" data-trigger="hover" class="captcha-reload help-popover">test</a>  
+
     <script type="text/javascript">
     $(document).ready(function(){
          $('#popover_test').webuiPopover({
@@ -62,11 +64,31 @@
 
         $('#popover_test2').webuiPopover({
                 constrains: 'horizontal', 
-                trigger:'click',
-                multi: true,
+                trigger:'hover',
+                multi: false,
                 placement:'right-bottom',
                 content: 'content<br>dddd<br>dddd<br>dsfsdfsdf<br>dddd<br>dddd<br>dsfsdfsdf'
         });
+
+        $('#popover_test2').on('click',function(e){
+            e.preventDefault();
+            alert(1);
+        });
+
+        $(document.body).on('click','#aLink',function(e){
+            e.preventDefault();
+            alert(2);
+        });
+
+        $('#aLink').webuiPopover({
+                constrains: 'horizontal', 
+                trigger:'hover',
+                multi: false,
+                placement:'right-bottom',
+                content: 'content<br>dddd<br>dddd<br>dsfsdfsdf<br>dddd<br>dddd<br>dsfsdfsdf'
+        });
+
+      
 
          $('#inline_test').webuiPopover({
                 constrains: 'horizontal', 

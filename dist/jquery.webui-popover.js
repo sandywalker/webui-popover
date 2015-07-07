@@ -48,8 +48,10 @@
             '<div class="webui-popover-content"><i class="icon-refresh"></i> <p>&nbsp;</p></div>' +
             '</div>' +
             '</div>',
-        onShow: false,
-        onHide: false
+        backdrop: false,
+        dismissible: true,
+        onShow: null,
+        onHide: null
     };
 
 
@@ -89,10 +91,10 @@
                 this.$element
                     .off('mouseenter mouseleave click')
                     .on('mouseenter', $.proxy(this.mouseenterHandler, this))
-                    .on('mouseleave', $.proxy(this.mouseleaveHandler, this))
-                    .on('click', function(e) {
-                        e.stopPropagation();
-                    });
+                    .on('mouseleave', $.proxy(this.mouseleaveHandler, this));
+                // .on('click', function(e) {
+                //     e.stopPropagation();
+                // });
             }
             this._poped = false;
             this._inited = true;
@@ -425,8 +427,10 @@
         },
 
         bindBodyEvents: function() {
-            $('body').off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
-            $('body').off('click.webui-popover').on('click.webui-popover', $.proxy(this.bodyClickHandler, this));
+            if (this.options.dismissible) {
+                $('body').off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
+                $('body').off('click.webui-popover').on('click.webui-popover', $.proxy(this.bodyClickHandler, this));
+            }
         },
 
         /* event handlers */
