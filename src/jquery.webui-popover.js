@@ -187,8 +187,6 @@
                     this.setContent(this.getContent());
                 } else {
                     this.setContentASync(this.options.content);
-                    this.displayContent();
-                    return;
                 }
                 $target.show();
             }
