@@ -39,6 +39,7 @@
 <body>
     <div id="popover_test"></div>
     <div id="popover_test2"></div>
+
     <!-- <img class="img-hover" data-hover="http://stylonica.com/wp-content/uploads/2014/03/cherry-blossom-spring1.jpg" src="https://avatars1.githubusercontent.com/u/8475219?v=3&s=96"> -->
 
     <div id="inline_test"></div>
@@ -50,6 +51,9 @@
     </form>
 
     <a href="#!" id="aLink" data-content="my content" data-title="mytitle" data-placement="auto-bottom" data-trigger="hover" class="captcha-reload help-popover">test</a>  
+
+  
+    <a href="#" id="popoverWithInput">show input popover</a>
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -125,6 +129,14 @@
                           arrow: true,
                           closeable: false,
                           padding: true
+        });
+
+
+        $('#popoverWithInput').webuiPopover({
+            content:'<form action=""><input type="text" id="in" /></form>'
+        }).on('shown.webui.popover',function(){
+          console.log($('#in'));
+           $('#in').focus();
         });
 
         $('.editor').webuiPopover({multi:false});

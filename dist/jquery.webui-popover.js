@@ -154,8 +154,8 @@
             this._opened = false;
             this.$element.trigger('hidden.' + pluginType);
 
-            if (this.options.onShow) {
-                this.options.onShow(this.$target);
+            if (this.options.onHide) {
+                this.options.onHide(this.$target);
             }
 
         },
