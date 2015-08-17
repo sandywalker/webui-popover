@@ -1,5 +1,5 @@
 /*
- *  webui popover plugin  - v1.1.3
+ *  webui popover plugin  - v1.1.5
  *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
  *  https://github.com/sandywalker/webui-popover
  *
