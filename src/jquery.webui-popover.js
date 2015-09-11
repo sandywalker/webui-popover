@@ -555,7 +555,7 @@
             } else if (placement === 'auto-top') {
                 if (pageX < clientWidth / 3) {
                     placement = 'top-right';
-                } else if (pageX < clientHeight * 2 / 3) {
+                } else if (pageX < clientWidth * 2 / 3) {
                     placement = 'top';
                 } else {
                     placement = 'top-left';
@@ -563,7 +563,7 @@
             } else if (placement === 'auto-bottom') {
                 if (pageX < clientWidth / 3) {
                     placement = 'bottom-right';
-                } else if (pageX < clientHeight * 2 / 3) {
+                } else if (pageX < clientWidth * 2 / 3) {
                     placement = 'bottom';
                 } else {
                     placement = 'bottom-left';
