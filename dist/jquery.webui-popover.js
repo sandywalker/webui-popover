@@ -255,6 +255,10 @@
             targetWidth = $target[0].offsetWidth;
             targetHeight = $target[0].offsetHeight;
             placement = this.getPlacement(elementPos);
+
+            //This line is just for compatible with knockout custom binding
+            this.$element.trigger('added.' + pluginType);
+
             this.initTargetEvents();
             var postionInfo = this.getTargetPositin(elementPos, placement, targetWidth, targetHeight);
             this.$target.css(postionInfo.position).addClass(placement).addClass('in');
@@ -380,7 +384,7 @@
             } else if (!this.content) {
                 var content = '';
                 if ($.isFunction(this.options.content)) {
-                    content = this.options.content.apply(this.$element[0], arguments);
+                    content = this.options.content.apply(this.$element[0], [this]);
                 } else {
                     content = this.options.content;
                 }
