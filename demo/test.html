@@ -2,9 +2,9 @@
 <head>
   <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
   <script src="jquery.js" ></script>
-  <!--<script src="../src/jquery.webui-popover.js" ></script>-->
+  <script src="../src/jquery.webui-popover.js" ></script>
    <!--<script src="../dist/jquery.webui-popover.min.js" ></script>-->
-   <script src="http://sandywalker.github.io/webui-popover/dist/jquery.webui-popover.min.js" ></script>
+   <!--<script src="http://sandywalker.github.io/webui-popover/dist/jquery.webui-popover.min.js" ></script>-->
   
   <style type="text/css">
   body{
@@ -26,6 +26,17 @@
     margin-left:200px;
   }
 
+  .test-pop{
+    width: 200px;
+    height: 35px;
+    background: #eee;
+    border: 1px solid gray;
+    margin-left:200px;  
+    margin-top:10px;
+    cursor:pointer;
+  }
+
+
   #inline_test {
     width: 200px;
     height: 20px;
@@ -39,6 +50,7 @@
 <body>
     <div id="popover_test"></div>
     <div id="popover_test2"></div>
+    
 
     <!-- <img class="img-hover" data-hover="http://stylonica.com/wp-content/uploads/2014/03/cherry-blossom-spring1.jpg" src="https://avatars1.githubusercontent.com/u/8475219?v=3&s=96"> -->
 
@@ -49,6 +61,8 @@
       <p>&nbsp;</p>
       <input type="text" id="input2" class="editor" data-content="input message2" data-placement="right" data-trigger="manual"/>
     </form>
+
+    <div id="popover_test3" class="test-pop"></div>
 
     <a href="#!" id="aLink" data-content="my content" data-title="mytitle" data-placement="auto-bottom" data-trigger="hover" class="captcha-reload help-popover">test</a>  
 
@@ -76,6 +90,27 @@
                 placement:'right-bottom',
                 content: 'content<br>dddd<br>dddd<br>dsfsdfsdf<br>dddd<br>dddd<br>dsfsdfsdf'
         });
+
+
+        var
+            asyncSettings = { width:'auto',
+                      height:'200',
+                      closeable:true,
+                      padding:false,
+                      cache:false,
+                      url:'https://api.github.com/',
+                      type:'async',
+                      content:function(data){
+                        var html = '<ul class="list-group">';
+                        for(var key in data){
+                          html+='<li class="list-group-item"><a href="'+ data[key] +'" target="_blank">'
+                          + '<i class="glyphicon glyphicon-leaf"></i> '+ key+'</a>'+'</li>';  
+                        }
+                        html+='</ul>';
+                        return html;
+                      }};
+
+        $('#popover_test3').webuiPopover('destroy').webuiPopover($.extend({},asyncSettings));
 
         $('#popover_test2').on('click',function(e){
             e.preventDefault();

@@ -227,6 +227,10 @@
                 $targetContent.height(this.options.height);
             }
 
+            if (this.options.style) {
+                this.$target.addClass(pluginClass + '-' + this.options.style);
+            }
+
             //init the popover and insert into the document body
             if (!this.options.arrow) {
                 $target.find('.arrow').remove();
@@ -252,9 +256,7 @@
                 $iframe.width($target.width()).height($iframe.parent().height());
             }
 
-            if (this.options.style) {
-                this.$target.addClass(pluginClass + '-' + this.options.style);
-            }
+
 
             if (!this.options.padding) {
                 $targetContent.css('height', $targetContent.outerHeight());
