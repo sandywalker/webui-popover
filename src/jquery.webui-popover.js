@@ -372,7 +372,7 @@
             } else if (!this.content) {
                 var content = '';
                 if ($.isFunction(this.options.content)) {
-                    content = this.options.content.apply(this.$element[0], arguments);
+                    content = this.options.content.apply(this.$element[0], [this]);
                 } else {
                     content = this.options.content;
                 }
