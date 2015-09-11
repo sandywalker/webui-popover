@@ -605,10 +605,10 @@
 					$('a.show-pop-event').each(function(i,item){
 							var ename = $(item).text()+'.webui.popover';
 							$(item).webuiPopover('destroy').webuiPopover(settings)
-							.on(ename,function(e){
+							.on(ename,function(e,tgt){
 								var log =  ename+' is trigged!';
 								if (console){
-									console.log(log);
+									console.log(log,tgt);
 								}
 								$('#eventLogs').text($('#eventLogs').text()+'\n'+log);
 							});

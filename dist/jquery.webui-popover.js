@@ -144,7 +144,7 @@
             }
 
             var e = $.Event('hide.' + pluginType);
-            this.$element.trigger(e);
+            this.$element.trigger(e, [this.$target]);
             if (this.$target) {
                 this.$target.removeClass('in').hide();
             }
@@ -152,7 +152,7 @@
                 backdrop.hide();
             }
             this._opened = false;
-            this.$element.trigger('hidden.' + pluginType);
+            this.$element.trigger('hidden.' + pluginType, [this.$target]);
 
             if (this.options.onHide) {
                 this.options.onHide(this.$target);
@@ -226,7 +226,7 @@
                 placement = 'bottom',
                 e = $.Event('show.' + pluginType);
             //if (this.hasContent()){
-            this.$element.trigger(e);
+            this.$element.trigger(e, [$target]);
             //}
             if (this.options.width !== 'auto') {
                 $target.width(this.options.width);
@@ -287,7 +287,7 @@
                 }
             }
             this._poped = true;
-            this.$element.trigger('shown.' + pluginType);
+            this.$element.trigger('shown.' + pluginType, [this.$target]);
         },
 
         isTargetLoaded: function() {
