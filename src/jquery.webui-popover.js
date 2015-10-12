@@ -43,7 +43,8 @@
         backdrop: false,
         dismissible: true,
         onShow: null,
-        onHide: null
+        onHide: null,
+        abortXHR: true
     };
 
 
@@ -130,7 +131,7 @@
                 event.preventDefault();
                 event.stopPropagation();
             }
-            if (this.xhr) {
+            if (this.xhr && this.options.abortXHR === true) {
                 this.xhr.abort();
                 this.xhr = null;
             }
@@ -394,6 +395,9 @@
         },
         setContentASync: function(content) {
             var that = this;
+            if (this.xhr) {
+                return;
+            }
             this.xhr = $.ajax({
                 url: this.getUrl(),
                 type: 'GET',
@@ -417,7 +421,7 @@
                     if (that.options.async.success) {
                         that.options.async.success(that, data);
                     }
-                    this.xhr = null;
+                    that.xhr = null;
                 }
             });
         },
