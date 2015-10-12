@@ -421,6 +421,8 @@
                     if (that.options.async.success) {
                         that.options.async.success(that, data);
                     }
+                },
+                complete: function() {
                     that.xhr = null;
                 }
             });
