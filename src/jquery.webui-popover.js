@@ -275,7 +275,12 @@
                 var $arrow = this.$target.find('.arrow');
                 $arrow.removeAttr('style');
                 if (postionInfo.arrowOffset) {
-                    $arrow.css(postionInfo.arrowOffset);
+                    //hide the arrow if offset is negative 
+                    if (postionInfo.arrowOffset.left === -1 || postionInfo.arrowOffset.top === -1) {
+                        $arrow.hide();
+                    } else {
+                        $arrow.css(postionInfo.arrowOffset);
+                    }
                 }
             }
             this._poped = true;
@@ -596,8 +601,14 @@
 
         getTargetPositin: function(elementPos, placement, targetWidth, targetHeight) {
             var pos = elementPos,
+                de = document.documentElement,
+                db = document.body,
+                clientWidth = de.clientWidth,
+                clientHeight = de.clientHeight,
                 elementW = this.$element.outerWidth(),
                 elementH = this.$element.outerHeight(),
+                scrollTop = Math.max(db.scrollTop, de.scrollTop),
+                scrollLeft = Math.max(db.scrollLeft, de.scrollLeft),
                 position = {},
                 arrowOffset = null,
                 arrowSize = this.options.arrow ? 20 : 0,
@@ -702,6 +713,36 @@
                     break;
 
             }
+            //fix the position if it is outside of the screen
+            var pageH = clientHeight + scrollTop;
+            var pageW = clientWidth + scrollLeft;
+            if (position.left < 0) {
+                position.left = fixedW;
+                arrowOffset = {
+                    left: -1
+                };
+            }
+            if (position.left + targetWidth > pageW) {
+                position.left = pageW - targetWidth - fixedW;
+                arrowOffset = {
+                    left: -1
+                };
+            }
+
+            if (position.top < 0) {
+                position.top = elementH + fixedH;
+                arrowOffset = {
+                    top: -1
+                };
+            }
+
+            if (position.top + targetHeight > pageH) {
+                position.top = pageH - targetHeight - elementH - fixedH;
+                arrowOffset = {
+                    top: -1
+                };
+            }
+
             return {
                 position: position,
                 arrowOffset: arrowOffset

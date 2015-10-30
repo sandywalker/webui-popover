@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<title>test with wenzhixin bootstrap table</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../src/jquery.webui-popover.css" />
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css">
+</head>
+<body>
+	
+	<table id="table"></table>
+
+
+  <table  id="jsontable" class="table standings table-striped table-bordered"  data-url="/demo/table-data.json" data-sort-name="date" data-sort-order="asc">
+
+  <thead>
+        <tr>
+        <th data-field="date" data-align="center" data-sortable="true" data-sorter="datesort">Date</th>
+        <th data-field="time" data-align="center" data-sortable="true">Time</th>
+        <th data-field="opponent" data-align="center" data-sortable="true">Opponent</th>
+        <th data-field="location" data-align="center" data-sortable="true">Location</th>
+        <th data-field="results" data-align="center" data-sortable="true">Results</th>
+      </tr>
+    </thead>
+</table>
+
+
+
+<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js" ></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://sandywalker.github.io/webui-popover/dist/jquery.webui-popover.min.js" ></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
+
+
+
+
+<script>
+  (function(){
+  		$('#table').bootstrapTable({
+  		    columns: [{
+  		        field: 'id',
+  		        title: 'Item ID'
+  		    }, {
+  		        field: 'name',
+  		        title: 'Item Name'
+  		    }, {
+  		        field: 'price',
+  		        title: 'Item Price'
+  		    }],
+  		    data: [{
+  		        id: 1,
+  		        name: '<a href="#" class="abc">Item 1</a>',
+  		        price: '$1'
+  		    }, {
+  		        id: 2,
+  		        name: 'Item 2',
+  		        price: '$2'
+  		    }]
+  		});
+
+      $('#jsontable').bootstrapTable({
+        onLoadSuccess:function(data){
+            $('.abc').webuiPopover({
+                  title:'ddd',
+                  content:'dxxxxx'
+            });
+        }
+      });
+
+    //   console.log($('.abc').length);
+  		// $('.abc').webuiPopover({
+  		// 	title:'ddd',
+  		// 	content:'dxxxxx'
+  		// });
+
+  })();
+
+</script>
+
+
+
+
+</body>
+</html>

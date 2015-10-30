@@ -2,13 +2,15 @@
 <head>
   <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
   <script src="jquery.js" ></script>
-  <!--<script src="../src/jquery.webui-popover.js" ></script>-->
+  <script src="../src/jquery.webui-popover.js" ></script>
    <!--<script src="../dist/jquery.webui-popover.min.js" ></script>-->
-   <script src="http://sandywalker.github.io/webui-popover/dist/jquery.webui-popover.min.js" ></script>
+   <!--<script src="http://sandywalker.github.io/webui-popover/dist/jquery.webui-popover.min.js" ></script>-->
   
   <style type="text/css">
   body{
-    background-color: #666666;
+    background-color: #aaa;
+    padding:0;
+    margin:0;
   }
   #popover_test{
     width: 500px;
@@ -44,14 +46,32 @@
     border: 1px solid gray;
     margin-left:200px; 
   }
+
+  .pull-left{
+    float:left;
+  }
+  .pull-right{
+    float:right;
+  }
   </style>
   
 </head>
 <body>
+    <div style="text-align:center">
+      <a href="#" class="border-pos pull-left" data-placement="auto">a</a>
+      <a href="#" class="border-pos" data-placement="auto">a</a>
+      <a href="#" class="border-pos pull-right" data-placement="auto" >a</a>
+    </div>
+
     <div id="popover_test"></div>
     <div id="popover_test2"></div>
     
 
+    <div style="text-align:center">
+      <a href="#" class="border-pos pull-left" >a</a>
+      <a href="#" class="border-pos" data-placement="auto">a</a>
+      <a href="#" class="border-pos pull-right" >a</a>
+    </div>
     <!-- <img class="img-hover" data-hover="http://stylonica.com/wp-content/uploads/2014/03/cherry-blossom-spring1.jpg" src="https://avatars1.githubusercontent.com/u/8475219?v=3&s=96"> -->
 
     <div id="inline_test"></div>
@@ -64,10 +84,39 @@
 
     <div id="popover_test3" class="test-pop"></div>
 
-    <a href="#!" id="aLink" data-content="my content" data-title="mytitle" data-placement="auto-bottom" data-trigger="hover" class="captcha-reload help-popover">test</a>  
+    <a href="#!" id="aLink" style="float:right;" data-content="my content" data-title="mytitle" data-placement="auto-bottom" data-trigger="click" class="captcha-reload help-popover">d</a>  |
+ 
+    <a href="#!" id="aLink" data-content="my content" data-title="mytitle" data-placement="auto-bottom" data-trigger="click" class="captcha-reload help-popover2">dismissible true</a>  
 
   
     <a href="#" id="popoverWithInput">show input popover</a>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+
+ <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+ <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+ <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <div style="text-align:center">
+      <a href="#" class="border-pos pull-left" >a</a>
+      <a href="#" class="border-pos" data-placement="auto">a</a>
+      <a href="#" class="border-pos pull-right" >a</a>
+    </div>
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -124,8 +173,16 @@
 
         $('.help-popover').webuiPopover({
               placement: 'auto-right',
-              multi: true,
+              multi: false,
+              cache:false,
               dismissible: false
+        });
+
+        $('.help-popover2').webuiPopover({
+              placement: 'auto-right',
+              multi: false,
+              cache:false,
+              dismissible: true
         });
 
       
@@ -177,6 +234,11 @@
         $('.editor').webuiPopover({multi:false});
         $('.editor').on('click',function(){
             $(this).webuiPopover('show');
+        });
+
+        $('.border-pos').webuiPopover({
+           title:'aaa',
+           content:'dfdffff',
         });
 
       
