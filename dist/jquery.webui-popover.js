@@ -1,5 +1,5 @@
 /*
- *  webui popover plugin  - v1.1.6
+ *  webui popover plugin  - v1.1.7
  *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
  *  https://github.com/sandywalker/webui-popover
  *
@@ -51,7 +51,8 @@
         backdrop: false,
         dismissible: true,
         onShow: null,
-        onHide: null
+        onHide: null,
+        abortXHR: true
     };
 
 
@@ -138,7 +139,7 @@
                 event.preventDefault();
                 event.stopPropagation();
             }
-            if (this.xhr) {
+            if (this.xhr && this.options.abortXHR === true) {
                 this.xhr.abort();
                 this.xhr = null;
             }
@@ -262,6 +263,7 @@
             this.initTargetEvents();
             var postionInfo = this.getTargetPositin(elementPos, placement, targetWidth, targetHeight);
             this.$target.css(postionInfo.position).addClass(placement).addClass('in');
+
 
             if (this.options.type === 'iframe') {
                 var $iframe = $target.find('iframe');
@@ -407,6 +409,9 @@
         },
         setContentASync: function(content) {
             var that = this;
+            if (this.xhr) {
+                return;
+            }
             this.xhr = $.ajax({
                 url: this.getUrl(),
                 type: 'GET',
@@ -430,7 +435,9 @@
                     if (that.options.async.success) {
                         that.options.async.success(that, data);
                     }
-                    this.xhr = null;
+                },
+                complete: function() {
+                    that.xhr = null;
                 }
             });
         },
@@ -621,7 +628,8 @@
                 arrowOffset = null,
                 arrowSize = this.options.arrow ? 20 : 0,
                 fixedW = elementW < arrowSize + 10 ? arrowSize : 0,
-                fixedH = elementH < arrowSize + 10 ? arrowSize : 0;
+                fixedH = elementH < arrowSize + 10 ? arrowSize : 0,
+                padding = arrowSize + 10;
             switch (placement) {
                 case 'bottom':
                     position = {
@@ -722,34 +730,40 @@
 
             }
             //fix the position if it is outside of the screen
+            console.log(position);
             var pageH = clientHeight + scrollTop;
             var pageW = clientWidth + scrollLeft;
             if (position.left < 0) {
-                position.left = fixedW;
+                position.left = padding;
                 arrowOffset = {
                     left: -1
                 };
             }
             if (position.left + targetWidth > pageW) {
-                position.left = pageW - targetWidth - fixedW;
+                position.left = pageW - targetWidth - elementW - padding;
+                //need fixed again
+                if (position.left < 0) {
+                    position.left = padding;
+                }
                 arrowOffset = {
                     left: -1
                 };
             }
 
             if (position.top < 0) {
-                position.top = elementH + fixedH;
+                position.top = elementH + padding;
                 arrowOffset = {
                     top: -1
                 };
             }
 
             if (position.top + targetHeight > pageH) {
-                position.top = pageH - targetHeight - elementH - fixedH;
+                position.top = pageH - targetHeight - elementH - padding;
                 arrowOffset = {
                     top: -1
                 };
             }
+            console.log(position);
 
             return {
                 position: position,
