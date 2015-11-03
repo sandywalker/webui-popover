@@ -730,7 +730,6 @@
 
             }
             //fix the position if it is outside of the screen
-            console.log(position);
             var pageH = clientHeight + scrollTop;
             var pageW = clientWidth + scrollLeft;
             if (position.left < 0) {
@@ -763,7 +762,6 @@
                     top: -1
                 };
             }
-            console.log(position);
 
             return {
                 position: position,
