@@ -64,6 +64,11 @@ Create  Popover trigged by mouse hover
 $('a').webuiPopover({title:'Title',content:'Content',trigger:'hover'});
 ```
 
+Create  Sticky Popover
+```javascript
+$('a').webuiPopover({title:'Title',content:'Content',trigger:'sticky'});
+```
+
 Create  inversed style Popover 
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',style:'inverse'});
