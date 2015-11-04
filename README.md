@@ -64,7 +64,7 @@ Create  Popover trigged by mouse hover
 $('a').webuiPopover({title:'Title',content:'Content',trigger:'hover'});
 ```
 
-Create  Sticky Popover
+Create  sticky Popover
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',trigger:'sticky'});
 ```
