@@ -505,10 +505,10 @@
                 placement = this.$element.data('placement') || this.options.placement;
             }
 
-            var isH =  placement === 'horizontal';
-            var isV =  placement === 'vertical';
+            var isH = placement === 'horizontal';
+            var isV = placement === 'vertical';
             var detect = placement === 'auto' || isH || isV;
-            
+
             if (detect) {
                 if (pageX < clientWidth / 3) {
                     if (pageY < clientHeight / 3) {
