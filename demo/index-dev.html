@@ -4,7 +4,7 @@
 		<title>WebUI Popover Demo</title>		
 		
 		<link href="bootstrap.css" rel="stylesheet">
-		<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0" name="viewport" />
+		<meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0" name="viewport" />
 		<link rel="stylesheet" href="../src/jquery.webui-popover.css">
 		<link rel="stylesheet" href="demo.css">
 	</head>
@@ -125,10 +125,8 @@
 									data-content="<p>This is webui popover demo.</p><p><code>placement:'top-left'</code></p>"> <i class="glyphicon glyphicon-cloud"></i></a>
 
 
-									<div class="webui-popover  webui-popover-demo top in webui-popover-fixed" style=" display: block;"><div class="arrow"></div><div class="webui-popover-inner"><h3 class="webui-popover-title"> <i class="glyphicon glyphicon-comment"></i> Welcome to WebUI Popover</h3><div class="webui-popover-content">
-									<p>
-										You can click <i class="glyphicon glyphicon-cog"></i> icon on the left side to set global options for demos. 
-									</p><p>Just enjoy it and have fun !</p><p>email : sanddywalker@gmail.com</p></div></div></div>
+									<a href="#" class="btn btn-default show-pop" id="btn-sticky" data-placement="top" data-trigger="sticky"
+										data-content="<p>This is webui popover demo.</p><p><code>trigger:'sticky'</code></p>">sticky popover</a>
 						    	</div>
 
 								
@@ -457,7 +455,7 @@
 				// });
 
 				$('#setup').webuiPopover({
-					width:300,
+					width:350,
 					height:535,
 					padding:false,
 					animation:'pop',
@@ -488,6 +486,9 @@
 					var $content = $($(this).attr('href'));
 					$content.addClass('active').siblings().removeClass('active');
 					$('.webui-popover').hide();
+					if ($(this).attr('href')=='#specify'){
+						$('#btn-sticky').webuiPopover('destroy').webuiPopover(settings);
+					}
 				});
 
 				
@@ -512,7 +513,7 @@
 					settings.style=$('.option-style.active').data('option');
 					settings.trigger=$('.option-trigger.active').data('option');
 					settings.closeable=$('.option-closeable').hasClass('active');
-					settings.multi = $('.option-mulit').hasClass('active');
+					settings.multi = $('.option-multi').hasClass('active');
 					settings.arrow = $('.option-arrow').hasClass('active');
 					initPopover();
 				}		

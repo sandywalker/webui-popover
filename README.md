@@ -122,7 +122,7 @@ Create  Popover and trigged by manual
 	placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left,auto-top,auto-right,auto-bottom,auto-left,horizontal,vertical
 	width:'auto',//can be set with  number
 	height:'auto',//can be set with  number
-	trigger:'click',//values:  click,hover,manual
+	trigger:'click',//values:  click,hover,manual(handle events by your self),sticky(always show after popover is created);
 	style:'',//values:'',inverse
 	animation:null, //pop with animation,values: pop,fade (only take effect in the browser which support css3 transition)
 	delay: {//show and hide delay time of the popover, works only when trigger is 'hover',the value can be number or object
@@ -144,6 +144,7 @@ Create  Popover and trigged by manual
 	url:'',//if not empty ,plugin will load content by url
 	backdrop:false,//if backdrop is set to true, popover will use backdrop on open
 	dismissible:true // if popover can be dismissed by  outside click or escape key
+	autoHide:false // automatic hide the popover by a specified timeout, the value must be false,or a number(1000 = 1s).
 }
 ```
 

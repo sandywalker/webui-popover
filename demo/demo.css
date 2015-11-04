@@ -54,19 +54,23 @@ body{
 				color:#333;
 			}
 
-			
+			.list-group-item-text{
+				color:#aaa;
+			}
 
 			#optionsWrapper{
 				display: none;
 			}
 			
 			.options{
-				
+				padding:0;
+				margin:0;
 			}
 
 			.options h3{
 				margin:0;
-				padding-left:15px;
+
+				padding:0 0 0 15px;
 				line-height: 50px;
 				border-bottom: 1px solid #ccc;
 			}
@@ -370,6 +374,14 @@ body{
 				margin-bottom: 200px;
 			}
 
+			#specify #btn-sticky{
+				position: absolute;
+				top:60%;
+				left:50%;
+				width:150px;
+				border-radius: 0;
+				margin-left:-75px;
+			}
 			.webui-popover-demo.top{
 				position: absolute;
 				top:50%;

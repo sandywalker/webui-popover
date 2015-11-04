@@ -40,7 +40,7 @@
 @font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
 
 
-@close-size:                20px;
+@close-size:                16px;
 @close-color:               #000;
 
 @popover-z-index: 9999;
@@ -70,6 +70,19 @@
             transform: @transform;
 }
 
+.transition(@transition){
+   -webkit-transition: @transition;
+         -o-transition: @transition;
+            transition: @transition;
+}
+
+.transition-property(@property){
+    -webkit-transition-property: @property;
+         -o-transition-property: @property;
+            transition-property: @property;
+}
+
+
 
 /*  webui popover  */
 .webui-popover {
@@ -98,21 +111,31 @@
 
   &.pop {
     .transform(scale(.8));
-    transition: transform .15s cubic-bezier(.3, 0, 0, 1.5);
+    .transition(transform .15s cubic-bezier(.3, 0, 0, 1.5));
+    .opacity(0);
+  }
+  &.pop-out {
+    .transition-property("opacity,transform");
+    .transition(0.15s linear);
+    .opacity(0);
   }
   
-  &.fade{
-    transition: opacity .15s linear;
+  &.fade,&.fade-out{
+    .transition(opacity .15s linear);
+    .opacity(0);
+  }
+  &.out{
+    .opacity(0);
   }
   
-  &.in {.transform(none);opacity:1};
+  &.in {.transform(none);.opacity(1)};
 }
 
 
 
 .webui-popover-inner .close{
   font-family: arial;
-  margin:5px 10px 0 0;
+  margin:8px 10px 0 0;
   float: right;
   font-size: @close-size;
   font-weight: bold;

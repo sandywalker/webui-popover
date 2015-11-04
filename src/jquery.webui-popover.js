@@ -11,7 +11,7 @@
         placement: 'auto',
         width: 'auto',
         height: 'auto',
-        trigger: 'click',
+        trigger: 'click', //hover,click,sticky,manual
         style: '',
         delay: {
             show: null,
@@ -43,7 +43,8 @@
         dismissible: true,
         onShow: null,
         onHide: null,
-        abortXHR: true
+        abortXHR: true,
+        autoHide: false
     };
 
 
@@ -96,6 +97,10 @@
                 backdrop.appendTo(document.body).hide();
             }
             _globalIdSeed++;
+            if (this.getTrigger() === 'sticky') {
+                this.show();
+            }
+
         },
         /* api methods and actions */
         destroy: function() {
@@ -122,7 +127,15 @@
                 this.$target.remove();
             }
         },
-        hide: function(event) {
+        /*
+            param: force    boolean value, if value is true then force hide the popover
+            param: event    dom event,
+        */
+        hide: function(force, event) {
+            if (!force && this.getTrigger() === 'sticky') {
+                return;
+            }
+
             if (!this._opened) {
                 return;
             }
@@ -130,15 +143,21 @@
                 event.preventDefault();
                 event.stopPropagation();
             }
+
             if (this.xhr && this.options.abortXHR === true) {
                 this.xhr.abort();
                 this.xhr = null;
             }
 
+
             var e = $.Event('hide.' + pluginType);
             this.$element.trigger(e, [this.$target]);
             if (this.$target) {
-                this.$target.removeClass('in').hide();
+                this.$target.removeClass('in').addClass(this.getHideAnimation());
+                var that = this;
+                setTimeout(function() {
+                    that.$target.hide();
+                }, 300);
             }
             if (this.options.backdrop) {
                 backdrop.hide();
@@ -150,6 +169,18 @@
                 this.options.onHide(this.$target);
             }
 
+        },
+        resetAutoHide: function() {
+            var that = this;
+            var autoHide = that.getAutoHide();
+            if (autoHide) {
+                if (that.autoHideHandler) {
+                    clearTimeout(that.autoHideHandler);
+                }
+                that.autoHideHandler = setTimeout(function() {
+                    that.hide();
+                }, autoHide);
+            }
         },
         toggle: function(e) {
             if (e) {
@@ -167,7 +198,6 @@
         },
         /*core method ,show popover */
         show: function() {
-
             var
                 $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
             if (!this.options.multi) {
@@ -201,6 +231,7 @@
                 backdrop.show();
             }
             this._opened = true;
+            this.resetAutoHide();
         },
         displayContent: function() {
             var
@@ -240,10 +271,12 @@
                 left: -2000,
                 display: 'block'
             });
+
             if (this.getAnimation()) {
                 $target.addClass(this.getAnimation());
             }
             $target.appendTo(document.body);
+
             targetWidth = $target[0].offsetWidth;
             targetHeight = $target[0].offsetHeight;
             placement = this.getPlacement(elementPos);
@@ -254,7 +287,6 @@
             this.initTargetEvents();
             var postionInfo = this.getTargetPositin(elementPos, placement, targetWidth, targetHeight);
             this.$target.css(postionInfo.position).addClass(placement).addClass('in');
-
 
             if (this.options.type === 'iframe') {
                 var $iframe = $target.find('iframe');
@@ -319,6 +351,9 @@
         getUrl: function() {
             return this.$element.attr('data-url') || this.options.url;
         },
+        getAutoHide: function() {
+            return this.$element.attr('data-auto-hide') || this.options.autoHide;
+        },
         getCache: function() {
             var dataAttr = this.$element.attr('data-cache');
             if (typeof(dataAttr) !== 'undefined') {
@@ -355,6 +390,10 @@
         getAnimation: function() {
             var dataAttr = this.$element.attr('data-animation');
             return dataAttr || this.options.animation;
+        },
+        getHideAnimation: function() {
+            var ani = this.getAnimation();
+            return ani ? ani + '-out' : 'out';
         },
         setTitle: function(title) {
             var $titleEl = this.getTitleElement();
@@ -427,7 +466,7 @@
         },
 
         bindBodyEvents: function() {
-            if (this.options.dismissible) {
+            if (this.options.dismissible && this.getTrigger() === 'click') {
                 $('body').off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
                 $('body').off('click.webui-popover').on('click.webui-popover', $.proxy(this.bodyClickHandler, this));
             }
@@ -480,7 +519,7 @@
                     .on('mouseenter', $.proxy(this.mouseenterHandler, this))
                     .on('mouseleave', $.proxy(this.mouseleaveHandler, this));
             }
-            this.$target.find('.close').off('click').on('click', $.proxy(this.hide, this));
+            this.$target.find('.close').off('click').on('click', $.proxy(this.hide, this, true));
             this.$target.off('click.webui-popover').on('click.webui-popover', $.proxy(this.targetClickHandler, this));
         },
         /* utils methods */
@@ -614,7 +653,7 @@
                 arrowSize = this.options.arrow ? 20 : 0,
                 fixedW = elementW < arrowSize + 10 ? arrowSize : 0,
                 fixedH = elementH < arrowSize + 10 ? arrowSize : 0,
-                padding = arrowSize + 10;
+                padding = 10;
             switch (placement) {
                 case 'bottom':
                     position = {
@@ -717,6 +756,7 @@
             //fix the position if it is outside of the screen
             var pageH = clientHeight + scrollTop;
             var pageW = clientWidth + scrollLeft;
+
             if (position.left < 0) {
                 position.left = padding;
                 arrowOffset = {
