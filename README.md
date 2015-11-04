@@ -119,12 +119,11 @@ Create  Popover and trigged by manual
 ### default options
 ```javascript
 {
-	placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left,auto-top,auto-right,auto-bottom,auto-left
+	placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left,auto-top,auto-right,auto-bottom,auto-left,horizontal,vertical
 	width:'auto',//can be set with  number
 	height:'auto',//can be set with  number
 	trigger:'click',//values:  click,hover,manual
 	style:'',//values:'',inverse
-	constrains:null, // constrains the direction when placement is  auto,  values: horizontal,vertical
 	animation:null, //pop with animation,values: pop,fade (only take effect in the browser which support css3 transition)
 	delay: {//show and hide delay time of the popover, works only when trigger is 'hover',the value can be number or object
 	    show: null,

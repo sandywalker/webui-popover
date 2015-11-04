@@ -30,7 +30,6 @@
         padding: true,
         url: '',
         type: 'html',
-        constrains: null,
         animation: null,
         template: '<div class="webui-popover">' +
             '<div class="arrow"></div>' +
@@ -353,13 +352,6 @@
             }
             return this.options.delay.hide === 0 ? 0 : this.options.delay.hide || 100;
         },
-        getConstrains: function() {
-            var dataAttr = this.$element.attr('data-contrains');
-            if (typeof(dataAttr) !== 'undefined') {
-                return dataAttr;
-            }
-            return this.options.constrains;
-        },
         getAnimation: function() {
             var dataAttr = this.$element.attr('data-animation');
             return dataAttr || this.options.animation;
@@ -513,38 +505,39 @@
                 placement = this.$element.data('placement') || this.options.placement;
             }
 
-
-            if (placement === 'auto') {
-                var constrainsH = this.getConstrains() === 'horizontal',
-                    constrainsV = this.getConstrains() === 'vertical';
+            var isH =  placement === 'horizontal';
+            var isV =  placement === 'vertical';
+            var detect = placement === 'auto' || isH || isV;
+            
+            if (detect) {
                 if (pageX < clientWidth / 3) {
                     if (pageY < clientHeight / 3) {
-                        placement = constrainsH ? 'right-bottom' : 'bottom-right';
+                        placement = isH ? 'right-bottom' : 'bottom-right';
                     } else if (pageY < clientHeight * 2 / 3) {
-                        if (constrainsV) {
+                        if (isV) {
                             placement = pageY <= clientHeight / 2 ? 'bottom-right' : 'top-right';
                         } else {
                             placement = 'right';
                         }
                     } else {
-                        placement = constrainsH ? 'right-top' : 'top-right';
+                        placement = isH ? 'right-top' : 'top-right';
                     }
                     //placement= pageY>targetHeight+arrowSize?'top-right':'bottom-right';
                 } else if (pageX < clientWidth * 2 / 3) {
                     if (pageY < clientHeight / 3) {
-                        if (constrainsH) {
+                        if (isH) {
                             placement = pageX <= clientWidth / 2 ? 'right-bottom' : 'left-bottom';
                         } else {
                             placement = 'bottom';
                         }
                     } else if (pageY < clientHeight * 2 / 3) {
-                        if (constrainsH) {
+                        if (isH) {
                             placement = pageX <= clientWidth / 2 ? 'right' : 'left';
                         } else {
                             placement = pageY <= clientHeight / 2 ? 'bottom' : 'top';
                         }
                     } else {
-                        if (constrainsH) {
+                        if (isH) {
                             placement = pageX <= clientWidth / 2 ? 'right-top' : 'left-top';
                         } else {
                             placement = 'top';
@@ -553,15 +546,15 @@
                 } else {
                     //placement = pageY>targetHeight+arrowSize?'top-left':'bottom-left';
                     if (pageY < clientHeight / 3) {
-                        placement = constrainsH ? 'left-bottom' : 'bottom-left';
+                        placement = isH ? 'left-bottom' : 'bottom-left';
                     } else if (pageY < clientHeight * 2 / 3) {
-                        if (constrainsV) {
+                        if (isV) {
                             placement = pageY <= clientHeight / 2 ? 'bottom-left' : 'top-left';
                         } else {
                             placement = 'left';
                         }
                     } else {
-                        placement = constrainsH ? 'left-top' : 'top-left';
+                        placement = isH ? 'left-top' : 'top-left';
                     }
                 }
             } else if (placement === 'auto-top') {
