@@ -4,7 +4,7 @@
   "description": "A enhancement popover plugin for Bootstrap ,but you can use it stand-alone without Bootstrap!",
   "author": "Sandy Walker",
   "homepage": "https://github.com/sandywalker/webui-popover",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "license":"MIT",
   "devDependencies": {
     "grunt": "~0.4.1",

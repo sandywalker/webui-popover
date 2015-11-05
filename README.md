@@ -54,7 +54,7 @@ $('a').webuiPopover({title:'Title',content:'Content'});
 $('a').webuiPopover();
 ```
 
- Popover  content setted by next element with class 'webui-popover'
+ Popover  content easily set by next element which must has class 'webui-popover'
  ```html
 <a href="#" >shop pop</a>
 <div class="webui-popover">
