@@ -51,6 +51,8 @@
     var popovers = [];
     var backdrop = $('<div class="webui-popover-backdrop"></div>');
     var _globalIdSeed = 0;
+    var _isBodyEventHandled = false;
+    var _offsetOut = -2000; // the value offset  out of the screen
     var $document = $(document);
 
 
@@ -79,15 +81,12 @@
         init: function() {
             //init the event handlers
             if (this.getTrigger() === 'click') {
-                this.$element.off('click').on('click', $.proxy(this.toggle, this));
+                this.$element.off('click touchend').on('click touchend', $.proxy(this.toggle, this));
             } else if (this.getTrigger() === 'hover') {
                 this.$element
                     .off('mouseenter mouseleave click')
                     .on('mouseenter', $.proxy(this.mouseenterHandler, this))
                     .on('mouseleave', $.proxy(this.mouseleaveHandler, this));
-                // .on('click', function(e) {
-                //     e.stopPropagation();
-                // });
             }
             this._poped = false;
             this._inited = true;
@@ -267,8 +266,8 @@
                 $target.find('.arrow').remove();
             }
             $target.detach().css({
-                top: -2000,
-                left: -2000,
+                top: _offsetOut,
+                left: _offsetOut,
                 display: 'block'
             });
 
@@ -286,6 +285,7 @@
 
             this.initTargetEvents();
             var postionInfo = this.getTargetPositin(elementPos, placement, targetWidth, targetHeight);
+
             this.$target.css(postionInfo.position).addClass(placement).addClass('in');
 
             if (this.options.type === 'iframe') {
@@ -421,10 +421,11 @@
                     content = this.options.content;
                 }
                 this.content = this.$element.attr('data-content') || content;
-                if (!this.content){
+                if (!this.content) {
                     var $next = this.$element.next();
-                    if ($next&&$next.hasClass(pluginClass)){
+                    if ($next && $next.hasClass(pluginClass)) {
                         this.content = $next.html();
+                        $next.remove();
                     }
                 }
             }
@@ -474,9 +475,9 @@
         },
 
         bindBodyEvents: function() {
-            if (this.options.dismissible && this.getTrigger() === 'click') {
-                $('body').off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
-                $('body').off('click.webui-popover').on('click.webui-popover', $.proxy(this.bodyClickHandler, this));
+            if (this.options.dismissible && this.getTrigger() === 'click' && !_isBodyEventHandled) {
+                $document.off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
+                $document.off('click.webui-popover touchend.webui-popover').on('click.webui-popover touchend.webui-popover', $.proxy(this.bodyClickHandler, this));
             }
         },
 
@@ -506,6 +507,7 @@
             }
         },
         bodyClickHandler: function() {
+            _isBodyEventHandled = true;
             if (this.getTrigger() === 'click') {
                 if (this._targetclick) {
                     this._targetclick = false;
@@ -659,9 +661,20 @@
                 position = {},
                 arrowOffset = null,
                 arrowSize = this.options.arrow ? 20 : 0,
-                fixedW = elementW < arrowSize + 10 ? arrowSize : 0,
-                fixedH = elementH < arrowSize + 10 ? arrowSize : 0,
-                padding = 10;
+                padding = 10,
+                fixedW = elementW < arrowSize + padding ? arrowSize : 0,
+                fixedH = elementH < arrowSize + padding ? arrowSize : 0,
+                refix = 0,
+                pageH = clientHeight + scrollTop,
+                pageW = clientWidth + scrollLeft;
+
+
+
+            var validLeft = pos.left + pos.width / 2 - fixedW > 0;
+            var validRight = pos.left + pos.width / 2 + fixedW < pageW;
+            var validTop = pos.top + pos.height / 2 - fixedH > 0;
+            var validBottom = pos.top + pos.height / 2 + fixedH < pageH;
+
             switch (placement) {
                 case 'bottom':
                     position = {
@@ -690,110 +703,80 @@
                 case 'top-right':
                     position = {
                         top: pos.top - targetHeight,
-                        left: pos.left - fixedW
+                        left: validLeft ? pos.left - fixedW : padding
                     };
                     arrowOffset = {
-                        left: Math.min(elementW, targetWidth) / 2 + fixedW
+                        left: validLeft ? Math.min(elementW, targetWidth) / 2 + fixedW : _offsetOut
                     };
                     break;
                 case 'top-left':
+                    refix = validRight ? fixedW : -padding;
                     position = {
                         top: pos.top - targetHeight,
-                        left: pos.left - targetWidth + pos.width + fixedW
+                        left: pos.left - targetWidth + pos.width + refix
                     };
                     arrowOffset = {
-                        left: targetWidth - Math.min(elementW, targetWidth) / 2 - fixedW
+                        left: validRight ? targetWidth - Math.min(elementW, targetWidth) / 2 - fixedW : _offsetOut
                     };
                     break;
                 case 'bottom-right':
                     position = {
                         top: pos.top + pos.height,
-                        left: pos.left - fixedW
+                        left: validLeft ? pos.left - fixedW : padding
                     };
                     arrowOffset = {
-                        left: Math.min(elementW, targetWidth) / 2 + fixedW
+                        left: validLeft ? Math.min(elementW, targetWidth) / 2 + fixedW : _offsetOut
                     };
                     break;
                 case 'bottom-left':
+                    refix = validRight ? fixedW : -padding;
                     position = {
                         top: pos.top + pos.height,
-                        left: pos.left - targetWidth + pos.width + fixedW
+                        left: pos.left - targetWidth + pos.width + refix
                     };
                     arrowOffset = {
-                        left: targetWidth - Math.min(elementW, targetWidth) / 2 - fixedW
+                        left: validRight ? targetWidth - Math.min(elementW, targetWidth) / 2 - fixedW : _offsetOut
                     };
                     break;
                 case 'right-top':
+                    refix = validBottom ? fixedH : -padding;
                     position = {
-                        top: pos.top - targetHeight + pos.height + fixedH,
+                        top: pos.top - targetHeight + pos.height + refix,
                         left: pos.left + pos.width
                     };
                     arrowOffset = {
-                        top: targetHeight - Math.min(elementH, targetHeight) / 2 - fixedH
+                        top: validBottom ? targetHeight - Math.min(elementH, targetHeight) / 2 - fixedH : _offsetOut
                     };
                     break;
                 case 'right-bottom':
                     position = {
-                        top: pos.top - fixedH,
+                        top: validTop ? pos.top - fixedH : padding,
                         left: pos.left + pos.width
                     };
                     arrowOffset = {
-                        top: Math.min(elementH, targetHeight) / 2 + fixedH
+                        top: validTop ? Math.min(elementH, targetHeight) / 2 + fixedH : _offsetOut
                     };
                     break;
                 case 'left-top':
+                    refix = validBottom ? fixedH : -padding;
                     position = {
-                        top: pos.top - targetHeight + pos.height + fixedH,
+                        top: pos.top - targetHeight + pos.height + refix,
                         left: pos.left - targetWidth
                     };
                     arrowOffset = {
-                        top: targetHeight - Math.min(elementH, targetHeight) / 2 - fixedH
+                        top: validBottom ? targetHeight - Math.min(elementH, targetHeight) / 2 - fixedH : _offsetOut
                     };
                     break;
                 case 'left-bottom':
                     position = {
-                        top: pos.top - fixedH,
+                        top: validTop ? pos.top - fixedH : padding,
                         left: pos.left - targetWidth
                     };
                     arrowOffset = {
-                        top: Math.min(elementH, targetHeight) / 2 + fixedH
+                        top: validTop ? Math.min(elementH, targetHeight) / 2 + fixedH : _offsetOut
                     };
                     break;
 
-            }
-            //fix the position if it is outside of the screen
-            var pageH = clientHeight + scrollTop;
-            var pageW = clientWidth + scrollLeft;
-
-            if (position.left < 0) {
-                position.left = padding;
-                arrowOffset = {
-                    left: -1
-                };
-            }
-            if (position.left + targetWidth > pageW) {
-                position.left = pageW - targetWidth - elementW - padding;
-                //need fixed again
-                if (position.left < 0) {
-                    position.left = padding;
-                }
-                arrowOffset = {
-                    left: -1
-                };
-            }
-
-            if (position.top < 0) {
-                position.top = elementH + padding;
-                arrowOffset = {
-                    top: -1
-                };
-            }
-
-            if (position.top + targetHeight > pageH) {
-                position.top = pageH - targetHeight - elementH - padding;
-                arrowOffset = {
-                    top: -1
-                };
             }
 
             return {
