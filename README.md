@@ -41,59 +41,72 @@ $('a').webuiPopover(options);
 
 ####Some Examples:
 
-Create  Simplest Popover
+ Simplest Popover
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content'});
 ```
 
-Create  Popover by dom element data-* attribute
+ Popover by dom element data-* attribute
 ```html
-<a href="#" data-title="Title" data-content="Contents..." data-placement="right"></a>
+<a href="#" data-title="Title" data-content="Contents..." data-placement="right">show pop</a>
 ```
 ```javascript
 $('a').webuiPopover();
 ```
 
-Create  Popover with bottom placement
+ Popover  content setted by next element with class 'webui-popover'
+ ```html
+<a href="#" >shop pop</a>
+<div class="webui-popover">
+	<p>popover content</p>
+</div>
+ ```
+ ```javascript
+$('a').webuiPopover();
+ ```
+
+
+ Popover with bottom placement
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',placement:'bottom'});
 ```
 
-Create  Popover trigged by mouse hover
+ Popover trigged by mouse hover
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',trigger:'hover'});
 ```
 
-Create  sticky Popover
+ sticky Popover
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',trigger:'sticky'});
 ```
 
-Create  inversed style Popover 
+ inversed style Popover 
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',style:'inverse'});
 ```
-Create  Popover with fixed width and height
+ Popover with fixed width and height
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',width:300,height:200});
 ```
 
-Create  Popover with close button
+ Popover with close button
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',closeable:true});
 ```
 
-Create  and Animate the Popover 
+ and Animate the Popover 
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',animation:'pop'});
 ```
 
-Create  Popover with iframe
+ Popover with iframe
 ```javascript
 $('a').webuiPopover({type:'iframe',url:'http://getbootstrap.com'});
 ```
 
-Create  Popover Async Mode
+
+ Popover Async Mode
 ```javascript
 $('a').webuiPopover({	
 						type:'async',
@@ -107,7 +120,7 @@ $('a').webuiPopover({
  					});
 ```
 
-Create  Popover and trigged by manual
+ Popover and trigged by manual
 ```javascript
  //Initailize 
  $('a').webuiPopover({trigger:'manual'});

@@ -76,6 +76,12 @@
 
     <div id="inline_test"></div>
 
+    <a href="#" id="popNext">Pop next element</a>
+    <div class="webui-popover">
+       <h1>Hi there</h1>
+       <p>This is next element</p>
+    </div>
+
     <form action="">
       <input type="text" id="input" class="editor" data-content="input message1" data-placement="right"  data-trigger="manual"/>
       <p>&nbsp;</p>
@@ -243,6 +249,8 @@
            title:'aaa',
            content:'dfdffff',
         });
+
+        $('#popNext').webuiPopover();
 
       
     }); 

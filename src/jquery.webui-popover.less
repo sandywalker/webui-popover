@@ -4,8 +4,8 @@
 @popover-inverse-bg:				#333;
 
 @popover-inverse-color:				#eee;
-//** Popover maximum width
-@popover-width:                   	276px;
+//** Popover min width
+@popover-min-width:                   50px;
 
 @popover-min-height:                  32px;
 
@@ -91,7 +91,7 @@
   left: 0;
   z-index: @popover-z-index;
   display: none;
-  width: @popover-width;
+  min-width: @popover-min-width;
   min-height:@popover-min-height;
   padding: 1px;
   text-align: left;

@@ -296,7 +296,9 @@
 
 
             if (!this.options.padding) {
-                $targetContent.css('height', $targetContent.outerHeight());
+                if (this.options.height !== 'auto') {
+                    $targetContent.css('height', $targetContent.outerHeight());
+                }
                 this.$target.addClass('webui-no-padding');
             }
             if (!this.options.arrow) {
@@ -419,6 +421,12 @@
                     content = this.options.content;
                 }
                 this.content = this.$element.attr('data-content') || content;
+                if (!this.content){
+                    var $next = this.$element.next();
+                    if ($next&&$next.hasClass(pluginClass)){
+                        this.content = $next.html();
+                    }
+                }
             }
             return this.content;
         },

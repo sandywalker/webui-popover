@@ -1,5 +1,5 @@
 /*
- *  webui popover plugin  - v1.1.7
+ *  webui popover plugin  - v1.1.9
  *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
  *  https://github.com/sandywalker/webui-popover
  *
@@ -143,6 +143,7 @@
             if (!force && this.getTrigger() === 'sticky') {
                 return;
             }
+
             if (!this._opened) {
                 return;
             }
@@ -150,10 +151,12 @@
                 event.preventDefault();
                 event.stopPropagation();
             }
+
             if (this.xhr && this.options.abortXHR === true) {
                 this.xhr.abort();
                 this.xhr = null;
             }
+
 
             var e = $.Event('hide.' + pluginType);
             this.$element.trigger(e, [this.$target]);
@@ -161,7 +164,7 @@
                 this.$target.removeClass('in').addClass(this.getHideAnimation());
                 var that = this;
                 setTimeout(function() {
-                    that.$target.hide()
+                    that.$target.hide();
                 }, 300);
             }
             if (this.options.backdrop) {
@@ -301,7 +304,9 @@
 
 
             if (!this.options.padding) {
-                $targetContent.css('height', $targetContent.outerHeight());
+                if (this.options.height !== 'auto') {
+                    $targetContent.css('height', $targetContent.outerHeight());
+                }
                 this.$target.addClass('webui-no-padding');
             }
             if (!this.options.arrow) {
@@ -424,6 +429,12 @@
                     content = this.options.content;
                 }
                 this.content = this.$element.attr('data-content') || content;
+                if (!this.content){
+                    var $next = this.$element.next();
+                    if ($next&&$next.hasClass(pluginClass)){
+                        this.content = $next.html();
+                    }
+                }
             }
             return this.content;
         },
@@ -471,7 +482,7 @@
         },
 
         bindBodyEvents: function() {
-            if (this.options.dismissible) {
+            if (this.options.dismissible && this.getTrigger() === 'click') {
                 $('body').off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
                 $('body').off('click.webui-popover').on('click.webui-popover', $.proxy(this.bodyClickHandler, this));
             }

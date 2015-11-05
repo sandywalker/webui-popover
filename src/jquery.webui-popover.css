@@ -5,7 +5,7 @@
   left: 0;
   z-index: 9999;
   display: none;
-  width: 276px;
+  min-width: 50px;
   min-height: 32px;
   padding: 1px;
   text-align: left;
