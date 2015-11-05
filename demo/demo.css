@@ -327,6 +327,11 @@ header p{
 	left:20px;
 }
 
+#advanced .show-pop-dropdown{
+	bottom:20px;
+	left:180px;
+}
+
 #advanced form{
 	margin:120px auto 0 auto;
 	width:500px;

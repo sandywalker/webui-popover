@@ -344,7 +344,18 @@
 									  <div class="clearfix"></div>
 
 									</form> -->
-									 <a href="#" class="show-pop-backdrop btn btn-default " data-placement="auto">pop with backdrop</a>
+									 <a href="#" class="show-pop-backdrop btn btn-default " data-placement="auto">pop with 
+									 backdrop</a>
+									 <a href="#" class="show-pop-dropdown btn btn-default " data-placement="auto">pop with bs-dropdown</a>
+									 <div  class="webui-popover">
+								          <ul class="dropdown-menu" >
+								          	<li><a href="#">Action</a></li>
+								            <li><a href="#">Another Option</a></li>
+								            <li><a href="#">Something else</a></li>
+								            <li role="separator" class="divider"></li>
+								            <li><a href="#">Separated link</a></li>
+								          </ul>
+							         </div>
 								</div>
 								<div id="events" class="content">
 									<div class="btns">
@@ -561,6 +572,10 @@
 																					});
 
 					$('a.show-pop-backdrop').webuiPopover('destroy').webuiPopover({content:'popover with backdrop!', backdrop:true});
+
+					$('a.show-pop-dropdown').webuiPopover('destroy').webuiPopover({padding:0});
+
+
 
 					 var
 					 	iframeSettings = {	width:500,
