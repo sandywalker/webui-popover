@@ -44,7 +44,9 @@
         onShow: null,
         onHide: null,
         abortXHR: true,
-        autoHide: false
+        autoHide: false,
+        offsetTop: 0,
+        offsetLeft: 0
     };
 
 
@@ -54,6 +56,10 @@
     var _isBodyEventHandled = false;
     var _offsetOut = -2000; // the value offset  out of the screen
     var $document = $(document);
+
+    var toNumber = function(numeric, fallback) {
+        return isNaN(numeric) ? (fallback || 0) : Number(numeric);
+    };
 
 
 
@@ -355,6 +361,12 @@
         },
         getAutoHide: function() {
             return this.$element.attr('data-auto-hide') || this.options.autoHide;
+        },
+        getOffsetTop: function() {
+            return toNumber(this.$element.attr('data-offset-top')) || this.options.offsetTop;
+        },
+        getOffsetLeft: function() {
+            return toNumber(this.$element.attr('data-offset-left')) || this.options.offsetLeft;
         },
         getCache: function() {
             var dataAttr = this.$element.attr('data-cache');
@@ -778,6 +790,8 @@
                     break;
 
             }
+            position.top += this.getOffsetTop();
+            position.left += this.getOffsetLeft();
 
             return {
                 position: position,

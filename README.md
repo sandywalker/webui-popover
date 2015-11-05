@@ -19,6 +19,9 @@ jquery1.7+
 * different styles
 * support url and iframe
 * support async mode
+* different animations
+* support backdrop 
+* 
 
 ##Demo
 [WebUI Popover Demo](http://sandywalker.github.io/webui-popover/demo/)
@@ -120,11 +123,18 @@ $('a').webuiPopover({
  					});
 ```
 
+ Popover Async simply by url
+ ```javascript
+$('a').webuiPopover({
+	type:'async',
+	url:'http://some.website/htmldata'
+});
+ ```
+
  Popover and trigged by manual
 ```javascript
  //Initailize 
  $('a').webuiPopover({trigger:'manual'});
-
 ...
  
  //Show it
@@ -161,8 +171,10 @@ $('a').webuiPopover({
 	type:'html',//content type, values:'html','iframe','async'
 	url:'',//if not empty ,plugin will load content by url
 	backdrop:false,//if backdrop is set to true, popover will use backdrop on open
-	dismissible:true // if popover can be dismissed by  outside click or escape key
-	autoHide:false // automatic hide the popover by a specified timeout, the value must be false,or a number(1000 = 1s).
+	dismissible:true, // if popover can be dismissed by  outside click or escape key
+	autoHide:false, // automatic hide the popover by a specified timeout, the value must be false,or a number(1000 = 1s).
+	offsetTop:0,  // offset the top of the popover
+	offsetLeft:0  // offset the left of the popover
 }
 ```
 
