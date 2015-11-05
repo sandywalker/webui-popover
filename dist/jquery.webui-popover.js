@@ -290,14 +290,23 @@
             }
             $target.appendTo(document.body);
 
-            targetWidth = $target[0].offsetWidth;
-            targetHeight = $target[0].offsetHeight;
+
             placement = this.getPlacement(elementPos);
 
             //This line is just for compatible with knockout custom binding
             this.$element.trigger('added.' + pluginType);
 
             this.initTargetEvents();
+
+            if (!this.options.padding) {
+                if (this.options.height !== 'auto') {
+                    $targetContent.css('height', $targetContent.outerHeight());
+                }
+                this.$target.addClass('webui-no-padding');
+            }
+            targetWidth = $target[0].offsetWidth;
+            targetHeight = $target[0].offsetHeight;
+
             var postionInfo = this.getTargetPositin(elementPos, placement, targetWidth, targetHeight);
 
             this.$target.css(postionInfo.position).addClass(placement).addClass('in');
@@ -309,12 +318,7 @@
 
 
 
-            if (!this.options.padding) {
-                if (this.options.height !== 'auto') {
-                    $targetContent.css('height', $targetContent.outerHeight());
-                }
-                this.$target.addClass('webui-no-padding');
-            }
+
             if (!this.options.arrow) {
                 this.$target.css({
                     'margin': 0

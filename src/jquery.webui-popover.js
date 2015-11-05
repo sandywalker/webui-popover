@@ -282,7 +282,7 @@
             }
             $target.appendTo(document.body);
 
-            
+
             placement = this.getPlacement(elementPos);
 
             //This line is just for compatible with knockout custom binding
@@ -310,7 +310,7 @@
 
 
 
-            
+
             if (!this.options.arrow) {
                 this.$target.css({
                     'margin': 0
