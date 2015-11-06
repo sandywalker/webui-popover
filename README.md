@@ -21,7 +21,6 @@ jquery1.7+
 * support async mode
 * different animations
 * support backdrop 
-* 
 
 ##Demo
 [WebUI Popover Demo](http://sandywalker.github.io/webui-popover/demo/)
