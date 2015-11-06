@@ -1,4 +1,12 @@
+
+
+
 # History
+
+### 1.2.1
+* now option url can be set with jQuery selector (eg: '#myContent') when type equals 'html'.
+* fix the bug which cause the popover content lost event handler.
+
 
 ### 1.2.0
 * make the  animation avaiable for hidding.
