@@ -49,7 +49,7 @@ $('a').webuiPopover(options);
 $('a').webuiPopover({title:'Title',content:'Content'});
 ```
 
- Popover by dom element data-* attribute
+ Create Popover by dom element data-* attribute
 ```html
 <a href="#" data-title="Title" data-content="Contents..." data-placement="right">show pop</a>
 ```
@@ -57,10 +57,10 @@ $('a').webuiPopover({title:'Title',content:'Content'});
 $('a').webuiPopover();
 ```
 
- Popover  content easily set by next element which  has class 'webui-popover'
+ Popover  content can  be easily setted by next element with class 'webui-popover-content'
  ```html
 <a href="#" >shop pop</a>
-<div class="webui-popover">
+<div class="webui-popover-content">
 	<p>popover content</p>
 </div>
  ```
@@ -68,29 +68,40 @@ $('a').webuiPopover();
 $('a').webuiPopover();
  ```
 
+ Or, just use jQuery selector (id selector recommended) to set the Popover content.
 
- Popover with bottom placement
+ ```html
+<a href="#" >shop pop</a>
+<div id="myContent">
+	<p>popover content</p>
+</div>
+ ```
+ ```javascript
+$('a').webuiPopover({url:'#myContent'});
+ ```
+
+ Popover with specified placement.
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',placement:'bottom'});
 ```
 
- Popover trigged by mouse hover
+ Popover trigged by mouse hover.
 ```javascript
-$('a').webuiPopover({title:'Title',content:'Content',trigger:'hover'});
+$('a').webuiPopover({content:'Content',trigger:'hover'});
 ```
 
- sticky Popover
+ Create Sticky Popover.
 ```javascript
-$('a').webuiPopover({title:'Title',content:'Content',trigger:'sticky'});
+$('a').webuiPopover({content:'Content',trigger:'sticky'});
 ```
 
- inversed style Popover 
+ Popover with inversed style.
 ```javascript
-$('a').webuiPopover({title:'Title',content:'Content',style:'inverse'});
+$('a').webuiPopover({content:'Content',style:'inverse'});
 ```
  Popover with fixed width and height
 ```javascript
-$('a').webuiPopover({title:'Title',content:'Content',width:300,height:200});
+$('a').webuiPopover({content:'Content',width:300,height:200});
 ```
 
  Popover with close button
@@ -98,7 +109,7 @@ $('a').webuiPopover({title:'Title',content:'Content',width:300,height:200});
 $('a').webuiPopover({title:'Title',content:'Content',closeable:true});
 ```
 
- and Animate the Popover 
+ Animate the Popover 
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',animation:'pop'});
 ```
@@ -109,7 +120,7 @@ $('a').webuiPopover({type:'iframe',url:'http://getbootstrap.com'});
 ```
 
 
- Popover Async Mode
+ Async Mode
 ```javascript
 $('a').webuiPopover({	
 						type:'async',
@@ -123,7 +134,7 @@ $('a').webuiPopover({
  					});
 ```
 
- Popover Async simply by url
+ Async simply by url
  ```javascript
 $('a').webuiPopover({
 	type:'async',
@@ -131,7 +142,7 @@ $('a').webuiPopover({
 });
  ```
 
- Popover and trigged by manual
+ Trigger the Popover by manual
 ```javascript
  //Initailize 
  $('a').webuiPopover({trigger:'manual'});
@@ -169,7 +180,7 @@ $('a').webuiPopover({
 	closeable:false,//display close button or not
 	padding:true,//content padding
 	type:'html',//content type, values:'html','iframe','async'
-	url:'',//if not empty ,plugin will load content by url
+	url:'',//if type equals 'html' , value should be jQuery selecor.  if type equels 'async' the plugin will load content by url.
 	backdrop:false,//if backdrop is set to true, popover will use backdrop on open
 	dismissible:true, // if popover can be dismissed by  outside click or escape key
 	autoHide:false, // automatic hide the popover by a specified timeout, the value must be false,or a number(1000 = 1s).

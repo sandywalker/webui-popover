@@ -82,7 +82,9 @@
             transition-property: @property;
 }
 
-
+.webui-popover-content {
+  display: none;
+}
 
 /*  webui popover  */
 .webui-popover {
@@ -129,6 +131,12 @@
   }
   
   &.in {.transform(none);.opacity(1)};
+
+  .webui-popover-content {
+    padding: 9px 14px;
+    overflow: auto;  
+    display: block;
+  }
 }
 
 
@@ -163,8 +171,8 @@
 .webui-popover-content {
   padding: 9px 14px;
   overflow: auto;  
+  display: none;
 }
-
 
 .webui-popover-inverse{
   background-color:@popover-inverse-bg;

@@ -76,11 +76,11 @@
 
     <div id="inline_test"></div>
 
-    <a href="#" id="popNext">Pop next element</a>
-    <div class="webui-popover">
+    <a href="#" id="popInline" data-content="<h1>Hi there</h1><p>This is next element </p>">Pop inline</a>
+    <a href="#" id="popNext" >Pop next element</a>
+    <div class="webui-popover-content">
        <h1>Hi there</h1>
-       <p>This is next element <a href="#" id="linkInPop">clickMe</a> </p>
-
+       <p>This is next element <a href="#" id="linkInPop" class="link-in-pop">clickMe</a> </p>
     </div>
 
     <form action="">
@@ -125,9 +125,9 @@
       <a href="#" class="border-pos pull-right" data-placement="left-top" >a<br>a<br>a</a>
     </div>
 
-    <div class="webui-popover" id="idContent">
+    <div class="hide" id="idContent">
       <h1>Url Selector</h1>
-      <p>set url with jquery selector!</p>
+      <p>set url with jquery selector! <a href="#" class="link-in-pop">clickMe</a></p>
     </div>
 
     <script type="text/javascript">
@@ -256,14 +256,15 @@
            content:'dfdffff'
         });
 
-        $('#linkInPop').on('click',function(e){
+        $('.link-in-pop').on('click',function(e){
             e.preventDefault();
             alert(1);
         });
 
-        $('#popNext').webuiPopover({animation:'pop'});
+        $('#popNext').webuiPopover({trigger:'hover',animation:'pop'});
+        $('#popInline').webuiPopover({trigger:'hover',animation:'pop'});
 
-        $('#popById').webuiPopover({url:'#idContent'})
+        $('#popById').webuiPopover({url:'#idContent',cache:false});
 
       
     }); 

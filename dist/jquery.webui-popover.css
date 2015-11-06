@@ -6,6 +6,9 @@
  *  Made by Sandy Duan
  *  Under MIT License
  */
+.webui-popover-content {
+  display: none;
+}
 /*  webui popover  */
 .webui-popover {
   position: absolute;
@@ -85,6 +88,11 @@
   opacity: 1;
   filter: alpha(opacity=100);
 }
+.webui-popover .webui-popover-content {
+  padding: 9px 14px;
+  overflow: auto;
+  display: block;
+}
 .webui-popover-inner .close {
   font-family: arial;
   margin: 8px 10px 0 0;
@@ -116,6 +124,7 @@
 .webui-popover-content {
   padding: 9px 14px;
   overflow: auto;
+  display: none;
 }
 .webui-popover-inverse {
   background-color: #333333;
