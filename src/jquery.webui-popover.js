@@ -439,9 +439,9 @@
                 this.content = this.$element.attr('data-content') || content;
                 if (!this.content) {
                     var $next = this.$element.next();
+
                     if ($next && $next.hasClass(pluginClass)) {
-                        this.content = $next.html();
-                        $next.remove();
+                        this.content = $next.children();
                     }
                 }
             }
@@ -449,7 +449,13 @@
         },
         setContent: function(content) {
             var $target = this.getTarget();
-            this.getContentElement().html(content);
+            var $ct = this.getContentElement();
+            if (typeof content === 'string') {
+                $ct.html(content);
+            } else if (content instanceof jQuery) {
+                $ct.html('');
+                content.appendTo($ct);
+            }
             this.$target = $target;
         },
         isAsync: function() {

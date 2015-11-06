@@ -79,7 +79,8 @@
     <a href="#" id="popNext">Pop next element</a>
     <div class="webui-popover">
        <h1>Hi there</h1>
-       <p>This is next element</p>
+       <p>This is next element <a href="#" id="linkInPop">clickMe</a> </p>
+
     </div>
 
     <form action="">
@@ -97,7 +98,7 @@
   
     <a href="#" id="popoverWithInput" data-offset-top="-50" data-offset-left="50">show input popover</a>
 
-    <p>&nbsp;</p>
+    <p><a href="#" id="popById" >popById</a></p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
@@ -122,6 +123,11 @@
       <a href="#" class="border-pos pull-left" data-placement="right-top">a</a>
       <a href="#" class="border-pos" data-placement="auto">a</a>
       <a href="#" class="border-pos pull-right" data-placement="left-top" >a<br>a<br>a</a>
+    </div>
+
+    <div class="webui-popover" id="idContent">
+      <h1>Url Selector</h1>
+      <p>set url with jquery selector!</p>
     </div>
 
     <script type="text/javascript">
@@ -247,10 +253,17 @@
         $('.border-pos').webuiPopover({
             width:500,
            title:'aaa',
-           content:'dfdffff',
+           content:'dfdffff'
         });
 
-        $('#popNext').webuiPopover();
+        $('#linkInPop').on('click',function(e){
+            e.preventDefault();
+            alert(1);
+        });
+
+        $('#popNext').webuiPopover({animation:'pop'});
+
+        $('#popById').webuiPopover({url:'#idContent'})
 
       
     }); 
