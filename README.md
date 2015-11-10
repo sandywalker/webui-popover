@@ -35,6 +35,14 @@ jquery1.7+
 <script src="jquery.webui-popover.js"></script>
 ```
 
+#### CDN
+WebUI Popover Support CDN from version 1.2.1, avaliable on [JSDELIVR](http://www.jsdelivr.com)
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
+...
+<script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+```
+
 ####Use the plugin as follows:
 
 ```javascript
