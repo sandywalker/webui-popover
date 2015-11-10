@@ -22,24 +22,29 @@ jquery1.7+
 * different animations
 * support backdrop 
 
+
+#### CDN
+WebUI Popover Support CDN from version 1.2.1, avaliable on [JSDELIVR](http://www.jsdelivr.com/?query=webui-popover)
+
 ##Demo
 [WebUI Popover Demo](http://sandywalker.github.io/webui-popover/demo/)
 
 ##Getting Started
 
 ####Including it on your page
+Localfile
 ```html
 <link rel="stylesheet" href="jquery.webui-popover.css">
 ...
 <script src="jquery.js"></script>
 <script src="jquery.webui-popover.js"></script>
 ```
+Or CDN 
 
-#### CDN
-WebUI Popover Support CDN from version 1.2.1, avaliable on [JSDELIVR](http://www.jsdelivr.com)
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
 ...
+<script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 ```
 
