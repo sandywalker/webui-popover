@@ -130,6 +130,11 @@
       <p>set url with jquery selector! <a href="#" class="link-in-pop">clickMe</a></p>
     </div>
 
+    <div id="dynamic">
+       <p>ddddd</p>
+    </div>
+    <button id="changeDynamic">change dynamic content</button>
+
     <script type="text/javascript">
     $(document).ready(function(){
          $('#popover_test').webuiPopover({
@@ -266,6 +271,13 @@
 
         $('#popById').webuiPopover({url:'#idContent',cache:false});
 
+        $('#dynamic').on('change',function(e){
+          alert(1);
+        });
+
+        $('#changeDynamic').on('click',function(e){
+            $('#dynamic').html('aaaa');
+        });
       
     }); 
   </script>
