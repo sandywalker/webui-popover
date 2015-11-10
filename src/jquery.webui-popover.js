@@ -34,7 +34,7 @@
         template: '<div class="webui-popover">' +
             '<div class="arrow"></div>' +
             '<div class="webui-popover-inner">' +
-            '<a href="#" class="close">x</a>' +
+            '<a href="#" class="close">&times;</a>' +
             '<h3 class="webui-popover-title"></h3>' +
             '<div class="webui-popover-content"><i class="icon-refresh"></i> <p>&nbsp;</p></div>' +
             '</div>' +
