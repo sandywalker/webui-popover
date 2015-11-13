@@ -23,6 +23,16 @@ jquery1.7+
 * support backdrop 
 
 
+##NPM
+```bash
+  npm install webui-popover
+```
+
+##Bower
+```bash
+  bower install webui-popover
+```
+
 ##CDN
 WebUI Popover Support CDN from version 1.2.1, avaliable on [JSDELIVR](http://www.jsdelivr.com/?query=webui-popover)
 
