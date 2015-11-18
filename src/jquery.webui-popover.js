@@ -72,6 +72,22 @@
         $document.trigger('hiddenAll.' + pluginType);
     };
 
+    var pointerEventToXY = function(e) {
+        var out = {
+            x: 0,
+            y: 0
+        };
+        if (e.type === 'touchstart' || e.type === 'touchmove' || e.type === 'touchend' || e.type === 'touchcancel') {
+            var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+            out.x = touch.pageX;
+            out.y = touch.pageY;
+        } else if (e.type === 'mousedown' || e.type === 'mouseup' || e.type === 'click') {
+            out.x = e.pageX;
+            out.y = e.pageY;
+        }
+        return out;
+    };
+
 
 
 
@@ -555,6 +571,9 @@
 
         bodyClickHandler: function(e) {
             _isBodyEventHandled = true;
+
+
+            //alert(pointerEventToXY(e).x);
             var canHide = true;
             for (var i = 0; i < _srcElements.length; i++) {
                 var pop = getPopFromElement(_srcElements[i]);
@@ -563,7 +582,8 @@
                     var popY1 = pop.getTarget().offset().top;
                     var popX2 = pop.getTarget().offset().left + pop.getTarget().width();
                     var popY2 = pop.getTarget().offset().top + pop.getTarget().height();
-                    var inPop = e.pageX >= popX1 && e.pageX <= popX2 && e.pageY >= popY1 && e.pageY <= popY2;
+                    var pt = pointerEventToXY(e);
+                    var inPop = pt.x >= popX1 && pt.x <= popX2 && pt.y >= popY1 && pt.y <= popY2;
                     if (inPop) {
                         canHide = false;
                         break;
