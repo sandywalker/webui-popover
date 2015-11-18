@@ -3,6 +3,14 @@
 
 # History
 
+### 1.2.3
+* fix the bug which cause the popover hide by click when multi popovers in same page.
+* optimize event handling for performance 
+
+### 1.2.2
+* 
+* optimize code and clean debug info
+
 ### 1.2.1
 * now option url can be set with jQuery selector (eg: '#myContent') when type equals 'html'.
 * fix the bug which cause the popover content lost event handler.

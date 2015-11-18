@@ -50,7 +50,7 @@
     };
 
 
-    var popovers = [];
+    var _srcElements = [];
     var backdrop = $('<div class="webui-popover-backdrop"></div>');
     var _globalIdSeed = 0;
     var _isBodyEventHandled = false;
@@ -60,6 +60,18 @@
     var toNumber = function(numeric, fallback) {
         return isNaN(numeric) ? (fallback || 0) : Number(numeric);
     };
+
+    var getPopFromElement = function($element) {
+        return $element.data('plugin_' + pluginName);
+    };
+
+    var hideAllPop = function() {
+        for (var i = 0; i < _srcElements.length; i++) {
+            _srcElements[i].webuiPopover('hide');
+        }
+        $document.trigger('hiddenAll.' + pluginType);
+    };
+
 
 
 
@@ -79,7 +91,7 @@
         this._name = pluginName;
         this._targetclick = false;
         this.init();
-        popovers.push(this.$element);
+        _srcElements.push(this.$element);
     }
 
     WebuiPopover.prototype = {
@@ -111,14 +123,14 @@
         destroy: function() {
             var index = -1;
 
-            for (var i = 0; i < popovers.length; i++) {
-                if (popovers[i] === this.$element) {
+            for (var i = 0; i < _srcElements.length; i++) {
+                if (_srcElements[i] === this.$element) {
                     index = i;
                     break;
                 }
             }
 
-            popovers.splice(index, 1);
+            _srcElements.splice(index, 1);
 
 
             this.hide();
@@ -195,11 +207,7 @@
             this[this.getTarget().hasClass('in') ? 'hide' : 'show']();
         },
         hideAll: function() {
-            for (var i = 0; i < popovers.length; i++) {
-                popovers[i].webuiPopover('hide');
-            }
-
-            $document.trigger('hiddenAll.' + pluginType);
+            hideAllPop();
         },
         /*core method ,show popover */
         show: function() {
@@ -544,20 +552,34 @@
                 this.hideAll();
             }
         },
-        bodyClickHandler: function() {
+
+        bodyClickHandler: function(e) {
             _isBodyEventHandled = true;
-            if (this.getTrigger() === 'click') {
-                if (this._targetclick) {
-                    this._targetclick = false;
-                } else {
-                    this.hideAll();
+            var canHide = true;
+            for (var i = 0; i < _srcElements.length; i++) {
+                var pop = getPopFromElement(_srcElements[i]);
+                if (pop._opened) {
+                    var popX1 = pop.getTarget().offset().left;
+                    var popY1 = pop.getTarget().offset().top;
+                    var popX2 = pop.getTarget().offset().left + pop.getTarget().width();
+                    var popY2 = pop.getTarget().offset().top + pop.getTarget().height();
+                    var inPop = e.pageX >= popX1 && e.pageX <= popX2 && e.pageY >= popY1 && e.pageY <= popY2;
+                    if (inPop) {
+                        canHide = false;
+                        break;
+                    }
                 }
+            }
+            if (canHide) {
+                hideAllPop();
             }
         },
 
+        /*
         targetClickHandler: function() {
             this._targetclick = true;
         },
+        */
 
         //reset and init the target events;
         initTargetEvents: function() {
@@ -568,7 +590,7 @@
                     .on('mouseleave', $.proxy(this.mouseleaveHandler, this));
             }
             this.$target.find('.close').off('click').on('click', $.proxy(this.hide, this, true));
-            this.$target.off('click.webui-popover').on('click.webui-popover', $.proxy(this.targetClickHandler, this));
+            //this.$target.off('click.webui-popover').on('click.webui-popover', $.proxy(this.targetClickHandler, this));
         },
         /* utils methods */
         //caculate placement of the popover
