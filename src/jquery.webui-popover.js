@@ -280,11 +280,22 @@
             //if (this.hasContent()){
             this.$element.trigger(e, [$target]);
             //}
-            if (this.options.width !== 'auto') {
-                $target.width(this.options.width);
+            // support width as data attribute
+            var optWidth = this.$element.data('width') || this.options.width;
+            if(optWidth == '')
+                optWidth = this._defaults.width;
+
+            if (optWidth !== 'auto') {
+                $target.width(optWidth);
             }
-            if (this.options.height !== 'auto') {
-                $targetContent.height(this.options.height);
+
+            // support height as data attribute
+            var optHeight = this.$element.data('height') || this.options.height;
+            if(optHeight == '')
+                optHeight = this._defaults.height;
+
+            if (optHeight !== 'auto') {
+                $targetContent.height(optHeight);
             }
 
             if (this.options.style) {
