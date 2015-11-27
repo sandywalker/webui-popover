@@ -1,4 +1,3 @@
-;
 (function($, window, document, undefined) {
 
     'use strict';
@@ -292,8 +291,9 @@
             //}
             // support width as data attribute
             var optWidth = this.$element.data('width') || this.options.width;
-            if(optWidth == '')
+            if (optWidth === '') {
                 optWidth = this._defaults.width;
+            }
 
             if (optWidth !== 'auto') {
                 $target.width(optWidth);
@@ -301,8 +301,9 @@
 
             // support height as data attribute
             var optHeight = this.$element.data('height') || this.options.height;
-            if(optHeight == '')
+            if (optHeight === '') {
                 optHeight = this._defaults.height;
+            }
 
             if (optHeight !== 'auto') {
                 $targetContent.height(optHeight);
@@ -353,11 +354,13 @@
                 var iframeWidth = $target.width();
                 var iframeHeight = $iframe.parent().height();
 
-                if(this.options.iframeOptions.width != '' && this.options.iframeOptions.width != 'auto')
+                if (this.options.iframeOptions.width !== '' && this.options.iframeOptions.width !== 'auto') {
                     iframeWidth = this.options.iframeOptions.width;
+                }
 
-                if(this.options.iframeOptions.height != '' && this.options.iframeOptions.height != 'auto')
+                if (this.options.iframeOptions.height !== '' && this.options.iframeOptions.height !== 'auto') {
                     iframeHeight = this.options.iframeOptions.height;
+                }
 
                 $iframe.width(iframeWidth).height(iframeHeight);
             }
@@ -482,12 +485,12 @@
             return this.getContent();
         },
         getIframe: function() {
-            var $iframe = $('<iframe></iframe>').attr('src', this.getUrl())
+            var $iframe = $('<iframe></iframe>').attr('src', this.getUrl());
             var self = this;
             $.each(this._defaults.iframeOptions, function(opt) {
-                if(typeof self.options.iframeOptions[opt] != 'undefined')
+                if (typeof self.options.iframeOptions[opt] !== 'undefined') {
                     $iframe.attr(opt, self.options.iframeOptions[opt]);
-
+                }
             });
 
             return $iframe;
