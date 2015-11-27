@@ -46,7 +46,17 @@
         abortXHR: true,
         autoHide: false,
         offsetTop: 0,
-        offsetLeft: 0
+        offsetLeft: 0,
+        iframeOptions: {
+            frameborder: '0',
+            allowtransparency: 'true',
+            id: '',
+            name: '',
+            scrolling: '',
+            onload: '',
+            height: '',
+            width: ''
+        }
     };
 
 
@@ -340,7 +350,16 @@
 
             if (this.options.type === 'iframe') {
                 var $iframe = $target.find('iframe');
-                $iframe.width($target.width()).height($iframe.parent().height());
+                var iframeWidth = $target.width();
+                var iframeHeight = $iframe.parent().height();
+
+                if(this.options.iframeOptions.width != '' && this.options.iframeOptions.width != 'auto')
+                    iframeWidth = this.options.iframeOptions.width;
+
+                if(this.options.iframeOptions.height != '' && this.options.iframeOptions.height != 'auto')
+                    iframeHeight = this.options.iframeOptions.height;
+
+                $iframe.width(iframeWidth).height(iframeHeight);
             }
 
 
@@ -462,11 +481,22 @@
         hasContent: function() {
             return this.getContent();
         },
+        getIframe: function() {
+            var $iframe = $('<iframe></iframe>').attr('src', this.getUrl())
+            var self = this;
+            $.each(this._defaults.iframeOptions, function(opt) {
+                if(typeof self.options.iframeOptions[opt] != 'undefined')
+                    $iframe.attr(opt, self.options.iframeOptions[opt]);
+
+            });
+
+            return $iframe;
+        },
         getContent: function() {
             if (this.getUrl()) {
                 switch (this.options.type) {
                     case 'iframe':
-                        this.content = $('<iframe frameborder="0"></iframe>').attr('src', this.getUrl());
+                        this.content = this.getIframe();
                         break;
                     case 'html':
                         try {
