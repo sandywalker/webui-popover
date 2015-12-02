@@ -1,4 +1,3 @@
-;
 (function($, window, document, undefined) {
 
     'use strict';
@@ -46,7 +45,17 @@
         abortXHR: true,
         autoHide: false,
         offsetTop: 0,
-        offsetLeft: 0
+        offsetLeft: 0,
+        iframeOptions: {
+            frameborder: '0',
+            allowtransparency: 'true',
+            id: '',
+            name: '',
+            scrolling: '',
+            onload: '',
+            height: '',
+            width: ''
+        }
     };
 
 
@@ -280,11 +289,24 @@
             //if (this.hasContent()){
             this.$element.trigger(e, [$target]);
             //}
-            if (this.options.width !== 'auto') {
-                $target.width(this.options.width);
+            // support width as data attribute
+            var optWidth = this.$element.data('width') || this.options.width;
+            if (optWidth === '') {
+                optWidth = this._defaults.width;
             }
-            if (this.options.height !== 'auto') {
-                $targetContent.height(this.options.height);
+
+            if (optWidth !== 'auto') {
+                $target.width(optWidth);
+            }
+
+            // support height as data attribute
+            var optHeight = this.$element.data('height') || this.options.height;
+            if (optHeight === '') {
+                optHeight = this._defaults.height;
+            }
+
+            if (optHeight !== 'auto') {
+                $targetContent.height(optHeight);
             }
 
             if (this.options.style) {
@@ -329,7 +351,18 @@
 
             if (this.options.type === 'iframe') {
                 var $iframe = $target.find('iframe');
-                $iframe.width($target.width()).height($iframe.parent().height());
+                var iframeWidth = $target.width();
+                var iframeHeight = $iframe.parent().height();
+
+                if (this.options.iframeOptions.width !== '' && this.options.iframeOptions.width !== 'auto') {
+                    iframeWidth = this.options.iframeOptions.width;
+                }
+
+                if (this.options.iframeOptions.height !== '' && this.options.iframeOptions.height !== 'auto') {
+                    iframeHeight = this.options.iframeOptions.height;
+                }
+
+                $iframe.width(iframeWidth).height(iframeHeight);
             }
 
 
@@ -451,11 +484,22 @@
         hasContent: function() {
             return this.getContent();
         },
+        getIframe: function() {
+            var $iframe = $('<iframe></iframe>').attr('src', this.getUrl());
+            var self = this;
+            $.each(this._defaults.iframeOptions, function(opt) {
+                if (typeof self.options.iframeOptions[opt] !== 'undefined') {
+                    $iframe.attr(opt, self.options.iframeOptions[opt]);
+                }
+            });
+
+            return $iframe;
+        },
         getContent: function() {
             if (this.getUrl()) {
                 switch (this.options.type) {
                     case 'iframe':
-                        this.content = $('<iframe frameborder="0"></iframe>').attr('src', this.getUrl());
+                        this.content = this.getIframe();
                         break;
                     case 'html':
                         try {
