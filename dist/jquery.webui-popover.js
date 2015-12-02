@@ -579,7 +579,7 @@
 
         bodyClickHandler: function(e) {
             _isBodyEventHandled = true;
-
+            
 
             //alert(pointerEventToXY(e).x);
             var canHide = true;

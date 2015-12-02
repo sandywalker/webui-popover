@@ -53,6 +53,10 @@
   .pull-right{
     float:right;
   }
+
+  .hide{
+    display: none;
+  }
   </style>
   
 </head>
@@ -81,6 +85,16 @@
     <div class="webui-popover-content">
        <h1>Hi there</h1>
        <p>This is next element <a href="#" id="linkInPop" class="link-in-pop">clickMe</a> </p>
+    </div>
+
+    <a href="#" class="popByUrl" data-url="#url1" >Pop by url1 </a>
+    <a href="#" class="popByUrl" data-url="#url2">Pop by url1 </a>
+
+    <div id="url1" class="hide">
+      This is content of url1.
+    </div>
+    <div id="url2" class="hide">
+      This is content of url2.
     </div>
 
     <form action="">
@@ -279,6 +293,8 @@
         $('#changeDynamic').on('click',function(e){
             $('#dynamic').html('aaaa');
         });
+
+        $('.popByUrl').webuiPopover();
       
     }); 
   </script>
