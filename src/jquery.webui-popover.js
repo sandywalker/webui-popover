@@ -99,7 +99,6 @@
 
 
 
-
     // The actual plugin constructor
     function WebuiPopover(element, options) {
         this.$element = $(element);
@@ -376,6 +375,18 @@
             if (this.options.arrow) {
                 var $arrow = this.$target.find('.arrow');
                 $arrow.removeAttr('style');
+
+                //prevent arrow change by content size
+                if (placement === 'left' || placement === 'right') {
+                    $arrow.css({
+                        top: this.$target.height() / 2
+                    });
+                } else if (placement === 'top' || placement === 'bottom') {
+                    $arrow.css({
+                        left: this.$target.width() / 2
+                    });
+                }
+
                 if (postionInfo.arrowOffset) {
                     //hide the arrow if offset is negative 
                     if (postionInfo.arrowOffset.left === -1 || postionInfo.arrowOffset.top === -1) {
@@ -384,6 +395,7 @@
                         $arrow.css(postionInfo.arrowOffset);
                     }
                 }
+
             }
             this._poped = true;
             this.$element.trigger('shown.' + pluginType, [this.$target]);

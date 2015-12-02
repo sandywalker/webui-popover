@@ -8,7 +8,7 @@
   
   <style type="text/css">
   body{
-    background-color: #aaa;
+    background-color: #ccc;
     padding:0;
     margin:0;
   }
@@ -113,15 +113,22 @@
     <a href="#" id="popoverWithInput" data-offset-top="-50" data-offset-left="50">show input popover</a>
 
     <p><a href="#" id="popById" >popById</a></p>
-    <p>&nbsp;</p>
+    sdfjdslfjsdlfjsldfjdslfjdslfjdsjflsdjfldsjsdklfjsdljfldsjfldsjfldsjfldsjfjdsljf
+    <a href="#" id="arrowPos" data-placement="top">arrowPosFix</a>
+    <div class="webui-popover-content">
+       <h1>Arrow Position</h1>
+       <p>This is  element <a href="#" id="arrowPosLink" >clickMe</a> <span id="arrSpan" class="hide">sfjsdfjlsdjfdlsfjdlsf</span> </p>
+       <div class="hide" id="arrContent">
+         <p>Some content ...</p>
+         <p>Some content ...</p>
+    </div>
+       
+    </div>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
 
- <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+ 
 
  <p>&nbsp;</p>
     <p>&nbsp;</p>
@@ -260,7 +267,6 @@
         $('#popoverWithInput').webuiPopover({
             content:'<form action=""><input type="text" id="in" /></form>'
         }).on('shown.webui.popover',function(){
-          console.log($('#in'));
            $('#in').focus();
         });
 
@@ -295,6 +301,14 @@
         });
 
         $('.popByUrl').webuiPopover();
+
+        $('#arrowPosLink').on('click',function(e){
+            e.preventDefault();
+           // $('#arrContent').toggle();
+            $('#arrSpan').toggle();
+        });
+
+        $('#arrowPos').webuiPopover();
       
     }); 
   </script>
