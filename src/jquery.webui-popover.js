@@ -17,6 +17,8 @@
             hide: null
         },
         async: {
+            method: 'GET',
+            data: null,
             before: null, //function(that, xhr){}
             success: null //function(that, xhr){}
         },
@@ -444,6 +446,12 @@
         getOffsetLeft: function() {
             return toNumber(this.$element.attr('data-offset-left')) || this.options.offsetLeft;
         },
+        getAsyncMethod: function() {
+            return this.$element.attr('data-async-method') || this.options.async.method;
+        },
+        getAsyncData: function() {
+            return this.options.async.data;
+        },
         getCache: function() {
             var dataAttr = this.$element.attr('data-cache');
             if (typeof(dataAttr) !== 'undefined') {
@@ -564,7 +572,8 @@
             }
             this.xhr = $.ajax({
                 url: this.getUrl(),
-                type: 'GET',
+                type: this.getAsyncMethod(),
+                data: this.getAsyncData(),
                 cache: this.getCache(),
                 beforeSend: function(xhr) {
                     if (that.options.async.before) {

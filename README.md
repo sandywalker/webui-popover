@@ -156,6 +156,27 @@ $('a').webuiPopover({
  					});
 ```
 
+ Async Mode with POST request
+```javascript
+$('a').webuiPopover({	
+            type: 'async',
+            url: 'https://httpbin.org/post',
+            async: {
+              method: 'POST',
+              data: {
+                'key_0': 'Hello',
+                'key_1': 'World'
+              }
+            },
+            content: function(data) {
+              var html = '<ul>';
+              for(var key in data.form){html+='<li>'+data.form[key]+'</li>';}
+              html+='</ul>';
+              return html;
+            }
+ 					});
+```
+
  Async simply by url
  ```javascript
 $('a').webuiPopover({
@@ -191,6 +212,8 @@ $('a').webuiPopover({
 	    hide: 300
 	},
 	async: {
+	    method: 'GET',// async method, values: 'GET', 'POST'
+	    data: null,// Type: PlainObject or String or Array
 	    before: function(that, xhr) {},//executed before ajax request
 	    success: function(that, data) {}//executed after successful ajax request
 	},
