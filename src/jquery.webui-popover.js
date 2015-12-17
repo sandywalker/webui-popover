@@ -32,7 +32,7 @@
         type: 'html',
         animation: null,
         template: '<div class="webui-popover">' +
-            '<div class="arrow"></div>' +
+            '<div class="webui-arrow"></div>' +
             '<div class="webui-popover-inner">' +
             '<a href="#" class="close"></a>' +
             '<h3 class="webui-popover-title"></h3>' +
@@ -325,7 +325,7 @@
 
             //init the popover and insert into the document body
             if (!this.options.arrow) {
-                $target.find('.arrow').remove();
+                $target.find('.webui-arrow').remove();
             }
             $target.detach().css({
                 top: _offsetOut,
@@ -384,7 +384,7 @@
                 });
             }
             if (this.options.arrow) {
-                var $arrow = this.$target.find('.arrow');
+                var $arrow = this.$target.find('.webui-arrow');
                 $arrow.removeAttr('style');
 
                 //prevent arrow change by content size
