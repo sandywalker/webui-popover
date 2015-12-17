@@ -25,6 +25,7 @@
             hide: null
         },
         async: {
+            type: 'GET',
             before: null, //function(that, xhr){}
             success: null //function(that, xhr){}
         },
@@ -41,7 +42,7 @@
         template: '<div class="webui-popover">' +
             '<div class="arrow"></div>' +
             '<div class="webui-popover-inner">' +
-            '<a href="#" class="close">&times;</a>' +
+            '<a href="#" class="close"></a>' +
             '<h3 class="webui-popover-title"></h3>' +
             '<div class="webui-popover-content"><i class="icon-refresh"></i> <p>&nbsp;</p></div>' +
             '</div>' +
@@ -572,7 +573,7 @@
             }
             this.xhr = $.ajax({
                 url: this.getUrl(),
-                type: 'GET',
+                type: this.options.async.type,
                 cache: this.getCache(),
                 beforeSend: function(xhr) {
                     if (that.options.async.before) {

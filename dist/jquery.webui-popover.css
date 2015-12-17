@@ -111,6 +111,13 @@
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
+.webui-popover-inner .close:after {
+  content: "\00D7";
+  width: 0.8em;
+  height: 0.8em;
+  padding: 4px;
+  position: relative;
+}
 .webui-popover-title {
   padding: 8px 14px;
   margin: 0;

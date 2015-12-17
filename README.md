@@ -173,6 +173,9 @@ $('a').webuiPopover({
  //Show it
  $('a').webuiPopover('show');
 
+ //Hide it
+ $('a').webuiPopover('hide');
+
 ```
 
 
@@ -191,6 +194,7 @@ $('a').webuiPopover({
 	    hide: 300
 	},
 	async: {
+		type:'GET', // ajax request method type, default is GET
 	    before: function(that, xhr) {},//executed before ajax request
 	    success: function(that, data) {}//executed after successful ajax request
 	},

@@ -17,6 +17,7 @@
             hide: null
         },
         async: {
+            type: 'GET',
             before: null, //function(that, xhr){}
             success: null //function(that, xhr){}
         },
@@ -33,7 +34,7 @@
         template: '<div class="webui-popover">' +
             '<div class="arrow"></div>' +
             '<div class="webui-popover-inner">' +
-            '<a href="#" class="close">&times;</a>' +
+            '<a href="#" class="close"></a>' +
             '<h3 class="webui-popover-title"></h3>' +
             '<div class="webui-popover-content"><i class="icon-refresh"></i> <p>&nbsp;</p></div>' +
             '</div>' +
@@ -79,6 +80,13 @@
             _srcElements[i].webuiPopover('hide');
         }
         $document.trigger('hiddenAll.' + pluginType);
+    };
+
+    var removeAllTargets = function() {
+        // for (var i = 0; i < _srcElements.length; i++) {
+        //     var pop = getPopFromElement(_srcElements[i]);
+        //     console.log(pop.$target);
+        // }
     };
 
     var pointerEventToXY = function(e) {
@@ -235,10 +243,13 @@
         },
         /*core method ,show popover */
         show: function() {
+            removeAllTargets();
             var
                 $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
             if (!this.options.multi) {
                 this.hideAll();
+
+
             }
             if (this._opened) {
                 return;
@@ -562,9 +573,10 @@
             if (this.xhr) {
                 return;
             }
+            console.log(this.options.async.type);
             this.xhr = $.ajax({
                 url: this.getUrl(),
-                type: 'GET',
+                type: this.options.async.type,
                 cache: this.getCache(),
                 beforeSend: function(xhr) {
                     if (that.options.async.before) {

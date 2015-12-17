@@ -3,6 +3,11 @@
 
 # History
 
+### 1.2.4
+* add async request method option:async.type,default value is 'GET'.
+* optimize the close button, make it more customizable.
+
+
 ### 1.2.3
 * fix the bug which cause the popover hide by click when multi popovers in same page.
 * optimize event handling for performance 
