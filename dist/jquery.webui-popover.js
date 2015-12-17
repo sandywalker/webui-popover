@@ -581,7 +581,6 @@
             if (this.xhr) {
                 return;
             }
-            console.log(this.options.async.type);
             this.xhr = $.ajax({
                 url: this.getUrl(),
                 type: this.options.async.type,

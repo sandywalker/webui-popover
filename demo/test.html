@@ -66,6 +66,7 @@
       <a href="#" class="border-pos" data-placement="">aa</a>
       <a href="#" class="border-pos pull-right" data-placement="left-bottom" >a</a>
     </div>
+    <button id="btn">click</button>
 
     <div id="popover_test"></div>
     <div id="popover_test2"></div>
@@ -127,7 +128,7 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
-
+    
  
 
  <p>&nbsp;</p>
@@ -3899,6 +3900,11 @@
 
         $('#dynamic').on('change',function(e){
           alert(1);
+        });
+
+        $('#btn').on('click',function(e){
+          $('#btn').webuiPopover('hideAll');
+          //alert(1);
         });
 
         $('#changeDynamic').on('click',function(e){
