@@ -90,6 +90,13 @@
         $document.trigger('hiddenAll.' + pluginType);
     };
 
+    var removeAllTargets = function() {
+        // for (var i = 0; i < _srcElements.length; i++) {
+        //     var pop = getPopFromElement(_srcElements[i]);
+        //     console.log(pop.$target);
+        // }
+    };
+
     var pointerEventToXY = function(e) {
         var out = {
             x: 0,
@@ -244,10 +251,13 @@
         },
         /*core method ,show popover */
         show: function() {
+            removeAllTargets();
             var
                 $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
             if (!this.options.multi) {
                 this.hideAll();
+
+
             }
             if (this._opened) {
                 return;
@@ -571,6 +581,7 @@
             if (this.xhr) {
                 return;
             }
+            console.log(this.options.async.type);
             this.xhr = $.ajax({
                 url: this.getUrl(),
                 type: this.options.async.type,
