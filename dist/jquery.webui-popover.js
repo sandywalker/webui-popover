@@ -27,7 +27,8 @@
         async: {
             type: 'GET',
             before: null, //function(that, xhr){}
-            success: null //function(that, xhr){}
+            success: null, //function(that, xhr){}
+            error: null //function(that, xhr, data){}
         },
         cache: true,
         multi: false,
@@ -40,7 +41,7 @@
         type: 'html',
         animation: null,
         template: '<div class="webui-popover">' +
-            '<div class="arrow"></div>' +
+            '<div class="webui-arrow"></div>' +
             '<div class="webui-popover-inner">' +
             '<a href="#" class="close"></a>' +
             '<h3 class="webui-popover-title"></h3>' +
@@ -331,7 +332,7 @@
 
             //init the popover and insert into the document body
             if (!this.options.arrow) {
-                $target.find('.arrow').remove();
+                $target.find('.webui-arrow').remove();
             }
             $target.detach().css({
                 top: _offsetOut,
@@ -390,7 +391,7 @@
                 });
             }
             if (this.options.arrow) {
-                var $arrow = this.$target.find('.arrow');
+                var $arrow = this.$target.find('.webui-arrow');
                 $arrow.removeAttr('style');
 
                 //prevent arrow change by content size
@@ -567,7 +568,12 @@
             } else if (content instanceof jQuery) {
                 content.removeClass(pluginClass + '-content');
                 $ct.html('');
-                content.appendTo($ct);
+                //Don't want to clone too many times. 
+                if (this.options.cache) {
+                    content.clone(true, true).appendTo($ct);
+                } else {
+                    content.appendTo($ct);
+                }
             }
             this.$target = $target;
         },
@@ -605,6 +611,11 @@
                 },
                 complete: function() {
                     that.xhr = null;
+                },
+                error: function(xhr, data) {
+                    if (that.options.async.error) {
+                        that.options.async.error(that, xhr, data);
+                    }
                 }
             });
         },

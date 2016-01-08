@@ -561,9 +561,9 @@
                 content.removeClass(pluginClass + '-content');
                 $ct.html('');
                 //Don't want to clone too many times. 
-                if (this.options.cache){
-                    content.clone(true,true).appendTo($ct);
-                }else{
+                if (this.options.cache) {
+                    content.clone(true, true).appendTo($ct);
+                } else {
                     content.appendTo($ct);
                 }
             }
