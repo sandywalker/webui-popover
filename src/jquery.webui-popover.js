@@ -19,7 +19,8 @@
         async: {
             type: 'GET',
             before: null, //function(that, xhr){}
-            success: null //function(that, xhr){}
+            success: null, //function(that, xhr){}
+            error: null //function(that, xhr, data){}
         },
         cache: true,
         multi: false,
@@ -599,6 +600,11 @@
                 },
                 complete: function() {
                     that.xhr = null;
+                },
+                error: function(xhr, data) {
+                    if (that.options.async.error) {
+                        that.options.async.error(that, xhr, data);
+                    }
                 }
             });
         },
