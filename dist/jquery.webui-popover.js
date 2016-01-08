@@ -256,8 +256,6 @@
                 $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
             if (!this.options.multi) {
                 this.hideAll();
-
-
             }
             if (this._opened) {
                 return;

@@ -248,8 +248,6 @@
                 $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
             if (!this.options.multi) {
                 this.hideAll();
-
-
             }
             if (this._opened) {
                 return;
@@ -561,7 +559,12 @@
             } else if (content instanceof jQuery) {
                 content.removeClass(pluginClass + '-content');
                 $ct.html('');
-                content.appendTo($ct);
+                //Don't want to clone too many times. 
+                if (this.options.cache){
+                    content.clone(true,true).appendTo($ct);
+                }else{
+                    content.appendTo($ct);
+                }
             }
             this.$target = $target;
         },

@@ -61,6 +61,17 @@
   
 </head>
 <body>
+
+    <div class="myLink">
+<a href="#" class="trigger">trigger 1</a>
+<a href="#" class="trigger">trigger 2</a>
+<a href="#" class="trigger">trigger 3</a>
+<a href="#" class="trigger">trigger 4</a>
+</div>
+<div id="myPopup">
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+</div>
+
     <div style="text-align:center">
       <a href="#" class="border-pos pull-left" data-placement="right-bottom">a <br /> a <br /> </a>
       <a href="#" class="border-pos" data-placement="">aa</a>
@@ -87,7 +98,7 @@
        <h1>Hi there</h1>
        <p>This is next element <a href="#" id="linkInPop" class="link-in-pop">clickMe</a> </p>
     </div>
-
+    <a id="hidePop" href="#">hide</a>
     <a href="#" class="popByUrl" data-url="#url1" >Pop by url1 </a>
     <a href="#" class="popByUrl" data-url="#url2">Pop by url1 </a>
 
@@ -125,7 +136,9 @@
     </div>
        
     </div>
-    <p>&nbsp;</p>
+    <p>
+      <a href="#" class="inline-content" data-content="<span>aaaa </span><span>aaaa </span><span>aaaa </span><span>aaaa </span><span>aaaa </span><span>aaaa </span><span>aaaa </span>">inline-content</a>
+    </p>
     <p>&nbsp;</p>
 
     
@@ -3763,6 +3776,10 @@
 
     <script type="text/javascript">
     $(document).ready(function(){
+
+        $('.trigger').webuiPopover({url:'#myPopup'});
+
+
          $('#popover_test').webuiPopover({
                 constrains: 'horizontal', 
                 trigger:'click',
@@ -3893,7 +3910,13 @@
             //alert(1);
         });
 
-        $('#popNext').webuiPopover({trigger:'hover',animation:'pop','closeable':true});
+        $('#popNext').webuiPopover({trigger:'hover',animation:'pop','closeable':true}).webuiPopover('show');
+
+        $('#hidePop').on('click',function(e){
+            e.preventDefault();
+            $('#popNext').webuiPopover('hide');
+        });
+
         $('#popInline').webuiPopover({trigger:'hover',animation:'pop'});
 
         $('#popById').webuiPopover({url:'#idContent',cache:false});
@@ -3922,6 +3945,12 @@
         $('#arrowPos').webuiPopover();
 
         $('.manyPops').webuiPopover({animation:'pop'});
+
+        $('.inline-content').webuiPopover({
+          placement:'auto-top',
+          width:150,
+          height:50
+        });
       
     }); 
   </script>
