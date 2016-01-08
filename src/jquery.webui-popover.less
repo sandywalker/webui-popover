@@ -210,7 +210,7 @@
 }
 
 
-.webui-popover > .arrow{
+.webui-popover > .webui-arrow{
   &,&:after{
 		position: absolute;
 		display: block;
@@ -221,18 +221,18 @@
   }	
 }
 
-.webui-popover > .arrow {
+.webui-popover > .webui-arrow {
   border-width: @popover-arrow-outer-width;
 }
-.webui-popover > .arrow:after {
+.webui-popover > .webui-arrow:after {
   border-width: @popover-arrow-width;
   content: "";
 }
 
 .webui-popover{
-  &.top >.arrow,
-  &.top-right >.arrow,
-  &.top-left >.arrow
+  &.top >.webui-arrow,
+  &.top-right >.webui-arrow,
+  &.top-left >.webui-arrow
   {
  	  bottom: -@popover-arrow-outer-width;
 	  left: 50%;
@@ -248,9 +248,9 @@
 		  border-bottom-width: 0;
 	  }
   }
-  &.right > .arrow,
-  &.right-top > .arrow,
-  &.right-bottom > .arrow {
+  &.right > .webui-arrow,
+  &.right-top > .webui-arrow,
+  &.right-bottom > .webui-arrow {
     top: 50%;
     left: -@popover-arrow-outer-width;
     margin-top: -@popover-arrow-outer-width;
@@ -265,9 +265,9 @@
       border-right-color: @popover-arrow-color;
     }
   }
-  &.bottom >.arrow,
-  &.bottom-right >.arrow,
-  &.bottom-left >.arrow
+  &.bottom >.webui-arrow,
+  &.bottom-right >.webui-arrow,
+  &.bottom-left >.webui-arrow
   {
  	  top: -@popover-arrow-outer-width;
 	  left: 50%;
@@ -283,9 +283,9 @@
 		  border-top-width: 0;
 	  }
   }
-  &.left > .arrow,
-  &.left-top > .arrow,
-  &.left-bottom > .arrow {
+  &.left > .webui-arrow,
+  &.left-top > .webui-arrow,
+  &.left-bottom > .webui-arrow {
     top: 50%;
     right: -@popover-arrow-outer-width;
     margin-top: -@popover-arrow-outer-width;
@@ -303,30 +303,30 @@
 }
 
 .webui-popover-inverse{
-	&.top > .arrow,
-	&.top-left > .arrow,
-	&.top-right > .arrow{
+	&.top > .webui-arrow,
+	&.top-left > .webui-arrow,
+	&.top-right > .webui-arrow{
 		&,&:after{
 			border-top-color: @popover-inverse-bg;
 		}
 	}
-	&.right > .arrow,
-  &.right-top > .arrow,
-  &.right-bottom > .arrow{
+	&.right > .webui-arrow,
+  &.right-top > .webui-arrow,
+  &.right-bottom > .webui-arrow{
 		&,&:after{
 			border-right-color: @popover-inverse-bg;	
 		}
 	}
-	&.bottom > .arrow,
-	&.bottom-left > .arrow,
-	&.bottom-right > .arrow{
+	&.bottom > .webui-arrow,
+	&.bottom-left > .webui-arrow,
+	&.bottom-right > .webui-arrow{
 		&,&:after{
 			border-bottom-color: @popover-inverse-bg;	
 		}
 	}
-	&.left > .arrow,
-  &.left-top > .arrow,
-  &.left-bottom > .arrow{
+	&.left > .webui-arrow,
+  &.left-top > .webui-arrow,
+  &.left-bottom > .webui-arrow{
 		&,&:after{
 			border-left-color: @popover-inverse-bg;	
 		}
