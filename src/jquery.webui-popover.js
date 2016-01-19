@@ -558,13 +558,12 @@
             if (typeof content === 'string') {
                 $ct.html(content);
             } else if (content instanceof jQuery) {
-                content.removeClass(pluginClass + '-content');
                 $ct.html('');
                 //Don't want to clone too many times. 
-                if (this.options.cache) {
-                    content.clone(true, true).appendTo($ct);
+                if (!this.options.cache) {
+                    content.clone(true, true).removeClass(pluginClass + '-content').appendTo($ct);
                 } else {
-                    content.appendTo($ct);
+                    content.removeClass(pluginClass + '-content').appendTo($ct);
                 }
             }
             this.$target = $target;
