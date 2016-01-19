@@ -244,7 +244,7 @@
         },
         /*core method ,show popover */
         show: function() {
-            removeAllTargets();
+            //removeAllTargets();
             var
                 $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
             if (!this.options.multi) {
