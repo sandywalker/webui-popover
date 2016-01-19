@@ -77,7 +77,7 @@
       <a href="#" class="border-pos" data-placement="">aa</a>
       <a href="#" class="border-pos pull-right" data-placement="left-bottom" >a</a>
     </div>
-    <button id="btn">click</button>
+    <button id="btn"> btn click</button>  <button id="btnHide"> btn hide</button>
 
     <div id="popover_test"></div>
     <div id="popover_test2"></div>
@@ -153,7 +153,7 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-<div>
+<!-- <div>
     <a href="#" class="manyPops" >Many Pops</a>
     <div class="webui-popover-content">
        <h1>Hi there</h1>
@@ -3754,7 +3754,7 @@
        <h1>Hi there</h1>
        <p>This is many pop content </p>
     </div>
-</div>
+</div> -->
 
 
 
@@ -3910,7 +3910,7 @@
             //alert(1);
         });
 
-        $('#popNext').webuiPopover({trigger:'hover',animation:'pop','closeable':true}).webuiPopover('show');
+        $('#popNext').webuiPopover({trigger:'click',animation:'pop','closeable':true}).webuiPopover('show');
 
         $('#hidePop').on('click',function(e){
             e.preventDefault();
@@ -3929,6 +3929,13 @@
           $('#btn').webuiPopover('hideAll');
           //alert(1);
         });
+
+        $('#btnHide').on('click',function(e){
+            $('#popNext').webuiPopover('hide');
+        });
+
+
+
 
         $('#changeDynamic').on('click',function(e){
             $('#dynamic').html('aaaa');

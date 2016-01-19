@@ -650,7 +650,7 @@
             var canHide = true;
             for (var i = 0; i < _srcElements.length; i++) {
                 var pop = getPopFromElement(_srcElements[i]);
-                if (pop._opened) {
+                if (pop&&pop._opened) {
                     var popX1 = pop.getTarget().offset().left;
                     var popY1 = pop.getTarget().offset().top;
                     var popX2 = pop.getTarget().offset().left + pop.getTarget().width();
