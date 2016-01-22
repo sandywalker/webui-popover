@@ -197,6 +197,7 @@ $('a').webuiPopover({
 		type:'GET', // ajax request method type, default is GET
 	    before: function(that, xhr) {},//executed before ajax request
 	    success: function(that, data) {}//executed after successful ajax request
+	    error: function(that, xhr, data) {} //executed after error ajax request
 	},
 	cache:true,//if cache is set to false,popover will destroy and recreate
 	multi:false,//allow other popovers in page at same time
@@ -211,7 +212,9 @@ $('a').webuiPopover({
 	dismissible:true, // if popover can be dismissed by  outside click or escape key
 	autoHide:false, // automatic hide the popover by a specified timeout, the value must be false,or a number(1000 = 1s).
 	offsetTop:0,  // offset the top of the popover
-	offsetLeft:0  // offset the left of the popover
+	offsetLeft:0,  // offset the left of the popover
+	onShow: function($element) {}, // callback after show
+	onHide: function($element) {}, // callback after hide
 }
 ```
 
