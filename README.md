@@ -184,7 +184,7 @@ $('a').webuiPopover({
 ```javascript
 {
 	placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left,auto-top,auto-right,auto-bottom,auto-left,horizontal,vertical
-    container: $(document.body),// The container in which the popover will be added (i.e. The parent scrolling area). May be a jquery object, a selector string or a HTML element. See https://jsfiddle.net/1x21rj9e/1/
+    container: document.body,// The container in which the popover will be added (i.e. The parent scrolling area). May be a jquery object, a selector string or a HTML element. See https://jsfiddle.net/1x21rj9e/1/
 	width:'auto',//can be set with  number
 	height:'auto',//can be set with  number
 	trigger:'click',//values:  click,hover,manual(handle events by your self),sticky(always show after popover is created);

@@ -26,7 +26,7 @@
         var pluginType = 'webui.popover';
         var defaults = {
             placement: 'auto',
-            container: $(document.body),
+            container: null,
             width: 'auto',
             height: 'auto',
             trigger: 'click', //hover,click,sticky,manual
@@ -163,7 +163,7 @@
                 this._opened = false;
                 this._idSeed = _globalIdSeed;
                 // normalize container
-                this.options.container = $(this.options.container).first();
+                this.options.container = $(this.options.container || document.body).first();
 
                 if (this.options.backdrop) {
                     backdrop.appendTo(this.options.container).hide();
