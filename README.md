@@ -20,7 +20,7 @@ jquery1.7+
 * support url and iframe
 * support async mode
 * different animations
-* support backdrop 
+* support backdrop
 
 
 ##NPM
@@ -49,7 +49,7 @@ Localfile
 <script src="jquery.js"></script>
 <script src="jquery.webui-popover.js"></script>
 ```
-Or CDN 
+Or CDN
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
@@ -131,7 +131,7 @@ $('a').webuiPopover({content:'Content',width:300,height:200});
 $('a').webuiPopover({title:'Title',content:'Content',closeable:true});
 ```
 
- Animate the Popover 
+ Animate the Popover
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',animation:'pop'});
 ```
@@ -144,7 +144,7 @@ $('a').webuiPopover({type:'iframe',url:'http://getbootstrap.com'});
 
  Async Mode
 ```javascript
-$('a').webuiPopover({	
+$('a').webuiPopover({
 						type:'async',
 						url:'https://api.github.com/',
 						content:function(data){
@@ -152,7 +152,7 @@ $('a').webuiPopover({
  							for(var key in data){html+='<li>'+data[key]+'</li>';}
 							html+='</ul>';
 							return html;
-						}	
+						}
  					});
 ```
 
@@ -166,10 +166,10 @@ $('a').webuiPopover({
 
  Trigger the Popover by manual
 ```javascript
- //Initailize 
+ //Initailize
  $('a').webuiPopover({trigger:'manual'});
 ...
- 
+
  //Show it
  $('a').webuiPopover('show');
 
@@ -184,6 +184,7 @@ $('a').webuiPopover({
 ```javascript
 {
 	placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left,auto-top,auto-right,auto-bottom,auto-left,horizontal,vertical
+    container: $(document.body),// The container in which the popover will be added (i.e. The parent scrolling area). May be a jquery object, a selector string or a HTML element. See https://jsfiddle.net/1x21rj9e/1/
 	width:'auto',//can be set with  number
 	height:'auto',//can be set with  number
 	trigger:'click',//values:  click,hover,manual(handle events by your self),sticky(always show after popover is created);
@@ -219,8 +220,3 @@ $('a').webuiPopover({
 ```
 
 Welcome to visit my github page: [http://sandywalker.github.io/]
-
-
-
-
-
