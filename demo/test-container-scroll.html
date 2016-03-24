@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title>Scroll in container (#144)</title>
+  <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+  <script src="../src/jquery.webui-popover.js" ></script>
+  <style type="text/css">
+  .fullpage {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    background-color: #666666;
+    overflow: auto;
+  }
+
+  .placeholder {
+    height: 2000px;
+  }
+
+  #popover_test{
+    width: 100px;
+    height: 100px;
+    margin:auto;
+    background: #00ccff;
+    border: 1px solid blue;
+  }
+  </style>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#popover_test').webuiPopover({
+            container:'.fullpage',
+            trigger:'click',
+            placement:'right-bottom',
+            width:100,
+            content: 'content<br>dddd<br>dddd<br>dsfsdfsdf'
+        });
+
+    });
+  </script>
+</head>
+<body>
+    <div class="fullpage">
+        <div id="popover_test">dsfsfsd</div>
+        <div class="placeholder"></div>
+    </div>
+</body>
+</html>
