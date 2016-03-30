@@ -1,7 +1,7 @@
 WebUI-Popover
 =============
 
-A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
+A lightWeight popover plugin with jquery, enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap, but bootstrap is not necessary!
 
 
 Browser compatibility: ie8+,Chrome,Safari,Firefox,Opera
@@ -202,12 +202,12 @@ $('a').webuiPopover({
 	cache:true,//if cache is set to false,popover will destroy and recreate
 	multi:false,//allow other popovers in page at same time
 	arrow:true,//show arrow or not
-	title:'',//the popover title ,if title is set to empty string,title bar will auto hide
+	title:'',//the popover title, if title is set to empty string,title bar will auto hide
 	content:'',//content of the popover,content can be function
 	closeable:false,//display close button or not
 	padding:true,//content padding
 	type:'html',//content type, values:'html','iframe','async'
-	url:'',//if type equals 'html' , value should be jQuery selecor.  if type equels 'async' the plugin will load content by url.
+	url:'',//if type equals 'html', value should be jQuery selecor.  if type equels 'async' the plugin will load content by url.
 	backdrop:false,//if backdrop is set to true, popover will use backdrop on open
 	dismissible:true, // if popover can be dismissed by  outside click or escape key
 	autoHide:false, // automatic hide the popover by a specified timeout, the value must be false,or a number(1000 = 1s).
