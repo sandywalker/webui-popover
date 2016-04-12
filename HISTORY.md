@@ -3,6 +3,10 @@
 
 # History
 
+### 1.2.6
+* fix the hidden bug on mobile device when trigger is set to 'hover'
+* add the loging.gif to the CDN
+
 ### 1.2.4
 * add async request method option:async.type,default value is 'GET'.
 * optimize the close button, make it more customizable.
