@@ -95,11 +95,17 @@
         };
 
         var hideAllPop = function() {
+            var pop = null;
             for (var i = 0; i < _srcElements.length; i++) {
-                _srcElements[i].webuiPopover('hide');
+                pop = getPopFromElement(_srcElements[i]);
+                if (pop) {
+                    pop.hide(true);
+                }
             }
             $document.trigger('hiddenAll.' + pluginType);
         };
+
+        var isMobile = ('ontouchstart' in document.documentElement) && (/Mobi/.test(navigator.userAgent));
 
         //var removeAllTargets = function() {
         // for (var i = 0; i < _srcElements.length; i++) {
@@ -143,13 +149,14 @@
             this._targetclick = false;
             this.init();
             _srcElements.push(this.$element);
+
         }
 
         WebuiPopover.prototype = {
             //init webui popover
             init: function() {
                 //init the event handlers
-                if (this.getTrigger() === 'click') {
+                if (this.getTrigger() === 'click' || isMobile) {
                     this.$element.off('click touchend').on('click touchend', $.proxy(this.toggle, this));
                 } else if (this.getTrigger() === 'hover') {
                     this.$element
@@ -200,13 +207,14 @@
                 param: event    dom event,
             */
             hide: function(force, event) {
+
                 if (!force && this.getTrigger() === 'sticky') {
                     return;
                 }
-
                 if (!this._opened) {
                     return;
                 }
+
                 if (event) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -271,6 +279,7 @@
                 if (this._opened) {
                     return;
                 }
+
                 // use cache by default, if not cache setted  , reInit the contents 
                 if (!this.getCache() || !this._poped || this.content === '') {
                     this.content = '';
@@ -630,9 +639,16 @@
             },
 
             bindBodyEvents: function() {
-                if (this.options.dismissible && this.getTrigger() === 'click' && !_isBodyEventHandled) {
+                if (_isBodyEventHandled) {
+                    return;
+                }
+                if (this.options.dismissible && this.getTrigger() === 'click') {
                     $document.off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
-                    $document.off('click.webui-popover touchend.webui-popover').on('click.webui-popover touchend.webui-popover', $.proxy(this.bodyClickHandler, this));
+                    $document.off('click.webui-popover touchend.webui-popover')
+                        .on('click.webui-popover touchend.webui-popover', $.proxy(this.bodyClickHandler, this));
+                } else if (this.getTrigger() === 'hover') {
+                    $document.off('touchend.webui-popover')
+                        .on('touchend.webui-popover', $.proxy(this.bodyClickHandler, this));
                 }
             },
 
@@ -664,7 +680,6 @@
 
             bodyClickHandler: function(e) {
                 _isBodyEventHandled = true;
-                //alert(pointerEventToXY(e).x);
                 var canHide = true;
                 for (var i = 0; i < _srcElements.length; i++) {
                     var pop = getPopFromElement(_srcElements[i]);

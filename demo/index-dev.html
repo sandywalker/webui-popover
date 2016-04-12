@@ -59,7 +59,7 @@
 				<div class="col-md-3">
 					<div class="panel panel-default panel-demo">
   						<div class="panel-heading">
-							<a href="#" class="pull-right icon-setup" id="setup" data-placement="right-bottom">
+							<a href="#" class="pull-right icon-setup" id="setup" >
 								<i class="glyphicon glyphicon-cog"></i>
 							</a>
   							WebUI-Popover Demos
@@ -97,9 +97,9 @@
 				<div class="col-md-9">
 					
 						    	<div id="specify" class="content active">
-						    		<a href="#" class="show-pop btn btn-default bottom-right" data-placement="bottom-right" 
+						    		<a href="javascript:" class="show-pop show-pop-x btn btn-default bottom-right" data-placement="bottom-right" 
 						    		data-content="<p>This is webui popover demo.</p><p><code>placement:'bottom-right'</code></p>" > <i class="glyphicon glyphicon-cloud"></i></a>
-						    		<a href="#" class="show-pop btn btn-default right-bottom" data-placement="right-bottom"
+						    		<a href="javascript:" class="show-pop show-pop-x btn btn-default right-bottom" data-placement="right-bottom"
 						    		data-content="<p>This is webui popover demo.</p><p><code>placement:'right-bottom'</code></p>" > <i class="glyphicon glyphicon-cloud"></i></a>
 						    		<a href="#" class="show-pop btn btn-default bottom" data-placement="bottom"
 						    		data-content="<p>This is webui popover demo.</p><p><code>placement:'bottom'</code></p>">  <i class="glyphicon glyphicon-cloud"></i></a>
@@ -534,8 +534,10 @@
 					initPopover();
 				}		
 
+				settings.trigger = 'hover';
+				$('a.show-pop-x').webuiPopover('destroy').webuiPopover(settings);
 
-				function initPopover(){					
+				function initPopover(){	
 					$('a.show-pop').webuiPopover('destroy').webuiPopover(settings);				
 					
 					var tableContent = $('#tableContent').html(),
@@ -655,7 +657,7 @@
 				});
 
 
-				initPopover();
+				//initPopover();
 
 				
 				
