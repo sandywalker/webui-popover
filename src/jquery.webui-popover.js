@@ -275,7 +275,6 @@
                 if (this._opened) {
                     return;
                 }
-
                 // use cache by default, if not cache setted  , reInit the contents 
                 if (!this.getCache() || !this._poped || this.content === '') {
                     this.content = '';
