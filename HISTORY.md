@@ -2,6 +2,8 @@
 
 
 # History
+### 1.2.7
+* fix the scroll placement bug
 
 ### 1.2.6
 * fix the hidden bug on mobile device when trigger is set to 'hover'
