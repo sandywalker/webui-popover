@@ -18,6 +18,7 @@
         var pluginType = 'webui.popover';
         var defaults = {
             placement: 'auto',
+            container: null,
             width: 'auto',
             height: 'auto',
             trigger: 'click', //hover,click,sticky,manual
@@ -160,8 +161,11 @@
                 this._inited = true;
                 this._opened = false;
                 this._idSeed = _globalIdSeed;
+                // normalize container
+                this.options.container = $(this.options.container || document.body).first();
+
                 if (this.options.backdrop) {
-                    backdrop.appendTo(document.body).hide();
+                    backdrop.appendTo(this.options.container).hide();
                 }
                 _globalIdSeed++;
                 if (this.getTrigger() === 'sticky') {
@@ -354,7 +358,6 @@
                 if (this.getAnimation()) {
                     $target.addClass(this.getAnimation());
                 }
-                $target.appendTo(document.body);
 
 
                 placement = this.getPlacement(elementPos);
@@ -417,7 +420,6 @@
                     }
 
                     if (postionInfo.arrowOffset) {
-                        //hide the arrow if offset is negative 
                         if (postionInfo.arrowOffset.left === -1 || postionInfo.arrowOffset.top === -1) {
                             $arrow.hide();
                         } else {
@@ -578,7 +580,6 @@
                     $ct.html(content);
                 } else if (content instanceof jQuery) {
                     $ct.html('');
-                    //Don't want to clone too many times. 
                     if (!this.options.cache) {
                         content.clone(true, true).removeClass(pluginClass + '-content').appendTo($ct);
                     } else {
@@ -715,12 +716,6 @@
             getPlacement: function(pos) {
                 var
                     placement,
-                    de = document.documentElement,
-                    db = document.body,
-                    clientWidth = de.clientWidth,
-                    clientHeight = de.clientHeight,
-                    scrollTop = Math.max(db.scrollTop, de.scrollTop),
-                    scrollLeft = Math.max(db.scrollLeft, de.scrollLeft),
                     pageX = Math.max(0, pos.left - scrollLeft),
                     pageY = Math.max(0, pos.top - scrollTop);
                 //arrowSize = 20;
@@ -828,14 +823,8 @@
 
             getTargetPositin: function(elementPos, placement, targetWidth, targetHeight) {
                 var pos = elementPos,
-                    de = document.documentElement,
-                    db = document.body,
-                    clientWidth = de.clientWidth,
-                    clientHeight = de.clientHeight,
                     elementW = this.$element.outerWidth(),
                     elementH = this.$element.outerHeight(),
-                    scrollTop = Math.max(db.scrollTop, de.scrollTop),
-                    scrollLeft = Math.max(db.scrollLeft, de.scrollLeft),
                     position = {},
                     arrowOffset = null,
                     arrowSize = this.options.arrow ? 20 : 0,

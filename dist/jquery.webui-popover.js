@@ -284,8 +284,12 @@
                     return;
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                 // use cache by default, if not cache setted  , reInit the contents 
+=======
+                // use cache by default, if not cache setted  , reInit the contents
+>>>>>>> 82b51feabaf143b359ec7d7024f5b178d07ab218
 =======
                 // use cache by default, if not cache setted  , reInit the contents
 >>>>>>> 82b51feabaf143b359ec7d7024f5b178d07ab218
