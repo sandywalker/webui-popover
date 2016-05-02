@@ -822,6 +822,7 @@
                 return placement;
             },
             getElementPosition: function() {
+                // If the container is the body, cancels the margin.
                 var containerRect = (this.options.container.is(document.body)) ? {
                     top: 0,
                     left: 0
