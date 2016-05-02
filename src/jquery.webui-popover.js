@@ -822,7 +822,10 @@
                 return placement;
             },
             getElementPosition: function() {
-                var containerRect = this.options.container[0].getBoundingClientRect();
+                var containerRect = (this.options.container.is(document.body)) ? {
+                    top: 0,
+                    left: 0
+                } : this.options.container[0].getBoundingClientRect();
                 var elementRect = this.$element[0].getBoundingClientRect();
                 return {
                     top: elementRect.top - containerRect.top + this.options.container.scrollTop(),
