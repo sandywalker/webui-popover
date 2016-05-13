@@ -822,10 +822,7 @@
                 return placement;
             },
             getElementPosition: function() {
-                return $.extend({}, this.$element.offset(), {
-                    width: this.$element[0].offsetWidth,
-                    height: this.$element[0].offsetHeight
-                });
+                return this.$element[0].getBoundingClientRect();
             },
 
             getTargetPositin: function(elementPos, placement, targetWidth, targetHeight) {
