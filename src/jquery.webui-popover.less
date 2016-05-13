@@ -31,17 +31,17 @@
 //** Popover outer arrow fallback color
 @popover-arrow-outer-fallback-color:  darken(@popover-fallback-border-color, 20%);
 
-@border-radius-base:        4px;
-@border-radius-large:       6px;
-@border-radius-small:       3px;
+@popover-border-radius-base:        4px;
+@popover-border-radius-large:       6px;
+@popover-border-radius-small:       3px;
 
-@font-size-base:          14px;
-@font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
-@font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
+@popover-font-size-base:          14px;
+@popover-font-size-large:         ceil((@popover-font-size-base * 1.25)); // ~18px
+@popover-font-size-small:         ceil((@popover-font-size-base * 0.85)); // ~12px
 
 
-@close-size:                16px;
-@close-color:               #000;
+@popover-close-size:                16px;
+@popover-close-color:               #000;
 
 @popover-z-index: 9999;
 @popover-backdrop-z-index: (@popover-z-index - 1);
@@ -102,7 +102,7 @@
   background-clip: padding-box;
   border: 1px solid @popover-fallback-border-color;
   border: 1px solid @popover-border-color;
-  border-radius: @border-radius-large;
+  border-radius: @popover-border-radius-large;
   .box-shadow(0 5px 10px rgba(0,0,0,.2));
 
   &.top,&.top-left,&.top-right     { margin-top: -@popover-arrow-width; }
@@ -145,10 +145,10 @@
   font-family: arial;
   margin:8px 10px 0 0;
   float: right;
-  font-size: @close-size;
+  font-size: @popover-close-size;
   font-weight: bold;
-  line-height: @close-size;
-  color: @close-color;
+  line-height: @popover-close-size;
+  color: @popover-close-color;
   text-shadow: 0 1px 0 #fff;
   .opacity(.2);
   text-decoration: none;
@@ -168,12 +168,12 @@
 .webui-popover-title {
   padding: 8px 14px;
   margin: 0;
-  font-size: @font-size-base;
+  font-size: @popover-font-size-base;
   font-weight: bold;
   line-height: 18px;
   background-color: @popover-title-bg;
   border-bottom: 1px solid darken(@popover-title-bg, 5%);
-  border-radius: (@border-radius-large - 1) (@border-radius-large - 1) 0 0;
+  border-radius: (@popover-border-radius-large - 1) (@popover-border-radius-large - 1) 0 0;
 }
 
 .webui-popover-content {

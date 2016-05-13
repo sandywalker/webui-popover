@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webui popover</title>
+    <link rel="stylesheet" href="../dist/jquery.webui-popover.min.css" />
+    <style>     
+        body {
+            width: 940px;
+            margin: 0 auto;
+        }
+
+        .box {
+            float: right;
+            margin: 100px;
+        }
+
+    </style>
+    
+    
+
+</head>
+
+<body>
+    <div class="box">
+        <button data-tooltip="popover" data-placement="auto-bottom" data-content="popover content is too great">
+            Click me
+        </button>   
+    </div>
+
+
+    <script src="jquery.js"></script>
+    <script src="../src/jquery.webui-popover.js"></script>
+    <script>
+        $(function(){
+            console.log($('[data-tooltip="popover"]').length);
+            $('*[data-tooltip="popover"]').webuiPopover('destroy').webuiPopover();
+            $('*[data-tooltip="popover"]').on('click',function(e){
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+
+</html>
