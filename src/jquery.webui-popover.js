@@ -275,7 +275,7 @@
                 if (this._opened) {
                     return;
                 }
-                // use cache by default, if not cache setted  , reInit the contents 
+                // use cache by default, if not cache setted  , reInit the contents
                 if (!this.getCache() || !this._poped || this.content === '') {
                     this.content = '';
                     this.setTitle(this.getTitle());
@@ -822,7 +822,18 @@
                 return placement;
             },
             getElementPosition: function() {
-                return this.$element[0].getBoundingClientRect();
+                // If the container is the body, cancels the margin.
+                var containerRect = (this.options.container.is(document.body)) ? {
+                    top: 0,
+                    left: 0
+                } : this.options.container[0].getBoundingClientRect();
+                var elementRect = this.$element[0].getBoundingClientRect();
+                return {
+                    top: elementRect.top - containerRect.top + this.options.container.scrollTop(),
+                    left: elementRect.left - containerRect.left + this.options.container.scrollLeft(),
+                    width: elementRect.width,
+                    height: elementRect.height
+                };
             },
 
             getTargetPositin: function(elementPos, placement, targetWidth, targetHeight) {

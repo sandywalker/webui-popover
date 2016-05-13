@@ -7,16 +7,22 @@
   <style type="text/css">
   .fullpage {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    bottom: 10px;
-    left: 10px;
+    top: 50px;
+    right: 50px;
+    bottom: 50px;
+    left: 50px;
     background-color: #666666;
     overflow: auto;
   }
 
+  .container {
+    margin:5px;
+    padding: 5px;
+  }
+
   .placeholder {
     height: 2000px;
+    width: 2000px;
   }
 
   #popover_test{
@@ -36,14 +42,15 @@
             width:100,
             content: 'content<br>dddd<br>dddd<br>dsfsdfsdf'
         });
-
     });
   </script>
 </head>
 <body>
     <div class="fullpage">
-        <div id="popover_test">dsfsfsd</div>
-        <div class="placeholder"></div>
+        <div class="container">
+            <div id="popover_test">dsfsfsd</div>
+            <div class="placeholder"></div>
+        </div>
     </div>
 </body>
 </html>
