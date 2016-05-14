@@ -206,6 +206,7 @@ $('a').webuiPopover({
 	title:'',//the popover title, if title is set to empty string,title bar will auto hide
 	content:'',//content of the popover,content can be function
 	closeable:false,//display close button or not
+  direction:'', // direction of the popover content default is ltr ,values:'rtl';
 	padding:true,//content padding
 	type:'html',//content type, values:'html','iframe','async'
 	url:'',//if type equals 'html', value should be jQuery selecor.  if type equels 'async' the plugin will load content by url.

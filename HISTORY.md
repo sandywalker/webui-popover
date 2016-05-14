@@ -2,6 +2,14 @@
 
 
 # History
+
+### 1.2.8
+* fix and optimize the scroll placement bug
+* add rtl direction support
+* fix arrow hide bug when placement is set to auto or auto-buttom
+* fix the LESS variable collision
+
+
 ### 1.2.7
 * fix the scroll placement bug
 
@@ -16,10 +24,10 @@
 
 ### 1.2.3
 * fix the bug which cause the popover hide by click when multi popovers in same page.
-* optimize event handling for performance 
+* optimize event handling for performance
 
 ### 1.2.2
-* 
+*
 * optimize code and clean debug info
 
 ### 1.2.1
@@ -35,4 +43,3 @@
 * new way to init popover content, set the content by next element html which has class 'webui-popover'.
 * optimese the calulate position  algorithm.
 * update the demo page adapt for mobile device.
-

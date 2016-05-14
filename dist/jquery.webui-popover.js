@@ -1,5 +1,5 @@
 /*
- *  webui popover plugin  - v1.2.6
+ *  webui popover plugin  - v1.2.8
  *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
  *  https://github.com/sandywalker/webui-popover
  *
@@ -50,6 +50,7 @@
             padding: true,
             url: '',
             type: 'html',
+            direction: '', // ltr,rtl
             animation: null,
             template: '<div class="webui-popover">' +
                 '<div class="webui-arrow"></div>' +
@@ -79,7 +80,7 @@
             }
         };
 
-
+        var rtlClass = pluginClass + '-rtl';
         var _srcElements = [];
         var backdrop = $('<div class="webui-popover-backdrop"></div>');
         var _globalIdSeed = 0;
@@ -283,7 +284,7 @@
                 if (this._opened) {
                     return;
                 }
-                // use cache by default, if not cache setted  , reInit the contents 
+                // use cache by default, if not cache setted  , reInit the contents
                 if (!this.getCache() || !this._poped || this.content === '') {
                     this.content = '';
                     this.setTitle(this.getTitle());
@@ -350,6 +351,11 @@
 
                 if (this.options.style) {
                     this.$target.addClass(pluginClass + '-' + this.options.style);
+                }
+
+                //check rtl
+                if (this.options.direction === 'rtl' && !$targetContent.hasClass(rtlClass)) {
+                    $targetContent.addClass(rtlClass);
                 }
 
                 //init the popover and insert into the document body
@@ -528,6 +534,10 @@
             setTitle: function(title) {
                 var $titleEl = this.getTitleElement();
                 if (title) {
+                    //check rtl
+                    if (this.options.direction === 'rtl' && !$titleEl.hasClass(rtlClass)) {
+                        $titleEl.addClass(rtlClass);
+                    }
                     $titleEl.html(title);
                 } else {
                     $titleEl.remove();
@@ -830,14 +840,25 @@
                 return placement;
             },
             getElementPosition: function() {
-                return this.$element[0].getBoundingClientRect();
+                // If the container is the body, cancels the margin.
+                var containerRect = (this.options.container.is(document.body)) ? {
+                    top: 0,
+                    left: 0
+                } : this.options.container[0].getBoundingClientRect();
+                var elementRect = this.$element[0].getBoundingClientRect();
+                return {
+                    top: elementRect.top - containerRect.top + this.options.container.scrollTop(),
+                    left: elementRect.left - containerRect.left + this.options.container.scrollLeft(),
+                    width: elementRect.width,
+                    height: elementRect.height
+                };
             },
 
             getTargetPositin: function(elementPos, placement, targetWidth, targetHeight) {
                 var pos = elementPos,
                     container = this.options.container,
-                    clientWidth = container.innerWidth(),
-                    clientHeight = container.innerHeight(),
+                    //clientWidth = container.innerWidth(),
+                    //clientHeight = container.innerHeight(),
                     elementW = this.$element.outerWidth(),
                     elementH = this.$element.outerHeight(),
                     scrollTop = container.scrollTop(),
@@ -849,10 +870,8 @@
                     fixedW = elementW < arrowSize + padding ? arrowSize : 0,
                     fixedH = elementH < arrowSize + padding ? arrowSize : 0,
                     refix = 0,
-                    pageH = clientHeight + scrollTop,
-                    pageW = clientWidth + scrollLeft;
-
-
+                    pageH = document.documentElement.clientHeight + scrollTop,
+                    pageW = document.documentElement.clientWidth + scrollLeft;
 
                 var validLeft = pos.left + pos.width / 2 - fixedW > 0;
                 var validRight = pos.left + pos.width / 2 + fixedW < pageW;

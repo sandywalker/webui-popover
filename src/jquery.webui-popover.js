@@ -42,6 +42,7 @@
             padding: true,
             url: '',
             type: 'html',
+            direction: '', // ltr,rtl
             animation: null,
             template: '<div class="webui-popover">' +
                 '<div class="webui-arrow"></div>' +
@@ -71,7 +72,7 @@
             }
         };
 
-
+        var rtlClass = pluginClass + '-rtl';
         var _srcElements = [];
         var backdrop = $('<div class="webui-popover-backdrop"></div>');
         var _globalIdSeed = 0;
@@ -344,6 +345,11 @@
                     this.$target.addClass(pluginClass + '-' + this.options.style);
                 }
 
+                //check rtl
+                if (this.options.direction === 'rtl' && !$targetContent.hasClass(rtlClass)) {
+                    $targetContent.addClass(rtlClass);
+                }
+
                 //init the popover and insert into the document body
                 if (!this.options.arrow) {
                     $target.find('.webui-arrow').remove();
@@ -520,6 +526,10 @@
             setTitle: function(title) {
                 var $titleEl = this.getTitleElement();
                 if (title) {
+                    //check rtl
+                    if (this.options.direction === 'rtl' && !$titleEl.hasClass(rtlClass)) {
+                        $titleEl.addClass(rtlClass);
+                    }
                     $titleEl.html(title);
                 } else {
                     $titleEl.remove();
@@ -839,8 +849,8 @@
             getTargetPositin: function(elementPos, placement, targetWidth, targetHeight) {
                 var pos = elementPos,
                     container = this.options.container,
-                    clientWidth = container.innerWidth(),
-                    clientHeight = container.innerHeight(),
+                    //clientWidth = container.innerWidth(),
+                    //clientHeight = container.innerHeight(),
                     elementW = this.$element.outerWidth(),
                     elementH = this.$element.outerHeight(),
                     scrollTop = container.scrollTop(),
@@ -852,10 +862,8 @@
                     fixedW = elementW < arrowSize + padding ? arrowSize : 0,
                     fixedH = elementH < arrowSize + padding ? arrowSize : 0,
                     refix = 0,
-                    pageH = clientHeight + scrollTop,
-                    pageW = clientWidth + scrollLeft;
-
-
+                    pageH = document.documentElement.clientHeight + scrollTop,
+                    pageW = document.documentElement.clientWidth + scrollLeft;
 
                 var validLeft = pos.left + pos.width / 2 - fixedW > 0;
                 var validRight = pos.left + pos.width / 2 + fixedW < pageW;

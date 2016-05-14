@@ -8,7 +8,7 @@
         "webui",
         "pop"
     ],
-    "version":"1.2.7",
+    "version":"1.2.8",
     "author": {
         "name": "Sandy Duan",
         "email": "sanddywalker@gmail.com",
@@ -26,6 +26,6 @@
     "demo":"http://sandywalker.github.io/webui-popover/demo",
     "download": "https://github.com/sandywalker/webui-popover/releases",
     "dependencies": {
-        "jquery": ">=1.6.0"	
+        "jquery": ">=1.6.0"
     }
 }

@@ -1,6 +1,10 @@
 .webui-popover-content {
   display: none;
 }
+.webui-popover-rtl {
+  direction: rtl;
+  text-align: right;
+}
 /*  webui popover  */
 .webui-popover {
   position: absolute;
