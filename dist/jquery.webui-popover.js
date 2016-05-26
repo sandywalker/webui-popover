@@ -1,5 +1,5 @@
 /*
- *  webui popover plugin  - v1.2.9
+ *  webui popover plugin  - v1.2.10
  *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
  *  https://github.com/sandywalker/webui-popover
  *
@@ -842,20 +842,20 @@
             },
             getElementPosition: function() {
                 // If the container is the body or normal conatiner, just use $element.offset()
+                var elRect = this.$element[0].getBoundingClientRect();
                 if (this.options.container.is(document.body) || this.options.container.css('position') !== 'fixed') {
                     return $.extend({}, this.$element.offset(), {
-                        width: this.$element[0].offsetWidth,
-                        height: this.$element[0].offsetHeight
+                        width: this.$element[0].offsetWidth || elRect.width,
+                        height: this.$element[0].offsetHeight || elRect.height
                     });
                     // Else fixed container need recalculate the  position
                 } else {
                     var containerRect = this.options.container[0].getBoundingClientRect();
-                    var elementRect = this.$element[0].getBoundingClientRect();
                     return {
-                        top: elementRect.top - containerRect.top + this.options.container.scrollTop(),
-                        left: elementRect.left - containerRect.left + this.options.container.scrollLeft(),
-                        width: elementRect.width,
-                        height: elementRect.height
+                        top: elRect.top - containerRect.top + this.options.container.scrollTop(),
+                        left: elRect.left - containerRect.left + this.options.container.scrollLeft(),
+                        width: elRect.width,
+                        height: elRect.height
                     };
                 }
             },
