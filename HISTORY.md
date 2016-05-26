@@ -3,6 +3,10 @@
 
 # History
 
+### 1.2.11
+* fix the position bug with svg.
+
+
 ### 1.2.10
 * fix the hidden bug in show method when trigger is set to 'manual'.
 
