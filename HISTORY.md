@@ -2,6 +2,11 @@
 
 
 # History
+
+### 1.2.10
+* fix the hidden bug in show method when trigger is set to 'manual'.
+
+
 ### 1.2.9
 * fix the position in container bug
 
