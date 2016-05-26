@@ -204,7 +204,6 @@
                 param: event    dom event,
             */
             hide: function(force, event) {
-
                 if (!force && this.getTrigger() === 'sticky') {
                     return;
                 }
@@ -267,15 +266,16 @@
             },
             /*core method ,show popover */
             show: function() {
+                if (this._opened) {
+                    return;
+                }
                 //removeAllTargets();
                 var
                     $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
                 if (!this.options.multi) {
                     this.hideAll();
                 }
-                if (this._opened) {
-                    return;
-                }
+
                 // use cache by default, if not cache setted  , reInit the contents
                 if (!this.getCache() || !this._poped || this.content === '') {
                     this.content = '';
@@ -290,6 +290,7 @@
                     }
                     $target.show();
                 }
+
                 this.displayContent();
 
                 if (this.options.onShow) {
