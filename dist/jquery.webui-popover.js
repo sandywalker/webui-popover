@@ -840,18 +840,23 @@
                 return placement;
             },
             getElementPosition: function() {
-                // If the container is the body, cancels the margin.
-                var containerRect = (this.options.container.is(document.body)) ? {
-                    top: 0,
-                    left: 0
-                } : this.options.container[0].getBoundingClientRect();
-                var elementRect = this.$element[0].getBoundingClientRect();
-                return {
-                    top: elementRect.top - containerRect.top + this.options.container.scrollTop(),
-                    left: elementRect.left - containerRect.left + this.options.container.scrollLeft(),
-                    width: elementRect.width,
-                    height: elementRect.height
-                };
+                // If the container is the body or normal conatiner, just use $element.offset()
+                if (this.options.container.is(document.body) || this.options.container.css('position') !== 'fixed') {
+                    return $.extend({}, this.$element.offset(), {
+                        width: this.$element[0].offsetWidth,
+                        height: this.$element[0].offsetHeight
+                    });
+                    // Else fixed container need recalculate the  position
+                } else {
+                    var containerRect = this.options.container[0].getBoundingClientRect();
+                    var elementRect = this.$element[0].getBoundingClientRect();
+                    return {
+                        top: elementRect.top - containerRect.top + this.options.container.scrollTop(),
+                        left: elementRect.left - containerRect.left + this.options.container.scrollLeft(),
+                        width: elementRect.width,
+                        height: elementRect.height
+                    };
+                }
             },
 
             getTargetPositin: function(elementPos, placement, targetWidth, targetHeight) {

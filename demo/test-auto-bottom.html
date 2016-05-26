@@ -4,28 +4,27 @@
     <meta charset="UTF-8">
     <title>webui popover</title>
     <link rel="stylesheet" href="../dist/jquery.webui-popover.min.css" />
-    <style>     
+    <style>
         body {
             width: 940px;
             margin: 0 auto;
         }
 
         .box {
-            float: right;
             margin: 100px;
         }
 
     </style>
-    
-    
+
+
 
 </head>
 
 <body>
     <div class="box">
-        <button data-tooltip="popover" data-placement="auto-bottom" data-content="popover content is too great">
+        <button data-tooltip="popover" data-content="popover content is too great">
             Click me
-        </button>   
+        </button>
     </div>
 
 
@@ -33,8 +32,9 @@
     <script src="../src/jquery.webui-popover.js"></script>
     <script>
         $(function(){
-            console.log($('[data-tooltip="popover"]').length);
-            $('*[data-tooltip="popover"]').webuiPopover('destroy').webuiPopover();
+            $('*[data-tooltip="popover"]').webuiPopover('destroy').webuiPopover({
+              cache:true
+            });
             $('*[data-tooltip="popover"]').on('click',function(e){
                 e.stopPropagation();
             });
