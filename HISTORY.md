@@ -2,6 +2,8 @@
 
 
 # History
+### 1.2.9
+* fix the position in container bug
 
 ### 1.2.8
 * fix and optimize the scroll placement bug
