@@ -293,7 +293,7 @@
                     }
 
                     // todo: Add support for async hideEmpty option.
-                    if (!isAsync && this.options.hideEmpty && this.content === '') {
+                    if (this.canEmptyHide() && this.content === '') {
                         return;
                     }
 
@@ -328,6 +328,15 @@
                     //placement
                     placement = 'bottom',
                     e = $.Event('show.' + pluginType);
+
+                if (this.canEmptyHide()) {
+
+                    var content = $targetContent.children().html();
+                    if (content !== null && content.trim().length === 0) {
+                        return;
+                    }
+                }
+
                 //if (this.hasContent()){
                 this.$element.trigger(e, [$target]);
                 //}
@@ -548,7 +557,10 @@
             hasContent: function() {
                 return this.getContent();
             },
-            getIframe: function() {
+            canEmptyHide: function () {
+                return this.options.hideEmpty && this.options.type === "html";
+            },
+            getIframe: function () {
                 var $iframe = $('<iframe></iframe>').attr('src', this.getUrl());
                 var self = this;
                 $.each(this._defaults.iframeOptions, function(opt) {
