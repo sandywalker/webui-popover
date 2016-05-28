@@ -285,14 +285,12 @@
                         $target.find('.close').off('click').remove();
                     }
 
-                    var isAsync = this.isAsync();
-                    if (!isAsync) {
+                    if (!this.isAsync()) {
                         this.setContent(this.getContent());
                     } else {
                         this.setContentASync(this.options.content);
                     }
 
-                    // todo: Add support for async hideEmpty option.
                     if (this.canEmptyHide() && this.content === '') {
                         return;
                     }
