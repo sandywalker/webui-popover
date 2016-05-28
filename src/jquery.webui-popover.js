@@ -69,7 +69,8 @@
                 onload: '',
                 height: '',
                 width: ''
-            }
+            },
+            hideEmpty: false
         };
 
         var rtlClass = pluginClass + '-rtl';
@@ -283,11 +284,19 @@
                     if (!this.options.closeable) {
                         $target.find('.close').off('click').remove();
                     }
-                    if (!this.isAsync()) {
+
+                    var isAsync = this.isAsync();
+                    if (!isAsync) {
                         this.setContent(this.getContent());
                     } else {
                         this.setContentASync(this.options.content);
                     }
+
+                    // todo: Add support for async hideEmpty option.
+                    if (!isAsync && this.options.hideEmpty && this.content === '') {
+                        return;
+                    }
+
                     $target.show();
                 }
 
