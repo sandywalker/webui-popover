@@ -303,7 +303,7 @@
                 this.displayContent();
 
                 if (this.options.onShow) {
-                    this.options.onShow($target);
+                    this.options.onShow($target, this.$element);
                 }
 
                 this.bindBodyEvents();
