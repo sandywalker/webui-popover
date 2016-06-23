@@ -37,6 +37,7 @@
             },
             async: {
                 type: 'GET',
+                data: {},
                 before: null, //function(that, xhr){}
                 success: null, //function(that, xhr){}
                 error: null //function(that, xhr, data){}
@@ -302,7 +303,7 @@
                 this.displayContent();
 
                 if (this.options.onShow) {
-                    this.options.onShow($target);
+                    this.options.onShow($target, this.$element);
                 }
 
                 this.bindBodyEvents();
@@ -620,6 +621,7 @@
                 this.xhr = $.ajax({
                     url: this.getUrl(),
                     type: this.options.async.type,
+                    data: this.options.async.data,
                     cache: this.getCache(),
                     beforeSend: function(xhr) {
                         if (that.options.async.before) {
