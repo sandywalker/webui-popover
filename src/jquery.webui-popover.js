@@ -555,10 +555,10 @@
             hasContent: function() {
                 return this.getContent();
             },
-            canEmptyHide: function () {
-                return this.options.hideEmpty && this.options.type === "html";
+            canEmptyHide: function() {
+                return this.options.hideEmpty && this.options.type === 'html';
             },
-            getIframe: function () {
+            getIframe: function() {
                 var $iframe = $('<iframe></iframe>').attr('src', this.getUrl());
                 var self = this;
                 $.each(this._defaults.iframeOptions, function(opt) {
