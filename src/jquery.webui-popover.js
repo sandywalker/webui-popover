@@ -150,14 +150,16 @@
         WebuiPopover.prototype = {
             //init webui popover
             init: function() {
-                //init the event handlers
-                if (this.getTrigger() === 'click' || isMobile) {
-                    this.$element.off('click touchend').on('click touchend', $.proxy(this.toggle, this));
-                } else if (this.getTrigger() === 'hover') {
-                    this.$element
-                        .off('mouseenter mouseleave click')
-                        .on('mouseenter', $.proxy(this.mouseenterHandler, this))
-                        .on('mouseleave', $.proxy(this.mouseleaveHandler, this));
+                if (this.getTrigger() !== 'manual') {
+                    //init the event handlers
+                    if (this.getTrigger() === 'click' || isMobile) {
+                        this.$element.off('click touchend').on('click touchend', $.proxy(this.toggle, this));
+                    } else if (this.getTrigger() === 'hover') {
+                        this.$element
+                            .off('mouseenter mouseleave click')
+                            .on('mouseenter', $.proxy(this.mouseenterHandler, this))
+                            .on('mouseleave', $.proxy(this.mouseleaveHandler, this));
+                    }
                 }
                 this._poped = false;
                 this._inited = true;
