@@ -23,7 +23,10 @@
 
 <body>
     <div class="box">
-        <button data-tooltip="popover" data-placement="auto-bottom" data-content="popover content is too great">
+        <button id="anchor" data-placement="auto-bottom" data-content="popover content ">
+            Click me
+        </button>
+        <button id="anchor2" data-placement="auto-bottom" data-content="popover content ">
             Click me
         </button>
     </div>
@@ -33,11 +36,39 @@
     <script src="../src/jquery.webui-popover.js"></script>
     <script>
         $(function(){
-            console.log($('[data-tooltip="popover"]').length);
-            $('*[data-tooltip="popover"]').webuiPopover('destroy').webuiPopover();
-            $('*[data-tooltip="popover"]').on('click',function(e){
-                e.stopPropagation();
+            $('#anchor').webuiPopover({
+                content: 'My Content',
+                cache: false,
+                closeable:true,
+                onHide: function(){
+                    setTimeout(function(){
+                    // check if popover still exists
+                    if($('.webui-popover').length){
+                        alert('Popover still present');
+                    }else{
+                        alert('Popover destroyed');
+                    }
+                    
+                  }, 1000)
+                }
             });
+
+            $('#anchor2').webuiPopover({
+                content: 'My Content',
+                cache: true,
+                closeable:true,
+                onHide: function(){
+                    setTimeout(function(){
+                    // check if popover still exists
+                    if($('.webui-popover').length){
+                        alert('Popover still present');
+                    }else{
+                        alert('Popover destroyed');
+                    }
+                    
+                  }, 1000)
+                }
+            })
         });
     </script>
 </body>

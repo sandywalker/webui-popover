@@ -220,4 +220,32 @@ $('a').webuiPopover({
 }
 ```
 
+###Global Methods
+In some situation, you may want to manipulate the popover like 'show/hide' popovers with some global methods.  The new object **WebuiPopovers** needs to expose to the global window, so you can access these methods with  WebuiPopovers. Here are  examples of the calling code.
+
+```javascript
+
+//Show Popover by 
+$('a').on('click',function(e){
+	e.stopPropagation(); // Stop event propagation is needed, otherwise may trigger the document body click event handled by plugin.
+	WebuiPopovers.show('.mypop');
+});
+
+
+//Hide Popovers by jQuery selector
+WebuiPopovers.hide('.mypop');
+
+//Hide All Popovers
+WebuiPopovers.hideAll();
+
+
+```
+
+
+
+
+
+
+
+
 Welcome to visit my github page: [http://sandywalker.github.io/]

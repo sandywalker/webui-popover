@@ -102,7 +102,7 @@
 
     <a href="#" id="popInline" data-content="<h1>Hi there</h1><p>This is next element </p>">Pop inline</a>
     <a href="#" id="popNext" >Pop next element</a>
-    <div class="webui-popover-content">
+    <div class="webui-popover-content mycontent">
        <h1>Hi there</h1>
        <p>This is next element <a href="#" id="linkInPop" class="link-in-pop">clickMe</a> </p>
     </div>
@@ -170,6 +170,8 @@
       <a href="#" class="border-pos pull-right" data-placement="left-top" >a<br>a<br>a</a>
     </div>
 
+    
+
     <div class="hide" id="idContent">
       <h1>Url Selector</h1>
       <p>set url with jquery selector! <a href="#" class="link-in-pop">clickMe</a></p>
@@ -179,6 +181,10 @@
        <p>ddddd</p>
     </div>
     <button id="changeDynamic">change dynamic content</button>
+
+    <button id="hideAllGlobal">hide All</button>
+    <button id="showGlobal">show global</button>
+    <button id="hideGlobal">hide global</button>
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -371,6 +377,20 @@
         });
 
         $('#popRtl').webuiPopover({direction:'rtl'});
+
+        $('#hideAllGlobal').on('click',function(e){
+            WebuiPopovers.hideAll();
+        });
+
+        $('#showGlobal').on('click',function(e){
+            e.stopPropagation();
+            WebuiPopovers.show('#popNext');
+        });
+
+        $('#hideGlobal').on('click',function(e){
+            e.stopPropagation();
+            WebuiPopovers.hide('#popNext');
+        });
       
     }); 
   </script>

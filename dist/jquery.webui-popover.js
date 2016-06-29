@@ -1,5 +1,5 @@
 /*
- *  webui popover plugin  - v1.2.10
+ *  webui popover plugin  - v1.2.12
  *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
  *  https://github.com/sandywalker/webui-popover
  *
@@ -33,11 +33,10 @@
             style: '',
             delay: {
                 show: null,
-                hide: null
+                hide: 300
             },
             async: {
                 type: 'GET',
-                data: {},
                 before: null, //function(that, xhr){}
                 success: null, //function(that, xhr){}
                 error: null //function(that, xhr, data){}
@@ -78,7 +77,8 @@
                 onload: '',
                 height: '',
                 width: ''
-            }
+            },
+            hideEmpty: false
         };
 
         var rtlClass = pluginClass + '-rtl';
@@ -158,14 +158,16 @@
         WebuiPopover.prototype = {
             //init webui popover
             init: function() {
-                //init the event handlers
-                if (this.getTrigger() === 'click' || isMobile) {
-                    this.$element.off('click touchend').on('click touchend', $.proxy(this.toggle, this));
-                } else if (this.getTrigger() === 'hover') {
-                    this.$element
-                        .off('mouseenter mouseleave click')
-                        .on('mouseenter', $.proxy(this.mouseenterHandler, this))
-                        .on('mouseleave', $.proxy(this.mouseleaveHandler, this));
+                if (this.getTrigger() !== 'manual') {
+                    //init the event handlers
+                    if (this.getTrigger() === 'click' || isMobile) {
+                        this.$element.off('click touchend').on('click touchend', $.proxy(this.toggle, this));
+                    } else if (this.getTrigger() === 'hover') {
+                        this.$element
+                            .off('mouseenter mouseleave click')
+                            .on('mouseenter', $.proxy(this.mouseenterHandler, this))
+                            .on('mouseleave', $.proxy(this.mouseleaveHandler, this));
+                    }
                 }
                 this._poped = false;
                 this._inited = true;
@@ -238,7 +240,10 @@
                     var that = this;
                     setTimeout(function() {
                         that.$target.hide();
-                    }, 300);
+                        if (!that.getCache()) {
+                            that.$target.remove();
+                        }
+                    }, that.getHideDelay());
                 }
                 if (this.options.backdrop) {
                     backdrop.hide();
@@ -292,18 +297,24 @@
                     if (!this.options.closeable) {
                         $target.find('.close').off('click').remove();
                     }
+
                     if (!this.isAsync()) {
                         this.setContent(this.getContent());
                     } else {
                         this.setContentASync(this.options.content);
                     }
+
+                    if (this.canEmptyHide() && this.content === '') {
+                        return;
+                    }
+
                     $target.show();
                 }
 
                 this.displayContent();
 
                 if (this.options.onShow) {
-                    this.options.onShow($target, this.$element);
+                    this.options.onShow($target);
                 }
 
                 this.bindBodyEvents();
@@ -328,6 +339,15 @@
                     //placement
                     placement = 'bottom',
                     e = $.Event('show.' + pluginType);
+
+                if (this.canEmptyHide()) {
+
+                    var content = $targetContent.children().html();
+                    if (content !== null && content.trim().length === 0) {
+                        return;
+                    }
+                }
+
                 //if (this.hasContent()){
                 this.$element.trigger(e, [$target]);
                 //}
@@ -548,6 +568,9 @@
             hasContent: function() {
                 return this.getContent();
             },
+            canEmptyHide: function() {
+                return this.options.hideEmpty && this.options.type === 'html';
+            },
             getIframe: function() {
                 var $iframe = $('<iframe></iframe>').attr('src', this.getUrl());
                 var self = this;
@@ -621,7 +644,6 @@
                 this.xhr = $.ajax({
                     url: this.getUrl(),
                     type: this.options.async.type,
-                    data: this.options.async.data,
                     cache: this.getCache(),
                     beforeSend: function(xhr) {
                         if (that.options.async.before) {
@@ -700,10 +722,11 @@
                 for (var i = 0; i < _srcElements.length; i++) {
                     var pop = getPopFromElement(_srcElements[i]);
                     if (pop && pop._opened) {
-                        var popX1 = pop.getTarget().offset().left;
-                        var popY1 = pop.getTarget().offset().top;
-                        var popX2 = pop.getTarget().offset().left + pop.getTarget().width();
-                        var popY2 = pop.getTarget().offset().top + pop.getTarget().height();
+                        var offset = pop.getTarget().offset();
+                        var popX1 = offset.left;
+                        var popY1 = offset.top;
+                        var popX2 = offset.left + pop.getTarget().width();
+                        var popY2 = offset.top + pop.getTarget().height();
                         var pt = pointerEventToXY(e);
                         var inPop = pt.x >= popX1 && pt.x <= popX2 && pt.y >= popY1 && pt.y <= popY2;
                         if (inPop) {
@@ -1028,5 +1051,24 @@
 
             return (results.length) ? results : $result;
         };
+
+        //Global object exposes to window.
+        var webuiPopovers = (function() {
+            var _hideAll = function() {
+                hideAllPop();
+            };
+            var _show = function(selector) {
+                $(selector).webuiPopover('show');
+            };
+            var _hide = function(selector) {
+                $(selector).webuiPopover('hide');
+            };
+            return {
+                show: _show,
+                hide: _hide,
+                hideAll: _hideAll
+            };
+        })();
+        window.WebuiPopovers = webuiPopovers;
     }));
 })(window, document);

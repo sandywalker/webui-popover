@@ -25,7 +25,7 @@
             style: '',
             delay: {
                 show: null,
-                hide: null
+                hide: 300
             },
             async: {
                 type: 'GET',
@@ -232,7 +232,10 @@
                     var that = this;
                     setTimeout(function() {
                         that.$target.hide();
-                    }, 300);
+                        if (!that.getCache()) {
+                            that.$target.remove();
+                        }
+                    }, that.getHideDelay());
                 }
                 if (this.options.backdrop) {
                     backdrop.hide();
@@ -711,10 +714,11 @@
                 for (var i = 0; i < _srcElements.length; i++) {
                     var pop = getPopFromElement(_srcElements[i]);
                     if (pop && pop._opened) {
-                        var popX1 = pop.getTarget().offset().left;
-                        var popY1 = pop.getTarget().offset().top;
-                        var popX2 = pop.getTarget().offset().left + pop.getTarget().width();
-                        var popY2 = pop.getTarget().offset().top + pop.getTarget().height();
+                        var offset = pop.getTarget().offset();
+                        var popX1 = offset.left;
+                        var popY1 = offset.top;
+                        var popX2 = offset.left + pop.getTarget().width();
+                        var popY2 = offset.top + pop.getTarget().height();
                         var pt = pointerEventToXY(e);
                         var inPop = pt.x >= popX1 && pt.x <= popX2 && pt.y >= popY1 && pt.y <= popY2;
                         if (inPop) {
@@ -1039,5 +1043,24 @@
 
             return (results.length) ? results : $result;
         };
+
+        //Global object exposes to window.
+        var webuiPopovers = (function() {
+            var _hideAll = function() {
+                hideAllPop();
+            };
+            var _show = function(selector) {
+                $(selector).webuiPopover('show');
+            };
+            var _hide = function(selector) {
+                $(selector).webuiPopover('hide');
+            };
+            return {
+                show: _show,
+                hide: _hide,
+                hideAll: _hideAll
+            };
+        })();
+        window.WebuiPopovers = webuiPopovers;
     }));
 })(window, document);
