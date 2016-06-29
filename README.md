@@ -221,7 +221,10 @@ $('a').webuiPopover({
 ```
 
 ###Global Methods
-In some situation, you may want to manipulate the plugin like 'show/hide' popovers by  global methods.  The new object **WebuiPopovers** is introduced and exposed to the global window object, so you can access these methods with  WebuiPopovers like 'WebuiPopovers.someMethod()...'. Here are examples of calling code.
+
+In some situation, you may want to manipulate the plugin like 'show/hide' popovers by  global methods.  The new object **WebuiPopovers** is introduced and exposed to the global window object, so you can access these methods like 'WebuiPopovers.someMethod()...'. 
+
+Here are examples of calling code.
 
 ```javascript
 
