@@ -126,7 +126,7 @@
     .transition(0.15s linear);
     .opacity(0);
   }
-  
+
   &.fade,&.fade-out{
     .transition(opacity .15s linear);
     .opacity(0);
@@ -134,13 +134,16 @@
   &.out{
     .opacity(0);
   }
-  
+
   &.in {.transform(none);.opacity(1)};
 
   .webui-popover-content {
     padding: 9px 14px;
-    overflow: auto;  
+    overflow: auto;
     display: block;
+    > div:first-child {
+      width: 99%;
+    }
   }
 }
 
@@ -183,8 +186,9 @@
 
 .webui-popover-content {
   padding: 9px 14px;
-  overflow: auto;  
+  overflow: auto;
   display: none;
+  
 }
 
 .webui-popover-inverse{
@@ -200,18 +204,18 @@
 
 .webui-no-padding {
 	.webui-popover-content {
-		padding: 0;		
+		padding: 0;
 	}
 	.list-group-item{
 		border-right: none;
-  		border-left:none; 
+  		border-left:none;
   		&:first-child{
 			border-top:0;
   		}
   		&:last-child{
 			border-bottom:0;
-  		} 
-	}  
+  		}
+	}
 }
 
 
@@ -222,8 +226,8 @@
 		width: 0;
 		height: 0;
 		border-color: transparent;
-		border-style: solid;	
-  }	
+		border-style: solid;
+  }
 }
 
 .webui-popover > .webui-arrow {
@@ -244,7 +248,7 @@
 	  margin-left: -@popover-arrow-outer-width;
 	  border-top-color: @popover-arrow-outer-fallback-color; // IE8 fallback
 	  border-top-color: @popover-arrow-outer-color;
-	  border-bottom-width: 0; 
+	  border-bottom-width: 0;
 	  &:after{
 	  	  content: " ";
 	  	  bottom: 1px;
@@ -319,21 +323,21 @@
   &.right-top > .webui-arrow,
   &.right-bottom > .webui-arrow{
 		&,&:after{
-			border-right-color: @popover-inverse-bg;	
+			border-right-color: @popover-inverse-bg;
 		}
 	}
 	&.bottom > .webui-arrow,
 	&.bottom-left > .webui-arrow,
 	&.bottom-right > .webui-arrow{
 		&,&:after{
-			border-bottom-color: @popover-inverse-bg;	
+			border-bottom-color: @popover-inverse-bg;
 		}
 	}
 	&.left > .webui-arrow,
   &.left-top > .webui-arrow,
   &.left-bottom > .webui-arrow{
 		&,&:after{
-			border-left-color: @popover-inverse-bg;	
+			border-left-color: @popover-inverse-bg;
 		}
 	}
 }
@@ -356,11 +360,11 @@
    // .animation(rotate 1s linear 0 infinite);
 }
 
-@-webkit-keyframes rotate { 
+@-webkit-keyframes rotate {
   100% {-webkit-transform: rotate(360deg);}
 }
 
-@keyframes rotate { 
+@keyframes rotate {
   100% {transform: rotate(360deg);}
 }
 

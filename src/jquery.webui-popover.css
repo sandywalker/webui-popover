@@ -89,6 +89,9 @@
   overflow: auto;
   display: block;
 }
+.webui-popover .webui-popover-content > div:first-child {
+  width: 99%;
+}
 .webui-popover-inner .close {
   font-family: arial;
   margin: 8px 10px 0 0;
