@@ -232,15 +232,15 @@ Here are examples of calling code.
 //Show Popover by click other element.
 $('a').on('click',function(e){
 	e.stopPropagation(); // Stop event propagation is needed, otherwise may trigger the document body click event handled by plugin.
-	WebuiPopovers.show('#trigger');
+	WebuiPopovers.show('#el');
 });
 
 // Show Popover with options
-WebuiPopovers.show('#trigger',{title:' hello popover',width:300});
+WebuiPopovers.show('#el',{title:' hello popover',width:300});
 
 
 //Hide Popover by jQuery selector
-WebuiPopovers.hide('#trigger');
+WebuiPopovers.hide('#el');
 
 //Hide All Popovers
 WebuiPopovers.hideAll();
