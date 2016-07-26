@@ -412,20 +412,9 @@
                 targetWidth = $target[0].offsetWidth;
                 targetHeight = $target[0].offsetHeight;
 
-                var postionInfo = this.getTargetPosition(elementPos, placement, targetWidth, targetHeight);
+                var postionInfo = this.getTargetPositin(elementPos, placement, targetWidth, targetHeight);
+
                 this.$target.css(postionInfo.position).addClass(placement).addClass('in');
-
-                // fix popover if element is fixed
-                if(this.$element.css('position') === 'fixed') {
-                    this.$target.css('position', 'fixed');
-                }
-
-                var that = this;
-                $(window).resize(function () {
-                    elementPos = that.getElementPosition();
-                    postionInfo = that.getTargetPosition(elementPos, placement, targetWidth, targetHeight);
-                    that.$target.css(postionInfo.position).addClass(placement);
-                });
 
                 if (this.options.type === 'iframe') {
                     var $iframe = $target.find('iframe');
@@ -879,32 +868,42 @@
             getElementPosition: function() {
                 // If the container is the body or normal conatiner, just use $element.offset()
                 var elRect = this.$element[0].getBoundingClientRect();
-                if (this.options.container.is(document.body) || this.options.container.css('position') !== 'fixed') {
+                var container = this.options.container;
+                var cssPos = container.css('position');
+
+                if (container.is(document.body) || cssPos === 'static') {
                     return $.extend({}, this.$element.offset(), {
                         width: this.$element[0].offsetWidth || elRect.width,
                         height: this.$element[0].offsetHeight || elRect.height
                     });
                     // Else fixed container need recalculate the  position
-                } else {
-                    var containerRect = this.options.container[0].getBoundingClientRect();
+                } else if (cssPos === 'fixed') {
+                    var containerRect = container[0].getBoundingClientRect();
                     return {
-                        top: elRect.top - containerRect.top + this.options.container.scrollTop(),
-                        left: elRect.left - containerRect.left + this.options.container.scrollLeft(),
+                        top: elRect.top - containerRect.top + container.scrollTop(),
+                        left: elRect.left - containerRect.left + container.scrollLeft(),
                         width: elRect.width,
                         height: elRect.height
+                    };
+                } else if (cssPos === 'relative') {
+                    return {
+                        top: this.$element.offset().top - container.offset().top,
+                        left: this.$element.offset().left - container.offset().left,
+                        width: this.$element[0].offsetWidth || elRect.width,
+                        height: this.$element[0].offsetHeight || elRect.height
                     };
                 }
             },
 
-            getTargetPosition: function(elementPos, placement, targetWidth, targetHeight) {
+            getTargetPositin: function(elementPos, placement, targetWidth, targetHeight) {
                 var pos = elementPos,
                     container = this.options.container,
                     //clientWidth = container.innerWidth(),
                     //clientHeight = container.innerHeight(),
                     elementW = this.$element.outerWidth(),
                     elementH = this.$element.outerHeight(),
-                    scrollTop = container.scrollTop(),
-                    scrollLeft = container.scrollLeft(),
+                    scrollTop = document.documentElement.scrollTop + container.scrollTop(),
+                    scrollLeft = document.documentElement.scrollLeft + container.scrollLeft(),
                     position = {},
                     arrowOffset = null,
                     arrowSize = this.options.arrow ? 20 : 0,
@@ -920,34 +919,35 @@
                 var validTop = pos.top + pos.height / 2 - fixedH > 0;
                 var validBottom = pos.top + pos.height / 2 + fixedH < pageH;
 
+
                 switch (placement) {
                     case 'bottom':
                         position = {
-                            top: pos.top + pos.height - scrollTop,
-                            left: pos.left + pos.width / 2 - targetWidth / 2 > 20 ? pos.left + pos.width / 2 - targetWidth / 2 : 20
+                            top: pos.top + pos.height,
+                            left: pos.left + pos.width / 2 - targetWidth / 2
                         };
                         break;
                     case 'top':
                         position = {
-                            top: pos.top - targetHeight - scrollTop,
-                            left: pos.left + pos.width / 2 - targetWidth / 2 > 20 ? pos.left + pos.width / 2 - targetWidth / 2 : 20
+                            top: pos.top - targetHeight,
+                            left: pos.left + pos.width / 2 - targetWidth / 2
                         };
                         break;
                     case 'left':
                         position = {
-                            top: pos.top + pos.height / 2 - targetHeight / 2 - scrollTop,
-                            left: pos.left - targetWidth > 20 ? pos.left - targetWidth : 20
+                            top: pos.top + pos.height / 2 - targetHeight / 2,
+                            left: pos.left - targetWidth
                         };
                         break;
                     case 'right':
                         position = {
-                            top: pos.top + pos.height / 2 - targetHeight / 2 - scrollTop,
-                            left: pos.left + pos.width > 20 ? pos.left + pos.width : 20
+                            top: pos.top + pos.height / 2 - targetHeight / 2,
+                            left: pos.left + pos.width
                         };
                         break;
                     case 'top-right':
                         position = {
-                            top: pos.top - targetHeight - scrollTop,
+                            top: pos.top - targetHeight,
                             left: validLeft ? pos.left - fixedW : padding
                         };
                         arrowOffset = {
@@ -957,7 +957,7 @@
                     case 'top-left':
                         refix = validRight ? fixedW : -padding;
                         position = {
-                            top: pos.top - targetHeight - scrollTop,
+                            top: pos.top - targetHeight,
                             left: pos.left - targetWidth + pos.width + refix
                         };
                         arrowOffset = {
@@ -966,7 +966,7 @@
                         break;
                     case 'bottom-right':
                         position = {
-                            top: pos.top + pos.height - scrollTop,
+                            top: pos.top + pos.height,
                             left: validLeft ? pos.left - fixedW : padding
                         };
                         arrowOffset = {
@@ -976,7 +976,7 @@
                     case 'bottom-left':
                         refix = validRight ? fixedW : -padding;
                         position = {
-                            top: pos.top + pos.height - scrollTop,
+                            top: pos.top + pos.height,
                             left: pos.left - targetWidth + pos.width + refix
                         };
                         arrowOffset = {
@@ -986,7 +986,7 @@
                     case 'right-top':
                         refix = validBottom ? fixedH : -padding;
                         position = {
-                            top: pos.top - targetHeight + pos.height + refix - scrollTop,
+                            top: pos.top - targetHeight + pos.height + refix,
                             left: pos.left + pos.width
                         };
                         arrowOffset = {
@@ -995,7 +995,7 @@
                         break;
                     case 'right-bottom':
                         position = {
-                            top: validTop ? pos.top - fixedH - scrollTop : padding - scrollTop,
+                            top: validTop ? pos.top - fixedH : padding,
                             left: pos.left + pos.width
                         };
                         arrowOffset = {
@@ -1005,7 +1005,7 @@
                     case 'left-top':
                         refix = validBottom ? fixedH : -padding;
                         position = {
-                            top: pos.top - targetHeight + pos.height + refix - scrollTop,
+                            top: pos.top - targetHeight + pos.height + refix,
                             left: pos.left - targetWidth
                         };
                         arrowOffset = {
@@ -1014,7 +1014,7 @@
                         break;
                     case 'left-bottom':
                         position = {
-                            top: validTop ? pos.top - fixedH - scrollTop : padding - scrollTop,
+                            top: validTop ? pos.top - fixedH : padding,
                             left: pos.left - targetWidth
                         };
                         arrowOffset = {

@@ -6,8 +6,11 @@
   <script src="../src/jquery.webui-popover.js" ></script>
   <style type="text/css">
   .fullpage {
-    width:600px;
-    height:1200px;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    bottom: 50px;
+    left: 50px;
     background-color: #666666;
     overflow: auto;
   }
@@ -15,7 +18,6 @@
   .container {
     margin:5px;
     padding: 5px;
-    position: relative;
   }
 
   .placeholder {
@@ -23,41 +25,27 @@
     width: 2000px;
   }
 
-  #popover_test,#popover_test2{
+  #popover_test{
     width: 100px;
     height: 100px;
-    margin:100px auto;
+    margin:auto;
     background: #00ccff;
     border: 1px solid blue;
   }
-
   </style>
   <script type="text/javascript">
     $(document).ready(function(){
         $('#popover_test').webuiPopover({
-            container:'.container',
+            container:'.fullpage',
             trigger:'click',
             placement:'right-bottom',
             width:100,
-            content: 'content<br>dddd<br>dddd<br>dsfsdfsdf',
-            multi:true
-        });
-
-        $('#popover_test2').webuiPopover({
-            trigger:'click',
-            placement:'right-bottom',
-            width:100,
-            content: 'content<br>dddd<br>dddd<br>dsfsdfsdf',
-            multi:true
+            content: 'content<br>dddd<br>dddd<br>dsfsdfsdf'
         });
     });
   </script>
 </head>
 <body>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <div id="popover_test2">dsfsfsd</div>
     <div class="fullpage">
         <div class="container">
             <div id="popover_test">dsfsfsd</div>

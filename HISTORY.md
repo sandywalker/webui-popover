@@ -3,6 +3,10 @@
 
 # History
 
+### 1.2.12
+* fix the arrow hidden bug in firefox
+* fix the position bug when container's position is 'relative'
+
 ### 1.2.11
 * fix the position bug with svg.
 
