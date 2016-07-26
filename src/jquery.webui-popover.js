@@ -1058,21 +1058,21 @@
             var _hideAll = function() {
                 hideAllPop();
             };
-            var _create = function(selector,options){
-                options = options||{};
+            var _create = function(selector, options) {
+                options = options || {};
                 $(selector).webuiPopover(options);
             };
-            var _isCreated = function(selector){
+            var _isCreated = function(selector) {
                 var created = true;
-                $(selector).each(function(item){
+                $(selector).each(function(item) {
                     created = created && $(item).data('plugin_' + pluginName) !== undefined;
                 });
                 return created;
-            }
-            var _show = function(selector,options) {
-                if (options){
+            };
+            var _show = function(selector, options) {
+                if (options) {
                     $(selector).webuiPopover(options).webuiPopover('show');
-                }else{
+                } else {
                     $(selector).webuiPopover('show');
                 }
             };
@@ -1082,8 +1082,8 @@
             return {
                 show: _show,
                 hide: _hide,
-                create:_create,
-                isCreated:_isCreated,
+                create: _create,
+                isCreated: _isCreated,
                 hideAll: _hideAll
             };
         })();

@@ -180,7 +180,7 @@ $('a').webuiPopover({
 
 
 
-### default options
+### Default options
 ```javascript
 {
 	placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left,auto-top,auto-right,auto-bottom,auto-left,horizontal,vertical
@@ -222,6 +222,7 @@ $('a').webuiPopover({
 
 ###Global Methods
 
+
 In some situation, you may want to manipulate the plugin like 'show/hide' popovers by  global methods.  The new object **WebuiPopovers** is introduced and exposed to the global window object, so you can access these methods like 'WebuiPopovers.someMethod()...'. 
 
 Here are examples of calling code.
@@ -231,17 +232,30 @@ Here are examples of calling code.
 //Show Popover by click other element.
 $('a').on('click',function(e){
 	e.stopPropagation(); // Stop event propagation is needed, otherwise may trigger the document body click event handled by plugin.
-	WebuiPopovers.show('#mypop');
+	WebuiPopovers.show('#trigger');
 });
+
+// Show Popover with options
+WebuiPopovers.show('#trigger',{title:' hello popover',width:300});
 
 
 //Hide Popover by jQuery selector
-WebuiPopovers.hide('#mypop');
+WebuiPopovers.hide('#trigger');
 
 //Hide All Popovers
 WebuiPopovers.hideAll();
 
 
+```
+
+Full Methods
+
+```js
+ 	WebuiPopovers.show(selector,options); // Show popover by jQuery selector,the  options parameter is optional
+	WebuiPopovers.hide(selector); // Hide  popover by jQuery selector
+	WebuiPopovers.hideAll(); // Hide all popovers
+	WebuiPopovers.create(selector,options);// Create and init the popover by jQuery selector.
+	WebuiPopovers.isCreated(selector); // Check if the popover is already create and bind to the selector.
 ```
 
 
