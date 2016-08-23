@@ -100,14 +100,18 @@
             $document.trigger('hiddenAll.' + pluginType);
         };
 
-        var isMobile = ('ontouchstart' in document.documentElement) && (/Mobi/.test(navigator.userAgent));
+        var hideOtherPops = function(currentPop) {
+            var pop = null;
+            for (var i = 0; i < _srcElements.length; i++) {
+                pop = getPopFromElement(_srcElements[i]);
+                if (pop && pop.id !== currentPop.id) {
+                    pop.hide(true);
+                }
+            }
+            $document.trigger('hiddenAll.' + pluginType);
+        };
 
-        //var removeAllTargets = function() {
-        // for (var i = 0; i < _srcElements.length; i++) {
-        //     var pop = getPopFromElement(_srcElements[i]);
-        //     console.log(pop.$target);
-        // }
-        //};
+        var isMobile = ('ontouchstart' in document.documentElement) && (/Mobi/.test(navigator.userAgent));
 
         var pointerEventToXY = function(e) {
             var out = {
@@ -165,6 +169,7 @@
                 this._inited = true;
                 this._opened = false;
                 this._idSeed = _globalIdSeed;
+                this.id = pluginName + this._idSeed;
                 // normalize container
                 this.options.container = $(this.options.container || document.body).first();
 
@@ -207,13 +212,13 @@
                 param: event    dom event,
             */
             hide: function(force, event) {
+
                 if (!force && this.getTrigger() === 'sticky') {
                     return;
                 }
                 if (!this._opened) {
                     return;
                 }
-
                 if (event) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -270,6 +275,9 @@
             hideAll: function() {
                 hideAllPop();
             },
+            hideOthers: function() {
+                hideOtherPops(this);
+            },
             /*core method ,show popover */
             show: function() {
                 if (this._opened) {
@@ -279,7 +287,7 @@
                 var
                     $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
                 if (!this.options.multi) {
-                    this.hideAll();
+                    this.hideOthers();
                 }
 
                 // use cache by default, if not cache setted  , reInit the contents
@@ -289,7 +297,6 @@
                     if (!this.options.closeable) {
                         $target.find('.close').off('click').remove();
                     }
-
                     if (!this.isAsync()) {
                         this.setContent(this.getContent());
                     } else {
@@ -472,12 +479,19 @@
                 if (!this.$target) {
                     var id = pluginName + this._idSeed;
                     this.$target = $(this.options.template)
-                        .attr('id', id)
-                        .data('trigger-element', this.getTriggerElement());
+                        .attr('id', id);
                     this._customTargetClass = this.$target.attr('class') !== pluginClass ? this.$target.attr('class') : null;
                     this.getTriggerElement().attr('data-target', id);
                 }
+                if (!this.$target.data('trigger-element')) {
+                    this.$target.data('trigger-element', this.getTriggerElement());
+                }
                 return this.$target;
+            },
+            removeTarget: function() {
+                this.$target.remove();
+                this.$target = null;
+                this.$contentElement = null;
             },
             getTitleElement: function() {
                 return this.getTarget().find('.' + pluginClass + '-title');
@@ -847,11 +861,11 @@
                     }
                 } else if (placement === 'auto-right') {
                     if (pageY < clientHeight / 3) {
-                        placement = 'right-top';
+                        placement = 'right-bottom';
                     } else if (pageY < clientHeight * 2 / 3) {
                         placement = 'right';
                     } else {
-                        placement = 'right-bottom';
+                        placement = 'right-top';
                     }
                 }
                 return placement;
@@ -1079,12 +1093,33 @@
             var _hide = function(selector) {
                 $(selector).webuiPopover('hide');
             };
+            var _updateContent = function(selector, content) {
+                var pop = $(selector).data('plugin_' + pluginName);
+                if (pop) {
+                    var cache = pop.getCache();
+                    pop.options.cache = false;
+                    pop.options.content = content;
+                    if (pop._opened) {
+                        pop._opened = false;
+                        pop.show();
+                    } else {
+                        if (pop.isAsync()) {
+                            pop.setContentASync(content);
+                        } else {
+                            pop.setContent(content);
+                        }
+                    }
+                    pop.options.cache = cache;
+                }
+            };
+
             return {
                 show: _show,
                 hide: _hide,
                 create: _create,
                 isCreated: _isCreated,
-                hideAll: _hideAll
+                hideAll: _hideAll,
+                updateContent: _updateContent
             };
         })();
         window.WebuiPopovers = webuiPopovers;
