@@ -15,11 +15,12 @@
   <script type="text/javascript">
     $(function() {
         $('body').webuiPopover({
-          selector:'.show-pop'
+          selector:'.show-pop',
+          trigger:'hover'
         })
 
         $('#addPop').on('click',function(e){
-            $('<a href="#" class="show-pop btn btn-success" data-title="Dynamic Title" data-content="Dynamic content"> Dynamic created Pop </a>').appendTo('.pops');
+            $('<a href="#" class="show-pop btn btn-success" data-placement="auto-bottom"  data-width="300" data-height="200" data-title="Dynamic Title" data-content="Dynamic content"> Dynamic created Pop </a>').appendTo('.pops');
         });
     });
   </script>

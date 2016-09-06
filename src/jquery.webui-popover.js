@@ -23,7 +23,7 @@
             height: 'auto',
             trigger: 'click', //hover,click,sticky,manual
             style: '',
-            selector:false, // jQuery selector, if a selector is provided, popover objects will be delegated to the specified. 
+            selector: false, // jQuery selector, if a selector is provided, popover objects will be delegated to the specified. 
             delay: {
                 show: null,
                 hide: 300
@@ -157,18 +157,18 @@
             //init webui popover
             init: function() {
                 if (this.$element[0] instanceof document.constructor && !this.options.selector) {
-                        throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
+                    throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!');
                 }
 
                 if (this.getTrigger() !== 'manual') {
                     //init the event handlers
                     if (this.getTrigger() === 'click' || isMobile) {
-                        this.$element.off('click touchend',this.options.selector).on('click touchend', this.options.selector,$.proxy(this.toggle, this));
+                        this.$element.off('click touchend', this.options.selector).on('click touchend', this.options.selector, $.proxy(this.toggle, this));
                     } else if (this.getTrigger() === 'hover') {
                         this.$element
-                            .off('mouseenter mouseleave click',this.options.selector)
-                            .on('mouseenter', this.options.selector,$.proxy(this.mouseenterHandler, this))
-                            .on('mouseleave', this.options.selector,$.proxy(this.mouseleaveHandler, this));
+                            .off('mouseenter mouseleave click', this.options.selector)
+                            .on('mouseenter', this.options.selector, $.proxy(this.mouseenterHandler, this))
+                            .on('mouseleave', this.options.selector, $.proxy(this.mouseleaveHandler, this));
                     }
                 }
                 this._poped = false;
@@ -187,8 +187,11 @@
                     this.show();
                 }
 
-                if (this.options.selector){
-                    this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' });
+                if (this.options.selector) {
+                    this._options = $.extend({}, this.options, {
+                        trigger: 'manual',
+                        selector: ''
+                    });
                 }
 
             },
@@ -217,14 +220,16 @@
                     this.$target.remove();
                 }
             },
-            getDelegateOptions: function () {
-                var options  = {}
+            getDelegateOptions: function() {
+                var options = {};
 
-                this._options && $.each(this._options, function (key, value) {
-                  if (defaults[key] != value) options[key] = value
-                })
+                this._options && $.each(this._options, function(key, value) {
+                    if (defaults[key] !== value) {
+                        options[key] = value;
+                    }
+                });
 
-                return options
+                return options;
             },
             /*
                 param: force    boolean value, if value is true then force hide the popover
@@ -284,16 +289,20 @@
                     }, autoHide);
                 }
             },
+            delegate: function(eventTarget) {
+                var self = $(eventTarget).data('plugin_' + pluginName);
+                if (!self) {
+                    self = new WebuiPopover(eventTarget, this.getDelegateOptions());
+                    $(eventTarget).data('plugin_' + pluginName, self);
+                }
+                return self;
+            },
             toggle: function(e) {
                 var self = this;
                 if (e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    self = $(e.currentTarget).data('plugin_' + pluginName);
-                    if (!self){
-                        self = new WebuiPopover(e.currentTarget,this.getDelegateOptions());
-                        $(e.currentTarget).data('plugin_' + pluginName,self);
-                    }
+                    self = this.delegate(e.currentTarget);
                 }
                 self[self.getTarget().hasClass('in') ? 'hide' : 'show']();
             },
@@ -718,8 +727,11 @@
             },
 
             /* event handlers */
-            mouseenterHandler: function() {
+            mouseenterHandler: function(e) {
                 var self = this;
+                if (e) {
+                    self = this.delegate(e.currentTarget);
+                }
                 if (self._timeout) {
                     clearTimeout(self._timeout);
                 }
@@ -729,8 +741,11 @@
                     }
                 }, this.getDelayShow());
             },
-            mouseleaveHandler: function() {
+            mouseleaveHandler: function(e) {
                 var self = this;
+                if (e) {
+                    self = this.delegate(e.currentTarget);
+                }
                 clearTimeout(self._enterTimeout);
                 //key point, set the _timeout  then use clearTimeout when mouse leave
                 self._timeout = setTimeout(function() {
