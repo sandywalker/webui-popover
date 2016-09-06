@@ -3,6 +3,10 @@
 
 # History
 
+### 1.2.14
+* add global method 'updateContent'
+* add new option: 'selector' for delegate, now the plugin can deal with dynamic created content.
+
 ### 1.2.13
 * fix the arrow hidden bug in firefox
 * fix the position bug when container's position is 'relative'

@@ -117,6 +117,21 @@ $('a').webuiPopover({content:'Content',trigger:'hover'});
 $('a').webuiPopover({content:'Content',trigger:'sticky'});
 ```
 
+Create Popover Dynamically (by new option:'selector').
+
+```html
+<a href="#" id="addPop" class="btn btn-default"> add Pop </a>
+<div class="pops">
+      
+</div>
+```
+
+```javascript
+ $('#addPop').on('click',function(e){
+            $('<a href="#" class="show-pop data-placement="auto-bottom"  data-title="Dynamic Title" data-content="Dynamic content"> Dynamic created Pop </a>').appendTo('.pops');
+        });
+```
+
  Popover with inversed style.
 ```javascript
 $('a').webuiPopover({content:'Content',style:'inverse'});
@@ -178,6 +193,11 @@ $('a').webuiPopover({
 
 ```
 
+Destroy the Popover
+```javascript
+$('a').webuiPopover('destroy');
+```
+
 
 
 ### Default options
@@ -188,6 +208,7 @@ $('a').webuiPopover({
 	width:'auto',//can be set with  number
 	height:'auto',//can be set with  number
 	trigger:'click',//values:  click,hover,manual(handle events by your self),sticky(always show after popover is created);
+	selector:false,// jQuery selector, if a selector is provided, popover objects will be delegated to the specified. 
 	style:'',//values:'',inverse
 	animation:null, //pop with animation,values: pop,fade (only take effect in the browser which support css3 transition)
 	delay: {//show and hide delay time of the popover, works only when trigger is 'hover',the value can be number or object
@@ -245,6 +266,8 @@ WebuiPopovers.hide('#el');
 //Hide All Popovers
 WebuiPopovers.hideAll();
 
+//Update the Popover content 
+WebuiPopovers.updateContent('.btn-showpop','some html or text');
 
 ```
 
@@ -256,6 +279,7 @@ Full Methods
 	WebuiPopovers.hideAll(); // Hide all popovers
 	WebuiPopovers.create(selector,options);// Create and init the popover by jQuery selector.
 	WebuiPopovers.isCreated(selector); // Check if the popover is already create and bind to the selector.
+	WebuiPopovers.updateContent(selector,newContent) //Update the Popover content after the popover is created.
 ```
 
 
