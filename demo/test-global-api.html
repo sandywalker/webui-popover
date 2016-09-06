@@ -28,6 +28,10 @@
         //       WebuiPopovers.show('#added');
         //    }
         // });
+
+        $('#test').on('click',false,function(e){
+            alert($(this).attr('id'));
+        });
     });
   </script>
 </head>
@@ -36,5 +40,7 @@
     <a href="#" id="showPop">show pop</a><div class="webui-popover-content">aaaaa</div>
   <p>&nbsp;</p>
     <a href="#" id="addLink">add link</a>
+
+    <a href="#" id="test">test</a>
 </body>
 </html>
