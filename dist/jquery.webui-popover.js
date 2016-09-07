@@ -1,5 +1,5 @@
 /*
- *  webui popover plugin  - v1.2.14
+ *  webui popover plugin  - v1.2.15
  *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
  *  https://github.com/sandywalker/webui-popover
  *
@@ -197,7 +197,6 @@
 
                 if (this.options.selector) {
                     this._options = $.extend({}, this.options, {
-                        trigger: 'manual',
                         selector: ''
                     });
                 }
@@ -236,7 +235,6 @@
                         options[key] = value;
                     }
                 });
-
                 return options;
             },
             /*
@@ -310,7 +308,9 @@
                 if (e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    self = this.delegate(e.currentTarget);
+                    if (this.options.selector) {
+                        self = this.delegate(e.currentTarget);
+                    }
                 }
                 self[self.getTarget().hasClass('in') ? 'hide' : 'show']();
             },
@@ -737,9 +737,11 @@
             /* event handlers */
             mouseenterHandler: function(e) {
                 var self = this;
-                if (e) {
+
+                if (e && this.options.selector) {
                     self = this.delegate(e.currentTarget);
                 }
+
                 if (self._timeout) {
                     clearTimeout(self._timeout);
                 }
@@ -749,11 +751,8 @@
                     }
                 }, this.getDelayShow());
             },
-            mouseleaveHandler: function(e) {
+            mouseleaveHandler: function() {
                 var self = this;
-                if (e) {
-                    self = this.delegate(e.currentTarget);
-                }
                 clearTimeout(self._enterTimeout);
                 //key point, set the _timeout  then use clearTimeout when mouse leave
                 self._timeout = setTimeout(function() {

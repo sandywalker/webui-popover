@@ -2,6 +2,8 @@
 
 
 # History
+### 1.2.15
+
 
 ### 1.2.14
 * add global method 'updateContent'
