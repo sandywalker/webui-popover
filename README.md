@@ -275,6 +275,11 @@ WebuiPopovers.updateContentAsync('.btn-showpop','http://someUrl');
 
 ```
 
+//Set global default options
+WebuiPopovers.setDefaultOptions(options);
+
+```
+
 Full Methods
 
 ```js
@@ -285,6 +290,7 @@ Full Methods
 	WebuiPopovers.isCreated(selector); // Check if the popover is already create and bind to the selector.
 	WebuiPopovers.updateContent(selector,newContent) //Update the Popover content after the popover is created.
 	WebuiPopovers.updateContentAsync(selector,url) //Update the Popover content asynchronously after the popover is created.
+	WebuiPopovers.setDefaultOptions(options) //Change the global default options.
 ```
 
 

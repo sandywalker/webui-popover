@@ -2,7 +2,14 @@
 
 
 # History
-### 1.2.15
+### 1.2.17
+* fixed  some bugs
+* add new global method 'updateContentAsync' for async mode.
+* add new global method 'setDefaultOptions'
+
+
+### 1.2.16
+* fixed some bugs.
 
 
 ### 1.2.14
