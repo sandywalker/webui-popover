@@ -441,14 +441,14 @@
                     }
                     this.$target.addClass('webui-no-padding');
                 }
-                
+
                 // add maxHeight and maxWidth support by limodou@gmail.com 2016/10/1
                 if (this.options.maxHeight) {
-                  $targetContent.css('maxHeight', this.options.maxHeight);
+                    $targetContent.css('maxHeight', this.options.maxHeight);
                 }
 
                 if (this.options.maxWidth) {
-                  $targetContent.css('maxWidth', this.options.maxWidth);
+                    $targetContent.css('maxWidth', this.options.maxWidth);
                 }
                 // end
 
@@ -1125,7 +1125,7 @@
             };
             var _isCreated = function(selector) {
                 var created = true;
-                $(selector).each(function(item) {
+                $(selector).each(function(i, item) {
                     created = created && $(item).data('plugin_' + pluginName) !== undefined;
                 });
                 return created;
@@ -1187,7 +1187,7 @@
                 isCreated: _isCreated,
                 hideAll: _hideAll,
                 updateContent: _updateContent,
-                updateContentAsync:_updateContentAsync
+                updateContentAsync: _updateContentAsync
             };
         })();
         window.WebuiPopovers = webuiPopovers;

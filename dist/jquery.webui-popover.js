@@ -1,5 +1,5 @@
 /*
- *  webui popover plugin  - v1.2.15
+ *  webui popover plugin  - v1.2.16
  *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
  *  https://github.com/sandywalker/webui-popover
  *
@@ -449,6 +449,17 @@
                     }
                     this.$target.addClass('webui-no-padding');
                 }
+
+                // add maxHeight and maxWidth support by limodou@gmail.com 2016/10/1
+                if (this.options.maxHeight) {
+                    $targetContent.css('maxHeight', this.options.maxHeight);
+                }
+
+                if (this.options.maxWidth) {
+                    $targetContent.css('maxWidth', this.options.maxWidth);
+                }
+                // end
+
                 targetWidth = $target[0].offsetWidth;
                 targetHeight = $target[0].offsetHeight;
 
@@ -1122,7 +1133,7 @@
             };
             var _isCreated = function(selector) {
                 var created = true;
-                $(selector).each(function(item) {
+                $(selector).each(function(i, item) {
                     created = created && $(item).data('plugin_' + pluginName) !== undefined;
                 });
                 return created;
@@ -1157,13 +1168,34 @@
                 }
             };
 
+            var _updateContentAsync = function(selector, url) {
+                var pop = $(selector).data('plugin_' + pluginName);
+                if (pop) {
+                    var cache = pop.getCache();
+                    var type = pop.options.type;
+                    pop.options.cache = false;
+                    pop.options.url = url;
+
+                    if (pop._opened) {
+                        pop._opened = false;
+                        pop.show();
+                    } else {
+                        pop.options.type = 'async';
+                        pop.setContentASync(pop.content);
+                    }
+                    pop.options.cache = cache;
+                    pop.options.type = type;
+                }
+            };
+
             return {
                 show: _show,
                 hide: _hide,
                 create: _create,
                 isCreated: _isCreated,
                 hideAll: _hideAll,
-                updateContent: _updateContent
+                updateContent: _updateContent,
+                updateContentAsync: _updateContentAsync
             };
         })();
         window.WebuiPopovers = webuiPopovers;
