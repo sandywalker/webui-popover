@@ -441,6 +441,17 @@
                     }
                     this.$target.addClass('webui-no-padding');
                 }
+                
+                // add maxHeight and maxWidth support by limodou@gmail.com 2016/10/1
+                if (this.options.maxHeight) {
+                  $targetContent.css('maxHeight', this.options.maxHeight);
+                }
+
+                if (this.options.maxWidth) {
+                  $targetContent.css('maxWidth', this.options.maxWidth);
+                }
+                // end
+
                 targetWidth = $target[0].offsetWidth;
                 targetHeight = $target[0].offsetHeight;
 
