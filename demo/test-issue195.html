@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <head>
-  <title> issue (#195)</title>
+  <title> issue (#195) update content</title>
   <link href="bootstrap.css" rel="stylesheet">
   <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
   <script src="jquery.js" ></script>
@@ -18,12 +18,27 @@
         $('.btn-update').on('click',function(e){
             e.stopPropagation();
             WebuiPopovers.updateContent('.btn-showpop',$('#largeContent').html());
+            
+        });
+
+        $('.btn-showpop-async').webuiPopover({type:'async',url:'/demo/async-content.html'});
+
+        $('.btn-update-async').on('click',function(e){
+            e.stopPropagation();
+            var changed = $(this).data('changed')||false;
+            if (!changed){
+              WebuiPopovers.updateContentAsync('.btn-showpop-async','/demo/async-content-another.html');  
+            }else{
+              WebuiPopovers.updateContentAsync('.btn-showpop-async','/demo/async-content.html');  
+            }
+            $(this).data('changed',!changed);
+            
         });
     });
   </script>
 </head>
 <body>
-    <p>&nbsp;</p> 
+    <p>&nbsp;</p>
     &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-default btn-showpop"  data-placement="right-bottom">show Pop</a>
     <div class="webui-popover-content">
       <p>popover content</p>
@@ -37,7 +52,13 @@
     </div>
     
     <p>&nbsp;</p>
-    <p>&nbsp;&nbsp;<a href="#" class="btn btn-default btn-update">update Pop content</a></p>
+    <p>&nbsp;<a href="#" class="btn btn-default btn-update">update Pop content</a></p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+   <p>&nbsp;<a href="#" class="btn btn-default btn-showpop-async"  data-placement="right-bottom">show Pop Async</a></p> 
+    <p>&nbsp;<a href="#" class="btn btn-default btn-update-async">update Pop content Async</a></p>
     
 </body>
 </html>

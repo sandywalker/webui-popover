@@ -269,6 +269,10 @@ WebuiPopovers.hideAll();
 //Update the Popover content 
 WebuiPopovers.updateContent('.btn-showpop','some html or text');
 
+
+//Update the Popover content  async
+WebuiPopovers.updateContentAsync('.btn-showpop','http://someUrl');
+
 ```
 
 Full Methods
@@ -280,6 +284,7 @@ Full Methods
 	WebuiPopovers.create(selector,options);// Create and init the popover by jQuery selector.
 	WebuiPopovers.isCreated(selector); // Check if the popover is already create and bind to the selector.
 	WebuiPopovers.updateContent(selector,newContent) //Update the Popover content after the popover is created.
+	WebuiPopovers.updateContentAsync(selector,url) //Update the Popover content asynchronously after the popover is created.
 ```
 
 
