@@ -1140,6 +1140,11 @@
             var _hide = function(selector) {
                 $(selector).webuiPopover('hide');
             };
+
+            var _setDefaultOptions = function(options) {
+                defaults = $.extend({}, defaults, options);
+            };
+
             var _updateContent = function(selector, content) {
                 var pop = $(selector).data('plugin_' + pluginName);
                 if (pop) {
@@ -1187,7 +1192,8 @@
                 isCreated: _isCreated,
                 hideAll: _hideAll,
                 updateContent: _updateContent,
-                updateContentAsync: _updateContentAsync
+                updateContentAsync: _updateContentAsync,
+                setDefaultOptions: _setDefaultOptions
             };
         })();
         window.WebuiPopovers = webuiPopovers;
