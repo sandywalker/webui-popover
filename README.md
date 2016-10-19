@@ -273,11 +273,8 @@ WebuiPopovers.updateContent('.btn-showpop','some html or text');
 //Update the Popover content  async
 WebuiPopovers.updateContentAsync('.btn-showpop','http://someUrl');
 
-```
-
 //Set global default options
 WebuiPopovers.setDefaultOptions(options);
-
 ```
 
 Full Methods
