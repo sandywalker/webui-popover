@@ -265,12 +265,6 @@
                 if (this.$target) {
                     this.$target.removeClass('in').addClass(this.getHideAnimation());
                     var that = this;
-                    setTimeout(function() {
-                        that.$target.hide();
-                        if (!that.getCache()) {
-                            that.$target.remove();
-                        }
-                    }, that.getHideDelay());
                 }
                 if (this.options.backdrop) {
                     backdrop.hide();
