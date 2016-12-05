@@ -30,7 +30,7 @@
             },
             async: {
                 type: 'GET',
-                before: null, //function(that, xhr){}
+                before: null, //function(that, xhr, settings){}
                 success: null, //function(that, xhr){}
                 error: null //function(that, xhr, data){}
             },
@@ -692,9 +692,9 @@
                     url: this.getUrl(),
                     type: this.options.async.type,
                     cache: this.getCache(),
-                    beforeSend: function(xhr) {
+                    beforeSend: function(xhr, settings) {
                         if (that.options.async.before) {
-                            that.options.async.before(that, xhr);
+                            that.options.async.before(that, xhr, settings);
                         }
                     },
                     success: function(data) {
