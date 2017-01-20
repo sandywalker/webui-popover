@@ -217,7 +217,7 @@ $('a').webuiPopover('destroy');
     },
     async: {
         type:'GET', // ajax request method type, default is GET
-        before: function(that, xhr) {},//executed before ajax request
+        before: function(that, xhr, settings) {},//executed before ajax request
         success: function(that, data) {}//executed after successful ajax request
         error: function(that, xhr, data) {} //executed after error ajax request
     },
@@ -273,11 +273,8 @@ WebuiPopovers.updateContent('.btn-showpop','some html or text');
 //Update the Popover content  async
 WebuiPopovers.updateContentAsync('.btn-showpop','http://someUrl');
 
-```
-
 //Set global default options
 WebuiPopovers.setDefaultOptions(options);
-
 ```
 
 Full Methods
