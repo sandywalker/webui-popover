@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title> issue (#214) dropdown not working in popover</title>
+  
+  <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
+  <script src="jquery.js" ></script>
+  <script src="bootstrap.js" ></script>
+  <script src="../src/jquery.webui-popover.js" ></script>
+
+  <style type="text/css">
+        
+  </style>
+  <script type="text/javascript">
+    $(function() {
+        $('#btnShow').webuiPopover();
+    });
+  </script>
+</head>
+<body>
+    <a href="#" id="btnShow">show pop</a>
+    <div class="webui-popover-content">
+      <table class="table" style="width:500px;">
+         <thead>
+            <tr>
+              <th width="200">col 1</th>
+              <th width="200">col 2</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+              <td>aa</td>
+              <td>bb</td>
+            </tr>
+         </tbody>
+      </table>
+  </div>
+</body>
+</html>
