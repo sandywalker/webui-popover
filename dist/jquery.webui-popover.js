@@ -38,7 +38,7 @@
             },
             async: {
                 type: 'GET',
-                before: null, //function(that, xhr){}
+                before: null, //function(that, xhr, settings){}
                 success: null, //function(that, xhr){}
                 error: null //function(that, xhr, data){}
             },
@@ -170,8 +170,10 @@
 
                 if (this.getTrigger() !== 'manual') {
                     //init the event handlers
-                    if (this.getTrigger() === 'click' || isMobile) {
-                        this.$element.off('click touchend', this.options.selector).on('click touchend', this.options.selector, $.proxy(this.toggle, this));
+                    if (isMobile) {
+                        this.$element.off('touchend', this.options.selector).on('touchend', this.options.selector, $.proxy(this.toggle, this));
+                    } else if (this.getTrigger() === 'click') {
+                        this.$element.off('click', this.options.selector).on('click', this.options.selector, $.proxy(this.toggle, this));
                     } else if (this.getTrigger() === 'hover') {
                         this.$element
                             .off('mouseenter mouseleave click', this.options.selector)
@@ -269,6 +271,7 @@
                         that.$target.hide();
                         if (!that.getCache()) {
                             that.$target.remove();
+                            //that.getTriggerElement.removeAttr('data-target');
                         }
                     }, that.getHideDelay());
                 }
@@ -685,8 +688,6 @@
                     } else {
                         content.removeClass(pluginClass + '-content').appendTo($ct);
                     }
-                } else if (typeof content === 'function') {
-                    content($ct);
                 }
                 this.$target = $target;
             },
@@ -702,9 +703,9 @@
                     url: this.getUrl(),
                     type: this.options.async.type,
                     cache: this.getCache(),
-                    beforeSend: function(xhr) {
+                    beforeSend: function(xhr, settings) {
                         if (that.options.async.before) {
-                            that.options.async.before(that, xhr);
+                            that.options.async.before(that, xhr, settings);
                         }
                     },
                     success: function(data) {
@@ -738,9 +739,12 @@
                     return;
                 }
                 if (this.options.dismissible && this.getTrigger() === 'click') {
-                    $document.off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
-                    $document.off('click.webui-popover touchend.webui-popover')
-                        .on('click.webui-popover touchend.webui-popover', $.proxy(this.bodyClickHandler, this));
+                    if (isMobile) {
+                        $document.off('touchstart.webui-popover').on('touchstart.webui-popover', $.proxy(this.bodyTouchStartHandler, this));
+                    } else {
+                        $document.off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
+                        $document.off('click.webui-popover').on('click.webui-popover', $.proxy(this.bodyClickHandler, this));
+                    }
                 } else if (this.getTrigger() === 'hover') {
                     $document.off('touchend.webui-popover')
                         .on('touchend.webui-popover', $.proxy(this.bodyClickHandler, this));
@@ -777,7 +781,17 @@
                     this.hideAll();
                 }
             },
-
+            bodyTouchStartHandler: function(e) {
+                var self = this;
+                var $eventEl = $(e.currentTarget);
+                $eventEl.on('touchend', function(e) {
+                    self.bodyClickHandler(e);
+                    $eventEl.off('touchend');
+                });
+                $eventEl.on('touchmove', function() {
+                    $eventEl.off('touchend');
+                });
+            },
             bodyClickHandler: function(e) {
                 _isBodyEventHandled = true;
                 var canHide = true;

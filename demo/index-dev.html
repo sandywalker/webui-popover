@@ -475,7 +475,7 @@
 					animation:'pop',
 					content:$('#optionsWrapper').html(),
 				});	
-				content:$('#optionsWrapper').remove();
+				$('#optionsWrapper').remove();
 
 
 
@@ -534,7 +534,7 @@
 					initPopover();
 				}		
 
-				$('a.show-pop-x').webuiPopover('destroy').webuiPopover(settings);
+				//$('a.show-pop-x').webuiPopover('destroy').webuiPopover(settings);
 
 				function initPopover(){	
 					$('a.show-pop').webuiPopover('destroy').webuiPopover(settings);				
