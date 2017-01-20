@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webui popover</title>
+    <link rel="stylesheet" href="../dist/jquery.webui-popover.min.css" />
+    <style>
+        body {
+            width: 940px;
+            margin: 0 auto;
+        }
+
+        .box {
+            float: right;
+            margin: 100px;
+        }
+
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="box">
+        <button id="anchor" data-placement="auto-bottom" data-content="popover content ">
+            Click me
+        </button>
+        <button id="anchor2" data-placement="auto-bottom" data-content="popover content ">
+            Click me
+        </button>
+    </div>
+
+
+    <script src="jquery.js"></script>
+    <script src="../src/jquery.webui-popover.js"></script>
+    <script>
+        $(function(){
+            $('#anchor').webuiPopover({
+                content: 'My Content',
+                cache: false,
+                closeable:true,
+                onHide: function(){
+                    setTimeout(function(){
+                    // check if popover still exists
+                    if($('.webui-popover').length){
+                        alert('Popover still present');
+                    }else{
+                        alert('Popover destroyed');
+                    }
+                    
+                  }, 1000)
+                }
+            });
+
+            $('#anchor2').webuiPopover({
+                content: 'My Content',
+                cache: true,
+                closeable:true,
+                onHide: function(){
+                    setTimeout(function(){
+                    // check if popover still exists
+                    if($('.webui-popover').length){
+                        alert('Popover still present');
+                    }else{
+                        alert('Popover destroyed');
+                    }
+                    
+                  }, 1000)
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>

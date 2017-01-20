@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title> close bug (#169)</title>
+  <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
+  <script src="jquery.js" ></script>
+  <script src="../src/jquery.webui-popover.js" ></script>
+  <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js"></script>
+  <style type="text/css">
+       
+  </style>
+  <script type="text/javascript">
+    $(function() {
+        function initPopover($src) {
+            $src.webuiPopover({
+                trigger: 'manual',
+                placement: 'horizontal',
+                width: 668, 
+                type: 'html',
+                content: function () {
+                    return '<img src="' + $src.attr('data-main') + '/>';
+                }
+            });
+        }
+        var $doc = $(document);
+        $(document)
+        .on('click', '.js-preview', function (event) {
+            var $target = $(event.currentTarget);
+            //event.stopPropagation();
+            var webuiPopover = $target.data('plugin_webuiPopover');
+            if (!webuiPopover) {
+                initPopover($target);
+            }
+
+            $target.webuiPopover('show');
+        })
+        .on('click', function (event) {
+            // try to hide the popover
+            var $popover = $doc.find('.webui-popover:visible');
+
+           // using lodash
+            _.forEach($popover, function (node) {
+               if ($(node).has(event.target).length > 0) {
+                   // if click is triggered on this popover
+                   return;
+               }
+               var $src = $doc.find('[data-target="' + node.id + '"]');
+               if ($src.length === 0 || $src[0] === event.target) {
+                   // if click is triggered at the '.js-preview' that pop this popover
+                   return;
+               }
+               $src.webuiPopover("hide");
+           });
+       });;
+    
+});
+  </script>
+</head>
+<body>
+      <img src="xxx" width="100" alt="苹果产品拆解集合（2016年4月更新）" data-main="xxx"  class="js-preview" >
+</body>
+</html>

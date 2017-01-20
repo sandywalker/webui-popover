@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title> issue (#197)</title>
+  <link href="bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
+  <script src="jquery.js" ></script>
+  <script src="../src/jquery.webui-popover.js" ></script>
+  <style type="text/css">
+        .u-text--edit {
+    color: #cc3333;
+    border-bottom: 1px dotted;
+    cursor: pointer;
+}
+  </style>
+  <script type="text/javascript">
+    $(function() {
+        $('body').webuiPopover({
+          selector:'.show-pop',
+          trigger:'hover'
+        })
+
+        $('#addPop').on('click',function(e){
+            $('<a href="#" class="show-pop btn btn-success" data-placement="auto-bottom"  data-width="300" data-height="200" data-title="Dynamic Title" data-content="Dynamic content"> Dynamic created Pop </a>').appendTo('.pops');
+        });
+    });
+  </script>
+</head>
+<body>
+    <a href="#" id="addPop" class="btn btn-default"> add Pop </a>
+
+    <div class="pops">
+      
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title> container (#167)</title>
+  <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
+  <script src="jquery.js" ></script>
+  <script src="../src/jquery.webui-popover.js" ></script>
+  <style type="text/css">
+        body {
+            width: 940px;
+            margin: 0 auto;
+        }
+
+        .box {
+            float: right;
+            margin: 100px;
+        }
+  </style>
+  <script type="text/javascript">
+    $(function() {
+    $('[data-tooltip="popover"]').webuiPopover('destroy').webuiPopover({
+        content: function() {
+            return $("#table-wrapper").html();
+        },
+        placement: "bottom",
+        container: $(".box") //NOTE HERE
+    });
+    $('[data-tooltip="popover"]').on('click', function(e) {
+        e.stopPropagation();
+    });
+});
+  </script>
+</head>
+<body>
+    <div id="box1" class="box">
+  <button data-tooltip="popover">
+    Click me
+  </button>
+  <div id="table-wrapper" style="display:none;">
+    <div class="new-wrapper">
+      <p style="width:250px;">Lorem ipsum dolor sit amet</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

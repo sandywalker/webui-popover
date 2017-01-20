@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title> canvas </title>
+  <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
+  <script src="jquery.js" ></script>
+  <script src="../src/jquery.webui-popover.js" ></script>
+  <style type="text/css">
+        
+  </style>
+  <script type="text/javascript">
+    $(function() {
+      var c = document.getElementById("pop");
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "#FF0000";
+      ctx.fillRect(0,0,150,75);
+        $('#pop').webuiPopover();       
+
+    });
+
+  </script>
+</head>
+<body>
+   <canvas id="pop" width="150" height="100" data-title="Pop from canvas" data-content="Content ..."></canvas>
+
+</body>
+</html>

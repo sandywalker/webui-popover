@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.npmignore
+.jshintrc
+bower.json
+CONTRIBUTING.md
+Gruntfile.js
+HISTORY.md
+ROADMAP.md
+webui-popover.jquery.json
+demo

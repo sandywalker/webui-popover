@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title> container (#167)</title>
+  <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
+  <script src="jquery.js" ></script>
+  <script src="../src/jquery.webui-popover.js" ></script>
+  <style type="text/css">
+        body {
+            width: 940px;
+            margin: 0 auto;
+        }
+  </style>
+  <script type="text/javascript">
+    $(function() {
+        //$('#showPop').webuiPopover();
+        //WebuiPopovers.show('#showPop');
+
+        $('#addLink').on('click',function(){
+            var $div = $('<div><a href="#" class="added" id="added">added show pop</a><div class="webui-popover-content">aaaaa</div></div>');
+            $div.appendTo($('body'));
+            WebuiPopovers.create($div.find('.added'),{title:'xx'});
+        });
+
+        // $('body').on('click','.added',function(e){
+        //    var created = WebuiPopovers.isCreated($(this));
+        //    if (!created){
+        //       e.stopPropagation();
+        //       WebuiPopovers.show('#added');
+        //    }
+        // });
+
+        $('#test').on('click',false,function(e){
+            alert($(this).attr('id'));
+        });
+    });
+  </script>
+</head>
+<body>
+  <p>&nbsp;</p>
+    <a href="#" id="showPop">show pop</a><div class="webui-popover-content">aaaaa</div>
+  <p>&nbsp;</p>
+    <a href="#" id="addLink">add link</a>
+
+    <a href="#" id="test">test</a>
+</body>
+</html>

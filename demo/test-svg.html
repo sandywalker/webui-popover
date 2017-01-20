@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title> svg </title>
+  <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
+  <script src="jquery.js" ></script>
+  <script src="../src/jquery.webui-popover.js" ></script>
+  <style type="text/css">
+        
+  </style>
+  <script type="text/javascript">
+    $(function() {
+        $('#pop').webuiPopover();       
+
+    });
+
+  </script>
+</head>
+<body>
+    <svg width="100" height="100" data-title="Pop from svg" data-content="myContent..." id="pop">
+          <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+       </svg>
+
+</body>
+</html>

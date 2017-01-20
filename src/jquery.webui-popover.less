@@ -31,17 +31,17 @@
 //** Popover outer arrow fallback color
 @popover-arrow-outer-fallback-color:  darken(@popover-fallback-border-color, 20%);
 
-@border-radius-base:        4px;
-@border-radius-large:       6px;
-@border-radius-small:       3px;
+@popover-border-radius-base:        4px;
+@popover-border-radius-large:       6px;
+@popover-border-radius-small:       3px;
 
-@font-size-base:          14px;
-@font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
-@font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
+@popover-font-size-base:          14px;
+@popover-font-size-large:         ceil((@popover-font-size-base * 1.25)); // ~18px
+@popover-font-size-small:         ceil((@popover-font-size-base * 0.85)); // ~12px
 
 
-@close-size:                16px;
-@close-color:               #000;
+@popover-close-size:                16px;
+@popover-close-color:               #000;
 
 @popover-z-index: 9999;
 @popover-backdrop-z-index: (@popover-z-index - 1);
@@ -86,6 +86,11 @@
   display: none;
 }
 
+.webui-popover-rtl{
+   direction: rtl;
+   text-align: right;
+}
+
 /*  webui popover  */
 .webui-popover {
   position: absolute;
@@ -102,7 +107,7 @@
   background-clip: padding-box;
   border: 1px solid @popover-fallback-border-color;
   border: 1px solid @popover-border-color;
-  border-radius: @border-radius-large;
+  border-radius: @popover-border-radius-large;
   .box-shadow(0 5px 10px rgba(0,0,0,.2));
 
   &.top,&.top-left,&.top-right     { margin-top: -@popover-arrow-width; }
@@ -121,7 +126,7 @@
     .transition(0.15s linear);
     .opacity(0);
   }
-  
+
   &.fade,&.fade-out{
     .transition(opacity .15s linear);
     .opacity(0);
@@ -129,13 +134,16 @@
   &.out{
     .opacity(0);
   }
-  
+
   &.in {.transform(none);.opacity(1)};
 
   .webui-popover-content {
     padding: 9px 14px;
-    overflow: auto;  
+    overflow: auto;
     display: block;
+    > div:first-child {
+      width: 99%;
+    }
   }
 }
 
@@ -145,10 +153,10 @@
   font-family: arial;
   margin:8px 10px 0 0;
   float: right;
-  font-size: @close-size;
+  font-size: @popover-close-size;
   font-weight: bold;
-  line-height: @close-size;
-  color: @close-color;
+  line-height: @popover-close-size;
+  color: @popover-close-color;
   text-shadow: 0 1px 0 #fff;
   .opacity(.2);
   text-decoration: none;
@@ -168,18 +176,19 @@
 .webui-popover-title {
   padding: 8px 14px;
   margin: 0;
-  font-size: @font-size-base;
+  font-size: @popover-font-size-base;
   font-weight: bold;
   line-height: 18px;
   background-color: @popover-title-bg;
   border-bottom: 1px solid darken(@popover-title-bg, 5%);
-  border-radius: (@border-radius-large - 1) (@border-radius-large - 1) 0 0;
+  border-radius: (@popover-border-radius-large - 1) (@popover-border-radius-large - 1) 0 0;
 }
 
 .webui-popover-content {
   padding: 9px 14px;
-  overflow: auto;  
+  overflow: auto;
   display: none;
+  
 }
 
 .webui-popover-inverse{
@@ -195,18 +204,18 @@
 
 .webui-no-padding {
 	.webui-popover-content {
-		padding: 0;		
+		padding: 0;
 	}
 	.list-group-item{
 		border-right: none;
-  		border-left:none; 
+  		border-left:none;
   		&:first-child{
 			border-top:0;
   		}
   		&:last-child{
 			border-bottom:0;
-  		} 
-	}  
+  		}
+	}
 }
 
 
@@ -217,8 +226,8 @@
 		width: 0;
 		height: 0;
 		border-color: transparent;
-		border-style: solid;	
-  }	
+		border-style: solid;
+  }
 }
 
 .webui-popover > .webui-arrow {
@@ -239,7 +248,7 @@
 	  margin-left: -@popover-arrow-outer-width;
 	  border-top-color: @popover-arrow-outer-fallback-color; // IE8 fallback
 	  border-top-color: @popover-arrow-outer-color;
-	  border-bottom-width: 0; 
+	  border-bottom-width: 0;
 	  &:after{
 	  	  content: " ";
 	  	  bottom: 1px;
@@ -314,21 +323,21 @@
   &.right-top > .webui-arrow,
   &.right-bottom > .webui-arrow{
 		&,&:after{
-			border-right-color: @popover-inverse-bg;	
+			border-right-color: @popover-inverse-bg;
 		}
 	}
 	&.bottom > .webui-arrow,
 	&.bottom-left > .webui-arrow,
 	&.bottom-right > .webui-arrow{
 		&,&:after{
-			border-bottom-color: @popover-inverse-bg;	
+			border-bottom-color: @popover-inverse-bg;
 		}
 	}
 	&.left > .webui-arrow,
   &.left-top > .webui-arrow,
   &.left-bottom > .webui-arrow{
 		&,&:after{
-			border-left-color: @popover-inverse-bg;	
+			border-left-color: @popover-inverse-bg;
 		}
 	}
 }
@@ -351,11 +360,11 @@
    // .animation(rotate 1s linear 0 infinite);
 }
 
-@-webkit-keyframes rotate { 
+@-webkit-keyframes rotate {
   100% {-webkit-transform: rotate(360deg);}
 }
 
-@keyframes rotate { 
+@keyframes rotate {
   100% {transform: rotate(360deg);}
 }
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title> issue (#193)</title>
+  <link href="bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="../src/jquery.webui-popover.css" />
+  <script src="jquery.js" ></script>
+  <script src="../src/jquery.webui-popover.js" ></script>
+  <style type="text/css">
+        .u-text--edit {
+    color: #cc3333;
+    border-bottom: 1px dotted;
+    cursor: pointer;
+}
+  </style>
+  <script type="text/javascript">
+    $(function() {
+    $('.u-text--edit').webuiPopover({
+        placement:'horizontal',
+        animation:'pop',
+        width:300,
+        cache:false,
+        closeable:true,
+        content: '<div class="form-group"><label for="value">Value</label><input type="number" name="value" class="form-control" id="value"></div><button class="btn btn-primary" id="changevalue">Confirm</button>',
+        onShow: function(e) {
+          var clickedElement = $(e).data('trigger-element');
+          $(clickedElement).append(' clicked');
+          $(e).find('#value').focus();
+          $(e).find('#changevalue').on('click', function(){
+            var newVal = $('#value').val();
+            $('.u-text--edit').webuiPopover('hide');
+            clickedElement.text(newVal);
+          })
+        }
+    });
+});
+  </script>
+</head>
+<body>
+  <table class="table">
+  <thead>
+    <tr>
+      <th>Header 1</th>
+      <th>Header 2</th>
+      <th>Header 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cell 1</td>
+      <td><span class="u-text--edit">123</span></td>
+      <td>Cell 3</td>
+    </tr>
+    <tr>
+      <td>Cell 1</td>
+      <td><span class="u-text--edit">234</span></td>
+      <td>Cell 3</td>
+    </tr>
+    <tr>
+      <td>Cell 1</td>
+      <td><span class="u-text--edit">345</span></td>
+      <td>Cell 3</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

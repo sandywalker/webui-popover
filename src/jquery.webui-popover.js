@@ -23,13 +23,14 @@
             height: 'auto',
             trigger: 'click', //hover,click,sticky,manual
             style: '',
+            selector: false, // jQuery selector, if a selector is provided, popover objects will be delegated to the specified. 
             delay: {
                 show: null,
-                hide: null
+                hide: 300
             },
             async: {
                 type: 'GET',
-                before: null, //function(that, xhr){}
+                before: null, //function(that, xhr, settings){}
                 success: null, //function(that, xhr){}
                 error: null //function(that, xhr, data){}
             },
@@ -42,6 +43,7 @@
             padding: true,
             url: '',
             type: 'html',
+            direction: '', // ltr,rtl
             animation: null,
             template: '<div class="webui-popover">' +
                 '<div class="webui-arrow"></div>' +
@@ -68,10 +70,11 @@
                 onload: '',
                 height: '',
                 width: ''
-            }
+            },
+            hideEmpty: false
         };
 
-
+        var rtlClass = pluginClass + '-rtl';
         var _srcElements = [];
         var backdrop = $('<div class="webui-popover-backdrop"></div>');
         var _globalIdSeed = 0;
@@ -98,14 +101,18 @@
             $document.trigger('hiddenAll.' + pluginType);
         };
 
-        var isMobile = ('ontouchstart' in document.documentElement) && (/Mobi/.test(navigator.userAgent));
+        var hideOtherPops = function(currentPop) {
+            var pop = null;
+            for (var i = 0; i < _srcElements.length; i++) {
+                pop = getPopFromElement(_srcElements[i]);
+                if (pop && pop.id !== currentPop.id) {
+                    pop.hide(true);
+                }
+            }
+            $document.trigger('hiddenAll.' + pluginType);
+        };
 
-        //var removeAllTargets = function() {
-        // for (var i = 0; i < _srcElements.length; i++) {
-        //     var pop = getPopFromElement(_srcElements[i]);
-        //     console.log(pop.$target);
-        // }
-        //};
+        var isMobile = ('ontouchstart' in document.documentElement) && (/Mobi/.test(navigator.userAgent));
 
         var pointerEventToXY = function(e) {
             var out = {
@@ -142,25 +149,35 @@
             this._targetclick = false;
             this.init();
             _srcElements.push(this.$element);
+            return this;
 
         }
 
         WebuiPopover.prototype = {
             //init webui popover
             init: function() {
-                //init the event handlers
-                if (this.getTrigger() === 'click' || isMobile) {
-                    this.$element.off('click touchend').on('click touchend', $.proxy(this.toggle, this));
-                } else if (this.getTrigger() === 'hover') {
-                    this.$element
-                        .off('mouseenter mouseleave click')
-                        .on('mouseenter', $.proxy(this.mouseenterHandler, this))
-                        .on('mouseleave', $.proxy(this.mouseleaveHandler, this));
+                if (this.$element[0] instanceof document.constructor && !this.options.selector) {
+                    throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!');
+                }
+
+                if (this.getTrigger() !== 'manual') {
+                    //init the event handlers
+                    if (isMobile) {
+                        this.$element.off('touchend', this.options.selector).on('touchend', this.options.selector, $.proxy(this.toggle, this));
+                    } else if (this.getTrigger() === 'click') {
+                        this.$element.off('click', this.options.selector).on('click', this.options.selector, $.proxy(this.toggle, this));
+                    } else if (this.getTrigger() === 'hover') {
+                        this.$element
+                            .off('mouseenter mouseleave click', this.options.selector)
+                            .on('mouseenter', this.options.selector, $.proxy(this.mouseenterHandler, this))
+                            .on('mouseleave', this.options.selector, $.proxy(this.mouseleaveHandler, this));
+                    }
                 }
                 this._poped = false;
                 this._inited = true;
                 this._opened = false;
                 this._idSeed = _globalIdSeed;
+                this.id = pluginName + this._idSeed;
                 // normalize container
                 this.options.container = $(this.options.container || document.body).first();
 
@@ -170,6 +187,12 @@
                 _globalIdSeed++;
                 if (this.getTrigger() === 'sticky') {
                     this.show();
+                }
+
+                if (this.options.selector) {
+                    this._options = $.extend({}, this.options, {
+                        selector: ''
+                    });
                 }
 
             },
@@ -198,6 +221,16 @@
                     this.$target.remove();
                 }
             },
+            getDelegateOptions: function() {
+                var options = {};
+
+                this._options && $.each(this._options, function(key, value) {
+                    if (defaults[key] !== value) {
+                        options[key] = value;
+                    }
+                });
+                return options;
+            },
             /*
                 param: force    boolean value, if value is true then force hide the popover
                 param: event    dom event,
@@ -210,7 +243,6 @@
                 if (!this._opened) {
                     return;
                 }
-
                 if (event) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -229,7 +261,11 @@
                     var that = this;
                     setTimeout(function() {
                         that.$target.hide();
-                    }, 300);
+                        if (!that.getCache()) {
+                            that.$target.remove();
+                            //that.getTriggerElement.removeAttr('data-target');
+                        }
+                    }, that.getHideDelay());
                 }
                 if (this.options.backdrop) {
                     backdrop.hide();
@@ -254,28 +290,44 @@
                     }, autoHide);
                 }
             },
+            delegate: function(eventTarget) {
+                var self = $(eventTarget).data('plugin_' + pluginName);
+                if (!self) {
+                    self = new WebuiPopover(eventTarget, this.getDelegateOptions());
+                    $(eventTarget).data('plugin_' + pluginName, self);
+                }
+                return self;
+            },
             toggle: function(e) {
+                var self = this;
                 if (e) {
                     e.preventDefault();
                     e.stopPropagation();
+                    if (this.options.selector) {
+                        self = this.delegate(e.currentTarget);
+                    }
                 }
-                this[this.getTarget().hasClass('in') ? 'hide' : 'show']();
+                self[self.getTarget().hasClass('in') ? 'hide' : 'show']();
             },
             hideAll: function() {
                 hideAllPop();
             },
+            hideOthers: function() {
+                hideOtherPops(this);
+            },
             /*core method ,show popover */
             show: function() {
+                if (this._opened) {
+                    return;
+                }
                 //removeAllTargets();
                 var
                     $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass);
                 if (!this.options.multi) {
-                    this.hideAll();
+                    this.hideOthers();
                 }
-                if (this._opened) {
-                    return;
-                }
-                // use cache by default, if not cache setted  , reInit the contents 
+
+                // use cache by default, if not cache setted  , reInit the contents
                 if (!this.getCache() || !this._poped || this.content === '') {
                     this.content = '';
                     this.setTitle(this.getTitle());
@@ -287,8 +339,13 @@
                     } else {
                         this.setContentASync(this.options.content);
                     }
+
+                    if (this.canEmptyHide() && this.content === '') {
+                        return;
+                    }
                     $target.show();
                 }
+
                 this.displayContent();
 
                 if (this.options.onShow) {
@@ -317,6 +374,15 @@
                     //placement
                     placement = 'bottom',
                     e = $.Event('show.' + pluginType);
+
+                if (this.canEmptyHide()) {
+
+                    var content = $targetContent.children().html();
+                    if (content !== null && content.trim().length === 0) {
+                        return;
+                    }
+                }
+
                 //if (this.hasContent()){
                 this.$element.trigger(e, [$target]);
                 //}
@@ -342,6 +408,11 @@
 
                 if (this.options.style) {
                     this.$target.addClass(pluginClass + '-' + this.options.style);
+                }
+
+                //check rtl
+                if (this.options.direction === 'rtl' && !$targetContent.hasClass(rtlClass)) {
+                    $targetContent.addClass(rtlClass);
                 }
 
                 //init the popover and insert into the document body
@@ -373,6 +444,17 @@
                     }
                     this.$target.addClass('webui-no-padding');
                 }
+
+                // add maxHeight and maxWidth support by limodou@gmail.com 2016/10/1
+                if (this.options.maxHeight) {
+                    $targetContent.css('maxHeight', this.options.maxHeight);
+                }
+
+                if (this.options.maxWidth) {
+                    $targetContent.css('maxWidth', this.options.maxWidth);
+                }
+                // end
+
                 targetWidth = $target[0].offsetWidth;
                 targetHeight = $target[0].offsetHeight;
 
@@ -395,9 +477,6 @@
 
                     $iframe.width(iframeWidth).height(iframeHeight);
                 }
-
-
-
 
                 if (!this.options.arrow) {
                     this.$target.css({
@@ -445,12 +524,19 @@
                 if (!this.$target) {
                     var id = pluginName + this._idSeed;
                     this.$target = $(this.options.template)
-                        .attr('id', id)
-                        .data('trigger-element', this.getTriggerElement());
+                        .attr('id', id);
                     this._customTargetClass = this.$target.attr('class') !== pluginClass ? this.$target.attr('class') : null;
                     this.getTriggerElement().attr('data-target', id);
                 }
+                if (!this.$target.data('trigger-element')) {
+                    this.$target.data('trigger-element', this.getTriggerElement());
+                }
                 return this.$target;
+            },
+            removeTarget: function() {
+                this.$target.remove();
+                this.$target = null;
+                this.$contentElement = null;
             },
             getTitleElement: function() {
                 return this.getTarget().find('.' + pluginClass + '-title');
@@ -520,6 +606,10 @@
             setTitle: function(title) {
                 var $titleEl = this.getTitleElement();
                 if (title) {
+                    //check rtl
+                    if (this.options.direction === 'rtl' && !$titleEl.hasClass(rtlClass)) {
+                        $titleEl.addClass(rtlClass);
+                    }
                     $titleEl.html(title);
                 } else {
                     $titleEl.remove();
@@ -527,6 +617,9 @@
             },
             hasContent: function() {
                 return this.getContent();
+            },
+            canEmptyHide: function() {
+                return this.options.hideEmpty && this.options.type === 'html';
             },
             getIframe: function() {
                 var $iframe = $('<iframe></iframe>').attr('src', this.getUrl());
@@ -579,7 +672,7 @@
                 var $ct = this.getContentElement();
                 if (typeof content === 'string') {
                     $ct.html(content);
-                } else if (content instanceof jQuery) {
+                } else if (content instanceof $) {
                     $ct.html('');
                     //Don't want to clone too many times.
                     if (!this.options.cache) {
@@ -602,9 +695,9 @@
                     url: this.getUrl(),
                     type: this.options.async.type,
                     cache: this.getCache(),
-                    beforeSend: function(xhr) {
+                    beforeSend: function(xhr, settings) {
                         if (that.options.async.before) {
-                            that.options.async.before(that, xhr);
+                            that.options.async.before(that, xhr, settings);
                         }
                     },
                     success: function(data) {
@@ -638,9 +731,12 @@
                     return;
                 }
                 if (this.options.dismissible && this.getTrigger() === 'click') {
-                    $document.off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
-                    $document.off('click.webui-popover touchend.webui-popover')
-                        .on('click.webui-popover touchend.webui-popover', $.proxy(this.bodyClickHandler, this));
+                    if (isMobile) {
+                        $document.off('touchstart.webui-popover').on('touchstart.webui-popover', $.proxy(this.bodyTouchStartHandler, this));
+                    } else {
+                        $document.off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
+                        $document.off('click.webui-popover').on('click.webui-popover', $.proxy(this.bodyClickHandler, this));
+                    }
                 } else if (this.getTrigger() === 'hover') {
                     $document.off('touchend.webui-popover')
                         .on('touchend.webui-popover', $.proxy(this.bodyClickHandler, this));
@@ -648,8 +744,13 @@
             },
 
             /* event handlers */
-            mouseenterHandler: function() {
+            mouseenterHandler: function(e) {
                 var self = this;
+
+                if (e && this.options.selector) {
+                    self = this.delegate(e.currentTarget);
+                }
+
                 if (self._timeout) {
                     clearTimeout(self._timeout);
                 }
@@ -672,17 +773,28 @@
                     this.hideAll();
                 }
             },
-
+            bodyTouchStartHandler: function(e) {
+                var self = this;
+                var $eventEl = $(e.currentTarget);
+                $eventEl.on('touchend', function(e) {
+                    self.bodyClickHandler(e);
+                    $eventEl.off('touchend');
+                });
+                $eventEl.on('touchmove', function() {
+                    $eventEl.off('touchend');
+                });
+            },
             bodyClickHandler: function(e) {
                 _isBodyEventHandled = true;
                 var canHide = true;
                 for (var i = 0; i < _srcElements.length; i++) {
                     var pop = getPopFromElement(_srcElements[i]);
                     if (pop && pop._opened) {
-                        var popX1 = pop.getTarget().offset().left;
-                        var popY1 = pop.getTarget().offset().top;
-                        var popX2 = pop.getTarget().offset().left + pop.getTarget().width();
-                        var popY2 = pop.getTarget().offset().top + pop.getTarget().height();
+                        var offset = pop.getTarget().offset();
+                        var popX1 = offset.left;
+                        var popY1 = offset.top;
+                        var popX2 = offset.left + pop.getTarget().width();
+                        var popY2 = offset.top + pop.getTarget().height();
                         var pt = pointerEventToXY(e);
                         var inPop = pt.x >= popX1 && pt.x <= popX2 && pt.y >= popY1 && pt.y <= popY2;
                         if (inPop) {
@@ -812,31 +924,54 @@
                     }
                 } else if (placement === 'auto-right') {
                     if (pageY < clientHeight / 3) {
-                        placement = 'right-top';
+                        placement = 'right-bottom';
                     } else if (pageY < clientHeight * 2 / 3) {
                         placement = 'right';
                     } else {
-                        placement = 'right-bottom';
+                        placement = 'right-top';
                     }
                 }
                 return placement;
             },
             getElementPosition: function() {
-                return $.extend({}, this.$element.offset(), {
-                    width: this.$element[0].offsetWidth,
-                    height: this.$element[0].offsetHeight
-                });
+                // If the container is the body or normal conatiner, just use $element.offset()
+                var elRect = this.$element[0].getBoundingClientRect();
+                var container = this.options.container;
+                var cssPos = container.css('position');
+
+                if (container.is(document.body) || cssPos === 'static') {
+                    return $.extend({}, this.$element.offset(), {
+                        width: this.$element[0].offsetWidth || elRect.width,
+                        height: this.$element[0].offsetHeight || elRect.height
+                    });
+                    // Else fixed container need recalculate the  position
+                } else if (cssPos === 'fixed') {
+                    var containerRect = container[0].getBoundingClientRect();
+                    return {
+                        top: elRect.top - containerRect.top + container.scrollTop(),
+                        left: elRect.left - containerRect.left + container.scrollLeft(),
+                        width: elRect.width,
+                        height: elRect.height
+                    };
+                } else if (cssPos === 'relative') {
+                    return {
+                        top: this.$element.offset().top - container.offset().top,
+                        left: this.$element.offset().left - container.offset().left,
+                        width: this.$element[0].offsetWidth || elRect.width,
+                        height: this.$element[0].offsetHeight || elRect.height
+                    };
+                }
             },
 
             getTargetPositin: function(elementPos, placement, targetWidth, targetHeight) {
                 var pos = elementPos,
                     container = this.options.container,
-                    clientWidth = container.innerWidth(),
-                    clientHeight = container.innerHeight(),
+                    //clientWidth = container.innerWidth(),
+                    //clientHeight = container.innerHeight(),
                     elementW = this.$element.outerWidth(),
                     elementH = this.$element.outerHeight(),
-                    scrollTop = container.scrollTop(),
-                    scrollLeft = container.scrollLeft(),
+                    scrollTop = document.documentElement.scrollTop + container.scrollTop(),
+                    scrollLeft = document.documentElement.scrollLeft + container.scrollLeft(),
                     position = {},
                     arrowOffset = null,
                     arrowSize = this.options.arrow ? 20 : 0,
@@ -844,15 +979,14 @@
                     fixedW = elementW < arrowSize + padding ? arrowSize : 0,
                     fixedH = elementH < arrowSize + padding ? arrowSize : 0,
                     refix = 0,
-                    pageH = clientHeight + scrollTop,
-                    pageW = clientWidth + scrollLeft;
-
-
+                    pageH = document.documentElement.clientHeight + scrollTop,
+                    pageW = document.documentElement.clientWidth + scrollLeft;
 
                 var validLeft = pos.left + pos.width / 2 - fixedW > 0;
                 var validRight = pos.left + pos.width / 2 + fixedW < pageW;
                 var validTop = pos.top + pos.height / 2 - fixedH > 0;
                 var validBottom = pos.top + pos.height / 2 + fixedH < pageH;
+
 
                 switch (placement) {
                     case 'bottom':
@@ -993,8 +1127,91 @@
                     }
                 }
             });
-
             return (results.length) ? results : $result;
         };
+
+        //Global object exposes to window.
+        var webuiPopovers = (function() {
+            var _hideAll = function() {
+                hideAllPop();
+            };
+            var _create = function(selector, options) {
+                options = options || {};
+                $(selector).webuiPopover(options);
+            };
+            var _isCreated = function(selector) {
+                var created = true;
+                $(selector).each(function(i, item) {
+                    created = created && $(item).data('plugin_' + pluginName) !== undefined;
+                });
+                return created;
+            };
+            var _show = function(selector, options) {
+                if (options) {
+                    $(selector).webuiPopover(options).webuiPopover('show');
+                } else {
+                    $(selector).webuiPopover('show');
+                }
+            };
+            var _hide = function(selector) {
+                $(selector).webuiPopover('hide');
+            };
+
+            var _setDefaultOptions = function(options) {
+                defaults = $.extend({}, defaults, options);
+            };
+
+            var _updateContent = function(selector, content) {
+                var pop = $(selector).data('plugin_' + pluginName);
+                if (pop) {
+                    var cache = pop.getCache();
+                    pop.options.cache = false;
+                    pop.options.content = content;
+                    if (pop._opened) {
+                        pop._opened = false;
+                        pop.show();
+                    } else {
+                        if (pop.isAsync()) {
+                            pop.setContentASync(content);
+                        } else {
+                            pop.setContent(content);
+                        }
+                    }
+                    pop.options.cache = cache;
+                }
+            };
+
+            var _updateContentAsync = function(selector, url) {
+                var pop = $(selector).data('plugin_' + pluginName);
+                if (pop) {
+                    var cache = pop.getCache();
+                    var type = pop.options.type;
+                    pop.options.cache = false;
+                    pop.options.url = url;
+
+                    if (pop._opened) {
+                        pop._opened = false;
+                        pop.show();
+                    } else {
+                        pop.options.type = 'async';
+                        pop.setContentASync(pop.content);
+                    }
+                    pop.options.cache = cache;
+                    pop.options.type = type;
+                }
+            };
+
+            return {
+                show: _show,
+                hide: _hide,
+                create: _create,
+                isCreated: _isCreated,
+                hideAll: _hideAll,
+                updateContent: _updateContent,
+                updateContentAsync: _updateContentAsync,
+                setDefaultOptions: _setDefaultOptions
+            };
+        })();
+        window.WebuiPopovers = webuiPopovers;
     }));
 })(window, document);
