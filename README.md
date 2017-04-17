@@ -10,7 +10,7 @@ Browser compatibility: ie8+,Chrome,Safari,Firefox,Opera
 
 jquery1.7+
 
-##Features
+## Features
 * fast,lightweight
 * support more placements
 * auto caculate placement
@@ -23,25 +23,25 @@ jquery1.7+
 * support backdrop
 
 
-##NPM
+## NPM
 ```bash
   npm install webui-popover
 ```
 
-##Bower
+## Bower
 ```bash
   bower install webui-popover
 ```
 
-##CDN
+## CDN
 WebUI Popover Support CDN from version 1.2.1, avaliable on [JSDELIVR](http://www.jsdelivr.com/?query=webui-popover)
 
-##Demo
+## Demo
 [WebUI Popover Demo](http://sandywalker.github.io/webui-popover/demo/)
 
-##Getting Started
+## Getting Started
 
-####Including it on your page
+#### Including it on your page
 Localfile
 ```html
 <link rel="stylesheet" href="jquery.webui-popover.css">
@@ -58,13 +58,13 @@ Or CDN
 <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 ```
 
-####Use the plugin as follows:
+#### Use the plugin as follows:
 
 ```javascript
 $('a').webuiPopover(options);
 ```
 
-####Some Examples:
+#### Some Examples:
 
  Simplest Popover
 ```javascript
@@ -241,7 +241,7 @@ $('a').webuiPopover('destroy');
 }
 ```
 
-###Global Methods
+### Global Methods
 
 
 In some situation, you may want to manipulate the plugin like 'show/hide' popovers by  global methods.  The new object **WebuiPopovers** is introduced and exposed to the global window object, so you can access these methods like 'WebuiPopovers.someMethod()...'. 
