@@ -458,9 +458,21 @@
                 targetWidth = $target[0].offsetWidth;
                 targetHeight = $target[0].offsetHeight;
 
-                var postionInfo = this.getTargetPositin(elementPos, placement, targetWidth, targetHeight);
+                var positionInfo = this.getTargetPosition(elementPos, placement, targetWidth, targetHeight);
 
-                this.$target.css(postionInfo.position).addClass(placement).addClass('in');
+                this.$target.css(positionInfo.position).addClass(placement).addClass('in');
+
+                var that = this;
+                var resizeHandler = function() {
+                    elementPos = that.getElementPosition();
+                    positionInfo = that.getTargetPosition(elementPos, placement, targetWidth, targetHeight);
+                    that.$target.css(positionInfo.position).addClass(placement);
+                };
+                var resizeId;
+                $(window).on('resize', function() {
+                    clearTimeout(resizeId);
+                    resizeId = setTimeout(resizeHandler, 100);
+                });
 
                 if (this.options.type === 'iframe') {
                     var $iframe = $target.find('iframe');
@@ -498,12 +510,12 @@
                         });
                     }
 
-                    if (postionInfo.arrowOffset) {
+                    if (positionInfo.arrowOffset) {
                         //hide the arrow if offset is negative
-                        if (postionInfo.arrowOffset.left === -1 || postionInfo.arrowOffset.top === -1) {
+                        if (positionInfo.arrowOffset.left === -1 || positionInfo.arrowOffset.top === -1) {
                             $arrow.hide();
                         } else {
-                            $arrow.css(postionInfo.arrowOffset);
+                            $arrow.css(positionInfo.arrowOffset);
                         }
                     }
 
@@ -963,7 +975,7 @@
                 }
             },
 
-            getTargetPositin: function(elementPos, placement, targetWidth, targetHeight) {
+            getTargetPosition: function(elementPos, placement, targetWidth, targetHeight) {
                 var pos = elementPos,
                     container = this.options.container,
                     //clientWidth = container.innerWidth(),
