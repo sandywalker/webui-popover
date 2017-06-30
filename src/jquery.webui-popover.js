@@ -274,7 +274,7 @@
                 this.$element.trigger('hidden.' + pluginType, [this.$target]);
 
                 if (this.options.onHide) {
-                    this.options.onHide(this.$target);
+                    this.options.onHide(this.$target, this.getTriggerElement());
                 }
 
             },
@@ -349,7 +349,7 @@
                 this.displayContent();
 
                 if (this.options.onShow) {
-                    this.options.onShow($target);
+                    this.options.onShow($target, this.getTriggerElement());
                 }
 
                 this.bindBodyEvents();
