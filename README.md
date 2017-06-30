@@ -236,8 +236,8 @@ $('a').webuiPopover('destroy');
     autoHide:false, // automatic hide the popover by a specified timeout, the value must be false,or a number(1000 = 1s).
     offsetTop:0,  // offset the top of the popover
     offsetLeft:0,  // offset the left of the popover
-    onShow: function($element) {}, // callback after show
-    onHide: function($element) {}, // callback after hide
+    onShow: function($element, $triggerElement) {}, // callback after show
+    onHide: function($element, $triggerElement) {}, // callback after hide
 }
 ```
 
