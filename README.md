@@ -10,7 +10,7 @@ Browser compatibility: ie8+,Chrome,Safari,Firefox,Opera
 
 jquery1.7+
 
-##Features
+## Features
 * fast,lightweight
 * support more placements
 * auto caculate placement
@@ -23,25 +23,25 @@ jquery1.7+
 * support backdrop
 
 
-##NPM
+## NPM
 ```bash
   npm install webui-popover
 ```
 
-##Bower
+## Bower
 ```bash
   bower install webui-popover
 ```
 
-##CDN
+## CDN
 WebUI Popover Support CDN from version 1.2.1, avaliable on [JSDELIVR](http://www.jsdelivr.com/?query=webui-popover)
 
-##Demo
+## Demo
 [WebUI Popover Demo](http://sandywalker.github.io/webui-popover/demo/)
 
-##Getting Started
+## Getting Started
 
-####Including it on your page
+#### Including it on your page
 Localfile
 ```html
 <link rel="stylesheet" href="jquery.webui-popover.css">
