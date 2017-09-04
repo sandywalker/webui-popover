@@ -52,10 +52,10 @@ Localfile
 Or CDN
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/webui-popover@1.2.18/dist/jquery.webui-popover.min.css">
 ...
 <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/webui-popover@1.2.18/dist/jquery.webui-popover.min.js"></script>
 ```
 
 ####Use the plugin as follows:
