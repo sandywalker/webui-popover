@@ -78,7 +78,6 @@
         var _srcElements = [];
         var backdrop = $('<div class="webui-popover-backdrop"></div>');
         var _globalIdSeed = 0;
-        var _isBodyEventHandled = false;
         var _offsetOut = -2000; // the value offset  out of the screen
         var $document = $(document);
 
@@ -727,19 +726,18 @@
             },
 
             bindBodyEvents: function() {
-                if (_isBodyEventHandled) {
-                    return;
-                }
                 if (this.options.dismissible && this.getTrigger() === 'click') {
                     if (isMobile) {
                         $document.off('touchstart.webui-popover').on('touchstart.webui-popover', $.proxy(this.bodyTouchStartHandler, this));
                     } else {
-                        $document.off('keyup.webui-popover').on('keyup.webui-popover', $.proxy(this.escapeHandler, this));
-                        $document.off('click.webui-popover').on('click.webui-popover', $.proxy(this.bodyClickHandler, this));
+                        $document.off('keyup.webui-popover' + this._idSeed)
+                            .on('keyup.webui-popover' + this._idSeed, $.proxy(this.escapeHandler, this));
+                        $document.off('click.webui-popover' + this._idSeed)
+                            .on('click.webui-popover' + this._idSeed, $.proxy(this.bodyClickHandler, this));
                     }
                 } else if (this.getTrigger() === 'hover') {
-                    $document.off('touchend.webui-popover')
-                        .on('touchend.webui-popover', $.proxy(this.bodyClickHandler, this));
+                    $document.off('touchend.webui-popover' + this._idSeed)
+                        .on('touchend.webui-popover' + this._idSeed, $.proxy(this.bodyClickHandler, this));
                 }
             },
 
@@ -770,7 +768,7 @@
             },
             escapeHandler: function(e) {
                 if (e.keyCode === 27) {
-                    this.hideAll();
+                    this.hide();
                 }
             },
             bodyTouchStartHandler: function(e) {
@@ -785,7 +783,6 @@
                 });
             },
             bodyClickHandler: function(e) {
-                _isBodyEventHandled = true;
                 var canHide = true;
                 for (var i = 0; i < _srcElements.length; i++) {
                     var pop = getPopFromElement(_srcElements[i]);
@@ -804,7 +801,7 @@
                     }
                 }
                 if (canHide) {
-                    hideAllPop();
+                    this.hide();
                 }
             },
 
