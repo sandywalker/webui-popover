@@ -10,7 +10,7 @@
   <script src="../src/jquery.webui-popover.js" ></script>
 
   <style type="text/css">
-      #popover1 {
+      #popover1, #popover3 {
         margin-left: 50px;
         margin-right: 100px;
       }
@@ -38,12 +38,25 @@
             placement: "bottom",
             content: "I'm dismissible"
         });
+
+        $("#popover3").webuiPopover({
+            multi: true,
+            dismissible: true,
+            placement: "bottom",
+            content: "I'm popover 3"
+        });
+        $("#popover4").webuiPopover({
+            multi: true,
+            dismissible: true,
+            placement: "bottom",
+            content: "I'm popover 4"
+        });
     });
   </script>
 </head>
 <body>
     <div class="desc">
-        <b>Problem</b>: Opening a dismissible popover causes non-dismissible popovers to become dismissible.<br /><br />
+        <b>Problem of issue#248</b>: Opening a dismissible popover causes non-dismissible popovers to become dismissible.<br /><br />
 
         <b>Initial conditions</b>: Popover 1 is not dismissible. Popover 2 is dismissible.<br /><br />
 
@@ -54,6 +67,20 @@
     <div class="popContainer">
         <div id="popover1" class="pop">Popover 1</div>
         <div id="popover2" class="pop">Popover 2</div>
+    </div>
+
+    <div class="desc">
+        <b>With issue#248 solution in place, ensure that</b>: When an outside click is done for two open popovers, 
+        both should dismiss themselves through their own bodyClickHandler individually.<br /><br />
+
+        <b>Initial conditions</b>: Both popovers are dismissible and have multi:true.<br /><br />
+
+        Step 1) Open Popover 3 and Popover 4 so that they're both open at the same time.<br />
+        Step 2) Click outside of both of them. Make sure both close.<br />
+    </div>
+    <div>
+        <div id="popover3" class="pop">Popover 3</div>
+        <div id="popover4" class="pop">Popover 4</div>
     </div>
 </body>
 </html>
