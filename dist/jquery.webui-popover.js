@@ -187,7 +187,7 @@
                 this._idSeed = _globalIdSeed;
                 this.id = pluginName + this._idSeed;
                 // normalize container
-                this.options.container = $(this.options.container || document.body).first();
+                this.options.container = $(this.getContainer() || document.body).first();
 
                 if (this.options.backdrop) {
                     backdrop.appendTo(this.options.container).hide();
@@ -560,6 +560,12 @@
             },
             getUrl: function() {
                 return this.$element.attr('data-url') || this.options.url;
+            },
+            getContainer: function() {
+                if( this.$element.attr('data-container') !== undefined ) {
+                    return this.$element.closest( this.$element.attr('data-container') );
+                }
+                return this.options.container;
             },
             getAutoHide: function() {
                 return this.$element.attr('data-auto-hide') || this.options.autoHide;
