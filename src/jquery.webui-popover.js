@@ -317,6 +317,7 @@
             },
             /*core method ,show popover */
             show: function() {
+                _isBodyEventHandled = false;
                 if (this._opened) {
                     return;
                 }
@@ -361,7 +362,7 @@
             },
             displayContent: function() {
                 var
-                //element postion
+                    //element postion
                     elementPos = this.getElementPosition(),
                     //target postion
                     $target = this.getTarget().removeClass().addClass(pluginClass).addClass(this._customTargetClass),
@@ -797,7 +798,7 @@
                         var popY2 = offset.top + pop.getTarget().height();
                         var pt = pointerEventToXY(e);
                         var inPop = pt.x >= popX1 && pt.x <= popX2 && pt.y >= popY1 && pt.y <= popY2;
-                        if (inPop) {
+                        if (inPop || (pt.x == 0 && pt.y == 0)) {
                             canHide = false;
                             break;
                         }
