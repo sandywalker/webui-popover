@@ -317,6 +317,7 @@
             },
             /*core method ,show popover */
             show: function() {
+                _isBodyEventHandled = false;
                 if (this._opened) {
                     return;
                 }
