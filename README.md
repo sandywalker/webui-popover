@@ -1,8 +1,6 @@
-WebUI-Popover
-=============
+# WebUI-Popover 1
 
-A lightWeight popover plugin with jquery, enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap, but bootstrap is not necessary!
-
+A lightWeight popover plugin with jquery, enchance the popover plugin of bootstrap with some awesome new features. It works well with bootstrap, but bootstrap is not necessary!
 
 Browser compatibility: ie8+,Chrome,Safari,Firefox,Opera
 
@@ -10,7 +8,8 @@ Browser compatibility: ie8+,Chrome,Safari,Firefox,Opera
 
 jquery1.7+
 
-##Features
+## Features
+
 * fast,lightweight
 * support more placements
 * auto caculate placement
@@ -22,107 +21,122 @@ jquery1.7+
 * different animations
 * support backdrop
 
+## NPM
 
-##NPM
 ```bash
   npm install webui-popover
 ```
 
-##Bower
+## Bower
+
 ```bash
   bower install webui-popover
 ```
 
-##CDN
+## CDN
+
 WebUI Popover Support CDN from version 1.2.1, avaliable on [JSDELIVR](http://www.jsdelivr.com/?query=webui-popover)
 
-##Demo
+## Demo
+
 [WebUI Popover Demo](http://sandywalker.github.io/webui-popover/demo/)
 
-##Getting Started
+## Getting Started
 
-####Including it on your page
+#### Including it on your page
+
 Localfile
-```html
+
+```markup
 <link rel="stylesheet" href="jquery.webui-popover.css">
 ...
 <script src="jquery.js"></script>
 <script src="jquery.webui-popover.js"></script>
 ```
+
 Or CDN
 
-```html
+```markup
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
 ...
 <script src="https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 ```
 
-####Use the plugin as follows:
+#### Use the plugin as follows:
 
 ```javascript
 $('a').webuiPopover(options);
 ```
 
-####Some Examples:
+#### Some Examples:
 
- Simplest Popover
+Simplest Popover
+
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content'});
 ```
 
- Create Popover by dom element data-* attribute
-```html
+Create Popover by dom element data-\* attribute
+
+```markup
 <a href="#" data-title="Title" data-content="Contents..." data-placement="right">show pop</a>
 ```
+
 ```javascript
 $('a').webuiPopover();
 ```
 
- Popover  content can  be easily setted by next element with class 'webui-popover-content'
- ```html
+Popover content can be easily setted by next element with class 'webui-popover-content'
+
+```markup
 <a href="#" >shop pop</a>
 <div class="webui-popover-content">
-	<p>popover content</p>
+    <p>popover content</p>
 </div>
- ```
- ```javascript
+```
+
+```javascript
 $('a').webuiPopover();
- ```
+```
 
- Or, just use jQuery selector (id selector recommended) to set the Popover content.
+Or, just use jQuery selector \(id selector recommended\) to set the Popover content.
 
- ```html
+```markup
 <a href="#" >shop pop</a>
 <div id="myContent">
-	<p>popover content</p>
+    <p>popover content</p>
 </div>
- ```
- ```javascript
-$('a').webuiPopover({url:'#myContent'});
- ```
+```
 
- Popover with specified placement.
+```javascript
+$('a').webuiPopover({url:'#myContent'});
+```
+
+Popover with specified placement.
+
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',placement:'bottom'});
 ```
 
- Popover trigged by mouse hover.
+Popover trigged by mouse hover.
+
 ```javascript
 $('a').webuiPopover({content:'Content',trigger:'hover'});
 ```
 
- Create Sticky Popover.
+Create Sticky Popover.
+
 ```javascript
 $('a').webuiPopover({content:'Content',trigger:'sticky'});
 ```
 
-Create Popover Dynamically (by new option:'selector').
+Create Popover Dynamically \(by new option:'selector'\).
 
-```html
+```markup
 <a href="#" id="addPop" class="btn btn-default"> add Pop </a>
 <div class="pops">
-      
+
 </div>
 ```
 
@@ -132,54 +146,62 @@ Create Popover Dynamically (by new option:'selector').
         });
 ```
 
- Popover with inversed style.
+Popover with inversed style.
+
 ```javascript
 $('a').webuiPopover({content:'Content',style:'inverse'});
 ```
- Popover with fixed width and height
+
+Popover with fixed width and height
+
 ```javascript
 $('a').webuiPopover({content:'Content',width:300,height:200});
 ```
 
- Popover with close button
+Popover with close button
+
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',closeable:true});
 ```
 
- Animate the Popover
+Animate the Popover
+
 ```javascript
 $('a').webuiPopover({title:'Title',content:'Content',animation:'pop'});
 ```
 
- Popover with iframe
+Popover with iframe
+
 ```javascript
 $('a').webuiPopover({type:'iframe',url:'http://getbootstrap.com'});
 ```
 
+Async Mode
 
- Async Mode
 ```javascript
 $('a').webuiPopover({
-						type:'async',
-						url:'https://api.github.com/',
-						content:function(data){
- 							var html = '<ul>';
- 							for(var key in data){html+='<li>'+data[key]+'</li>';}
-							html+='</ul>';
-							return html;
-						}
- 					});
+                        type:'async',
+                        url:'https://api.github.com/',
+                        content:function(data){
+                             var html = '<ul>';
+                             for(var key in data){html+='<li>'+data[key]+'</li>';}
+                            html+='</ul>';
+                            return html;
+                        }
+                     });
 ```
 
- Async simply by url
- ```javascript
-$('a').webuiPopover({
-	type:'async',
-	url:'http://some.website/htmldata'
-});
- ```
+Async simply by url
 
- Trigger the Popover by manual
+```javascript
+$('a').webuiPopover({
+    type:'async',
+    url:'http://some.website/htmldata'
+});
+```
+
+Trigger the Popover by manual
+
 ```javascript
  //Initailize
  $('a').webuiPopover({trigger:'manual'});
@@ -190,17 +212,16 @@ $('a').webuiPopover({
 
  //Hide it
  $('a').webuiPopover('hide');
-
 ```
 
 Destroy the Popover
+
 ```javascript
 $('a').webuiPopover('destroy');
 ```
 
-
-
 ### Default options
+
 ```javascript
 {
     placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left,auto-top,auto-right,auto-bottom,auto-left,horizontal,vertical
@@ -241,19 +262,17 @@ $('a').webuiPopover('destroy');
 }
 ```
 
-###Global Methods
+### Global Methods
 
-
-In some situation, you may want to manipulate the plugin like 'show/hide' popovers by  global methods.  The new object **WebuiPopovers** is introduced and exposed to the global window object, so you can access these methods like 'WebuiPopovers.someMethod()...'. 
+In some situation, you may want to manipulate the plugin like 'show/hide' popovers by global methods. The new object **WebuiPopovers** is introduced and exposed to the global window object, so you can access these methods like 'WebuiPopovers.someMethod\(\)...'.
 
 Here are examples of calling code.
 
 ```javascript
-
 //Show Popover by click other element.
 $('a').on('click',function(e){
-	e.stopPropagation(); // Stop event propagation is needed, otherwise may trigger the document body click event handled by plugin.
-	WebuiPopovers.show('#el');
+    e.stopPropagation(); // Stop event propagation is needed, otherwise may trigger the document body click event handled by plugin.
+    WebuiPopovers.show('#el');
 });
 
 // Show Popover with options
@@ -279,17 +298,16 @@ WebuiPopovers.setDefaultOptions(options);
 
 Full Methods
 
-```js
- 	WebuiPopovers.show(selector,options); // Show popover by jQuery selector,the  options parameter is optional
-	WebuiPopovers.hide(selector); // Hide  popover by jQuery selector
-	WebuiPopovers.hideAll(); // Hide all popovers
-	WebuiPopovers.create(selector,options);// Create and init the popover by jQuery selector.
-	WebuiPopovers.isCreated(selector); // Check if the popover is already create and bind to the selector.
-	WebuiPopovers.updateContent(selector,newContent) //Update the Popover content after the popover is created.
-	WebuiPopovers.updateContentAsync(selector,url) //Update the Popover content asynchronously after the popover is created.
-	WebuiPopovers.setDefaultOptions(options) //Change the global default options.
+```javascript
+     WebuiPopovers.show(selector,options); // Show popover by jQuery selector,the  options parameter is optional
+    WebuiPopovers.hide(selector); // Hide  popover by jQuery selector
+    WebuiPopovers.hideAll(); // Hide all popovers
+    WebuiPopovers.create(selector,options);// Create and init the popover by jQuery selector.
+    WebuiPopovers.isCreated(selector); // Check if the popover is already create and bind to the selector.
+    WebuiPopovers.updateContent(selector,newContent) //Update the Popover content after the popover is created.
+    WebuiPopovers.updateContentAsync(selector,url) //Update the Popover content asynchronously after the popover is created.
+    WebuiPopovers.setDefaultOptions(options) //Change the global default options.
 ```
 
+Welcome to visit my github page: \[[http://sandywalker.github.io/](http://sandywalker.github.io/)\]
 
-
-Welcome to visit my github page: [http://sandywalker.github.io/]
